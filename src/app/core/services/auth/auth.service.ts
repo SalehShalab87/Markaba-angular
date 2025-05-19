@@ -1,0 +1,93 @@
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal, Signal } from '@angular/core';
+import { User, UserRole } from '../../../models/user.model';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  private apiUrl = 'http://localhost:3000/users';
+  private redirectUrl = '';
+
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  // Signal to hold the current user
+  private _currentUser = signal<User | null>(null);
+
+  constructor() {
+    this.loadUserFromLocalStorage();
+  }
+
+  // Signals to hold the current user state
+  readonly currentUser: Signal<User | null> = computed(() => this._currentUser());
+  readonly isLoggedIn: Signal<boolean> = computed(() => this._currentUser() !== null);
+  readonly userRole: Signal<UserRole | null> = computed(() => this._currentUser()?.role || null);
+
+  loadUserFromLocalStorage(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this._currentUser.set(JSON.parse(user));
+    }
+  }
+
+  isUserExists(email: string, password: string): Observable<User[]> {
+    const passwordHash = window.btoa(password);
+    return this.http.get<User[]>(`${this.apiUrl}?email=${email}&password=${passwordHash}`);
+  }
+
+  isUserEmailExists(email: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}?email=${email}`);
+  }
+
+  registerUser(user: User): Observable<User> {
+    const passwordHash = window.btoa(user.password);
+    user.password = passwordHash;
+    return this.http.post<User>(this.apiUrl, user);
+  }
+
+  redirectUserByRole(): void {
+    const userRole = this._currentUser()?.role;
+    switch (userRole) {
+      case 'admin':
+        this.router.navigateByUrl('/admin');
+        break;
+      case 'client':
+        this.router.navigateByUrl('/client');
+        break;
+      case 'customer':
+        this.router.navigateByUrl('/customer');
+        break;
+      default:
+        this.router.navigateByUrl('/');
+    }
+  }
+
+  login(user: User): void {
+    this._currentUser.set(user);
+    localStorage.setItem('user', JSON.stringify(user));
+    const redirectUrl = this.getRedirectUrl();
+    if (redirectUrl) {
+      this.router.navigateByUrl(redirectUrl);
+      this.setRedirectUrl('');
+    } else {
+      this.redirectUserByRole();
+    }
+  }
+
+  logout(): void {
+    this._currentUser.set(null);
+    this.setRedirectUrl('');
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/');
+  }
+
+  setRedirectUrl(url: string): void {
+    this.redirectUrl = url;
+  }
+
+  getRedirectUrl(): string {
+    return this.redirectUrl;
+  }
+}
