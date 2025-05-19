@@ -1,1 +1,89 @@
-{}
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "Admin User",
+      "email": "admin@cms.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "u2",
+      "name": "John Dealer",
+      "email": "john@dealer.com",
+      "password": "john123",
+      "role": "client",
+      "accountStatus": "approved",
+      "phone": "1234567890",
+      "address": "123 Main St"
+    },
+    {
+      "id": "u3",
+      "name": "Alice Buyer",
+      "email": "alice@buyer.com",
+      "password": "alice123",
+      "role": "customer",
+      "phone": "0987654321",
+      "address": "456 Elm St"
+    }
+  ],
+  "carModels": [
+    { "id": "m1", "name": "Civic", "brand": "Honda" },
+    { "id": "m2", "name": "Corolla", "brand": "Toyota" },
+    { "id": "m3", "name": "Model 3", "brand": "Tesla" }
+  ],
+  "cars": [
+    {
+      "id": "c1",
+      "ownerId": "u2",
+      "modelId": "m1",
+      "brand": "Honda",
+      "description": "A clean and reliable sedan.",
+      "pricePerDay": 40,
+      "price": 15000,
+      "imageUrl": "https://via.placeholder.com/300x200",
+      "isAvailable": true,
+      "requestType": "both"
+    },
+    {
+      "id": "c2",
+      "ownerId": "u2",
+      "modelId": "m3",
+      "brand": "Tesla",
+      "description": "Electric car with autopilot.",
+      "pricePerDay": 100,
+      "price": 35000,
+      "imageUrl": "https://via.placeholder.com/300x200",
+      "isAvailable": false,
+      "requestType": "rent"
+    }
+  ],
+  "requests": [
+    {
+      "id": "r1",
+      "carId": "c1",
+      "customerId": "u3",
+      "ownerId": "u2",
+      "requestType": "buy",
+      "requestStatus": "pending",
+      "paymentStatus": "pending",
+      "paymentAmount": 15000,
+      "createdAt": "2025-05-15T10:00:00Z",
+      "notes": "I would like to inspect the car before finalizing."
+    },
+    {
+      "id": "r2",
+      "carId": "c2",
+      "customerId": "u3",
+      "ownerId": "u2",
+      "requestType": "rent",
+      "requestStatus": "accepted",
+      "paymentStatus": "paid",
+      "paymentAmount": 200,
+      "startDate": "2025-05-18",
+      "endDate": "2025-05-20",
+      "createdAt": "2025-05-17T14:30:00Z",
+      "notes": "Need the car for a short trip."
+    }
+  ]
+}
