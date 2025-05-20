@@ -18,16 +18,17 @@ import { AdminGuard } from './core/guards/admin.guard';
 import { ClientGuard } from './core/guards/client.guard';
 import { CustomerGuard } from './core/guards/customer.guard';
 import { RegisterChoiceComponent } from './pages/auth/register-choice/register-choice.component';
+import { NoAuthGuard } from './core/guards/no-auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   // Public
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterChoiceComponent },
-  { path: 'register-client', component: RegisterClientComponent },
-  { path: 'register-customer', component: RegisterCustomerComponent },
+  { path: 'login', component: LoginComponent , canActivate:[NoAuthGuard] },
+  { path: 'register', component: RegisterChoiceComponent , canActivate:[NoAuthGuard] },
+  { path: 'register-client', component: RegisterClientComponent , canActivate:[NoAuthGuard] },
+  { path: 'register-customer', component: RegisterCustomerComponent , canActivate:[NoAuthGuard] },
 
   // Admin
   {

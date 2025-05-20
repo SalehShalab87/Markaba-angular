@@ -1,0 +1,48 @@
+.login-container{
+    background-color: var(--color-bg);
+}
+
+button{
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+
+    &:hover{
+        background-color: var(--color-bg);
+    }
+    
+
+}
+
+.mb-3.position-relative {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.show-password-icon {
+  position: absolute;
+  right: 15px;
+  top: 33px; 
+  cursor: pointer;
+  color: gray;
+  font-size: 1.5rem;
+  z-index: 2;
+  transition: color 0.2s;
+}
+
+.my-invalid-feedback {
+  color: #d72638;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: #d72638 !important;
+  box-shadow: 0 0 0 0.1rem rgba(215, 38, 56, 0.15);
+}
