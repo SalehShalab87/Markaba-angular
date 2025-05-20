@@ -1,1 +1,43 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+        
+        <a class="navbar-brand" routerLink="/"><i class="ri-car-fill"></i>RideMart</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+        </li>
+        @if (auth.isLoggedIn()) {
+          @if (auth.userRole() === 'admin') {
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">Admin Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/clients" routerLinkActive="active">Clients</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/car-models" routerLinkActive="active">Car Models</a></li>
+          }
+          @if (auth.userRole() === 'client') {
+            <li class="nav-item"><a class="nav-link" routerLink="/client/dashboard" routerLinkActive="active">My Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/cars" routerLinkActive="active">My Cars</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/requests" routerLinkActive="active">Requests</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/payments" routerLinkActive="active">Payments</a></li>
+          }
+          @if (auth.userRole() === 'customer') {
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/browse" routerLinkActive="active">Browse Cars</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">My Requests</a></li>
+          }
+        }
+      </ul>
+      <div class="d-flex align-items-center">
+        @if (auth.isLoggedIn()) {
+          <span class="navbar-text me-2">{{ auth.currentUser()?.name }}</span>
+          <button class="btn btn-danger btn-sm" (click)="auth.logout()">Logout</button>
+        } @else {
+          <a class="btn btn-outline-light me-2" routerLink="/login">Login</a>
+          <a class="btn btn-secondary" routerLink="/register">Register</a>
+        }
+      </div>
+    </div>
+  </div>
+</nav>

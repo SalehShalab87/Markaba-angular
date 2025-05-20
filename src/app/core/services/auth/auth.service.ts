@@ -3,6 +3,7 @@ import { computed, inject, Injectable, signal, Signal } from '@angular/core';
 import { User, UserRole } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastService } from '../toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class AuthService {
 
   private http = inject(HttpClient);
   private router = inject(Router);
+  private toast = inject(ToastService);
   // Signal to hold the current user
   private _currentUser = signal<User | null>(null);
 
@@ -80,6 +82,7 @@ export class AuthService {
     this._currentUser.set(null);
     this.setRedirectUrl('');
     localStorage.removeItem('user');
+    this.toast.showSuccess('Logout successful');
     this.router.navigateByUrl('/');
   }
 

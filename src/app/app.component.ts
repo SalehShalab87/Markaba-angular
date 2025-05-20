@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { I18nService } from './core/services/i18n/i18n.service';
 import { ToastModule } from 'primeng/toast';
+import { HeaderComponent } from "./shared/components/header/header.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,ToastModule],
+  imports: [RouterOutlet, ToastModule, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
