@@ -4,14 +4,14 @@
       "id": "u1",
       "name": "Admin User",
       "email": "admin@cms.com",
-      "password": "admin123",
+      "password": "YWRtaW4xMjM=",
       "role": "admin"
     },
     {
       "id": "u2",
       "name": "John Dealer",
       "email": "john@dealer.com",
-      "password": "john123",
+      "password": "am9objEyMw==",
       "role": "client",
       "accountStatus": "approved",
       "phone": "1234567890",
@@ -21,16 +21,28 @@
       "id": "u3",
       "name": "Alice Buyer",
       "email": "alice@buyer.com",
-      "password": "alice123",
+      "password": "YWxpY2UxMjM=",
       "role": "customer",
       "phone": "0987654321",
       "address": "456 Elm St"
     }
   ],
   "carModels": [
-    { "id": "m1", "name": "Civic", "brand": "Honda" },
-    { "id": "m2", "name": "Corolla", "brand": "Toyota" },
-    { "id": "m3", "name": "Model 3", "brand": "Tesla" }
+    {
+      "id": "m1",
+      "name": "Civic",
+      "brand": "Honda"
+    },
+    {
+      "id": "m2",
+      "name": "Corolla",
+      "brand": "Toyota"
+    },
+    {
+      "id": "m3",
+      "name": "Model 3",
+      "brand": "Tesla"
+    }
   ],
   "cars": [
     {
