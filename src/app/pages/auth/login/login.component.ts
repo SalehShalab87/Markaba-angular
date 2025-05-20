@@ -25,6 +25,7 @@ export class LoginComponent {
   private toast = inject(ToastService);
   subscription!: Subscription;
   showPassword: boolean = false;
+  isLoading: boolean = false;
 
   ngOnInit() {
     this.initializeLoginForm();
@@ -38,9 +39,8 @@ export class LoginComponent {
   }
 
   onLogin(): void {
-
+    this.isLoading = true;
     if (this.loginForm.invalid) {
-      this.toast.showError('Please fill in all required fields');
       this.loginForm.markAllAsTouched();
       return;
     }
@@ -53,6 +53,7 @@ export class LoginComponent {
       .subscribe({
         next: (users: User[]) => {
           if (users.length > 0) {
+            this.isLoading = false;
             this.toast.showSuccess('Login successful');
             this.authService.login(users[0]);
             this.loginForm.reset();

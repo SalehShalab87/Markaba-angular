@@ -1,1 +1,161 @@
-<p>register-customer works!</p>
+<section class="d-flex justify-content-center align-items-center register-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card rounded-4 overflow-hidden">
+          <div class="row g-0 align-items-center">
+            <!-- Left Image -->
+            <div class="col-md-6 d-none d-md-block">
+              <img
+                src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1747777698/Sign_up-rafiki_msejfk.svg"
+                alt="register illustration"
+                class="img-fluid object-fit-cover"
+              />
+            </div>
+            <!-- Right Form -->
+            <div class="col-md-6 d-flex align-items-center p-4 p-lg-5">
+              <form
+                [formGroup]="registerForm"
+                (ngSubmit)="onRegister()"
+                class="w-100"
+              >
+                <h5 class="fw-bold mb-4 text-center">Register as Customer</h5>
+
+                <!-- Name -->
+                <div class="mb-3">
+                  <label for="registerName" class="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    id="registerName"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="Enter your full name"
+                  />
+                  @if (registerForm.get('name')?.errors?.['required'] &&
+                  registerForm.get('name')?.touched) {
+                  <div class="my-invalid-feedback">Name is required.</div>
+                  } @if (registerForm.get('name')?.errors?.['minlength'] &&
+                  registerForm.get('name')?.touched) {
+                  <div class="my-invalid-feedback">
+                    Name must be at least 3 characters.
+                  </div>
+                  }
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                  <label for="registerEmail" class="form-label"
+                    >Email address</label
+                  >
+                  <input
+                    type="email"
+                    id="registerEmail"
+                    class="form-control"
+                    formControlName="email"
+                    placeholder="Enter your email"
+                  />
+                  @if (registerForm.get('email')?.errors?.['required'] &&
+                  registerForm.get('email')?.touched) {
+                  <div class="my-invalid-feedback">Email is required.</div>
+                  } @if (registerForm.get('email')?.errors?.['email'] &&
+                  registerForm.get('email')?.touched) {
+                  <div class="my-invalid-feedback">
+                    Please enter a valid email address.
+                  </div>
+                  }
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3 position-relative">
+                  <label for="registerPassword" class="form-label"
+                    >Password</label
+                  >
+                  <input
+                    [type]="showPassword ? 'text' : 'password'"
+                    id="registerPassword"
+                    class="form-control"
+                    formControlName="password"
+                    placeholder="Enter your password"
+                  />
+                  <i
+                    (click)="showPassword = !showPassword"
+                    class="show-password-icon"
+                    [ngClass]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                  ></i>
+                  @if (registerForm.get('password')?.errors?.['required'] &&
+                  registerForm.get('password')?.touched) {
+                  <div class="my-invalid-feedback">Password is required.</div>
+                  } @if (registerForm.get('password')?.errors?.['minlength'] &&
+                  registerForm.get('password')?.touched) {
+                  <div class="my-invalid-feedback">
+                    Password must be at least 6 characters.
+                  </div>
+                  }
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mb-3 position-relative">
+                  <label for="registerConfirmPassword" class="form-label"
+                    >Confirm Password</label
+                  >
+                  <input
+                    [type]="showConfirmPassword ? 'text' : 'password'"
+                    id="registerConfirmPassword"
+                    class="form-control"
+                    formControlName="confirmPassword"
+                    placeholder="Re-enter your password"
+                  />
+                  <i
+                    (click)="showConfirmPassword = !showConfirmPassword"
+                    class="show-password-icon2"
+                    [ngClass]="
+                      showConfirmPassword ? 'ri-eye-off-line' : 'ri-eye-line'
+                    "
+                  ></i>
+                  @if (
+                  registerForm.get('confirmPassword')?.value !==
+                  registerForm.get('password')?.value ) {
+                  <div class="my-invalid-feedback">
+                    Password do not match.
+                  </div>
+                  } @if (registerForm.errors?.['mismatch'] &&
+                  registerForm.get('confirmPassword')?.touched) {
+                  <div class="my-invalid-feedback">Passwords do not match.</div>
+                  }
+                </div>
+
+                <!-- Phone -->
+                <div class="mb-3">
+                  <label for="registerPhone" class="form-label">Phone</label>
+                  <input
+                    type="text"
+                    id="registerPhone"
+                    class="form-control"
+                    formControlName="phone"
+                    placeholder="Enter your phone number"
+                  />
+                  @if (registerForm.get('phone')?.errors?.['required'] &&
+                  registerForm.get('phone')?.touched) {
+                  <div class="my-invalid-feedback">Phone is required.</div>
+                  } @if (registerForm.get('phone')?.errors?.['pattern'] &&
+                  registerForm.get('phone')?.touched) {
+                  <div class="my-invalid-feedback">
+                    Phone must be 10 digits.
+                  </div>
+                  }
+                </div>
+
+                <!-- Submit -->
+                <div class="d-grid mb-3">
+                  <button type="submit" class="btn btn-dark btn-lg">
+                    Register
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

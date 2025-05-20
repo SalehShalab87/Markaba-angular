@@ -7,7 +7,7 @@
             <!-- Left Image -->
             <div class="col-md-6 d-none d-md-block p-lg-5">
               <img
-                src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1747733260/undraw_login_weas_j1unmv.svg"
+                src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1747777698/Login-amico_g836tp.svg"
                 alt="login illustration"
                 class="img-fluid object-fit-cover"
               />
@@ -31,6 +31,7 @@
                     id="loginEmail"
                     class="form-control"
                     formControlName="email"
+                    placeholder="Enter your email"
                   />
                   @if (loginForm.get('email')?.errors?.['required'] &&
                   loginForm.get('email')?.touched) {
@@ -51,6 +52,7 @@
                     id="loginPassword"
                     class="form-control"
                     formControlName="password"
+                    placeholder="Enter your password"
                   />
                   <i
                     (click)="showPassword = !showPassword"
@@ -78,7 +80,7 @@
                   Don't have an account?
                   <a
                     routerLink="/register"
-                    class="text-primary text-decoration-underline"
+                    class=" register-link"
                   >
                     Register here
                   </a>

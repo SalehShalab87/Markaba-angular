@@ -1,40 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container">
-        
-        <a class="navbar-brand" routerLink="/"><i class="ri-car-fill"></i>RideMart</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/e_background_removal/c_crop,ar_16:9,f_png/v1747768547/ride-mart-logo-white_vap6jw.png" alt="RideMart Logo" class="logo me-2" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="ri-menu-line"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
-        </li>
-        @if (auth.isLoggedIn()) {
-          @if (auth.userRole() === 'admin') {
-            <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">Admin Dashboard</a></li>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <ul class="navbar-nav flex-lg-row flex-column align-items-lg-center">
+        @if(!auth.isLoggedIn()) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+        }
+        @switch (auth.userRole()) {
+          @case('admin'){
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">My Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/admin/clients" routerLinkActive="active">Clients</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/admin/car-models" routerLinkActive="active">Car Models</a></li>
           }
-          @if (auth.userRole() === 'client') {
+          @case('client'){
             <li class="nav-item"><a class="nav-link" routerLink="/client/dashboard" routerLinkActive="active">My Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/client/cars" routerLinkActive="active">My Cars</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/client/requests" routerLinkActive="active">Requests</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/client/payments" routerLinkActive="active">Payments</a></li>
           }
-          @if (auth.userRole() === 'customer') {
+          @case('customer'){
             <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/customer/browse" routerLinkActive="active">Browse Cars</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">My Requests</a></li>
           }
         }
       </ul>
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center mt-3 mt-lg-0">
         @if (auth.isLoggedIn()) {
-          <span class="navbar-text me-2">{{ auth.currentUser()?.name }}</span>
           <button class="btn btn-danger btn-sm" (click)="auth.logout()">Logout</button>
         } @else {
-          <a class="btn btn-outline-light me-2" routerLink="/login">Login</a>
+          <a class="btn btn-outline-light me-3" routerLink="/login">Login</a>
           <a class="btn btn-secondary" routerLink="/register">Register</a>
         }
       </div>

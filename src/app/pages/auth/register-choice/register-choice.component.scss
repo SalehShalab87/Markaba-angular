@@ -1,6 +1,8 @@
 .register-choice-container{
     background-color: var(--color-bg);
     color: white;
+    height: calc(100vh - 91.78px);
+    overflow: hidden;
 }
 
 .btn-primary{
@@ -14,6 +16,8 @@
 
     &:hover{
         background-color: var(--color-bg);
+        color: var(--color-primary);
+        border: 2px solid var(--color-primary);
     }
 }
 
@@ -30,4 +34,10 @@
         background-color: var(--color-primary);
         color: white;
     }
+
+}
+
+.choice-image{
+    width: 300px;
+    height: 300px;
 }

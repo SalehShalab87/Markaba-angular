@@ -1,66 +1,77 @@
-.navbar {
-    background-color: var(--color-bg) !important;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-primary);
+.custom-navbar {
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-primary);
+  min-height: 90px;
 
-    .navbar-brand img {
+  
+    .logo {
+      height: 64px;
+      width: auto;
+      margin-left: -23px;
+      margin-right: 0;
+    }
+  
+  .navbar-nav {
+    .nav-link {
+      color: #fff !important;
+      margin: 0 0.5rem;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      &.active,
+      &:hover {
+        color: var(--color-primary) !important;
+        cursor: pointer;
+      }
+    }
+  }
+  .navbar-toggler {
+    border-color: var(--color-primary);
+    .ri-menu-line{
+        color: #fff;
+    }
+  }
+  .navbar-text {
+    color: #fff;
+    font-weight: 500;
+  }
+  .btn-outline-light {
+    border-color: #fff;
+    color: #fff;
+    &:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #fff;
+    }
+  }
+  .btn-secondary {
+    background: var(--color-primary);
+    border: none;
+    &:hover {
+      background: var(--color-primary-dark);
+    }
+  }
+  .btn-danger {
+    background: #dc3545;
+    font-size: 1rem;
+    border: none;
+    &:hover {
+      background: #b52a37;
+    }
+  }
+}
+
+@media (max-width: 991.98px) {
+  .custom-navbar .navbar-nav {
+    align-items: flex-start !important;
+    .nav-link {
+      margin: 0.25rem 0;
+      font-size: 1rem;
+    }
+  }
+    .custom-navbar .navbar-toggler {
         height: 40px;
-        width: 100%;
     }
-
-    .navbar-nav {
-        .nav-link {
-            color: #fff !important;
-            margin-right: 0.75rem;
-            transition: color 0.2s;
-
-            &.active,
-            &:hover {
-                color: var(--color-primary) !important;
-                cursor: pointer;
-            }
-        }
-    }
-
-    .navbar-toggler {
-        border-color: var(--color-primary);
-        
-        
-    }
-
-    .navbar-text {
-        color: #fff;
-        font-weight: 500;
-    }
-
-    .btn-outline-light {
-        border-color: #fff;
-        color: #fff;
-        &:hover {
-            background: var(--color-primary);
-            border-color: var(--color-primary);
-            color: #fff;
-        }
-    }
-
-    .btn-secondary {
-        background: var(--color-primary);
-        border: none;
-        &:hover {
-            background: var(--color-primary-dark);
-        }
-    }
-
-    .btn-danger {
-        background: #dc3545;
-        border: none;
-        &:hover {
-            background: #b52a37;
-        }
-    }
-    .ri-car-fill{
-        color: var(--color-primary);
-        font-size: 1.5rem;
-    }
-
+  .custom-navbar .navbar-text {
+    font-size: 0.95rem;
+  }
 }

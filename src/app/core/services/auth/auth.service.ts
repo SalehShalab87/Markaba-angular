@@ -4,6 +4,7 @@ import { User, UserRole } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastService } from '../toast.service';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -23,9 +24,15 @@ export class AuthService {
   }
 
   // Signals to hold the current user state
-  readonly currentUser: Signal<User | null> = computed(() => this._currentUser());
-  readonly isLoggedIn: Signal<boolean> = computed(() => this._currentUser() !== null);
-  readonly userRole: Signal<UserRole | null> = computed(() => this._currentUser()?.role || null);
+  readonly currentUser: Signal<User | null> = computed(() =>
+    this._currentUser()
+  );
+  readonly isLoggedIn: Signal<boolean> = computed(
+    () => this._currentUser() !== null
+  );
+  readonly userRole: Signal<UserRole | null> = computed(
+    () => this._currentUser()?.role || null
+  );
 
   loadUserFromLocalStorage(): void {
     const user = localStorage.getItem('user');
@@ -36,7 +43,9 @@ export class AuthService {
 
   isUserExists(email: string, password: string): Observable<User[]> {
     const passwordHash = window.btoa(password);
-    return this.http.get<User[]>(`${this.apiUrl}?email=${email}&password=${passwordHash}`);
+    return this.http.get<User[]>(
+      `${this.apiUrl}?email=${email}&password=${passwordHash}`
+    );
   }
 
   isUserEmailExists(email: string): Observable<User[]> {
@@ -67,8 +76,9 @@ export class AuthService {
   }
 
   login(user: User): void {
-    this._currentUser.set(user);
-    localStorage.setItem('user', JSON.stringify(user));
+    const { password, ...userWithoutPassword } = user;
+    this._currentUser.set(userWithoutPassword as User);
+    localStorage.setItem('user', JSON.stringify(userWithoutPassword));
     const redirectUrl = this.getRedirectUrl();
     if (redirectUrl) {
       this.router.navigateByUrl(redirectUrl);
@@ -93,4 +103,15 @@ export class AuthService {
   getRedirectUrl(): string {
     return this.redirectUrl;
   }
+
+  passwordMatchValidator(form: FormGroup): void {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    if (password !== confirmPassword) {
+      form.get('confirmPassword')?.setErrors({ mismatch: true });
+    } else {
+      form.get('confirmPassword')?.setErrors(null);
+    }
+  }
+
 }
