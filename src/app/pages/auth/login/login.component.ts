@@ -11,10 +11,11 @@ import { User } from '../../../models/user.model';
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { PasswordModule } from 'primeng/password';
+import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
+
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,RouterLink,CommonModule,PasswordModule],
+  imports: [ReactiveFormsModule,RouterLink,CommonModule,TranslatePipe],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })

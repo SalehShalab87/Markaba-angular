@@ -1,0 +1,69 @@
+{
+  "register": {
+    "titleCustomer": "Register as Customer",
+    "titleClient": "Register as Client",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "email": "Email address",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "phone": "Phone",
+    "phonePlaceholder": "Enter your phone number",
+    "address": "Address",
+    "addressPlaceholder": "Enter your address",
+    "submit": "Register",
+    "nameRequired": "Name is required.",
+    "nameMinLength": "Name must be at least 3 characters.",
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Please enter a valid email address.",
+    "passwordRequired": "Password is required.",
+    "passwordMinLength": "Password must be at least 6 characters.",
+    "confirmPasswordMismatch": "Passwords do not match.",
+    "phoneRequired": "Phone is required.",
+    "phoneInvalid": "Phone must be 10 digits.",
+    "addressRequired": "Address is required."
+  },
+  "login": {
+    "title": "Sign into your account",
+    "email": "Email address",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "submit": "Login",
+    "registerLink": "Don't have an account? Register here",
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Please enter a valid email address.",
+    "passwordRequired": "Password is required.",
+    "registerHere": "Register here"
+  },
+  "registerChoice": {
+    "title": "How would you like to register?",
+    "client": "Car Dealer",
+    "customer": "Customer"
+  },
+  "header": {
+    "home": "Home",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "admin": {
+      "dashboard": "My Dashboard",
+      "clients": "Clients",
+      "carModels": "Car Models"
+    },
+    "client": {
+      "dashboard": "My Dashboard",
+      "cars": "My Cars",
+      "requests": "Requests",
+      "payments": "Payments"
+    },
+    "customer": {
+      "dashboard": "Dashboard",
+      "browse": "Browse Cars",
+      "requests": "My Requests"
+    }
+  }
+}

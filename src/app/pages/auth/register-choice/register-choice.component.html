@@ -1,14 +1,18 @@
 <div class="register-choice-container d-flex flex-column align-items-center justify-content-center">
-  <h2 class="mb-4 fw-bold text-center">Register as</h2>
+  <h2 class="mb-4 fw-bold text-center">{{ 'registerChoice.title' | translate }}</h2>
   <div class="container d-flex justify-content-center">
-      <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1747778416/Business_decisions-pana_kvuxcp.svg" alt="choice-image" class="choice-image mb-4"/>
+    <img
+      src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1747778416/Business_decisions-pana_kvuxcp.svg"
+      alt="choice-image"
+      class="choice-image mb-4"
+    />
   </div>
-<div class="d-flex flex-column flex-lg-row gap-4">
+  <div class="d-flex flex-column flex-lg-row gap-4">
     <button class="btn btn-primary btn-lg px-5" (click)="goTo('client')">
-        Car Dealer
+      {{ 'registerChoice.client' | translate }}
     </button>
     <button class="btn btn-outline-primary btn-lg px-5" (click)="goTo('customer')">
-        Customer
+      {{ 'registerChoice.customer' | translate }}
     </button>
-</div>
+  </div>
 </div>

@@ -19,70 +19,61 @@
                 (ngSubmit)="onLogin()"
                 class="w-100"
               >
-                <h5 class="fw-bold mb-4 text-center">Sign into your account</h5>
+                <h5 class="fw-bold mb-4 text-center">{{ 'login.title' | translate }}</h5>
 
                 <!-- Email -->
                 <div class="mb-3">
-                  <label for="loginEmail" class="form-label"
-                    >Email address</label
-                  >
+                  <label for="loginEmail" class="form-label">{{ 'login.email' | translate }}</label>
                   <input
                     type="email"
                     id="loginEmail"
                     class="form-control"
                     formControlName="email"
-                    placeholder="Enter your email"
+                    placeholder="{{ 'login.emailPlaceholder' | translate }}"
                   />
-                  @if (loginForm.get('email')?.errors?.['required'] &&
-                  loginForm.get('email')?.touched) {
-                  <div class="my-invalid-feedback">Email is required.</div>
-                  } @if (loginForm.get('email')?.errors?.['email'] &&
-                  loginForm.get('email')?.touched) {
-                  <div class="my-invalid-feedback">
-                    Please enter a valid email address.
+                  <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="my-invalid-feedback">
+                    {{ 'login.emailRequired' | translate }}
                   </div>
-                  }
+                  <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched" class="my-invalid-feedback">
+                    {{ 'login.emailInvalid' | translate }}
+                  </div>
                 </div>
 
                 <!-- Password -->
                 <div class="mb-3 position-relative">
-                  <label for="loginPassword" class="form-label">Password</label>
+                  <label for="loginPassword" class="form-label">{{ 'login.password' | translate }}</label>
                   <input
                     [type]="showPassword ? 'text' : 'password'"
                     id="loginPassword"
                     class="form-control"
                     formControlName="password"
-                    placeholder="Enter your password"
+                    placeholder="{{ 'login.passwordPlaceholder' | translate }}"
                   />
                   <i
                     (click)="showPassword = !showPassword"
                     class="show-password-icon"
                     [ngClass]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
                   ></i>
-                  @if (loginForm.get('password')?.errors?.['required'] &&
-                  loginForm.get('password')?.touched) {
-                  <div class="my-invalid-feedback">Password is required.</div>
-                  }
+                  <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched" class="my-invalid-feedback">
+                    {{ 'login.passwordRequired' | translate }}
+                  </div>
                 </div>
 
                 <!-- Submit -->
                 <div class="d-grid mb-3">
-                  <button
-                    type="submit"
-                    class="btn btn-dark btn-lg"
-                  >
-                    Login
+                  <button type="submit" class="btn btn-dark btn-lg">
+                    {{ 'login.submit' | translate }}
                   </button>
                 </div>
 
                 <!-- Register Link -->
                 <p class="text-center">
-                  Don't have an account?
+                  {{ 'login.registerLink' | translate }}
                   <a
                     routerLink="/register"
-                    class=" register-link"
+                    class="register-link"
                   >
-                    Register here
+                    {{ 'login.registerHere' | translate }}
                   </a>
                 </p>
               </form>

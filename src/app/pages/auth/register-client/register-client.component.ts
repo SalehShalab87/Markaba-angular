@@ -11,10 +11,11 @@ import { ToastService } from '../../../core/services/toast.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from '../../../models/user.model';
+import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-register-client',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,TranslatePipe],
   templateUrl: './register-client.component.html',
   styleUrl: './register-client.component.scss',
 })

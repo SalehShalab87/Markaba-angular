@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { UserRole } from '../../../models/user.model';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-register-choice',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './register-choice.component.html',
   styleUrl: './register-choice.component.scss'
 })

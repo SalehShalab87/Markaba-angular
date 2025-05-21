@@ -10,10 +10,11 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { User } from '../../../models/user.model';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-register-customer',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,TranslatePipe],
   templateUrl: './register-customer.component.html',
   styleUrl: './register-customer.component.scss',
 })

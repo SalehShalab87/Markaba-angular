@@ -9,3 +9,8 @@
 *{
     font-family: 'Roboto';
 }
+
+html[dir="rtl"] .show-password-icon,.show-password-icon2 {
+  left: 15px !important;
+  right: auto !important;
+}

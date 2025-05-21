@@ -10,34 +10,34 @@
       <ul class="navbar-nav flex-lg-row flex-column align-items-lg-center">
         @if(!auth.isLoggedIn()) {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">{{ 'header.home' | translate }}</a>
           </li>
         }
         @switch (auth.userRole()) {
           @case('admin'){
-            <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">My Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/admin/clients" routerLinkActive="active">Clients</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/admin/car-models" routerLinkActive="active">Car Models</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">{{ 'header.admin.dashboard' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/clients" routerLinkActive="active">{{ 'header.admin.clients' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/car-models" routerLinkActive="active">{{ 'header.admin.carModels' | translate }}</a></li>
           }
           @case('client'){
-            <li class="nav-item"><a class="nav-link" routerLink="/client/dashboard" routerLinkActive="active">My Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/client/cars" routerLinkActive="active">My Cars</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/client/requests" routerLinkActive="active">Requests</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/client/payments" routerLinkActive="active">Payments</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/dashboard" routerLinkActive="active">{{ 'header.client.dashboard' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/cars" routerLinkActive="active">{{ 'header.client.cars' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/requests" routerLinkActive="active">{{ 'header.client.requests' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/payments" routerLinkActive="active">{{ 'header.client.payments' | translate }}</a></li>
           }
           @case('customer'){
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/browse" routerLinkActive="active">Browse Cars</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">My Requests</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">{{ 'header.customer.dashboard' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/browse" routerLinkActive="active">{{ 'header.customer.browse' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">{{ 'header.customer.requests' | translate }}</a></li>
           }
         }
       </ul>
       <div class="d-flex align-items-center mt-3 mt-lg-0">
         @if (auth.isLoggedIn()) {
-          <button class="btn btn-danger btn-sm" (click)="auth.logout()">Logout</button>
+          <button class="btn btn-danger btn-sm" (click)="auth.logout()">{{ 'header.logout' | translate }}</button>
         } @else {
-          <a class="btn btn-outline-light me-3" routerLink="/login">Login</a>
-          <a class="btn btn-secondary" routerLink="/register">Register</a>
+          <a class="btn btn-outline-light me-3 ms-3" routerLink="/login">{{ 'header.login' | translate }}</a>
+          <a class="btn btn-secondary" routerLink="/register">{{ 'header.register' | translate }}</a>
         }
       </div>
     </div>

@@ -1,0 +1,69 @@
+{
+  "register": {
+    "titleCustomer": "تسجيل كعميل",
+    "titleClient": "تسجيل كتاجر سيارات",
+    "fullName": "الاسم الكامل",
+    "fullNamePlaceholder": "أدخل اسمك الكامل",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+    "phone": "رقم الهاتف",
+    "phonePlaceholder": "أدخل رقم هاتفك",
+    "address": "العنوان",
+    "addressPlaceholder": "أدخل عنوانك",
+    "submit": "تسجيل",
+    "nameRequired": "الاسم مطلوب.",
+    "nameMinLength": "يجب أن يكون الاسم 3 أحرف على الأقل.",
+    "emailRequired": "البريد الإلكتروني مطلوب.",
+    "emailInvalid": "يرجى إدخال بريد إلكتروني صالح.",
+    "passwordRequired": "كلمة المرور مطلوبة.",
+    "passwordMinLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
+    "confirmPasswordMismatch": "كلمات المرور غير متطابقة.",
+    "phoneRequired": "رقم الهاتف مطلوب.",
+    "phoneInvalid": "يجب أن يكون رقم الهاتف مكونًا من 10 أرقام.",
+    "addressRequired": "العنوان مطلوب."
+  },
+  "login": {
+    "title": "تسجيل الدخول إلى حسابك",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "submit": "تسجيل الدخول",
+    "registerLink": "ليس لديك حساب؟",
+    "emailRequired": "البريد الإلكتروني مطلوب.",
+    "emailInvalid": "يرجى إدخال بريد إلكتروني صالح.",
+    "passwordRequired": "كلمة المرور مطلوبة.",
+    "registerHere": "سجل هنا"
+  },
+  "registerChoice": {
+    "title": "كيف ترغب في التسجيل؟",
+    "client": "تاجر سيارات",
+    "customer": "عميل"
+  },
+  "header": {
+    "home": "الرئيسية",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "register": "التسجيل",
+    "admin": {
+      "dashboard": "لوحة التحكم",
+      "clients": "العملاء",
+      "carModels": "موديلات السيارات"
+    },
+    "client": {
+      "dashboard": "لوحة التحكم",
+      "cars": "سياراتي",
+      "requests": "الطلبات",
+      "payments": "المدفوعات"
+    },
+    "customer": {
+      "dashboard": "لوحة التحكم",
+      "browse": "تصفح السيارات",
+      "requests": "طلباتي"
+    }
+  }
+}
