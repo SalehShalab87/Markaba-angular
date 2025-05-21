@@ -20,7 +20,7 @@
       &.active,
       &:hover {
         color: var(--color-primary) !important;
-        cursor: pointer;
+        text-decoration: underline;
       }
     }
   }

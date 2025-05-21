@@ -65,5 +65,19 @@
       "browse": "تصفح السيارات",
       "requests": "طلباتي"
     }
+  },
+  "toast":{
+    "success":{
+      "title":"نجاح"
+    },
+    "error":{
+      "title":"خطأ"
+    },
+    "info":{
+      "title":"معلومات"
+    },
+    "warning":{
+      "title":"تحذير"
+    }
   }
 }

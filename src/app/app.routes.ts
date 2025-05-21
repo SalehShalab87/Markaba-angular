@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { CarModelsComponent } from './pages/admin/car-models/car-models.component';
-import { ClientsComponent } from './pages/admin/clients/clients.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterClientComponent } from './pages/auth/register-client/register-client.component';
 import { RegisterCustomerComponent } from './pages/auth/register-customer/register-customer.component';
@@ -19,6 +17,8 @@ import { ClientGuard } from './core/guards/client.guard';
 import { CustomerGuard } from './core/guards/customer.guard';
 import { RegisterChoiceComponent } from './pages/auth/register-choice/register-choice.component';
 import { NoAuthGuard } from './core/guards/no-auth.guard';
+import { AdminClientsComponent } from './pages/admin/admin-clients/admin-clients.component';
+import { AdminCarsModelsComponent } from './pages/admin/admin-cars-models/admin-cars-models.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -38,8 +38,8 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
-      { path: 'clients', component: ClientsComponent },
-      { path: 'car-models', component: CarModelsComponent },
+      { path: 'clients', component: AdminClientsComponent },
+      { path: 'car-models', component: AdminCarsModelsComponent },
     ],
   },
 

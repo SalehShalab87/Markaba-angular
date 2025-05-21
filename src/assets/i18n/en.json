@@ -65,5 +65,19 @@
       "browse": "Browse Cars",
       "requests": "My Requests"
     }
+  },
+  "toast":{
+    "success":{
+      "title":"Success"
+    },
+    "error":{
+      "title":"Error"
+    },
+    "info":{
+      "title":"Info"
+    },
+    "warning":{
+      "title":"Warning"
+    }
   }
 }
