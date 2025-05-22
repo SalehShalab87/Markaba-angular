@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './customer-dashboard.component.scss'
 })
 export class CustomerDashboardComponent {
-
+  //TODO:CustomerDashboardComponent
 }

@@ -5,8 +5,8 @@ import { RegisterCustomerComponent } from './pages/auth/register-customer/regist
 import { CarsComponent } from './pages/client/cars/cars.component';
 import { PaymentsComponent } from './pages/client/payments/payments.component';
 import { BrowseComponent } from './pages/customer/browse/browse.component';
-import { HomeComponent } from './pages/home/home.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HomeComponent } from './pages/main/home/home.component';
+import { NotFoundComponent } from './pages/main/not-found/not-found.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { ClientDashboardComponent } from './pages/client/client-dashboard/client-dashboard.component';
 import { ClientRequestsComponent } from './pages/client/client-requests/client-requests.component';
