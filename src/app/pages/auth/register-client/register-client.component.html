@@ -1,4 +1,9 @@
-<section class="d-flex justify-content-center align-items-center register-container">
+@if(isLoading){
+  <app-loader></app-loader>
+}
+<section
+  class="d-flex justify-content-center align-items-center register-container"
+>
   <div class="container">
     <div class="row justify-content-center overflow-hidden">
       <div class="col-lg-10 col-md-12">
@@ -19,29 +24,43 @@
                 (ngSubmit)="onRegister()"
                 class="w-100"
               >
-                <h5 class="fw-bold mb-4 text-center">{{ 'register.titleClient' | translate }}</h5>
+                <h5 class="fw-bold mb-4 text-center">
+                  {{ "register.titleClient" | translate }}
+                </h5>
 
                 <!-- Name -->
                 <div class="mb-3">
-                  <label for="registerName" class="form-label">{{ 'register.fullName' | translate }}</label>
+                  <label for="registerName" class="form-label">{{
+                    "register.fullName" | translate
+                  }}</label>
                   <input
                     type="text"
                     id="registerName"
                     class="form-control"
                     formControlName="name"
-                    placeholder="{{ 'register.fullNamePlaceholder' | translate }}"
+                    placeholder="{{
+                      'register.fullNamePlaceholder' | translate
+                    }}"
                   />
-                  <div *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched" class="my-invalid-feedback">
-                    {{ 'register.nameRequired' | translate }}
+                  <div
+                    *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.nameRequired" | translate }}
                   </div>
-                  <div *ngIf="registerForm.get('name')?.errors?.['minlength'] && registerForm.get('name')?.touched" class="my-invalid-feedback">
-                    {{ 'register.nameMinLength' | translate }}
+                  <div
+                    *ngIf="registerForm.get('name')?.errors?.['minlength'] && registerForm.get('name')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.nameMinLength" | translate }}
                   </div>
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
-                  <label for="registerEmail" class="form-label">{{ 'register.email' | translate }}</label>
+                  <label for="registerEmail" class="form-label">{{
+                    "register.email" | translate
+                  }}</label>
                   <input
                     type="email"
                     id="registerEmail"
@@ -49,60 +68,96 @@
                     formControlName="email"
                     placeholder="{{ 'register.emailPlaceholder' | translate }}"
                   />
-                  <div *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched" class="my-invalid-feedback">
-                    {{ 'register.emailRequired' | translate }}
+                  <div
+                    *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.emailRequired" | translate }}
                   </div>
-                  <div *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched" class="my-invalid-feedback">
-                    {{ 'register.emailInvalid' | translate }}
+                  <div
+                    *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.emailInvalid" | translate }}
+                  </div>
+                  <div
+                    *ngIf="registerForm.get('email')?.errors?.['emailExists']"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.emailExists" | translate }}
                   </div>
                 </div>
 
                 <!-- Password -->
                 <div class="mb-3 position-relative">
-                  <label for="registerPassword" class="form-label">{{ 'register.password' | translate }}</label>
+                  <label for="registerPassword" class="form-label">{{
+                    "register.password" | translate
+                  }}</label>
                   <input
                     [type]="showPassword ? 'text' : 'password'"
                     id="registerPassword"
                     class="form-control"
                     formControlName="password"
-                    placeholder="{{ 'register.passwordPlaceholder' | translate }}"
+                    placeholder="{{
+                      'register.passwordPlaceholder' | translate
+                    }}"
                   />
                   <i
                     (click)="showPassword = !showPassword"
                     class="show-password-icon"
                     [ngClass]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
                   ></i>
-                  <div *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched" class="my-invalid-feedback">
-                    {{ 'register.passwordRequired' | translate }}
+                  <div
+                    *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.passwordRequired" | translate }}
                   </div>
-                  <div *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched" class="my-invalid-feedback">
-                    {{ 'register.passwordMinLength' | translate }}
+                  <div
+                    *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.passwordMinLength" | translate }}
                   </div>
                 </div>
 
                 <!-- Confirm Password -->
                 <div class="mb-3 position-relative">
-                  <label for="registerConfirmPassword" class="form-label">{{ 'register.confirmPassword' | translate }}</label>
+                  <label for="registerConfirmPassword" class="form-label">{{
+                    "register.confirmPassword" | translate
+                  }}</label>
                   <input
                     [type]="showConfirmPassword ? 'text' : 'password'"
                     id="registerConfirmPassword"
                     class="form-control"
                     formControlName="confirmPassword"
-                    placeholder="{{ 'register.confirmPasswordPlaceholder' | translate }}"
+                    placeholder="{{
+                      'register.confirmPasswordPlaceholder' | translate
+                    }}"
                   />
                   <i
                     (click)="showConfirmPassword = !showConfirmPassword"
                     class="show-password-icon2"
-                    [ngClass]="showConfirmPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    [ngClass]="
+                      showConfirmPassword ? 'ri-eye-off-line' : 'ri-eye-line'
+                    "
                   ></i>
-                  <div *ngIf="registerForm.get('confirmPassword')?.value !== registerForm.get('password')?.value" class="my-invalid-feedback">
-                    {{ 'register.confirmPasswordMismatch' | translate }}
+                  <div
+                    *ngIf="
+                      registerForm.get('confirmPassword')?.value !==
+                      registerForm.get('password')?.value
+                    "
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.confirmPasswordMismatch" | translate }}
                   </div>
                 </div>
 
                 <!-- Phone -->
                 <div class="mb-3">
-                  <label for="registerPhone" class="form-label">{{ 'register.phone' | translate }}</label>
+                  <label for="registerPhone" class="form-label">{{
+                    "register.phone" | translate
+                  }}</label>
                   <input
                     type="text"
                     id="registerPhone"
@@ -110,33 +165,46 @@
                     formControlName="phone"
                     placeholder="{{ 'register.phonePlaceholder' | translate }}"
                   />
-                  <div *ngIf="registerForm.get('phone')?.errors?.['required'] && registerForm.get('phone')?.touched" class="my-invalid-feedback">
-                    {{ 'register.phoneRequired' | translate }}
+                  <div
+                    *ngIf="registerForm.get('phone')?.errors?.['required'] && registerForm.get('phone')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.phoneRequired" | translate }}
                   </div>
-                  <div *ngIf="registerForm.get('phone')?.errors?.['pattern'] && registerForm.get('phone')?.touched" class="my-invalid-feedback">
-                    {{ 'register.phoneInvalid' | translate }}
+                  <div
+                    *ngIf="registerForm.get('phone')?.errors?.['pattern'] && registerForm.get('phone')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.phoneInvalid" | translate }}
                   </div>
                 </div>
 
                 <!-- Address -->
                 <div class="mb-3">
-                  <label for="registerAddress" class="form-label">{{ 'register.address' | translate }}</label>
+                  <label for="registerAddress" class="form-label">{{
+                    "register.address" | translate
+                  }}</label>
                   <input
                     type="text"
                     id="registerAddress"
                     class="form-control"
                     formControlName="address"
-                    placeholder="{{ 'register.addressPlaceholder' | translate }}"
+                    placeholder="{{
+                      'register.addressPlaceholder' | translate
+                    }}"
                   />
-                  <div *ngIf="registerForm.get('address')?.errors?.['required'] && registerForm.get('address')?.touched" class="my-invalid-feedback">
-                    {{ 'register.addressRequired' | translate }}
+                  <div
+                    *ngIf="registerForm.get('address')?.errors?.['required'] && registerForm.get('address')?.touched"
+                    class="my-invalid-feedback"
+                  >
+                    {{ "register.addressRequired" | translate }}
                   </div>
                 </div>
 
                 <!-- Submit -->
                 <div class="d-grid mb-3">
                   <button type="submit" class="btn btn-dark btn-lg">
-                    {{ 'register.submit' | translate }}
+                    {{ "register.submit" | translate }}
                   </button>
                 </div>
               </form>

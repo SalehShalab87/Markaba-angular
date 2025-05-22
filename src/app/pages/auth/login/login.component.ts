@@ -12,19 +12,29 @@ import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
+import { LoaderComponent } from '../../../shared/components/loader/loader.component';
+import { NetworkStatusService } from '../../../core/services/network-status.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,RouterLink,CommonModule,TranslatePipe],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    CommonModule,
+    TranslatePipe,
+    LoaderComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toast = inject(ToastService);
-  subscription!: Subscription;
+  private networkService = inject(NetworkStatusService);
+
+  loginForm!: FormGroup;
+  subscription: Subscription[] = [];
   showPassword: boolean = false;
   isLoading: boolean = false;
 
@@ -39,33 +49,52 @@ export class LoginComponent {
     });
   }
 
+  handleNetworkStatus(): void {
+    this.subscription.push(
+      this.networkService.onlineStatus$.subscribe({
+        next: (isOnline: boolean) => {
+          if (!isOnline) {
+            this.isLoading = false;
+            const errorTranslationKey = 'toast.error.network';
+            this.toast.showError(errorTranslationKey);
+          }
+        },
+      })
+    );
+  }
+
   onLogin(): void {
     this.isLoading = true;
     if (this.loginForm.invalid) {
+      this.isLoading = false;
       this.loginForm.markAllAsTouched();
       return;
     }
+    this.handleNetworkStatus();
 
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    this.subscription = this.authService
-      .isUserExists(email, password)
-      .subscribe({
+    this.subscription.push(
+      this.authService.isUserExists(email, password).subscribe({
         next: (users: User[]) => {
           if (users.length > 0) {
             this.isLoading = false;
-            this.toast.showSuccess('Login successful');
+            const successTranslationKey = 'toast.success.login';
+            this.toast.showSuccess(successTranslationKey);
             this.authService.login(users[0]);
             this.loginForm.reset();
           } else {
-            this.toast.showError('Invalid email or password');
+            this.isLoading = false;
+            const errorTranslationKey = 'toast.error.login';
+            this.toast.showError(errorTranslationKey);
           }
         },
-      });
+      })
+    );
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.subscription?.forEach((sub) => sub.unsubscribe());
   }
 }

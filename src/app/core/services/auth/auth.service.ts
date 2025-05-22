@@ -92,7 +92,8 @@ export class AuthService {
     this._currentUser.set(null);
     this.setRedirectUrl('');
     localStorage.removeItem('user');
-    this.toast.showSuccess('Logout successful');
+    const successTranslationKey = 'toast.success.logout';
+    this.toast.showSuccess(successTranslationKey);
     this.router.navigateByUrl('/');
   }
 

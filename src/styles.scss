@@ -10,7 +10,21 @@
     font-family: 'Roboto';
 }
 
-html[dir="rtl"] .show-password-icon,.show-password-icon2 {
+html[dir="rtl"] .show-password-icon{
   left: 15px !important;
   right: auto !important;
+}
+
+html[dir="rtl"] .show-password-icon2{
+  left: 15px !important;
+  right: auto !important;
+}
+// Hide scrollbar for Chrome, Safari and Opera
+:root::-webkit-scrollbar{
+  display: none;
+}
+// Hide scrollbar for IE, Edge and Firefox
+:root {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }

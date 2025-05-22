@@ -24,7 +24,8 @@
     "confirmPasswordMismatch": "Passwords do not match.",
     "phoneRequired": "Phone is required.",
     "phoneInvalid": "Phone must be 10 digits.",
-    "addressRequired": "Address is required."
+    "addressRequired": "Address is required.",
+    "emailExists": "Email already exists."
   },
   "login": {
     "title": "Sign into your account",
@@ -68,10 +69,16 @@
   },
   "toast":{
     "success":{
-      "title":"Success"
+      "title":"Success",
+      "login":"Login successful",
+      "register":"Registration successful",
+      "logout":"Logout successful"
     },
     "error":{
-      "title":"Error"
+      "title":"Error",
+      "login":"Invalid email or password",
+      "register":"Registration failed",
+      "network":"You are offline. Please check your internet connection."
     },
     "info":{
       "title":"Info"

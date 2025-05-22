@@ -5,10 +5,17 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink,RouterLinkActive,TranslatePipe],
+  imports: [RouterLink, RouterLinkActive, TranslatePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   public auth = inject(AuthService);
+  currentLang = 'ar';
+
+  ngOnInit(){
+    this.currentLang = localStorage.getItem('lang')!;
+  }
+
+
 }

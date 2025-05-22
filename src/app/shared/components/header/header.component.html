@@ -1,8 +1,14 @@
 <nav class="navbar navbar-expand-lg custom-navbar">
   <div class="container-fluid px-4">
-    <a class="navbar-brand d-flex align-items-center" routerLink="/">
-      <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/e_background_removal/c_crop,ar_16:9,f_png/v1747768547/ride-mart-logo-white_vap6jw.png" alt="RideMart Logo" class="logo me-2" />
-    </a>
+    @if(currentLang === 'ar'){
+      <a class="navbar-brand d-flex align-items-center" routerLink="/">
+        <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9/v1747859900/ride-mart-logo-arabic_t6xwes.png" alt="RideMart Logo" class="logo me-2" />
+      </a>
+    }@else {
+      <a class="navbar-brand d-flex align-items-center" routerLink="/">
+        <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/e_background_removal/c_crop,ar_16:9,f_png/v1747768547/ride-mart-logo-white_vap6jw.png" alt="RideMart Logo" class="logo me-2" />
+      </a>
+    }
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="ri-menu-line"></span>
     </button>
@@ -14,7 +20,12 @@
           </li>
         }
         @switch (auth.userRole()) {
-          @case('admin'){
+          @case('customer'){
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">{{ 'header.customer.dashboard' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/browse" routerLinkActive="active">{{ 'header.customer.browse' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">{{ 'header.customer.requests' | translate }}</a></li>
+          }
+           @case('admin'){
             <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">{{ 'header.admin.dashboard' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/admin/clients" routerLinkActive="active">{{ 'header.admin.clients' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/admin/car-models" routerLinkActive="active">{{ 'header.admin.carModels' | translate }}</a></li>
@@ -25,19 +36,16 @@
             <li class="nav-item"><a class="nav-link" routerLink="/client/requests" routerLinkActive="active">{{ 'header.client.requests' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/client/payments" routerLinkActive="active">{{ 'header.client.payments' | translate }}</a></li>
           }
-          @case('customer'){
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">{{ 'header.customer.dashboard' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/browse" routerLinkActive="active">{{ 'header.customer.browse' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">{{ 'header.customer.requests' | translate }}</a></li>
-          }
         }
       </ul>
       <div class="d-flex align-items-center mt-3 mt-lg-0">
         @if (auth.isLoggedIn()) {
           <button class="btn btn-danger btn-sm" (click)="auth.logout()">{{ 'header.logout' | translate }}</button>
         } @else {
-          <a class="btn btn-outline-light me-3 ms-3" routerLink="/login">{{ 'header.login' | translate }}</a>
-          <a class="btn btn-secondary" routerLink="/register">{{ 'header.register' | translate }}</a>
+          <div class="d-flex flex-lg-row flex-column align-items-start gap-2"> ">
+            <a class="btn btn-outline-light w-100" routerLink="/login">{{ 'header.login' | translate }}</a>
+            <a class="btn btn-secondary" routerLink="/register">{{ 'header.register' | translate }}</a>
+          </div>
         }
       </div>
     </div>

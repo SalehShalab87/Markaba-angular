@@ -8,6 +8,7 @@ export class I18nService {
   private readonly http = inject(HttpClient);
   public currentLang: 'en' | 'ar' = 'en';
   private translationFile: Record<string, any> = {};
+  public isRTL = false;
 
   // Step 2: Create a method to load the translation file based on the selected language
   async loadTranslationFile(lang: 'en' | 'ar'): Promise<boolean> {
@@ -40,4 +41,10 @@ export class I18nService {
 
     return typeof translation === 'string' ? translation : key;
   }
+
+  // Step 4: Create a method to check if the current language is RTL
+  checkIfRTL(): boolean {
+    return this.currentLang === 'ar';
+  }
+
 }

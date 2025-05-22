@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
-  Form,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -12,10 +11,12 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from '../../../models/user.model';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
+import { LoaderComponent } from "../../../shared/components/loader/loader.component";
+import { NetworkStatusService } from '../../../core/services/network-status.service';
 
 @Component({
   selector: 'app-register-client',
-  imports: [ReactiveFormsModule, CommonModule,TranslatePipe],
+  imports: [ReactiveFormsModule, CommonModule, TranslatePipe, LoaderComponent],
   templateUrl: './register-client.component.html',
   styleUrl: './register-client.component.scss',
 })
@@ -24,10 +25,12 @@ export class RegisterClientComponent {
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
   subscriptions: Subscription[] = [];
+  isLoading: boolean = false;
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toast = inject(ToastService);
+  private networkService = inject(NetworkStatusService);
 
   ngOnInit() {
     this.initializeRegisterForm();
@@ -45,34 +48,56 @@ export class RegisterClientComponent {
     });
   }
 
+  handleNetworkStatus(): void {
+    this.subscriptions.push(
+      this.networkService.onlineStatus$.subscribe({
+        next: (isOnline: boolean) => {
+          if (!isOnline) {
+            this.isLoading = false;
+            const errorTranslationKey = 'toast.error.network';
+            this.toast.showError(errorTranslationKey);
+          }
+        },
+      })
+    );
+  }
+
   onRegister(): void {
+    this.isLoading = true;
     if (this.registerForm.invalid) {
+      this.isLoading = false;
       this.registerForm.markAllAsTouched();
       return;
     }
+    this.handleNetworkStatus();
     const newUser: User = this.registerForm.getRawValue();
     this.subscriptions.push(
       this.authService.isUserEmailExists(newUser.email).subscribe({
         next: (users: User[]) => {
           if (users.length > 0) {
-            this.toast.showError('Email already exists');
+            this.isLoading = false;
+            this.registerForm.get('email')?.setErrors({ emailExists: true });
           } else {
             this.subscriptions.push(
               this.authService.registerUser(newUser).subscribe({
                 next: () => {
-                  this.toast.showSuccess('Registration successful');
+                  this.isLoading = false;
+                  const successTranslationKey = 'toast.success.register'; 
+                  this.toast.showSuccess(successTranslationKey);
                   this.authService.login(newUser);
                   this.registerForm.reset();
                 },
                 error: () => {
-                  this.toast.showError('Registration failed');
+                  this.isLoading = false;
+                  const errorTranslationKey = 'toast.error.register';
+                  this.toast.showError(errorTranslationKey);
                 },
               })
             );
           }
         },
         error: () => {
-          this.toast.showError('An error occurred while checking email');
+          this.isLoading = false;
         },
       })
     );

@@ -11,10 +11,12 @@ import { ToastService } from '../../../core/services/toast.service';
 import { User } from '../../../models/user.model';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
+import { LoaderComponent } from "../../../shared/components/loader/loader.component";
+import { NetworkStatusService } from '../../../core/services/network-status.service';
 
 @Component({
   selector: 'app-register-customer',
-  imports: [ReactiveFormsModule, CommonModule,TranslatePipe],
+  imports: [ReactiveFormsModule, CommonModule, TranslatePipe, LoaderComponent],
   templateUrl: './register-customer.component.html',
   styleUrl: './register-customer.component.scss',
 })
@@ -24,9 +26,11 @@ export class RegisterCustomerComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toast = inject(ToastService);
+  private networkService = inject(NetworkStatusService);
   subscription: Subscription[] = [];
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
+  isLoading: boolean = false;
 
   ngOnInit() {
     this.initializeLoginForm();
@@ -48,36 +52,59 @@ export class RegisterCustomerComponent {
     );
   }
 
+  handleNetworkStatus(): void {
+    this.subscription.push(
+      this.networkService.onlineStatus$.subscribe({
+        next: (isOnline: boolean) => {
+          if (!isOnline) {
+            this.isLoading = false;
+            const errorTranslationKey = 'toast.error.network';
+            this.toast.showError(errorTranslationKey);
+          }
+        },
+      })
+    );
+  }
+
   
 
   onRegister(): void {
+    this.isLoading = true;
     if (this.registerForm.invalid) {
+      this.isLoading = false;
       this.registerForm.markAllAsTouched();
       return;
     }
+    this.handleNetworkStatus();
     const newUser: User = this.registerForm.getRawValue();
     this.subscription.push(
       this.authService.isUserEmailExists(newUser.email).subscribe({
         next: (users: User[]) => {
           if (users.length > 0) {
-            this.toast.showError('Email already exists');
+            this.isLoading = false;
+            this.registerForm.get('email')?.setErrors({ emailExists: true });
           } else {
+            this.isLoading = true;
             this.subscription.push(
               this.authService.registerUser(newUser).subscribe({
                 next: () => {
-                  this.toast.showSuccess('Registration successful');
+                  this.isLoading = false;
+                  const successTranslationKey = 'toast.success.register';
+                  this.toast.showSuccess(successTranslationKey);
                   this.authService.login(newUser);
                   this.registerForm.reset();
                 },
                 error: () => {
-                  this.toast.showError('Registration failed');
+                  this.isLoading = false;
+                  const errorTranslationKey = 'toast.error.register';
+                  this.toast.showError(errorTranslationKey);
                 },
               })
             );
           }
         },
         error: () => {
-          this.toast.showError('An error occurred while checking email');
+          this.isLoading = false;
         },
       })
     );
