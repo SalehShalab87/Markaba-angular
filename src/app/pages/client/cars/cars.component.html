@@ -59,7 +59,7 @@
                     </div>
                   }
                   
-                  @if(carForm?.get('modelId')?.invalid && carForm?.get('modelId')?.touched) {
+                  @if(carForm.get('modelId')?.invalid && carForm.get('modelId')?.touched) {
                     <div class="text-danger small mt-1 d-flex align-items-center gap-1">
                       <span>Please select a car model</span>
                     </div>
@@ -73,7 +73,7 @@
                     <span class="text-muted">🏷️</span>
                   </label>
                   <input type="text" class="form-control modern-input" formControlName="brand" readonly>
-                  @if(carForm?.get('brand')?.invalid && carForm?.get('brand')?.touched) {
+                  @if(carForm.get('brand')?.invalid && carForm.get('brand')?.touched) {
                     <div class="text-danger small mt-1 d-flex align-items-center gap-1">
                       <span>Brand is required</span>
                     </div>
@@ -81,7 +81,7 @@
                 </div>
 
                 <!-- Price Fields -->
-                @if(carForm?.get('requestType')?.value === 'rent') {
+                @if(carForm.get('requestType')?.value === 'rent') {
                   <div class="col-md-6">
                     <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
                       <span>Price Per Day</span>
@@ -94,7 +94,7 @@
                   </div>
                 }
 
-                @if(carForm?.get('requestType')?.value === 'buy') {
+                @if(carForm.get('requestType')?.value === 'buy') {
                   <div class="col-md-6">
                     <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
                       <span>Price</span>
@@ -139,7 +139,7 @@
                   <div class="form-check modern-check d-flex align-items-center gap-3">
                     <input class="form-check-input modern-checkbox" type="checkbox" formControlName="isAvailable" id="isAvailable">
                     <label class="form-check-label fw-medium" for="isAvailable">
-                      Available for {{ carForm?.get('requestType')?.value === 'rent' ? 'rental' : 'purchase' }}
+                      Available for {{ carForm.get('requestType')?.value === 'rent' ? 'rental' : 'purchase' }}
                     </label>
                   </div>
                 </div>
