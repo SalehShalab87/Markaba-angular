@@ -42,9 +42,9 @@ export class AuthService {
   }
 
   isUserExists(email: string, password: string): Observable<User[]> {
-    const passwordHash = window.btoa(password);
+    // const passwordHash = window.btoa(password);
     return this.http.get<User[]>(
-      `${this.apiUrl}?email=${email}&password=${passwordHash}`
+      `${this.apiUrl}?email=${email}&password=${password}`
     );
   }
 

@@ -11,8 +11,8 @@ export interface Car {
   description: string;
   pricePerDay?: number;
   price?: number;
-  imageUrl: string;
-  // imageUrls: string[];
+  // imageUrl: string;
+  imageUrls: string[];
   isAvailable: boolean;
   requestType: RequestType;
   city: string;
