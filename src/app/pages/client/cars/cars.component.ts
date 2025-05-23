@@ -10,7 +10,7 @@ import {
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { User } from '../../../models/user.model';
 import { Car, RequestType } from '../../../models/car.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { ToastService } from '../../../core/services/toast.service';
 import { finalize } from 'rxjs/operators';
 import { HttpEventType } from '@angular/common/http';
@@ -20,7 +20,7 @@ import { ShortenUrlPipe } from '../../../shared/pipes/shorten-url.pipe';
 
 @Component({
   selector: 'app-cars',
-  imports: [CommonModule, ReactiveFormsModule, LoaderComponent, ShortenUrlPipe],
+  imports: [CommonModule, ReactiveFormsModule, LoaderComponent, ShortenUrlPipe,TitleCasePipe],
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.scss',
 })
@@ -32,7 +32,7 @@ export class CarsComponent {
 
   currentClient: User | null = this.auth.currentUser();
   requestTypes: RequestType[] = ['rent', 'buy'];
-  carForm?: FormGroup;
+  carForm!: FormGroup;
   isLoading: boolean = false;
   isUploading = false;
   uploadProgress = 0;

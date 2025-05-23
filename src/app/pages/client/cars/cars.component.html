@@ -2,7 +2,7 @@
   <app-loader></app-loader>
 }
 
-<div class="modern-wrapper vh-100 overflow-hidden">
+<div class="modern-wrapper overflow-hidden">
   <div class="container-fluid h-100 d-flex align-items-center justify-content-center p-3">
     <div class="row w-100 justify-content-center">
       <div class="col-lg-8 col-xl-7">
@@ -61,7 +61,6 @@
                   
                   @if(carForm?.get('modelId')?.invalid && carForm?.get('modelId')?.touched) {
                     <div class="text-danger small mt-1 d-flex align-items-center gap-1">
-                      <span>⚠️</span>
                       <span>Please select a car model</span>
                     </div>
                   }
@@ -76,7 +75,6 @@
                   <input type="text" class="form-control modern-input" formControlName="brand" readonly>
                   @if(carForm?.get('brand')?.invalid && carForm?.get('brand')?.touched) {
                     <div class="text-danger small mt-1 d-flex align-items-center gap-1">
-                      <span>⚠️</span>
                       <span>Brand is required</span>
                     </div>
                   }
@@ -187,9 +185,9 @@
                           <div class="card border-0 shadow-sm image-card position-relative">
                             <img [src]="url.value" class="card-img-top rounded-top" 
                                  style="height: 120px; object-fit: cover;" alt="Car image">
-                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 rounded-circle p-1"
+                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 rounded-circle p-2 d-flex align-items-center justify-content-center"
                                     (click)="removeImageUrl(i)" style="width: 28px; height: 28px;">
-                              <span class="fw-bold">×</span>
+                              <small class="fw-bold">x</small>
                             </button>
                             <div class="card-body p-2 bg-light">
                               <small class="text-muted text-truncate d-block">{{ url.value | shortenUrl }}</small>
@@ -204,7 +202,7 @@
                 <!-- Submit Button -->
                 <div class="col-12 mt-4">
                   <button type="submit" class="btn btn-lg w-100 text-white fw-semibold modern-submit d-flex align-items-center justify-content-center gap-2" 
-                          [disabled]="carForm?.invalid || isUploading">
+                          [disabled]="carForm.invalid || isUploading">
                     @if(!isUploading) {
                       <span>🚀</span>
                       <span>Submit Car Listing</span>
