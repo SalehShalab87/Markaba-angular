@@ -1,1 +1,224 @@
-<p>cars works!</p>
+@if(isLoading){
+  <app-loader></app-loader>
+}
+
+<div class="modern-wrapper vh-100 overflow-hidden">
+  <div class="container-fluid h-100 d-flex align-items-center justify-content-center p-3">
+    <div class="row w-100 justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <div class="modern-card shadow-lg">
+          <!-- Header -->
+          <div class="card-header border-0 text-white text-center position-relative overflow-hidden">
+            <div class="header-decoration position-absolute"></div>
+            <div class="position-relative z-2">
+              <h2 class="mb-2 fw-bold">Add New Car</h2>
+              <p class="mb-0 opacity-75">Create your car listing with ease</p>
+            </div>
+          </div>
+
+          <!-- Form Body -->
+          <div class="card-body p-4" style="max-height: 70vh; overflow-y: auto;">
+            <form [formGroup]="carForm!" (ngSubmit)="onSubmit()">
+              <input type="hidden" formControlName="ownerId">
+
+              <div class="row g-4">
+                <!-- Request Type -->
+                <div class="col-md-6">
+                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                    <span>Request Type</span>
+                    <span class="text-muted">🚗</span>
+                  </label>
+                  <div class="position-relative">
+                    <select class="form-select modern-select" formControlName="requestType">
+                      <option *ngFor="let type of requestTypes" [value]="type">
+                        {{ type | titlecase }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Car Model -->
+                <div class="col-md-6">
+                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                    <span>Car Model *</span>
+                    <span class="text-muted">🏎️</span>
+                  </label>
+                  <div class="position-relative">
+                    <select class="form-select modern-select" formControlName="modelId" [disabled]="isLoadingModels">
+                      <option value="" disabled selected>Select a model</option>
+                      <option *ngFor="let model of carModels" [value]="model.id">
+                        {{ model.brand }} {{ model.name }}
+                      </option>
+                    </select>
+                  </div>
+                  
+                  @if(isLoadingModels) {
+                    <div class="d-flex align-items-center gap-2 mt-2 text-muted small">
+                      <div class="spinner-border spinner-border-sm" role="status"></div>
+                      <span>Loading models...</span>
+                    </div>
+                  }
+                  
+                  @if(carForm?.get('modelId')?.invalid && carForm?.get('modelId')?.touched) {
+                    <div class="text-danger small mt-1 d-flex align-items-center gap-1">
+                      <span>⚠️</span>
+                      <span>Please select a car model</span>
+                    </div>
+                  }
+                </div>
+
+                <!-- Brand -->
+                <div class="col-md-6">
+                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                    <span>Brand *</span>
+                    <span class="text-muted">🏷️</span>
+                  </label>
+                  <input type="text" class="form-control modern-input" formControlName="brand" readonly>
+                  @if(carForm?.get('brand')?.invalid && carForm?.get('brand')?.touched) {
+                    <div class="text-danger small mt-1 d-flex align-items-center gap-1">
+                      <span>⚠️</span>
+                      <span>Brand is required</span>
+                    </div>
+                  }
+                </div>
+
+                <!-- Price Fields -->
+                @if(carForm?.get('requestType')?.value === 'rent') {
+                  <div class="col-md-6">
+                    <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                      <span>Price Per Day</span>
+                      <span class="text-muted">💰</span>
+                    </label>
+                    <div class="input-group">
+                      <span class="input-group-text modern-addon">$</span>
+                      <input type="number" class="form-control modern-input" formControlName="pricePerDay" placeholder="0.00">
+                    </div>
+                  </div>
+                }
+
+                @if(carForm?.get('requestType')?.value === 'buy') {
+                  <div class="col-md-6">
+                    <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                      <span>Price</span>
+                      <span class="text-muted">💰</span>
+                    </label>
+                    <div class="input-group">
+                      <span class="input-group-text modern-addon">$</span>
+                      <input type="number" class="form-control modern-input" formControlName="price" placeholder="0.00">
+                    </div>
+                  </div>
+                }
+
+                <!-- Description -->
+                <div class="col-12">
+                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                    <span>Description</span>
+                    <span class="text-muted">📝</span>
+                  </label>
+                  <textarea class="form-control modern-textarea" formControlName="description" rows="4" 
+                            placeholder="Describe your car's features, condition, and any special details..."></textarea>
+                </div>
+
+                <!-- Location -->
+                <div class="col-md-6">
+                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                    <span>City</span>
+                    <span class="text-muted">🏙️</span>
+                  </label>
+                  <input type="text" class="form-control modern-input" formControlName="city" placeholder="Enter city">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                    <span>Country</span>
+                    <span class="text-muted">🌍</span>
+                  </label>
+                  <input type="text" class="form-control modern-input" formControlName="country" placeholder="Enter country">
+                </div>
+
+                <!-- Availability -->
+                <div class="col-12">
+                  <div class="form-check modern-check d-flex align-items-center gap-3">
+                    <input class="form-check-input modern-checkbox" type="checkbox" formControlName="isAvailable" id="isAvailable">
+                    <label class="form-check-label fw-medium" for="isAvailable">
+                      Available for {{ carForm?.get('requestType')?.value === 'rent' ? 'rental' : 'purchase' }}
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="col-12">
+                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                    <span>Car Images</span>
+                    <span class="text-muted">📸</span>
+                  </label>
+                  
+                  <div class="upload-area border rounded-3 p-4 text-center position-relative" 
+                       [class.upload-disabled]="isUploading">
+                    <input type="file" class="d-none" (change)="uploadImage($event)" multiple
+                           accept="image/*" [disabled]="isUploading" id="fileInput">
+                    <label for="fileInput" class="d-flex flex-column align-items-center gap-2 mb-0 cursor-pointer"
+                           [class.pe-none]="isUploading">
+                      <div class="upload-icon fs-1 text-muted">📁</div>
+                      <div class="text-center">
+                        <div class="fw-semibold text-dark">Click to upload images</div>
+                        <div class="small text-muted">or drag and drop</div>
+                      </div>
+                    </label>
+                    <div class="small text-muted mt-2">Upload high-quality images of your car (PNG, JPG)</div>
+                  </div>
+
+                  <!-- Upload Progress -->
+                  @if(isUploading) {
+                    <div class="d-flex align-items-center gap-3 mt-3">
+                      <div class="progress flex-grow-1" style="height: 8px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-gradient" 
+                             [style.width.%]="uploadProgress"></div>
+                      </div>
+                      <span class="fw-semibold text-primary small">{{ uploadProgress | number:'1.0-0' }}%</span>
+                    </div>
+                  }
+
+                  <!-- Image Previews -->
+                  @if(imageUrls.controls.length > 0) {
+                    <div class="row g-3 mt-3">
+                      @for(url of imageUrls.controls; track $index; let i = $index) {
+                        <div class="col-6 col-sm-4 col-md-3">
+                          <div class="card border-0 shadow-sm image-card position-relative">
+                            <img [src]="url.value" class="card-img-top rounded-top" 
+                                 style="height: 120px; object-fit: cover;" alt="Car image">
+                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 rounded-circle p-1"
+                                    (click)="removeImageUrl(i)" style="width: 28px; height: 28px;">
+                              <span class="fw-bold">×</span>
+                            </button>
+                            <div class="card-body p-2 bg-light">
+                              <small class="text-muted text-truncate d-block">{{ url.value | shortenUrl }}</small>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+
+                <!-- Submit Button -->
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn btn-lg w-100 text-white fw-semibold modern-submit d-flex align-items-center justify-content-center gap-2" 
+                          [disabled]="carForm?.invalid || isUploading">
+                    @if(!isUploading) {
+                      <span>🚀</span>
+                      <span>Submit Car Listing</span>
+                    } @else {
+                      <div class="spinner-border spinner-border-sm" role="status"></div>
+                      <span>Uploading...</span>
+                    }
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

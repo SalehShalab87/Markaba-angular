@@ -68,6 +68,56 @@
       "imageUrl": "https://via.placeholder.com/300x200",
       "isAvailable": false,
       "requestType": "rent"
+    },
+    {
+      "id": "",
+      "ownerId": "u2",
+      "modelId": "m3",
+      "brand": "Tesla",
+      "description": "any description",
+      "pricePerDay": 10,
+      "price": null,
+      "imageUrls": [
+        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748023136/rent_cars/vc2nnoov4d6hjtqjch5b.png",
+        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748023139/rent_cars/hmtjzd783saqrnawenlz.png",
+        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748023140/rent_cars/aclskwokoz3s7a8tdrmh.png"
+      ],
+      "isAvailable": true,
+      "requestType": "rent",
+      "city": "irbid",
+      "country": "jordan"
+    },
+    {
+      "id": "",
+      "ownerId": "u2",
+      "modelId": "m2",
+      "brand": "Toyota",
+      "description": "سياااااااارة",
+      "pricePerDay": null,
+      "price": 10000,
+      "imageUrls": [
+        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748027539/rent_cars/purirqej4ugicpy1ndvp.jpg"
+      ],
+      "isAvailable": true,
+      "requestType": "buy",
+      "city": "Amman",
+      "country": "Jordan"
+    },
+    {
+      "id": "",
+      "ownerId": "u2",
+      "modelId": "m2",
+      "brand": "Toyota",
+      "description": "سياااااااااااااااااااااااااااااااااااااااارة",
+      "pricePerDay": 1000,
+      "price": null,
+      "imageUrls": [
+        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748028201/rent_cars/ismqsjtmbsiyj5udhseu.jpg"
+      ],
+      "isAvailable": true,
+      "requestType": "rent",
+      "city": "ِاربد",
+      "country": "الاردن"
     }
   ],
   "requests": [
