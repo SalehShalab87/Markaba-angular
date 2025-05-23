@@ -1,12 +1,11 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Request } from '../../models/car-request.model';
-import { AuthService } from './auth/auth.service';
-import { Car } from '../../models/car.model';
 import { HttpClient } from '@angular/common/http';
-import { addCarsUrl, admin, CarModelsUrl, client, cloudinaryUrl, cloudName, folderName, uploadPreset } from '../../shared/constant/constant';
+import { addCarsUrl, admin, CarModelsUrl, client, cloudinaryUrl, cloudName, folderName, uploadPreset } from '../../../shared/constant/constant';
 import { Observable, throwError } from 'rxjs';
-import { User } from '../../models/user.model';
-import { CarModel } from '../../models/car-model.model';
+import { AuthService } from '../auth/auth.service';
+import { CarModel } from '../../../models/car-model.model';
+import { Car } from '../../../models/car.model';
+
 
 @Injectable({
   providedIn: 'root',

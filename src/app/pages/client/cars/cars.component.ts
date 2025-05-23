@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ClientService } from '../../../core/services/client.service';
 import {
   FormArray,
   FormBuilder,
@@ -17,6 +16,7 @@ import { HttpEventType } from '@angular/common/http';
 import { CarModel } from '../../../models/car-model.model';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
 import { ShortenUrlPipe } from '../../../shared/pipes/shorten-url.pipe';
+import { ClientService } from '../../../core/services/client/client.service';
 
 @Component({
   selector: 'app-cars',
@@ -157,7 +157,7 @@ export class CarsComponent {
   
   this.isLoading = true;
   this.clientService.addNewCar(carData).subscribe({
-    next: (response) => {
+    next: (response:Car) => {
       console.log(response);
       this.isLoading = false;
       
@@ -167,7 +167,7 @@ export class CarsComponent {
       const successTranslationKey = 'toast.success.register';
       this.toast.showSuccess(successTranslationKey);
     },
-    error: (error) => {
+    error: (error: any) => {
       console.log(error);
       this.isLoading = false;
       
@@ -181,11 +181,11 @@ export class CarsComponent {
   loadCarModels() {
     this.isLoadingModels = true;
     this.clientService.getCarModels().subscribe({
-      next: (models) => {
+      next: (models:CarModel[]) => {
         this.carModels = models;
         this.isLoadingModels = false;
       },
-      error: (err) => {
+      error: (err:Error) => {
         console.error('Failed to load car models', err);
         this.isLoadingModels = false;
       },
