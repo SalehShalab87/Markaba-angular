@@ -161,11 +161,9 @@ export class CarsComponent {
       console.log(response);
       this.isLoading = false;
       
-      // Reset the form completely
       this.carForm?.reset();
-      this.FormHandler(); // Reinitialize the form with default values
+      this.FormHandler(); 
       
-      // Show success toast
       const successTranslationKey = 'toast.success.register';
       this.toast.showSuccess(successTranslationKey);
     },
