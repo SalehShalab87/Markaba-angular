@@ -2,6 +2,7 @@ import { CarModel } from './car-model.model';
 import { User } from './user.model';
 
 export type RequestType = 'rent' | 'buy' ;
+export type CarAvailability = 'available' | 'unavailable';
 
 export interface Car {
   id: string;
@@ -11,9 +12,8 @@ export interface Car {
   description: string;
   pricePerDay?: number;
   price?: number;
-  // imageUrl: string;
   imageUrls: string[];
-  isAvailable: boolean;
+  isAvailable: CarAvailability;
   requestType: RequestType;
   city: string;
   country: string;

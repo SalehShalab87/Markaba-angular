@@ -1,7 +1,7 @@
 import { Car, RequestType } from './car.model';
 import { User } from './user.model';
 
-export type RequestStatus = 'pending' | 'accepted' | 'rejected';
+export type RequestStatus = 'pending' | 'accepted' | 'rejected' | 'completed' | 'cancelled';
 export type PaymentStatus = 'pending' | 'paid' | 'failed';
 
 export interface Request {

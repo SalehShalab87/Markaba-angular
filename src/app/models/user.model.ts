@@ -11,6 +11,4 @@ export interface User {
   accountStatus?: AccountStatus;
   phone?: string;
   address?: string;
-//   city?: string;
-//   country?: string;
 }

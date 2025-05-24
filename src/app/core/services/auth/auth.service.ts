@@ -91,7 +91,7 @@ export class AuthService {
   logout(): void {
     this._currentUser.set(null);
     this.setRedirectUrl('');
-    localStorage.removeItem('user');
+    localStorage.clear();
     const successTranslationKey = 'toast.success.logout';
     this.toast.showSuccess(successTranslationKey);
     this.router.navigateByUrl('/');

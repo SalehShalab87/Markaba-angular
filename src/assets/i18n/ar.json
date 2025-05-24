@@ -67,23 +67,73 @@
       "requests": "طلباتي"
     }
   },
-  "toast":{
-    "success":{
-      "title":"نجاح",
-      "login":"تم تسجيل الدخول بنجاح",
-      "register":"تم التسجيل بنجاح",
-      "logout":"تم تسجيل الخروج بنجاح"
+  "toast": {
+    "success": {
+      "title": "نجاح",
+      "login": "تم تسجيل الدخول بنجاح",
+      "register": "تم التسجيل بنجاح",
+      "logout": "تم تسجيل الخروج بنجاح"
     },
-    "error":{
-      "title":"خطأ",
-      "login":"كلمة المرور أو البريد الإلكتروني غير صحيحة",
-      "network":"أنت غير متصل بالإنترنت الرجاءالتحقق من اتصالك"
+    "error": {
+      "title": "خطأ",
+      "login": "كلمة المرور أو البريد الإلكتروني غير صحيحة",
+      "network": "أنت غير متصل بالإنترنت الرجاءالتحقق من اتصالك",
+      "accountRejected": "تم رفض حسابك، يرجى التواصل مع الدعم",
+      "accountPending": "حسابك قيد المراجعة، يرجى الانتظار"
     },
-    "info":{
-      "title":"معلومات"
+    "info": {
+      "title": "معلومات"
     },
-    "warning":{
-      "title":"تحذير"
+    "warning": {
+      "title": "تحذير"
     }
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "users": "المستخدمون",
+    "cars": "السيارات",
+    "carModels": "موديلات السيارات",
+    "requests": "الطلبات",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "role": "الدور",
+    "status": "الحالة",
+    "brand": "الماركة",
+    "model": "الموديل",
+    "owner": "المالك",
+    "description": "الوصف",
+    "pricePerDay": "السعر في اليوم",
+    "city": "المدينة",
+    "country": "الدولة",
+    "available": "متوفر",
+    "unavailable": "غير متوفر",
+    "requestType": "نوع الطلب",
+    "modelName": "اسم الموديل",
+    "car": "السيارة",
+    "customer": "العميل",
+    "type": "النوع",
+    "requestStatus": "حالة الطلب",
+    "paymentStatus": "حالة الدفع",
+    "amount": "المبلغ",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "createdAt": "تاريخ الإنشاء",
+    "searchPlaceholder": "بحث...",
+    "allStatus": "كل الحالات",
+    "noRecords": "لا توجد بيانات.",
+    "previous": "السابق",
+    "next": "التالي",
+    "rejected": "مرفوض",
+    "approved": "موافق عليه",
+    "pending": "قيد الانتظار",
+    "completed": "مكتمل",
+    "cancelled": "ملغي",
+    "paid": "مدفوع",
+    "unpaid": "غير مدفوع",
+    "failed": "فشل",
+    "accepted": "مقبول",
+    "noStatus": "—",
+    "rent": "إيجار",
+    "buy": "شراء"
   }
 }
