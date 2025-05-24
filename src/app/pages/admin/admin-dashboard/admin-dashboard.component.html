@@ -1,42 +1,114 @@
+@if(isLoading){
+  <app-loader></app-loader>
+}
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h1 class="my-4">Dashboard</h1>
+    <div class="col-12 my-4">
+      <h2>{{ 'dashboard.title' | translate }}</h2>
+    </div>
+  </div>
+  <div class="row g-3 justify-content-center">
+    <!-- Users Card -->
+    <div class="col-6 col-md-3">
+      <div
+        class="dashboard-card text-center"
+        [ngClass]="{ active: activeCard === 'users' }"
+        (click)="setActiveCard('users')"
+      >
+        <div class="icon-wrapper">
+          <i class="ri-group-line"></i>
+        </div>
+        <h6 class="card-title">{{ 'dashboard.users' | translate }}</h6>
+        <p class="card-number">{{usersList.length}}</p>
+      </div>
+    </div>
+
+    <!-- Cars Card -->
+    <div class="col-6 col-md-3">
+      <div
+        class="dashboard-card text-center"
+        [ngClass]="{ active: activeCard === 'cars' }"
+        (click)="setActiveCard('cars')"
+      >
+        <div class="icon-wrapper">
+          <i class="ri-car-line"></i>
+        </div>
+        <h6 class="card-title">{{ 'dashboard.cars' | translate }}</h6>
+        <p class="card-number">{{carList.length}}</p>
+      </div>
+    </div>
+
+    <!-- Car Models Card -->
+    <div class="col-6 col-md-3">
+      <div
+        class="dashboard-card text-center"
+        [ngClass]="{ active: activeCard === 'carModels' }"
+        (click)="setActiveCard('carModels')"
+      >
+        <div class="icon-wrapper">
+          <i class="ri-roadster-line"></i>
+        </div>
+        <h6 class="card-title">{{ 'dashboard.carModels' | translate }}</h6>
+        <p class="card-number">{{carModelsList.length}}</p>
+      </div>
+    </div>
+
+    <!-- Requests Card -->
+    <div class="col-6 col-md-3">
+      <div
+        class="dashboard-card text-center"
+        [ngClass]="{ active: activeCard === 'requests' }"
+        (click)="setActiveCard('requests')"
+      >
+        <div class="icon-wrapper">
+          <i class="ri-bill-line"></i>
+        </div>
+        <h6 class="card-title">{{ 'dashboard.requests' | translate }}</h6>
+        <p class="card-number">{{requestsList.length}}</p>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total Users</h5>
-          <p class="card-text">100</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total Users</h5>
-          <p class="card-text">100</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total Users</h5>
-          <p class="card-text">100</p>
-        </div>
-      </div>
-    </div>
-      <div class="col-md-12 mb-4">
-        <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total Users</h5>
-          <p class="card-text">100</p>
-        </div>
-      </div>
+  <!-- Active Card Content -->
+  <div class="row mt-4">
+    <div class="col-12">
+      @switch (activeCard) { @case ('users') {
+      <!-- For Users -->
+      <app-dashboard-table
+        [data]="usersList"
+        [columns]="userColumns"
+        [rowsPerPage]="10"
+        title="dashboard.users"
+        [statusOptions]="userStatusOptions"
+        [statusFields]="['accountStatus']"
+      ></app-dashboard-table>
+      } @case ('cars') {
+      <app-dashboard-table
+        [data]="carList"
+        [columns]="carColumns"
+        [rowsPerPage]="10"
+        title="dashboard.cars"
+        [statusOptions]="carStatusOptions"
+        [statusFields]="['isAvailable']"
+      ></app-dashboard-table>
+      } @case ('carModels') {
+      <app-dashboard-table
+        [data]="carModelsList"
+        [columns]="carModelColumns"
+        [rowsPerPage]="10"
+        title="dashboard.carModels"
+      />
+      } @case ('requests') {
+      <!-- For Requests -->
+      <app-dashboard-table
+        [data]="requestsList"
+        [columns]="requestColumns"
+        [rowsPerPage]="10"
+        title="dashboard.requests"
+        [statusOptions]="requestAndPaymentStatusOptions"
+        [statusFields]="['requestStatus', 'paymentStatus']"
+      ></app-dashboard-table>
+      } }
     </div>
   </div>
 </div>

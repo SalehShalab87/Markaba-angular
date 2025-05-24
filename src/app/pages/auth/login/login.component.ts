@@ -79,10 +79,15 @@ export class LoginComponent {
       this.authService.isUserExists(email, password).subscribe({
         next: (users: User[]) => {
           if (users.length > 0) {
+            const user = users[0];
             this.isLoading = false;
+            if (user.accountStatus === 'rejected') {
+              this.toast.showError('toast.error.accountRejected');
+              return;
+            }
             const successTranslationKey = 'toast.success.login';
             this.toast.showSuccess(successTranslationKey);
-            this.authService.login(users[0]);
+            this.authService.login(user);
             this.loginForm.reset();
           } else {
             this.isLoading = false;

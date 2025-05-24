@@ -67,24 +67,74 @@
       "requests": "My Requests"
     }
   },
-  "toast":{
-    "success":{
-      "title":"Success",
-      "login":"Login successful",
-      "register":"Registration successful",
-      "logout":"Logout successful"
+  "toast": {
+    "success": {
+      "title": "Success",
+      "login": "Login successful",
+      "register": "Registration successful",
+      "logout": "Logout successful"
     },
-    "error":{
-      "title":"Error",
-      "login":"Invalid email or password",
-      "register":"Registration failed",
-      "network":"You are offline. Please check your internet connection."
+    "error": {
+      "title": "Error",
+      "login": "Invalid email or password",
+      "register": "Registration failed",
+      "network": "You are offline. Please check your internet connection.",
+      "accountRejected": "Your account has been rejected. Please contact support.",
+      "accountPending": "Your account is under review. Please wait."
     },
-    "info":{
-      "title":"Info"
+    "info": {
+      "title": "Info"
     },
-    "warning":{
-      "title":"Warning"
+    "warning": {
+      "title": "Warning"
     }
+  },
+   "dashboard": {
+    "title": "Dashboard",
+    "users": "Users",
+    "cars": "Cars",
+    "carModels": "Car Models",
+    "requests": "Requests",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "status": "Status",
+    "brand": "Brand",
+    "model": "Model",
+    "owner": "Owner",
+    "description": "Description",
+    "pricePerDay": "Price per Day",
+    "city": "City",
+    "country": "Country",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "requestType": "Request Type",
+    "modelName": "Model Name",
+    "car": "Car",
+    "customer": "Customer",
+    "type": "Type",
+    "requestStatus": "Request Status",
+    "paymentStatus": "Payment Status",
+    "amount": "Amount",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "createdAt": "Created At",
+    "searchPlaceholder": "Search...",
+    "allStatus": "All Statuses",
+    "noRecords": "No records found.",
+    "previous": "Previous",
+    "next": "Next",
+    "rejected": "Rejected",
+    "approved": "Approved",
+    "pending": "Pending",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "paid": "Paid",
+    "unpaid": "Unpaid",
+    "failed": "Failed",
+    "accepted": "Accepted",
+    "noStatus": "—",
+    "rent": "Rent",
+    "buy": "Buy"
   }
 }

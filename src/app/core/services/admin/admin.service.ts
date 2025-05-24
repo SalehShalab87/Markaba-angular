@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../../models/user.model';
 import { Car } from '../../../models/car.model';
 import { CarModel } from '../../../models/car-model.model';
+import { Request } from '../../../models/car-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class AdminService {
 
   getCarModels():Observable<CarModel[]>{
     return this.http.get<CarModel[]>(`${this.apiUrl}/carModels`);
+  }
+
+  getAllRequests(): Observable<Request[]> {
+    return this.http.get<Request[]>(`${this.apiUrl}/requests`);
   }
 
   
