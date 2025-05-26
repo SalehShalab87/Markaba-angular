@@ -73,7 +73,9 @@
       "login": "Login successful",
       "register": "Registration successful",
       "logout": "Logout successful",
-      "carModelDeleted": "Car model deleted successfully"
+      "carModelDeleted": "Car model deleted successfully",
+      "carModelUpdated": "Car model updated successfully",
+      "carModelAdded": "Car model added successfully"
     },
     "error": {
       "title": "Error",
@@ -94,7 +96,15 @@
     "deleteConfirmationHeader": "Delete Confirmation",
     "deleteCarModelConfirmation": "Are you sure you want to delete this car model? This action cannot be undone.",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "save": " Save",
+    "cancel": " Cancel"
+  },
+  "modal":{
+    "editCarModel":" Edit Car Model",
+    "addCarModel":" Add Car Model",
+    "modelName":" Model Name",
+    "brand":" Brand"
   },
    "dashboard": {
     "title": "Dashboard",

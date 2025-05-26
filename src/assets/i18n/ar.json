@@ -73,7 +73,9 @@
       "login": "تم تسجيل الدخول بنجاح",
       "register": "تم التسجيل بنجاح",
       "logout": "تم تسجيل الخروج بنجاح",
-      "carModelDeleted": "تم حذف موديل السيارة بنجاح"
+      "carModelDeleted": "تم حذف موديل السيارة بنجاح",
+      "carModelUpdated": "تم تحديث موديل السيارة بنجاح",
+      "carModelAdded": "تم إضافة موديل السيارة بنجاح"
     },
     "error": {
       "title": "خطأ",
@@ -93,7 +95,15 @@
     "deleteConfirmationHeader": "تأكيد الحذف",
     "deleteCarModelConfirmation": "هل أنت متأكد أنك تريد حذف هذا الموديل؟",
     "yes": "نعم",
-    "no": "لا"
+    "no": "لا",
+    "save": " حفظ",
+    "cancel": " إلغاء"
+  },
+  "modal": {
+    "editCarModel": " تعديل موديل السيارة",
+    "addCarModel": " إضافة موديل سيارة",
+    "modelName": " اسم الموديل",
+    "brand": " الماركة"
   },
   "dashboard": {
     "title": "لوحة التحكم",

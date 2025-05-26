@@ -1,1 +1,69 @@
-<p>admin-cars-models works!</p>
+@if (isLoading) {
+<app-loader></app-loader>
+}
+<div class="container">
+  <button class="btn btn-primary mt-4" (click)="showAddModal()">
+    {{ "dashboard.addCarModel" | translate }}
+  </button>
+  <app-dashboard-table
+    [data]="carModelsList"
+    [columns]="carModelsColumns"
+    title="dashboard.carModels"
+    [rowsPerPage]="10"
+    (delete)="showDeleteConfirmation($event)"
+    (edit)="showEditModal($event)"
+  />
+</div>
+
+<p-confirmdialog />
+
+<!-- modal for editing car model -->
+<div class="modal fade" id="editCarModelModal" tabindex="-1" aria-labelledby="editCarModelModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <form [formGroup]="editCarModelForm" (ngSubmit)="onEditCarModelSubmit()" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editCarModelModalLabel">{{ 'modal.editCarModel' | translate }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="modelName" class="form-label">{{ 'modal.modelName' | translate }}</label>
+          <input type="text" id="modelName" class="form-control" formControlName="name" />
+        </div>
+        <div class="mb-3">
+          <label for="brand" class="form-label">{{ 'modal.brand' | translate }}</label>
+          <input type="text" id="brand" class="form-control" formControlName="brand" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'dialog.cancel' | translate }}</button>
+        <button type="submit" class="btn btn-primary" [disabled]="editCarModelForm.invalid">{{ 'dialog.save' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- modal for adding car model -->
+<div class="modal fade" id="addCarModelModal" tabindex="-1" aria-labelledby="addCarModelModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <form [formGroup]="addCarModalForm" (ngSubmit)="onAddCarModelSubmit()" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCarModelModalLabel">{{ 'modal.addCarModel' | translate }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="modelName" class="form-label">{{ 'modal.modelName' | translate }}</label>
+          <input type="text" id="modelName" class="form-control" formControlName="name" />
+        </div>
+        <div class="mb-3">
+          <label for="brand" class="form-label">{{ 'modal.brand' | translate }}</label>
+          <input type="text" id="brand" class="form-control" formControlName="brand" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'dialog.cancel' | translate }}</button>
+        <button type="submit" class="btn btn-primary" [disabled]="addCarModalForm.invalid">{{ 'dialog.save' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>
