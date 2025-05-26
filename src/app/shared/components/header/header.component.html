@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg custom-navbar">
   <div class="container-fluid px-4">
     @if(currentLang === 'ar'){
-      <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <a class="navbar-brand d-flex align-items-center " routerLink="/">
         <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9/v1747859900/ride-mart-logo-arabic_t6xwes.png" alt="RideMart Logo" class="logo me-2" />
       </a>
     }@else {
@@ -14,11 +14,6 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <ul class="navbar-nav flex-lg-row flex-column align-items-lg-center">
-        @if(!auth.isLoggedIn()) {
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">{{ 'header.home' | translate }}</a>
-          </li>
-        }
         @switch (auth.userRole()) {
           @case('customer'){
             <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">{{ 'header.customer.dashboard' | translate }}</a></li>

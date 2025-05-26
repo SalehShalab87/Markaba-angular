@@ -25,7 +25,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   // Public
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent ,canActivate: [NoAuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
   {
     path: 'register',
