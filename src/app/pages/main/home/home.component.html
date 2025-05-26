@@ -1,1 +1,140 @@
-<p>home works!</p>
+<section
+  class="hero position-relative text-center py-5"
+  style="min-height: 700px;"
+>
+  <div
+    id="heroCarousel"
+    class="carousel slide position-absolute top-0 start-0 w-100 h-100"
+    data-bs-ride="carousel"
+    style="z-index: 1"
+  >
+    <div class="carousel-inner h-100">
+      <div class="carousel-item active h-100">
+        <img
+          src="https://autodealwordpress.com/wp-content/uploads/2024/10/Frame-27-1.webp"
+          class="d-block w-100 h-100 object-fit-cover"
+          alt="Car 1"
+          style="object-fit: cover; filter: brightness(0.5)"
+        />
+      </div>
+      <div class="carousel-item h-100">
+        <img
+          src="https://autodealwordpress.com/wp-content/uploads/2024/10/sliderr.webp"
+          class="d-block w-100 h-100 object-fit-cover"
+          alt="Car 2"
+          style="object-fit: cover; filter: brightness(0.5)"
+        />
+      </div>
+      <div class="carousel-item h-100">
+        <img
+          src="https://autodealwordpress.com/wp-content/uploads/2024/10/Frame-27.webp"
+          class="d-block w-100 h-100 object-fit-cover"
+          alt="Car 3"
+          style="object-fit: cover; filter: brightness(0.5)"
+        />
+      </div>
+    </div>
+    <!-- Carousel controls -->
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#heroCarousel"
+      data-bs-slide="prev"
+      style="z-index: 2"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#heroCarousel"
+      data-bs-slide="next"
+      style="z-index: 2"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="container position-relative fade-in-up" style="z-index: 3; animation-delay: 0.2s;">
+    <h1 class="display-4 mb-3 text-white">{{'home.welcome' | translate}}</h1>
+    <p class="lead mb-4 text-white">{{'home.description' |translate}}</p>
+    <div class="d-flex justify-content-center gap-3 fade-in-up" style="animation-delay: 0.4s;">
+      <a routerLink="/login" class="btn btn-primary btn-lg">{{'header.login' | translate }}</a>
+      <a routerLink="/register" class="btn btn-outline-light btn-lg"
+        >{{'header.register' | translate }}</a
+      >
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works py-4">
+  <h2>How It Works</h2>
+  <div class="row">
+    <div class="col-md-3">Register</div>
+    <div class="col-md-3">Browse Cars</div>
+    <div class="col-md-3">Request & Approve</div>
+    <div class="col-md-3">Drive Away!</div>
+  </div>
+</section>
+
+<section class="featured-cars py-4">
+  <h2>Featured Cars</h2>
+  <div class="row">
+    <!-- Loop over 3 cars from db.json -->
+    <!-- Example static card: -->
+    <div class="col-md-4">
+      <div class="card">
+        <img
+          src="https://via.placeholder.com/300x200"
+          class="card-img-top"
+          alt="Car"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Honda Civic</h5>
+          <p class="card-text">From $40/day</p>
+          <span class="badge bg-success">Available</span>
+        </div>
+      </div>
+    </div>
+    <!-- Repeat for other cars -->
+  </div>
+</section>
+
+<section class="brands py-4">
+  <h2>Popular Brands</h2>
+  <div class="d-flex flex-wrap gap-3">
+    <span class="badge bg-light text-dark">Honda</span>
+    <span class="badge bg-light text-dark">Toyota</span>
+    <span class="badge bg-light text-dark">Tesla</span>
+    <!-- ... -->
+  </div>
+</section>
+
+<section class="user-types py-4">
+  <h2>Who Are You?</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>Customer</h5>
+        <p>Browse and request cars for rent or purchase.</p>
+        <a routerLink="/register" class="btn btn-outline-primary"
+          >Register as Customer</a
+        >
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>Client</h5>
+        <p>List your cars and manage requests.</p>
+        <a routerLink="/register" class="btn btn-outline-primary"
+          >Register as Client</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="text-center py-3">
+  <small>All requests are reviewed by our admin for your safety.</small>
+</footer>
