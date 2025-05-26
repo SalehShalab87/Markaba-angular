@@ -1,10 +1,10 @@
 @if(isLoading){
-  <app-loader></app-loader>
+<app-loader></app-loader>
 }
 <div class="container">
   <div class="row">
     <div class="col-12 my-4">
-      <h2>{{ 'dashboard.title' | translate }}</h2>
+      <h2 class="fw-bold">{{ "dashboard.title" | translate }}</h2>
     </div>
   </div>
   <div class="row g-3 justify-content-center">
@@ -18,8 +18,8 @@
         <div class="icon-wrapper">
           <i class="ri-group-line"></i>
         </div>
-        <h6 class="card-title">{{ 'dashboard.users' | translate }}</h6>
-        <p class="card-number">{{usersList.length}}</p>
+        <h6 class="card-title">{{ "dashboard.users" | translate }}</h6>
+        <p class="card-number">{{ usersList.length }}</p>
       </div>
     </div>
 
@@ -33,8 +33,8 @@
         <div class="icon-wrapper">
           <i class="ri-car-line"></i>
         </div>
-        <h6 class="card-title">{{ 'dashboard.cars' | translate }}</h6>
-        <p class="card-number">{{carList.length}}</p>
+        <h6 class="card-title">{{ "dashboard.cars" | translate }}</h6>
+        <p class="card-number">{{ carList.length }}</p>
       </div>
     </div>
 
@@ -48,8 +48,8 @@
         <div class="icon-wrapper">
           <i class="ri-roadster-line"></i>
         </div>
-        <h6 class="card-title">{{ 'dashboard.carModels' | translate }}</h6>
-        <p class="card-number">{{carModelsList.length}}</p>
+        <h6 class="card-title">{{ "dashboard.carModels" | translate }}</h6>
+        <p class="card-number">{{ carModelsList.length }}</p>
       </div>
     </div>
 
@@ -63,8 +63,8 @@
         <div class="icon-wrapper">
           <i class="ri-bill-line"></i>
         </div>
-        <h6 class="card-title">{{ 'dashboard.requests' | translate }}</h6>
-        <p class="card-number">{{requestsList.length}}</p>
+        <h6 class="card-title">{{ "dashboard.requests" | translate }}</h6>
+        <p class="card-number">{{ requestsList.length }}</p>
       </div>
     </div>
   </div>
@@ -73,7 +73,6 @@
   <div class="row mt-4">
     <div class="col-12">
       @switch (activeCard) { @case ('users') {
-      <!-- For Users -->
       <app-dashboard-table
         [data]="usersList"
         [columns]="userColumns"
@@ -99,7 +98,6 @@
         title="dashboard.carModels"
       />
       } @case ('requests') {
-      <!-- For Requests -->
       <app-dashboard-table
         [data]="requestsList"
         [columns]="requestColumns"

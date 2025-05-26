@@ -25,6 +25,10 @@ html[dir="rtl"] .show-password-icon2 {
   right: auto !important;
 }
 
+html[dir="rtl"] .car-model-actions {
+  justify-self: start !important; 
+}
+
 // Hide scrollbar for Chrome, Safari and Opera
 :root::-webkit-scrollbar {
   display: none;

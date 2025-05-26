@@ -71,7 +71,7 @@ export class AdminDashboardComponent implements OnInit {
   ];
 
   requestColumns = [
-    { field: 'carId', header: 'car' },
+    { field: 'carName', header: 'car' },
     { field: 'customerName', header: 'customer' },
     { field: 'ownerName', header: 'owner' },
     { field: 'requestType', header: 'type' },
@@ -90,7 +90,7 @@ export class AdminDashboardComponent implements OnInit {
     this.handleNetworkStatus();
   }
 
-   handleNetworkStatus(): void {
+  handleNetworkStatus(): void {
     this.subscriptions.push(
       this.networkService.onlineStatus$.subscribe({
         next: (isOnline: boolean) => {
@@ -121,46 +121,57 @@ export class AdminDashboardComponent implements OnInit {
     let carsLoaded = false;
     let requestsLoaded = false;
 
-    this.subscriptions.push(this.adminService.getAllUsers().subscribe((users) => {
-      this.usersList = users.filter((user) => user.role !== 'admin');
-      usersLoaded = true;
-      checkAllLoaded();
-    }));
+    this.subscriptions.push(
+      this.adminService.getAllUsers().subscribe((users) => {
+        this.usersList = users.filter((user) => user.role !== 'admin');
+        usersLoaded = true;
+        checkAllLoaded();
+      })
+    );
 
     this.subscriptions.push(
       this.adminService.getCarModels().subscribe((carModels) => {
-      this.carModelsList = carModels;
-      carModelsLoaded = true;
-      checkAllLoaded();
-    }));
+        this.carModelsList = carModels;
+        carModelsLoaded = true;
+        checkAllLoaded();
+      })
+    );
 
-    this.subscriptions.push(this.adminService.getAllCars().subscribe((cars) => {
-      this.carList = cars.map((car) => ({
-        ...car,
-        ownerName:
-          this.usersList.find((user) => user.id === car.ownerId)?.name ||
-          car.ownerId,
-        modelName:
-          this.carModelsList.find((model) => model.id === car.modelId)?.name ||
-          car.modelId,
-      }));
-      carsLoaded = true;
-      checkAllLoaded();
-    }));
+    this.subscriptions.push(
+      this.adminService.getAllCars().subscribe((cars) => {
+        this.carList = cars.map((car) => ({
+          ...car,
+          ownerName:
+            this.usersList.find((user) => user.id === car.ownerId)?.name ||
+            car.ownerId,
+          modelName:
+            this.carModelsList.find((model) => model.id === car.modelId)
+              ?.name || car.modelId,
+        }));
+        carsLoaded = true;
+        checkAllLoaded();
+      })
+    );
 
-    this.subscriptions.push(this.adminService.getAllRequests().subscribe((requests) => {
-      this.requestsList = requests.map((req) => ({
-        ...req,
-        customerName:
-          this.usersList.find((user) => user.id === req.customerId)?.name ||
-          req.customerId,
-        ownerName:
-          this.usersList.find((user) => user.id === req.ownerId)?.name ||
-          req.ownerId,
-      }));
-      requestsLoaded = true;
-      checkAllLoaded();
-    }));
+    this.subscriptions.push(
+      this.adminService.getAllRequests().subscribe((requests) => {
+        this.requestsList = requests.map((req) => {
+          const car = this.carList.find((c) => c.id === req.carId);
+          return {
+            ...req,
+            carName: car ? `${car.brand}` : 'Unknown Car',
+            customerName:
+              this.usersList.find((user) => user.id === req.customerId)?.name ||
+              req.customerId,
+            ownerName:
+              this.usersList.find((user) => user.id === req.ownerId)?.name ||
+              req.ownerId,
+          };
+        });
+        requestsLoaded = true;
+        checkAllLoaded();
+      })
+    );
 
     const checkAllLoaded = () => {
       if (usersLoaded && carModelsLoaded && carsLoaded && requestsLoaded) {
@@ -185,5 +196,4 @@ export class AdminDashboardComponent implements OnInit {
     // Clear active card from local storage when component is destroyed
     localStorage.removeItem('activeCard');
   }
-
 }
