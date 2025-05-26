@@ -160,6 +160,7 @@
     "clients": "Clients",
     "Address": "Address",
     "phone": "Phone",
-    "addCarModel": "Add Car Model"
+    "addCarModel": "Add Car Model",
+    "price": "Price"
   }
 }

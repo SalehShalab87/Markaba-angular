@@ -58,6 +58,7 @@ export class AdminDashboardComponent implements OnInit {
     { field: 'brand', header: 'brand' },
     { field: 'modelName', header: 'modelName' },
     { field: 'ownerName', header: 'owner' },
+    { field: 'price', header: 'price' },
     { field: 'pricePerDay', header: 'pricePerDay' },
     { field: 'city', header: 'city' },
     { field: 'country', header: 'country' },

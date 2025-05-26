@@ -47,6 +47,15 @@
       "address": "789 Birch St"
     },
     {
+      "id": "u6",
+      "name": "Sophie Buyer",
+      "email": "sophie@buyer.com",
+      "password": "c29waGll",
+      "role": "customer",
+      "phone": "2223334444",
+      "address": "789 Birch St"
+    },
+    {
       "id": "u7",
       "name": "Eve Customer",
       "email": "eve@buyer.com",
@@ -137,7 +146,6 @@
       "brand": "Honda",
       "description": "A clean and reliable sedan.",
       "pricePerDay": 40,
-      "price": 15000,
       "imageUrl": "https://via.placeholder.com/300x200",
       "isAvailable": "available",
       "requestType": "rent"
@@ -149,7 +157,6 @@
       "brand": "Tesla",
       "description": "Electric car with autopilot.",
       "pricePerDay": 100,
-      "price": 35000,
       "imageUrl": "https://via.placeholder.com/300x200",
       "isAvailable": "unavailable",
       "requestType": "rent"
