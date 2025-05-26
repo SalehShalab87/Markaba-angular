@@ -9,6 +9,7 @@ export interface Car {
   ownerId: User['id'];
   modelId: CarModel['id'];
   brand: CarModel['brand'];
+  name: CarModel['name'];
   description: string;
   pricePerDay?: number;
   price?: number;
