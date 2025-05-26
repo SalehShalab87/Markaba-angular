@@ -41,7 +41,7 @@
     "registerHere": "سجل هنا"
   },
   "registerChoice": {
-    "title": "كيف ترغب في التسجيل؟",
+    "title": "من أنت؟",
     "client": "تاجر سيارات",
     "customer": "عميل"
   },
@@ -67,6 +67,10 @@
       "browse": "تصفح السيارات",
       "requests": "طلباتي"
     }
+  },
+  "home":{
+    "welcome" : "مرحبًا بك في رايد مارت",
+    "description": "منصتك لتأجير وشراء السيارات"
   },
   "toast": {
     "success": {

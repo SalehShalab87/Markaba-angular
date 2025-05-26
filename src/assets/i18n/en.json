@@ -41,12 +41,15 @@
     "registerHere": "Register here"
   },
   "registerChoice": {
-    "title": "How would you like to register?",
+    "title": "Who Are You?",
     "client": "Car Dealer",
     "customer": "Customer"
   },
   "header": {
     "home": "Home",
+    "listings": "Listings",
+    "about": "About Us",
+    "contact": "Contact Us",
     "logout": "Logout",
     "login": "Login",
     "register": "Register",
@@ -67,6 +70,10 @@
       "browse": "Browse Cars",
       "requests": "My Requests"
     }
+  },
+  "home":{
+    "welcome" : "Welcome to RideMart",
+    "description": "Rent or buy cars easily and securely."
   },
   "toast": {
     "success": {

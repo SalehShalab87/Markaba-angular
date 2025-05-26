@@ -1,0 +1,93 @@
+.hero {
+    min-height: 700px;
+    position: relative;
+    padding: 0;
+  
+    .carousel,
+    .carousel-inner,
+    .carousel-item,
+    img {
+      height: 100%;
+      min-height: 700px;
+    }
+  
+    // Dark overlay for readability
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 30, 30, 0.55);
+      z-index: 2;
+      pointer-events: none;
+    }
+  
+    .container {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 700px;
+    }
+  
+    h1, p {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+  
+    .btn {
+      border-radius: 8px;
+      font-size: 1.2rem;
+      padding: 0.75rem 2.5rem;
+      font-weight: 500;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      background-color: var(--color-primary);
+      border: none;
+      transition: background 0.2s, color 0.2s;
+    }
+  
+    .btn-primary {
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      color: #fff;
+    }
+  
+    .btn-outline-light {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 2px solid #fff;
+    }
+    .btn-outline-light:hover {
+      background: #fff;
+      color: var(--color-primary);
+    }
+  
+    // Carousel controls above header
+    .carousel-control-prev,
+    .carousel-control-next {
+      z-index: 1101 !important;
+      width: 5rem;
+      height: 5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background-color: var(--color-primary);
+        border-radius: 1rem;
+      opacity: 1;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      filter: drop-shadow(0 2px 6px #000);
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }

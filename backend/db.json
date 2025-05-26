@@ -146,7 +146,9 @@
       "brand": "Honda",
       "description": "A clean and reliable sedan.",
       "pricePerDay": 40,
-      "imageUrls": ["https://via.placeholder.com/300x200"],
+      "imageUrls": [
+        "https://via.placeholder.com/300x200"
+      ],
       "isAvailable": "available",
       "requestType": "rent"
     },
@@ -157,7 +159,9 @@
       "brand": "Tesla",
       "description": "Electric car with autopilot.",
       "pricePerDay": 100,
-      "imageUrls": ["https://via.placeholder.com/300x200"],
+      "imageUrls": [
+        "https://via.placeholder.com/300x200"
+      ],
       "isAvailable": "unavailable",
       "requestType": "rent"
     },
