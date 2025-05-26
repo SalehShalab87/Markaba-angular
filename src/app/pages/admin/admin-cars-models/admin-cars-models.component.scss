@@ -1,0 +1,70 @@
+.container {
+}
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-bottom: -1rem;
+  transition: background-color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background-color: var(--color-bg);
+    border-color: var(--color-bg);
+  }
+}
+
+.modal {
+  .modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-bg);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 6px 6px 0 0;
+}
+
+.btn-close {
+  filter: invert(1);
+  margin-left: 0;
+}
+.modal-footer {
+  .btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.2rem;
+    transition: background-color 0.2s, border-color 0.2s;
+
+    &:hover {
+      background-color: var(--color-bg);
+      border-color: var(--color-bg);
+    }
+  }
+
+  .btn-secondary {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.2rem;
+    transition: background-color 0.2s, border-color 0.2s;
+
+    &:hover {
+      background-color: var(--color-bg);
+      border-color: var(--color-bg);
+    }
+  }
+}
+input.ng-invalid.ng-touched {
+  border-color: #d72638 !important;
+  box-shadow: 0 0 0 0.1rem rgba(215, 38, 56, 0.15);
+}
