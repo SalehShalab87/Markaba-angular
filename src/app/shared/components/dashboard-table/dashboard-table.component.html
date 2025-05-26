@@ -1,6 +1,6 @@
 <div class="custom-table-card">
   <div
-    class="d-flex justify-content-between align-items-center mb-3 dashboard-toolbar"
+    class="d-flex justify-content-between align-items-center mb-3 dashboard-toolbar fade-in-up" style="animation-delay: 0.24s;"
   >
     <h4 class="fw-bold">{{ title | translate }}</h4>
     <div class="d-flex gap-2 flex-wrap flex-md-nowrap">
@@ -23,7 +23,7 @@
       </select>
     </div>
   </div>
-  <div class="table-responsive">
+  <div class="table-responsive fade-in-up" style="animation-delay: 0.48s;">
     <table class="table custom-table">
       <thead>
         <tr>
@@ -67,7 +67,7 @@
             <ng-container *ngIf="col.field === 'Client Actions'; else normalCell">
               <div class="d-flex justify-content-start gap-5 p-3 car-model-actions">
                 <i
-                  class="pi pi-check text-success"
+                  class="pi pi-check text-success "
                   (click)="onAccept(row)"
                   title="{{ 'dashboard.accept' | translate }}"
                   style="cursor:pointer"

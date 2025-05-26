@@ -1,11 +1,12 @@
 @if (isLoading) {
 <app-loader></app-loader>
 }
-<div class="container">
+<div class="container fade-in-up" style="animation-delay: 0.2s;">
   <button class="btn btn-primary mt-4" (click)="showAddModal()">
     {{ "dashboard.addCarModel" | translate }}
   </button>
   <app-dashboard-table
+    class="fade-in-up" style="animation-delay: 0.48s;"
     [data]="carModelsList"
     [columns]="carModelsColumns"
     title="dashboard.carModels"
@@ -25,7 +26,7 @@
         <h5 class="modal-title" id="editCarModelModalLabel">{{ 'modal.editCarModel' | translate }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body fade-in-up" style="animation-delay: 0.24s;" >
         <div class="mb-3">
           <label for="modelName" class="form-label">{{ 'modal.modelName' | translate }}</label>
           <input type="text" id="modelName" class="form-control" formControlName="name" />
@@ -35,9 +36,9 @@
           <input type="text" id="brand" class="form-control" formControlName="brand" />
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'dialog.cancel' | translate }}</button>
-        <button type="submit" class="btn btn-primary" [disabled]="editCarModelForm.invalid">{{ 'dialog.save' | translate }}</button>
+      <div class="modal-footer fade-in-up" style="animation-delay: 0.36s;">
+        <button type="button" class="btn btn-secondary fade-in-up" style="animation-delay: 0.48s;" data-bs-dismiss="modal">{{ 'dialog.cancel' | translate }}</button>
+        <button type="submit" class="btn btn-primary fade-in-up" style="animation-delay: 0.48s;" [disabled]="editCarModelForm.invalid">{{ 'dialog.save' | translate }}</button>
       </div>
     </form>
   </div>
@@ -50,7 +51,7 @@
         <h5 class="modal-title" id="addCarModelModalLabel">{{ 'modal.addCarModel' | translate }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body fade-in-up" style="animation-delay: 0.24s;">
         <div class="mb-3">
           <label for="modelName" class="form-label">{{ 'modal.modelName' | translate }}</label>
           <input type="text" id="modelName" class="form-control" formControlName="name" />
@@ -60,9 +61,9 @@
           <input type="text" id="brand" class="form-control" formControlName="brand" />
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'dialog.cancel' | translate }}</button>
-        <button type="submit" class="btn btn-primary" [disabled]="addCarModalForm.invalid">{{ 'dialog.save' | translate }}</button>
+      <div class="modal-footer fade-in-up" style="animation-delay: 0.36s;">
+        <button type="button" class="btn btn-secondary fade-in-up" style="animation-delay: 0.48s;" data-bs-dismiss="modal">{{ 'dialog.cancel' | translate }}</button>
+        <button type="submit" class="btn btn-primary fade-in-up" style="animation-delay: 0.48s;" [disabled]="addCarModalForm.invalid">{{ 'dialog.save' | translate }}</button>
       </div>
     </form>
   </div>

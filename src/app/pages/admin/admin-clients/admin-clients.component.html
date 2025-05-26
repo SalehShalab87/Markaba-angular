@@ -1,7 +1,7 @@
 @if (isLoading) {
 <app-loader></app-loader>
 }
-<div class="container">
+<div class="container fade-in-up" style="animation-delay: 0.2s;">
   <app-dashboard-table
     [data]="clientsList"
     [columns]="clientColumns"
