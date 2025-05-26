@@ -100,7 +100,7 @@ export class DashboardTableComponent implements OnInit {
 
   getCellValue(row: any, field: string): any {
     const value = field.split('.').reduce((acc, part) => acc && acc[part], row);
-    return value !== undefined && value !== null && value !== ''? value : '—';
+    return value !== undefined && value !== null && value !== '' ? value : '—';
   }
 
   getStatusClass(status: string | boolean | null | undefined): string {

@@ -13,6 +13,10 @@
   overflow: hidden;
 }
 
+.pi-check:hover,.pi-times:hover{
+  transform: translateY(-3px);
+}
+
 .custom-table th {
   background: #fff7f0;
   color: var(--color-primary);

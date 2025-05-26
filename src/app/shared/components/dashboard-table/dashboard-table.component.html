@@ -48,7 +48,7 @@
       <tbody>
         <tr *ngFor="let row of pagedData">
           <td *ngFor="let col of columns">
-            <ng-container *ngIf="col.field === 'actions'; else normalCell">
+            <ng-container *ngIf="col.field === 'actions';">
               <div class="d-flex justify-content-start gap-5 p-3 car-model-actions">
                 <i
                   class="pi pi-trash text-danger"
@@ -60,6 +60,22 @@
                   class="pi pi-pencil"
                   (click)="onEdit(row)"
                   title="{{ 'dashboard.edit' | translate }}"
+                  style="cursor:pointer"
+                ></i>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'Client Actions'; else normalCell">
+              <div class="d-flex justify-content-start gap-5 p-3 car-model-actions">
+                <i
+                  class="pi pi-check text-success"
+                  (click)="onAccept(row)"
+                  title="{{ 'dashboard.accept' | translate }}"
+                  style="cursor:pointer"
+                ></i>
+                <i
+                  class="pi pi-times text-danger"
+                  (click)="onReject(row)"
+                  title="{{ 'dashboard.reject' | translate }}"
                   style="cursor:pointer"
                 ></i>
               </div>
