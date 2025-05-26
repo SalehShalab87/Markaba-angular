@@ -1,3 +1,12 @@
+.container{
+  display: flex;
+  flex-direction: column;
+
+  button{
+    align-self:flex-end;
+  }
+
+}
 .btn-primary {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
@@ -65,4 +74,10 @@
 input.ng-invalid.ng-touched {
   border-color: #d72638 !important;
   box-shadow: 0 0 0 0.1rem rgba(215, 38, 56, 0.15);
+}
+
+.my-invalid-feedback {
+  color: #d72638;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
 }

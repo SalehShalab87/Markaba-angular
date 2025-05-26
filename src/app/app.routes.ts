@@ -19,16 +19,29 @@ import { RegisterChoiceComponent } from './pages/auth/register-choice/register-c
 import { NoAuthGuard } from './core/guards/no-auth.guard';
 import { AdminClientsComponent } from './pages/admin/admin-clients/admin-clients.component';
 import { AdminCarsModelsComponent } from './pages/admin/admin-cars-models/admin-cars-models.component';
+import { AdminProfileComponent } from './pages/admin/admin-profile/admin-profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   // Public
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent , canActivate:[NoAuthGuard] },
-  { path: 'register', component: RegisterChoiceComponent , canActivate:[NoAuthGuard] },
-  { path: 'register-client', component: RegisterClientComponent , canActivate:[NoAuthGuard] },
-  { path: 'register-customer', component: RegisterCustomerComponent , canActivate:[NoAuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
+  {
+    path: 'register',
+    component: RegisterChoiceComponent,
+    canActivate: [NoAuthGuard],
+  },
+  {
+    path: 'register-client',
+    component: RegisterClientComponent,
+    canActivate: [NoAuthGuard],
+  },
+  {
+    path: 'register-customer',
+    component: RegisterCustomerComponent,
+    canActivate: [NoAuthGuard],
+  },
 
   // Admin
   {
@@ -40,6 +53,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'clients', component: AdminClientsComponent },
       { path: 'car-models', component: AdminCarsModelsComponent },
+      { path: 'profile', component: AdminProfileComponent },
     ],
   },
 
@@ -71,6 +85,6 @@ export const routes: Routes = [
   },
 
   // Fallback
-  { path: '**', redirectTo: 'not-found' , pathMatch: 'full' },
-  { path: 'not-found', component: NotFoundComponent},
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
+  { path: 'not-found', component: NotFoundComponent },
 ];

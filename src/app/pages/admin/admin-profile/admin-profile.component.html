@@ -1,0 +1,162 @@
+@if(isLoading){
+  <app-loader/>
+}
+<div class="container fade-in-up" style="animation-delay: 0.2s">
+  <div class="row">
+    <div class="col-12 my-4">
+      <h2 class="fw-bold">{{ "header.admin.profile" | translate }}</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <!-- Profile Form -->
+    <div
+      class="col-12 col-lg-6 mb-4 mb-lg-0 fade-in-up"
+      style="animation-delay: 0.2s"
+    >
+      <form
+        [formGroup]="profileForm"
+        (ngSubmit)="onProfileSubmit()"
+        class="card p-4 h-100"
+      >
+        <h5 class="mb-3">{{ "profile.details" | translate }}</h5>
+        <div class="mb-3">
+          <label class="form-label">{{ "profile.name" | translate }}</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            [readonly]="!isEditingProfile"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">{{ "profile.email" | translate }}</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            [readonly]="!isEditingProfile"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">{{ "profile.phone" | translate }}</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="phone"
+            [readonly]="!isEditingProfile"
+            placeholder="{{ 'profile.phonePlaceholder' | translate }}"
+          />
+        </div>
+        <div class="d-flex gap-2">
+          <button
+            *ngIf="!isEditingProfile"
+            type="button"
+            class="btn btn-primary"
+            (click)="isEditingProfile = true"
+          >
+            {{ "profile.edit" | translate }}
+          </button>
+          <button
+            *ngIf="isEditingProfile"
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="profileForm.invalid"
+          >
+            {{ "profile.save" | translate }}
+          </button>
+          <button
+            *ngIf="isEditingProfile"
+            type="button"
+            class="btn btn-secondary"
+            (click)="onCancelEdit()"
+          >
+            {{ "dialog.cancel" | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- Password Form -->
+    <div class="col-12 col-lg-6 fade-in-up" style="animation-delay: 0.36s">
+      <form
+        [formGroup]="passwordForm"
+        (ngSubmit)="onPasswordSubmit()"
+        class="card p-4 h-100"
+      >
+        <h5 class="mb-3">{{ "profile.updatePassword" | translate }}</h5>
+        <div class="mb-3">
+          <label class="form-label">{{
+            "profile.oldPassword" | translate
+          }}</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="oldPassword"
+            autocomplete="current-password"
+            placeholder="{{ 'profile.oldPasswordPlaceholder' | translate }}"
+          />
+          @if(passwordForm.get('oldPassword')?.errors?.['required'] &&
+          passwordForm.get('oldPassword')?.touched) {
+          <div class="my-invalid-feedback">
+            {{ "profile.passwordRequired" | translate }}
+          </div>
+          }
+        </div>
+        <div class="mb-3">
+          <label class="form-label">{{
+            "profile.newPassword" | translate
+          }}</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="newPassword"
+            autocomplete="new-password"
+            placeholder="{{ 'profile.newPasswordPlaceholder' | translate }}"
+          />
+          @if(passwordForm.get('newPassword')?.errors?.['required'] &&
+          passwordForm.get('newPassword')?.touched) {
+          <div class="my-invalid-feedback">
+            {{ "profile.passwordRequired" | translate }}
+          </div>
+          } @if(passwordForm.get('newPassword')?.errors?.['minlength']) {
+          <div class="my-invalid-feedback">
+            {{ "profile.passwordMinLength" | translate }}
+          </div>
+          }
+        </div>
+        <div class="mb-3">
+          <label class="form-label">{{
+            "profile.confirmNewPassword" | translate
+          }}</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="confirmNewPassword"
+            autocomplete="new-password"
+            placeholder="{{ 'profile.confirmNewPasswordPlaceholder' | translate }}"
+          />
+          @if(passwordForm.get('confirmNewPassword')?.errors?.['required'] &&
+          passwordForm.get('confirmNewPassword')?.touched) {
+          <div class="my-invalid-feedback">
+            {{ "profile.passwordRequired" | translate }}
+          </div>
+          } @if(passwordForm.get('confirmNewPassword')?.value !==
+          passwordForm.get('newPassword')?.value) {
+          <div class="my-invalid-feedback">
+            {{ "profile.passwordMismatch" | translate }}
+          </div>
+          }
+
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="passwordForm.invalid"
+        >
+          {{ "profile.updatePasswordBtn" | translate }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -53,7 +53,8 @@
     "admin": {
       "dashboard": "My Dashboard",
       "clients": "Clients",
-      "carModels": "Car Models"
+      "carModels": "Car Models",
+      "profile": "My Profile"
     },
     "client": {
       "dashboard": "My Dashboard",
@@ -75,7 +76,10 @@
       "logout": "Logout successful",
       "carModelDeleted": "Car model deleted successfully",
       "carModelUpdated": "Car model updated successfully",
-      "carModelAdded": "Car model added successfully"
+      "carModelAdded": "Car model added successfully",
+      "editProfile": "Profile updated successfully",
+      "passwordUpdateSuccess": "Password updated successfully.",
+      "passwordUpdated": "Password updated successfully."
     },
     "error": {
       "title": "Error",
@@ -83,7 +87,8 @@
       "register": "Registration failed",
       "network": "You are offline. Please check your internet connection.",
       "accountRejected": "Your account has been rejected. Please contact support.",
-      "accountPending": "Your account is under review. Please wait."
+      "accountPending": "Your account is under review. Please wait.",
+      "wrongOldPassword": "The old password you entered is incorrect."
     },
     "info": {
       "title": "Info"
@@ -162,5 +167,25 @@
     "phone": "Phone",
     "addCarModel": "Add Car Model",
     "price": "Price"
+  },
+  "profile":{
+    "details": "Profile Details",
+    "edit": "Edit Profile",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "save": "Save Changes",
+    "updatePassword": "Update Password",
+    "oldPassword": "Old Password",
+    "oldPasswordPlaceholder": "Enter your old password",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter your new password",
+    "confirmNewPassword": "Confirm New Password",
+    "confirmNewPasswordPlaceholder": "Re-enter your new password",
+    "updatePasswordBtn": "Update Password",
+    "passwordRequired": "Password is required.",
+    "passwordMinLength": "Password must be at least 6 characters.",
+    "passwordMismatch": "Passwords do not match.",
+    "phonePlaceholder": "Enter your phone number (optional)"
   }
 }

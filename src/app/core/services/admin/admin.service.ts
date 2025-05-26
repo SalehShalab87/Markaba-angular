@@ -54,5 +54,19 @@ export class AdminService {
     return this.http.put<CarModel[]>(`${this.apiUrl}/carModels/${carModel.id}`, carModel);
   }
 
+  getAdminProfile(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users?role=admin`);
+  }
+
+  updateAdminProfile(admin: User): Observable<User[]> {
+    return this.http.put<User[]>(`${this.apiUrl}/users/${admin.id}`, admin);
+  }
+
+  updateAdminPassword(adminId: string, newPassword: string): Observable<User[]> {
+    const passwordHash = window.btoa(newPassword);
+    return this.http.patch<User[]>(`${this.apiUrl}/users/${adminId}`, { password: passwordHash});
+  }
+
+
 
 }
