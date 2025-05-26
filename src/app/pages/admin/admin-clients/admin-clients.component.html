@@ -1,1 +1,16 @@
-<p>admin-clients works!</p>
+@if (isLoading) {
+    <app-loader></app-loader>
+}@else {
+    <div class="container">
+        <app-dashboard-table
+          [data]="clientsList"
+          [columns]="clientColumns"
+          [rowsPerPage]="10"
+          title="dashboard.clients"
+          [statusOptions]="clientsStatusOptions"
+          [statusFields]="['accountStatus']"
+          (accept)="approveClient($event)"
+          (reject)="rejectClient($event)"
+        ></app-dashboard-table>
+    </div>
+}

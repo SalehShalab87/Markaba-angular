@@ -30,7 +30,29 @@ export class AdminService {
     return this.http.get<Request[]>(`${this.apiUrl}/requests`);
   }
 
-  
+  getAllClients(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users?role=client`);
+  }
+
+  markClientAsApproved(client: User): Observable<User[]> {
+    return this.http.put<User[]>(`${this.apiUrl}/users/${client.id}`, { ...client, accountStatus: 'approved' });
+  }
+
+  markClientAsRejected(client: User): Observable<User[]> {
+    return this.http.put<User[]>(`${this.apiUrl}/users/${client.id}`, { ...client, accountStatus: 'rejected' });
+  }
+
+  addNewCarModel(carModel: CarModel): Observable<CarModel[]> {
+    return this.http.post<CarModel[]>(`${this.apiUrl}/carModels`, carModel);
+  }
+
+  deleteCarModel(carModelId: string): Observable<{}> {
+    return this.http.delete(`${this.apiUrl}/carModels/${carModelId}`);
+  }
+
+  updateCarModel(carModel: CarModel): Observable<CarModel[]> {
+    return this.http.put<CarModel[]>(`${this.apiUrl}/carModels/${carModel.id}`, carModel);
+  }
 
 
 }

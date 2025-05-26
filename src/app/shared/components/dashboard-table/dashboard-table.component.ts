@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translate.pipe';
@@ -13,15 +13,20 @@ export interface TableColumn {
   templateUrl: './dashboard-table.component.html',
   styleUrls: ['./dashboard-table.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule,TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
 })
 export class DashboardTableComponent implements OnInit {
-  @Input() data: any[] = []; 
+  @Input() data: any[] = [];
   @Input() columns: TableColumn[] = [];
   @Input() rowsPerPage: number = 10;
   @Input() title: string = 'Table';
   @Input() statusOptions: string[] = [];
   @Input() statusFields: string[] = [];
+
+  @Output() accept = new EventEmitter<any>();
+  @Output() reject = new EventEmitter<any>();
+  @Output() edit = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
 
   searchKeyword: string = '';
   filteredData: any[] = [];
@@ -44,17 +49,20 @@ export class DashboardTableComponent implements OnInit {
 
   filterTable() {
     const keyword = this.searchKeyword.toLowerCase();
-    this.filteredData = this.data.filter(row =>
-      this.columns.some(col =>
-        String(this.getCellValue(row, col.field)).toLowerCase().includes(keyword)
-      ) &&
-      (
-        this.statusFilter && this.statusFields.length
-          ? this.statusFields.some(field =>
-              String(this.getCellValue(row, field)).toLowerCase() === this.statusFilter.toLowerCase()
+    this.filteredData = this.data.filter(
+      (row) =>
+        this.columns.some((col) =>
+          String(this.getCellValue(row, col.field))
+            .toLowerCase()
+            .includes(keyword)
+        ) &&
+        (this.statusFilter && this.statusFields.length
+          ? this.statusFields.some(
+              (field) =>
+                String(this.getCellValue(row, field)).toLowerCase() ===
+                this.statusFilter.toLowerCase()
             )
-          : true
-      )
+          : true)
     );
     this.currentPage = 1;
     this.updateTable();
@@ -84,32 +92,83 @@ export class DashboardTableComponent implements OnInit {
   }
 
   updateTable() {
-    this.totalPages = Math.ceil(this.filteredData.length / this.rowsPerPage) || 1;
+    this.totalPages =
+      Math.ceil(this.filteredData.length / this.rowsPerPage) || 1;
     const start = (this.currentPage - 1) * this.rowsPerPage;
     this.pagedData = this.filteredData.slice(start, start + this.rowsPerPage);
   }
 
   getCellValue(row: any, field: string): any {
     const value = field.split('.').reduce((acc, part) => acc && acc[part], row);
-    return value !== undefined && value !== null && value !== '' ? value : '—';
+    return value !== undefined && value !== null && value !== ''? value : '—';
   }
 
   getStatusClass(status: string | boolean | null | undefined): string {
-    const value = (status === true) ? 'available'
-      : (status === false) ? 'unavailable'
-      : (status ?? '').toString().toLowerCase();
+    const value =
+      status === true
+        ? 'available'
+        : status === false
+        ? 'unavailable'
+        : (status ?? '').toString().toLowerCase();
 
     if (!value) return 'badge bg-secondary';
-    if (['approved', 'success', 'paid', 'active', 'accepted', 'available','completed'].includes(value)) return 'badge bg-success';
+    if (
+      [
+        'approved',
+        'success',
+        'paid',
+        'active',
+        'accepted',
+        'available',
+        'completed',
+      ].includes(value)
+    )
+      return 'badge bg-success';
     if (['pending', 'info'].includes(value)) return 'badge bg-warning';
-    if (['rejected', 'declined', 'unqualified', 'failed', 'unavailable','cancelled'].includes(value)) return 'badge bg-danger';
-    if (['warning', 'negotiation'].includes(value)) return 'badge bg-warning text-dark';
+    if (
+      [
+        'rejected',
+        'declined',
+        'unqualified',
+        'failed',
+        'unavailable',
+        'cancelled',
+      ].includes(value)
+    )
+      return 'badge bg-danger';
+    if (['warning', 'negotiation'].includes(value))
+      return 'badge bg-warning text-dark';
     return '';
   }
 
   // Add a helper to check if a column is a status-like field
-  isStatusColumn(col: any): boolean {
-    const statusFields = ['accountStatus', 'requestStatus', 'paymentStatus', 'isAvailable'];
+  isStatusColumn(col: TableColumn): boolean {
+    const statusFields = [
+      'accountStatus',
+      'requestStatus',
+      'paymentStatus',
+      'isAvailable',
+    ];
     return statusFields.includes(col.field);
+  }
+
+  totalPagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, acc) => acc + 1);
+  }
+
+  onAccept(row: any) {
+    this.accept.emit(row);
+  }
+
+  onReject(row: any) {
+    this.reject.emit(row);
+  }
+
+  onEdit(row: any) {
+    this.edit.emit(row);
+  }
+
+  onDelete(row: any) {
+    this.delete.emit(row);
   }
 }

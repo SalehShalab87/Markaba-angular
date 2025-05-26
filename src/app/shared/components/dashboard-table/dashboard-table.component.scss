@@ -21,7 +21,6 @@
   font-size: 1rem;
   padding: 0.75rem 1rem;
   cursor: pointer;
-  user-select: none;
   transition: background 0.2s;
 }
 
@@ -59,6 +58,11 @@
   color: var(--color-primary);
 }
 
+.pi-trash,.pi-pencil{
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .custom-table th,
   .custom-table td {
@@ -68,6 +72,10 @@
 }
 
 @media (max-width: 576px) {
+  h4{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
   .custom-table th,
   .custom-table td {
     padding: 0.35rem 0.3rem;
@@ -76,6 +84,9 @@
 }
 
 @media (max-width: 576px) {
+  button:nth-child(2) {
+    margin-top: .5rem;
+  }
   .dashboard-toolbar {
     flex-direction: column !important;
     align-items: stretch !important;
