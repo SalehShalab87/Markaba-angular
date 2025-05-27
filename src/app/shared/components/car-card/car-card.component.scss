@@ -7,7 +7,7 @@
     transition: box-shadow 0.2s, transform 0.2s;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    max-height: 95%;
     margin-top: 2rem;
   
     &:hover {
@@ -84,7 +84,7 @@
   
         &:hover,
         &:focus {
-          background: #ff7f32;
+          background-color: var(--color-bg) !important;
         }
       }
     }
