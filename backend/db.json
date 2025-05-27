@@ -145,7 +145,7 @@
       "modelId": "m1",
       "brand": "Honda",
       "name": "Civic",
-      "description": "A reliable and fuel-efficient sedan, perfect for city driving.",
+      "description": "A reliable and fuel-efficient sedan, perfect for city driving. The Honda Civic offers a comfortable interior, advanced safety features, and excellent fuel economy, making it an ideal choice for daily commutes and long journeys alike.",
       "pricePerDay": 45,
       "price": null,
       "imageUrls": [
@@ -162,7 +162,7 @@
       "modelId": "m2",
       "brand": "Toyota",
       "name": "Corolla",
-      "description": "Spacious, comfortable, and great for families. and reliable",
+      "description": "Spacious, comfortable, and great for families. The Toyota Corolla is renowned for its reliability, smooth ride, and advanced technology, providing peace of mind and convenience for both short trips and extended travels.",
       "pricePerDay": null,
       "price": 15000,
       "imageUrls": [
@@ -179,7 +179,7 @@
       "modelId": "m3",
       "brand": "Tesla",
       "name": "Model 3",
-      "description": "Experience electric driving with autopilot and zero emissions.",
+      "description": "Experience electric driving with autopilot and zero emissions. The Tesla Model 3 combines cutting-edge technology, impressive acceleration, and a minimalist design, delivering a futuristic and eco-friendly driving experience.",
       "pricePerDay": 120,
       "price": null,
       "imageUrls": [

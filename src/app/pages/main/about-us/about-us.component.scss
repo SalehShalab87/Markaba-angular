@@ -1,0 +1,21 @@
+.about-us {
+  background: var(--color-bg);
+  height: calc(100vh - 91.78px);
+  display: flex;
+  align-items: center;
+
+  .container {
+    max-width: 900px;
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem;
+  }
+
+  h1 {
+    color: var(--color-primary, #ff6a00);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em ;
+  }
+
+}

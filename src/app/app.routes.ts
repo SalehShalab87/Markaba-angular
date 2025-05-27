@@ -20,13 +20,19 @@ import { NoAuthGuard } from './core/guards/no-auth.guard';
 import { AdminClientsComponent } from './pages/admin/admin-clients/admin-clients.component';
 import { AdminCarsModelsComponent } from './pages/admin/admin-cars-models/admin-cars-models.component';
 import { AdminProfileComponent } from './pages/admin/admin-profile/admin-profile.component';
+import { CarsListingComponent } from './pages/main/cars-listing/cars-listing.component';
+import { ContactUsComponent } from './pages/main/contact-us/contact-us.component';
+import { AboutUsComponent } from './pages/main/about-us/about-us.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   // Public
-  { path: 'home', component: HomeComponent ,canActivate: [NoAuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [NoAuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
+  { path: 'car-listings', component: CarsListingComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'about-us', component: AboutUsComponent },
   {
     path: 'register',
     component: RegisterChoiceComponent,

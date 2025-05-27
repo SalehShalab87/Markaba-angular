@@ -72,7 +72,7 @@
     }
   },
   "home":{
-    "welcome" : "Welcome to RideMart",
+    "welcome" : "Welcome To RideMart",
     "description": "Rent or buy cars easily and securely.",
     "how-it-works": "How It Works",
     "register": "Register",
@@ -214,5 +214,11 @@
     "buy": "Buy",
     "viewDetails": "View Details",
     "day": "day"
+  },
+  "about-us":{
+    "title": "About RideMart",
+    "description1": "RideMart is your trusted platform for renting and buying cars worldwide. Our mission is to make car transactions easy, safe, and accessible for everyone, everywhere.",
+    "description2": "Founded by car enthusiasts, RideMart connects customers with verified dealers and car owners across the globe. We believe in transparency,customer satisfaction, and building a strong automotive community.",
+    "thanks":"Thank you for choosing RideMart. We're here to help you find your next ride—wherever you are!"
   }
 }
