@@ -1,1 +1,111 @@
-<p>contact-us works!</p>
+<section class="contact-us">
+    <div class="contact-container">
+      <div class="row g-4 align-items-center">
+        <!-- Left Column: Image -->
+        <div class="col-md-6 d-none d-md-block text-center fade-in-up" style="animation-delay: 0.4 s;">
+          <img
+            src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1748374786/Telecommuting-pana_rplvf7.svg"
+            alt="Contact Illustration"
+            class="img-fluid contact-image"
+          />
+        </div>
+  
+        <!-- Right Column: Form -->
+        <div class="col-md-6 fade-in-up" style="animation-delay: 0.6s;">
+          <div class="text-center mb-4">
+            <h1 class="section-title">{{ 'contact-us.title' | translate }}</h1>
+            <p class="section-subtitle">{{ 'contact-us.subtitle' | translate }}</p>
+          </div>
+  
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">
+                {{ 'contact-us.form.name' | translate }}
+              </label>
+              <input
+                id="name"
+                type="text"
+                class="form-control"
+                formControlName="name"
+              />
+              @if (contactForm.get('name')?.touched && contactForm.get('name')?.invalid) {
+                <div class="text-danger mt-1 small">
+                  {{ 'contact-us.validation.required' | translate }}
+                </div>
+              }
+            </div>
+  
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                {{ 'contact-us.form.email' | translate }}
+              </label>
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                formControlName="email"
+              />
+              @if (contactForm.get('email')?.touched && contactForm.get('email')?.invalid) {
+                <div class="text-danger mt-1 small">
+                  @if (contactForm.get('email')?.errors?.['required']) {
+                    {{ 'contact-us.validation.required' | translate }}
+                  } @else if (contactForm.get('email')?.errors?.['email']) {
+                    {{ 'contact-us.validation.invalid-email' | translate }}
+                  }
+                </div>
+              }
+            </div>
+  
+            <!-- Subject -->
+            <div class="mb-3">
+              <label for="subject" class="form-label">
+                {{ 'contact-us.form.subject' | translate }}
+              </label>
+              <input
+                id="subject"
+                type="text"
+                class="form-control"
+                formControlName="subject"
+              />
+              @if (contactForm.get('subject')?.touched && contactForm.get('subject')?.invalid) {
+                <div class="text-danger mt-1 small">
+                  {{ 'contact-us.validation.required' | translate }}
+                </div>
+              }
+            </div>
+  
+            <!-- Message -->
+            <div class="mb-4">
+              <label for="message" class="form-label">
+                {{ 'contact-us.form.message' | translate }}
+              </label>
+              <textarea
+                id="message"
+                rows="4"
+                class="form-control"
+                formControlName="message"
+              ></textarea>
+              @if (contactForm.get('message')?.touched && contactForm.get('message')?.invalid) {
+                <div class="text-danger mt-1 small">
+                  {{ 'contact-us.validation.required' | translate }}
+                </div>
+              }
+            </div>
+  
+            <div class="text-end">
+              <button
+                type="submit"
+                [disabled]="!contactForm.valid"
+                class="submit-button"
+              >
+                {{ 'contact-us.form.submit' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  

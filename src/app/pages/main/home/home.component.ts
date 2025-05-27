@@ -6,7 +6,6 @@ import { HomeService } from '../../../core/services/home.service';
 import { Subscription } from 'rxjs';
 import { CarCardComponent } from "../../../shared/components/car-card/car-card.component";
 import { CommonModule } from '@angular/common';
-import { CarModel } from '../../../models/car-model.model';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,7 +14,6 @@ import { CarModel } from '../../../models/car-model.model';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  //TODO:HomeComponent
   featuredCarsList!: Car[];
   currentYear: number = new Date().getFullYear();
   private homeService = inject(HomeService);
@@ -24,10 +22,6 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loadFeaturedCars();
-  }
-
-  getCarCount(brand: string): number {
-    return this.featuredCarsList.filter((car) => car.brand === brand).length;
   }
 
   loadFeaturedCars() {

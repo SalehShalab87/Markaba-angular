@@ -100,7 +100,7 @@
 
 
 .how-it-works {
-  background: #f8fafc;
+  background: var(--color-background);
   border-bottom: 2px solid #e5e7eb;
   padding: 0 4rem;
   
@@ -152,7 +152,7 @@
 
 
 .featured-cars {
-  background: #f8fafc;
+  background: var(--color-background);
   border-bottom: 2px solid #e5e7eb;
   padding: 0 4rem;
   
@@ -173,7 +173,7 @@
 }
 
 .brands {
-  background: #f8fafc;
+  background: var(--color-background);
   border-bottom: 2px solid #e5e7eb;
   
   h2 {
