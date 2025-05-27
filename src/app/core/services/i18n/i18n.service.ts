@@ -12,6 +12,7 @@ export class I18nService {
 
   // Step 2: Create a method to load the translation file based on the selected language
   async loadTranslationFile(lang: 'en' | 'ar'): Promise<boolean> {
+    if (lang !== 'en' && lang !== 'ar') lang = 'en'; // Default to English if an unsupported language is provided
     localStorage.setItem('lang', lang);
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;

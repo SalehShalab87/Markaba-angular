@@ -99,7 +99,7 @@
       "editProfile": "Profile updated successfully",
       "passwordUpdateSuccess": "Password updated successfully.",
       "passwordUpdated": "Password updated successfully.",
-      "contactFormSubmitted":" Contact form submitted successfully. We will get back to you soon."
+      "contactFormSubmitted": " Contact form submitted successfully. We will get back to you soon."
     },
     "error": {
       "title": "Error",
@@ -236,5 +236,24 @@
       "required": "This field is required",
       "invalid-email": "Please enter a valid email address"
     }
+  },
+  "car-Listings": {
+    "all-types": "All Types",
+    "rent": "Rent",
+    "buy": "Buy",
+    "all-availability": "All Availability",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "all-locations": "All Locations",
+    "no-cars-found": "No cars found",
+    "search-placeholder": "Search cars...",
+    "previous": "Previous",
+    "next": "Next",
+    "clear-filters": "Clear Filters"
+  },
+  "not-found": {
+    "title": "Page Not Found",
+    "message": "Oops! The page you're looking for seems to have taken a wrong turn.",
+    "back-home": "Back to Home"
   }
 }

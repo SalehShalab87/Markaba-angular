@@ -1,1 +1,30 @@
-<p>not-found works!</p>
+<!-- not-found.component.html -->
+<div class="container-fluid d-flex flex-column justify-content-center">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 text-center">
+        <!-- Error Image -->
+        <img 
+          src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1748387627/404_Error_Page_not_Found_with_people_connecting_a_plug-amico_qs7xzf.svg" 
+          alt="404 Not Found" 
+          class="img-fluid mb-4 mt-5 fade-in-up"
+          style="max-width: 400px; height: 400px;"
+        >
+        
+        <!-- Error Content -->
+        <div class="error-content">
+          <h2 class="h3 mb-3">{{'not-found.title' | translate}}</h2>
+          <p class="lead text-muted mb-4">
+            {{'not-found.message' | translate}}
+          </p>
+          <a 
+            routerLink="/" 
+            class="btn btn-primary btn-lg px-5"
+            style="border-radius: 30px; transition: all 0.3s ease;"
+          >
+            <i class="pi pi-home me-2"></i>
+            {{'not-found.back-home' | translate}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
-import { NetworkStatusService } from '../../../core/services/network-status.service';
+
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,6 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toast = inject(ToastService);
-  private networkService = inject(NetworkStatusService);
 
   loginForm!: FormGroup;
   subscription: Subscription[] = [];
@@ -49,19 +48,6 @@ export class LoginComponent {
     });
   }
 
-  handleNetworkStatus(): void {
-    this.subscription.push(
-      this.networkService.onlineStatus$.subscribe({
-        next: (isOnline: boolean) => {
-          if (!isOnline) {
-            this.isLoading = false;
-            const errorTranslationKey = 'toast.error.network';
-            this.toast.showError(errorTranslationKey);
-          }
-        },
-      })
-    );
-  }
 
   onLogin(): void {
     this.isLoading = true;
@@ -70,7 +56,6 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
-    this.handleNetworkStatus();
 
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;

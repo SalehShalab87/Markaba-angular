@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { UserRole } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
-import { NetworkStatusService } from '../../../core/services/network-status.service';
-import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-register-choice',
@@ -13,15 +11,8 @@ import { ToastService } from '../../../core/services/toast.service';
 })
 export class RegisterChoiceComponent {
   private router = inject(Router);
-  private networkService = inject(NetworkStatusService);
-  private toast = inject(ToastService);
 
   goTo(role: UserRole ){
-    if (!this.networkService.isOnline()) {
-      const errorTranslationKey = 'toast.error.network';
-      this.toast.showError(errorTranslationKey);
-      return;
-    }
     switch (role) {
       case 'client':
         this.router.navigateByUrl('/register-client');

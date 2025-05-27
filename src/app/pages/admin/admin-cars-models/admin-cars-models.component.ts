@@ -4,7 +4,6 @@ import { CarModel } from '../../../models/car-model.model';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { AdminService } from '../../../core/services/admin/admin.service';
 import { ToastService } from '../../../core/services/toast.service';
-import { NetworkStatusService } from '../../../core/services/network-status.service';
 import { Subscription } from 'rxjs';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
 import { ConfirmationService } from 'primeng/api';
@@ -39,7 +38,6 @@ export class AdminCarsModelsComponent {
   selectedCarModel: CarModel | null = null;
 
   private adminService = inject(AdminService);
-  private networkService = inject(NetworkStatusService);
   private toast = inject(ToastService);
   private confirmationService = inject(ConfirmationService);
   private i18n = inject(I18nService);
@@ -47,7 +45,6 @@ export class AdminCarsModelsComponent {
 
   ngOnInit() {
     this.loadCarModels();
-    this.handleNetworkStatus();
     this.initializeEditForm();
     this.initializeAddForm();
   }
@@ -64,20 +61,6 @@ export class AdminCarsModelsComponent {
       name: ['', Validators.required],
       brand: ['', Validators.required],
     });
-  }
-
-  handleNetworkStatus(): void {
-    this.subscriptions.push(
-      this.networkService.onlineStatus$.subscribe({
-        next: (isOnline: boolean) => {
-          if (!isOnline) {
-            this.isLoading = false;
-            const errorTranslationKey = 'toast.error.network';
-            this.toast.showError(errorTranslationKey);
-          }
-        },
-      })
-    );
   }
 
   loadCarModels() {

@@ -29,6 +29,20 @@ html[dir="rtl"] .show-password-icon2 {
 html[dir="rtl"] .car-model-actions {
   justify-self: start !important; 
 }
+html[dir="rtl"] {
+  .form-select {
+    background-position: left 0.75rem center !important;
+    padding-right: 0.75rem  !important;
+    padding-left: 2.5rem !important;
+    text-align: right !important;
+  }
+
+  /* For multiple selects */
+  .form-select[multiple] {
+    padding-left: 0.75rem !important;
+    background-image: none !important;
+  }
+}
 
 // Hide scrollbar for Chrome, Safari and Opera
 :root::-webkit-scrollbar {

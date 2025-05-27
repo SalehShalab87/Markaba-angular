@@ -19,4 +19,8 @@ export class HomeService {
     );
   }
 
+  getAllCars(): Observable<Car[]> {
+    return this.http.get<Car[]>(`${this.apiUrl}/cars`)
+  }
+
 }

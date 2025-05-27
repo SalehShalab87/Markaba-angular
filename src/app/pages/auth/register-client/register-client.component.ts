@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 import { User } from '../../../models/user.model';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
-import { NetworkStatusService } from '../../../core/services/network-status.service';
+
 
 @Component({
   selector: 'app-register-client',
@@ -30,7 +30,6 @@ export class RegisterClientComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toast = inject(ToastService);
-  private networkService = inject(NetworkStatusService);
 
   ngOnInit() {
     this.initializeRegisterForm();
@@ -48,19 +47,6 @@ export class RegisterClientComponent {
     });
   }
 
-  handleNetworkStatus(): void {
-    this.subscriptions.push(
-      this.networkService.onlineStatus$.subscribe({
-        next: (isOnline: boolean) => {
-          if (!isOnline) {
-            this.isLoading = false;
-            const errorTranslationKey = 'toast.error.network';
-            this.toast.showError(errorTranslationKey);
-          }
-        },
-      })
-    );
-  }
 
   onRegister(): void {
     this.isLoading = true;
@@ -69,7 +55,7 @@ export class RegisterClientComponent {
       this.registerForm.markAllAsTouched();
       return;
     }
-    this.handleNetworkStatus();
+
     const newUser: User = this.registerForm.getRawValue();
     this.subscriptions.push(
       this.authService.isUserEmailExists(newUser.email).subscribe({
