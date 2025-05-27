@@ -1,0 +1,40 @@
+<div class="car-card card h-100 border-0 shadow-sm">
+    <img
+      *ngIf="car.imageUrls.length"
+      [src]="car.imageUrls[0]"
+      class="card-img-top"
+      [alt]="car.name"
+      style="height: 200px; object-fit: cover; background: #f3f4f6;"
+    />
+    <div class="card-body d-flex flex-column align-items-start">
+      <h5 class="card-title mb-1 fw-bold">
+        {{ car.brand }} {{ car.name }}
+      </h5>
+      <p class="card-text text-muted mb-2" style="font-size: 1rem;">
+        {{ car.description }}
+      </p>
+      <div class="mb-2">
+        <span class="badge bg-success" *ngIf="car?.isAvailable === 'available'">{{'car-card.available' | translate }}</span>
+        <span class="badge bg-secondary" *ngIf="car?.isAvailable === 'unavailable'">{{'car-card.unavailable' | translate  }}</span>
+        <span class="badge bg-info ms-1">{{ car.requestType === 'rent' ? ('car-card.rent' | translate) : ('car-card.buy' | translate ) }}</span>
+      </div>
+      <div class="mb-2 fw-bold">
+        <ng-container *ngIf="car?.requestType === 'rent'">
+          {{ car.pricePerDay | currency:'USD' }}/{{ 'car-card.day' | translate }}
+        </ng-container>
+        <ng-container *ngIf="car?.requestType === 'buy'">
+          {{ car.price | currency:'USD' }}
+        </ng-container>
+      </div>
+      <div class="mb-3 text-muted" style="font-size: 0.95rem;">
+        <i class="pi pi-map-marker" style="color: var(--color-primary, #ff6a00);"></i>
+        {{ car.city }}, {{ car.country }}
+      </div>
+      <a
+        [routerLink]="['/cars', car.id]"
+        class="btn btn-primary w-100"
+        style="background: var(--color-primary, #ff6a00); border-radius: 0.5rem; font-weight: 600;"
+      >
+        {{ 'car-card.viewDetails' | translate }}
+      </a>
+    </div>

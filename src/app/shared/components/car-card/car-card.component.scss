@@ -1,0 +1,92 @@
+.car-card {
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: #fff;
+    border: none;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 2rem;
+  
+    &:hover {
+      box-shadow: 0 8px 32px rgba(255,106,0,0.12);
+      transform: translateY(-6px) scale(1.03);
+    }
+  
+    .card-img-top {
+      border-radius: 1.25rem 1.25rem 0 0;
+      object-fit: cover;
+      height: 200px;
+      background: #f3f4f6;
+    }
+  
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      padding: 1.25rem;
+  
+      .card-title {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.01em;
+      }
+  
+      .card-text {
+        color: #666;
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+      }
+  
+      .badge {
+        font-size: 0.85rem;
+        padding: 0.4em 0.8em;
+        border-radius: 0.5rem;
+        margin-right: 0.25rem;
+      }
+      .bg-success {
+        background: #4ade80 !important; // Softer green 
+        font-weight: 600;
+      }
+      .bg-secondary {
+        background: #64748b !important;
+      }
+      .bg-info {
+        background: var(--color-primary, #ff6a00) !important;
+        color: #fff !important;
+      }
+  
+      .fw-bold {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+  
+      .text-muted {
+        color: #888 !important;
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+        i {
+          color: var(--color-primary, #ff6a00);
+          margin-right: 0.3em;
+        }
+      }
+  
+      .btn-primary {
+        background: var(--color-primary, #ff6a00);
+        border: none;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 8px rgba(255,106,0,0.08);
+        transition: background 0.18s;
+        margin-top: auto;
+  
+        &:hover,
+        &:focus {
+          background: #ff7f32;
+        }
+      }
+    }
+  }

@@ -13,7 +13,7 @@
       "email": "john@dealer.com",
       "password": "am9objEyMw==",
       "role": "client",
-      "accountStatus": "rejected",
+      "accountStatus": "approved",
       "phone": "1234567890",
       "address": "123 Main St"
     },
@@ -140,80 +140,174 @@
   ],
   "cars": [
     {
-      "id": "c1",
+      "id": "c101",
       "ownerId": "u2",
       "modelId": "m1",
       "brand": "Honda",
-      "description": "A clean and reliable sedan.",
-      "pricePerDay": 40,
-      "imageUrls": [
-        "https://via.placeholder.com/300x200"
-      ],
-      "isAvailable": "available",
-      "requestType": "rent"
-    },
-    {
-      "id": "c2",
-      "ownerId": "u2",
-      "modelId": "m3",
-      "brand": "Tesla",
-      "description": "Electric car with autopilot.",
-      "pricePerDay": 100,
-      "imageUrls": [
-        "https://via.placeholder.com/300x200"
-      ],
-      "isAvailable": "unavailable",
-      "requestType": "rent"
-    },
-    {
-      "id": "c3",
-      "ownerId": "u2",
-      "modelId": "m3",
-      "brand": "Tesla",
-      "description": "any description",
-      "pricePerDay": 10,
+      "name": "Civic",
+      "description": "A reliable and fuel-efficient sedan, perfect for city driving.",
+      "pricePerDay": 45,
       "price": null,
       "imageUrls": [
-        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748023136/rent_cars/vc2nnoov4d6hjtqjch5b.png",
-        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748023139/rent_cars/hmtjzd783saqrnawenlz.png",
-        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748023140/rent_cars/aclskwokoz3s7a8tdrmh.png"
+        "https://images.unsplash.com/photo-1666294715367-5a01360e30a5?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       ],
       "isAvailable": "available",
       "requestType": "rent",
-      "city": "irbid",
-      "country": "jordan"
+      "city": "Amman",
+      "country": "Jordan"
     },
     {
-      "id": "c4",
-      "ownerId": "u2",
+      "id": "c102",
+      "ownerId": "u4",
       "modelId": "m2",
       "brand": "Toyota",
-      "description": "سياااااااارة",
+      "name": "Corolla",
+      "description": "Spacious, comfortable, and great for families. and reliable",
       "pricePerDay": null,
-      "price": 10000,
+      "price": 15000,
       "imageUrls": [
-        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748027539/rent_cars/purirqej4ugicpy1ndvp.jpg"
+        "https://scene7.toyota.eu/is/image/toyotaeurope/COR0004b_25_WEB_crop:Large-Landscape?ts=0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=png-alpha"
+      ],
+      "isAvailable": "unavailable",
+      "requestType": "buy",
+      "city": "Irbid",
+      "country": "Jordan"
+    },
+    {
+      "id": "c103",
+      "ownerId": "u9",
+      "modelId": "m3",
+      "brand": "Tesla",
+      "name": "Model 3",
+      "description": "Experience electric driving with autopilot and zero emissions.",
+      "pricePerDay": 120,
+      "price": null,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      ],
+      "isAvailable": "available",
+      "requestType": "rent",
+      "city": "Aqaba",
+      "country": "Jordan"
+    },
+    {
+      "id": "c104",
+      "ownerId": "u10",
+      "modelId": "m4",
+      "brand": "Ford",
+      "name": "Mustang",
+      "description": "A classic American muscle car with powerful performance.",
+      "pricePerDay": null,
+      "price": 25000,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1462392246754-28dfa2df8e6b"
+      ],
+      "isAvailable": "available",
+      "requestType": "buy",
+      "city": "Zarqa",
+      "country": "Jordan"
+    },
+    {
+      "id": "c105",
+      "ownerId": "u12",
+      "modelId": "m5",
+      "brand": "Mazda",
+      "name": "CX-4",
+      "description": "A sporty crossover with advanced safety features.",
+      "pricePerDay": 70,
+      "price": null,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1502877338535-766e1452684a"
+      ],
+      "isAvailable": "available",
+      "requestType": "rent",
+      "city": "Madaba",
+      "country": "Jordan"
+    },
+    {
+      "id": "c106",
+      "ownerId": "u13",
+      "modelId": "m7",
+      "brand": "Toyota",
+      "name": "Camry",
+      "description": "A comfortable sedan with a smooth ride and modern tech.",
+      "pricePerDay": null,
+      "price": 18000,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1519681393784-d120267933ba"
+      ],
+      "isAvailable": "available",
+      "requestType": "buy",
+      "city": "Salt",
+      "country": "Jordan"
+    },
+    {
+      "id": "c107",
+      "ownerId": "u14",
+      "modelId": "m8",
+      "brand": "Honda",
+      "name": "Accord",
+      "description": "Spacious, reliable, and perfect for long journeys.",
+      "pricePerDay": 60,
+      "price": null,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1519125323398-675f0ddb6308"
+      ],
+      "isAvailable": "available",
+      "requestType": "rent",
+      "city": "Irbid",
+      "country": "Jordan"
+    },
+    {
+      "id": "c108",
+      "ownerId": "u15",
+      "modelId": "m10",
+      "brand": "Nissan",
+      "name": "Altima",
+      "description": "A stylish sedan with great fuel economy.",
+      "pricePerDay": 55,
+      "price": null,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1461632830798-3adb3034e4c8"
+      ],
+      "isAvailable": "available",
+      "requestType": "rent",
+      "city": "Amman",
+      "country": "Jordan"
+    },
+    {
+      "id": "c109",
+      "ownerId": "u11",
+      "modelId": "m2",
+      "brand": "Toyota",
+      "name": "Corolla",
+      "description": "A well-maintained Corolla, ready for your next trip.",
+      "pricePerDay": 48,
+      "price": null,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1503736318-1c1b1b1b1b1b"
+      ],
+      "isAvailable": "available",
+      "requestType": "rent",
+      "city": "Karak",
+      "country": "Jordan"
+    },
+    {
+      "id": "c110",
+      "ownerId": "u5",
+      "modelId": "m3",
+      "brand": "Tesla",
+      "name": "Model 3",
+      "description": "Go green with this fully electric Tesla Model 3.",
+      "pricePerDay": null,
+      "price": 35000,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1511391403515-5c8e1f1b8b51"
       ],
       "isAvailable": "available",
       "requestType": "buy",
       "city": "Amman",
       "country": "Jordan"
-    },
-    {
-      "id": "c5",
-      "ownerId": "u2",
-      "modelId": "m2",
-      "brand": "Toyota",
-      "description": "سياااااااااااااااااااااااااااااااااااااااارة",
-      "pricePerDay": 1000,
-      "price": null,
-      "imageUrls": [
-        "https://res.cloudinary.com/dniaphcwx/image/upload/v1748028201/rent_cars/ismqsjtmbsiyj5udhseu.jpg"
-      ],
-      "isAvailable": "available",
-      "requestType": "rent",
-      "city": "ِاربد",
-      "country": "الاردن"
     }
   ],
   "carModels": [

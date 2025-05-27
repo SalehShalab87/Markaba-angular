@@ -30,7 +30,7 @@ export class AdminDashboardComponent implements OnInit {
   carModelsList: CarModel[] = [];
   requestsList: Request[] = [];
   userStatusOptions: string[] = ['Approved', 'Rejected', 'Pending'];
-  carStatusOptions: string[] = ['Available', 'Not Available'];
+  carStatusOptions: string[] = ['Available', 'unavailable'];
   requestAndPaymentStatusOptions: string[] = [
     'Pending',
     'Rejected',

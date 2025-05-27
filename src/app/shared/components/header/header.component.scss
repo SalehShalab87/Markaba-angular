@@ -90,3 +90,40 @@
     font-size: 0.95rem;
   }
 }
+
+
+:host ::ng-deep .lang-select-wrapper {
+  // Select container
+  .p-select {
+    background: var(--color-bg, #232326);
+    border: 2px solid var(--color-primary, #ff6a00);
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    min-width: 110px;
+    transition: border-color 0.2s;
+
+    .p-select-label {
+      color: #fff;
+      background: transparent;
+      text-align: center;
+      padding: 0.5rem 0.75rem;
+    }
+    
+    .p-select-option.p-select-option-selected,.p-select-option {
+      background: #232326;
+      color: white;
+    }
+    .p-select-overlay{
+      background: rgba(0, 0, 0, 0.8);
+    }
+    .p-select-option:not(.p-select-option-selected):not(.p-disabled).p-focus{
+      background: var(--color-primary);
+      border-color:var(--color-primary);
+      color: white;
+    }
+    .p-select-dropdown{
+      color: #fff;
+    }
+  }
+}

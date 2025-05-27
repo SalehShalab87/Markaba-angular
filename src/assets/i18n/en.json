@@ -47,7 +47,7 @@
   },
   "header": {
     "home": "Home",
-    "listings": "Listings",
+    "car-listings": "Car Listings",
     "about": "About Us",
     "contact": "Contact Us",
     "logout": "Logout",
@@ -73,7 +73,19 @@
   },
   "home":{
     "welcome" : "Welcome to RideMart",
-    "description": "Rent or buy cars easily and securely."
+    "description": "Rent or buy cars easily and securely.",
+    "how-it-works": "How It Works",
+    "register": "Register",
+    "registerDescription": "Sign up as a customer or client to get started with RideMart.",
+    "browseCars": "Browse Cars",
+    "browseCarsDescription": "Explore a wide range of cars available for rent or purchase.",
+    "request-approve":"Request & Approve",
+    "requestApproveDescription": "Send a request to rent or buy a car, and get it approved by the client.",
+    "drive-away":"Drive Away",
+    "driveAwayDescription": "Once approved, you can drive away with your new car.",
+    "featured-cars": "Featured Cars",
+    "popular-brands": "Popular Brands",
+    "all-right-reserved": "All rights reserved."
   },
   "toast": {
     "success": {
@@ -149,7 +161,7 @@
     "endDate": "End Date",
     "createdAt": "Created At",
     "searchPlaceholder": "Search...",
-    "allStatus": "All Statuses",
+    "allStatus": "All Status",
     "noRecords": "No records found.",
     "previous": "Previous",
     "next": "Next",
@@ -194,5 +206,13 @@
     "passwordMinLength": "Password must be at least 6 characters.",
     "passwordMismatch": "Passwords do not match.",
     "phonePlaceholder": "Enter your phone number (optional)"
+  },
+  "car-card":{
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "rent": "Rent",
+    "buy": "Buy",
+    "viewDetails": "View Details",
+    "day": "day"
   }
 }

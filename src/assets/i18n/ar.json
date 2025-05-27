@@ -50,6 +50,9 @@
     "logout": "تسجيل الخروج",
     "login": "تسجيل الدخول",
     "register": "التسجيل",
+    "car-listings": "قائمة السيارات",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
     "admin": {
       "dashboard": "لوحة التحكم",
       "clients": "العملاء",
@@ -68,9 +71,21 @@
       "requests": "طلباتي"
     }
   },
-  "home":{
-    "welcome" : "مرحبًا بك في رايد مارت",
-    "description": "منصتك لتأجير وشراء السيارات"
+  "home": {
+    "welcome": "مرحبًا بك في رايد مارت",
+    "description": "منصتك لتأجير وشراء السيارات",
+    "how-it-works": "كيف يعمل؟",
+    "register": "سجل الآن",
+    "registerDescription": "انضم إلينا كعميل أو تاجر سيارات",
+    "browseCars": "تصفح السيارات",
+    "browseCarsDescription": "استعرض مجموعة واسعة من السيارات المتاحة للإيجار أو الشراء",
+    "request-approve": "طلب الموافقة",
+    "requestApproveDescription": "بعد تقديم طلبك، سيتم مراجعته من قبل التاجر",
+    "drive-away": "القيادة بعيدًا",
+    "driveAwayDescription": "بمجرد الموافقة على طلبك، يمكنك استلام سيارتك والقيادة بعيدًا",
+    "featured-cars": "السيارات المميزة",
+    "popular-brands": "الماركات الشهيرة",
+    "all-right-reserved": "جميع الحقوق محفوظة"
   },
   "toast": {
     "success": {
@@ -190,5 +205,13 @@
     "passwordMismatch": "كلمات المرور غير متطابقة.",
     "phonePlaceholder": "أدخل رقم هاتفك (اختياري)",
     "phonePatternMismatch": "رقم الهاتف يجب أن يتكون من 10 أرقام."
+  },
+  "car-card": {
+    "available": "متوفرة",
+    "unavailable": "غير متوفرة",
+    "rent": "إيجار",
+    "buy": "شراء",
+    "viewDetails": "عرض التفاصيل",
+    "day": "يوم"
   }
 }
