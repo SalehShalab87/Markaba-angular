@@ -12,7 +12,6 @@ import { User } from '../../../models/user.model';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
-import { NetworkStatusService } from '../../../core/services/network-status.service';
 
 @Component({
   selector: 'app-register-customer',
@@ -26,7 +25,6 @@ export class RegisterCustomerComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toast = inject(ToastService);
-  private networkService = inject(NetworkStatusService);
   subscription: Subscription[] = [];
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -51,21 +49,6 @@ export class RegisterCustomerComponent {
       }
     );
   }
-
-  handleNetworkStatus(): void {
-    this.subscription.push(
-      this.networkService.onlineStatus$.subscribe({
-        next: (isOnline: boolean) => {
-          if (!isOnline) {
-            this.isLoading = false;
-            const errorTranslationKey = 'toast.error.network';
-            this.toast.showError(errorTranslationKey);
-          }
-        },
-      })
-    );
-  }
-
   
 
   onRegister(): void {
@@ -75,7 +58,6 @@ export class RegisterCustomerComponent {
       this.registerForm.markAllAsTouched();
       return;
     }
-    this.handleNetworkStatus();
     const newUser: User = this.registerForm.getRawValue();
     this.subscription.push(
       this.authService.isUserEmailExists(newUser.email).subscribe({

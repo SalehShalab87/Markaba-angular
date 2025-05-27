@@ -4,25 +4,41 @@ import { I18nService } from './core/services/i18n/i18n.service';
 import { ToastModule } from 'primeng/toast';
 import { HeaderComponent } from "./shared/components/header/header.component";
 import { CommonModule } from '@angular/common';
+import { NetworkStatusService } from './core/services/network-status.service';
+import { ToastService } from './core/services/toast.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToastModule, HeaderComponent ,CommonModule],
+  imports: [RouterOutlet, ToastModule, HeaderComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   private i18n = inject(I18nService);
-  isRTL! : boolean;
+  private networkService = inject(NetworkStatusService);
+  private toast = inject(ToastService);
+  isRTL!: boolean;
 
-  ngOnInit(){
+  ngOnInit() {
     this.loadTranslationFileFromService().then(() => {
       this.isRTL = this.i18n.checkIfRTL();
     });
+    this.handleNetworkStatus();
   }
 
   async loadTranslationFileFromService() {
     const lang = localStorage.getItem('lang') as 'en' | 'ar';
     await this.i18n.loadTranslationFile(lang || 'en');
+  }
+
+  handleNetworkStatus(): void {
+      this.networkService.onlineStatus$.subscribe({
+        next: (isOnline: boolean) => {
+          if (!isOnline) {
+            const errorTranslationKey = 'toast.error.network';
+            this.toast.showError(errorTranslationKey);
+          }
+        },
+      });
   }
 }

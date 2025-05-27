@@ -235,5 +235,24 @@
       "required": "هذا الحقل مطلوب",
       "invalid-email": "يرجى إدخال بريد إلكتروني صالح"
     }
+  },
+  "car-Listings": {
+    "all-types": "كل الأنواع",
+    "rent": "إيجار",
+    "buy": "شراء",
+    "all-availability": "كل التوفر",
+    "available": "متوفر",
+    "unavailable": "غير متوفر",
+    "all-locations": "كل المواقع",
+    "no-cars-found": "لا توجد سيارات متاحة",
+    "search-placeholder": "ابحث عن سيارات...",
+    "previous": "السابق",
+    "next": "التالي",
+    "clear-filters": "مسح الفلاتر"
+  },
+  "not-found": {
+    "title": "الصفحة غير موجودة",
+    "message": "عذرًا، الصفحة التي تبحث عنها غير موجودة.",
+    "back-home": "العودة إلى الصفحة الرئيسية"
   }
 }

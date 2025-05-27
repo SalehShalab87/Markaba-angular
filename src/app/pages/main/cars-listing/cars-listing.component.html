@@ -1,1 +1,94 @@
-<p>cars-listing works!</p>
+<section class="container py-5">
+  <!-- Search and Filters -->
+  <div class="row mb-4 g-3 filter-row fade-in-up" style="animation-delay: 0.2s;">
+    <div class="col-12 col-md-6 col-lg-3">
+      <input type="text" class="form-control" 
+             placeholder="{{'car-Listings.search-placeholder' | translate}}"
+             [(ngModel)]="searchTerm" (input)="filterCars()">
+    </div>
+    
+    <div class="col-6 col-md-3 col-lg-2">
+      <select class="form-select" [(ngModel)]="selectedType" (change)="filterCars()">
+        <option value="">{{'car-Listings.all-types' | translate}}</option>
+        <option value="rent">{{'car-Listings.rent' | translate}}</option>
+        <option value="buy">{{'car-Listings.buy' | translate}}</option>
+      </select>
+    </div>
+  
+    <div class="col-6 col-md-3 col-lg-2">
+      <select class="form-select" [(ngModel)]="selectedAvailability" (change)="filterCars()">
+        <option value="">{{'car-Listings.all-availability' | translate}}</option>
+        <option value="available">{{'car-Listings.available' | translate}}</option>
+        <option value="unavailable">{{'car-Listings.unavailable' | translate}}</option>
+      </select>
+    </div>
+  
+    <div class="col-12 col-md-6 col-lg-3">
+      <select class="form-select" [(ngModel)]="selectedLocation" (change)="filterCars()">
+        <option value="">{{'car-Listings.all-locations' | translate}}</option>
+        <option *ngFor="let location of uniqueLocations" [value]="location">
+          {{location}}
+        </option>
+      </select>
+    </div>
+  
+    <!-- Clear Filters Button -->
+    <div class="col-12 col-md-6 col-lg-2 d-flex justify-content-end">
+      <button class="btn btn-outline-secondary" (click)="clearFilters()">
+        {{'car-Listings.clear-filters' | translate}}
+      </button>
+    </div>
+  </div>
+  <!-- Cars Grid -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 fade-in-up" style="animation-delay: 0.6s;">
+    @for (car of paginatedCars; track car.id) {
+      <div class="col fade-in-up" style="animation-delay: 0.16s;">
+        <app-car-card [car]="car"></app-car-card>
+      </div>
+    }
+    @empty {
+      <div class="col-12 py-5 fade-in-up text-center w-100" 
+           style="animation-delay: 0.6s; min-height: 60vh;">
+        <div class="d-flex flex-column align-items-center justify-content-center h-100">
+          <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1748384777/By_my_car-bro_mhbcon.svg" 
+               alt="No Cars Found" 
+               class="img-fluid mb-3" 
+               style="max-width: 400px;">
+          <h4 class="text-muted mb-0">{{'car-Listings.no-cars-found' | translate}}</h4>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Pagination -->
+  @if (totalPages > 1) {
+    <nav class="mt-5 fade-in-up" style="animation-delay: 0.8s;">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="previousPage()">
+            {{'car-Listings.previous' | translate}}
+          </button>
+        </li>
+        
+        @for (page of getPageNumbers(); track $index) {
+          <li class="page-item" [class.active]="currentPage === page">
+            <button class="page-link" (click)="goToPage(page)">
+              {{ page }}
+            </button>
+          </li>
+        }
+
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="nextPage()">
+            {{'car-Listings.next' | translate}}
+          </button>
+        </li>
+      </ul>
+    </nav>
+  }
+
+  <!-- Results Count -->
+  <div class="text-center text-muted mt-3">
+    
+  </div>
+</section>

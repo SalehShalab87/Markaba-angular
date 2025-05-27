@@ -23,7 +23,7 @@
         @switch (auth.userRole()) {
           @case('customer'){
             <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">{{ 'header.customer.dashboard' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/browse" routerLinkActive="active">{{ 'header.customer.browse' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/car-listings" routerLinkActive="active">{{ 'header.car-listings' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">{{ 'header.customer.requests' | translate }}</a></li>
           }
            @case('admin'){
@@ -43,7 +43,12 @@
       <div class="d-flex align-items-center mt-3 mt-lg-0">
         @if (auth.isLoggedIn()) {
           <button class="btn btn-danger btn-sm" (click)="auth.logout()">{{ 'header.logout' | translate }}</button>
-        } 
+        }@else if (!isHome) {
+          <div class="d-flex flex-lg-row flex-column align-items-start gap-2"> ">
+            <a class="btn btn-outline-light w-100" routerLink="/login">{{ 'header.login' | translate }}</a>
+            <a class="btn btn-secondary" routerLink="/register">{{ 'header.register' | translate }}</a>
+          </div>
+        }
       </div>
     </div>
   </div>

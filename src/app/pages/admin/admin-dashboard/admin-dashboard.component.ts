@@ -1,4 +1,4 @@
-import { Component, inject, model, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardTableComponent } from '../../../shared/components/dashboard-table/dashboard-table.component';
 import { User } from '../../../models/user.model';
@@ -8,9 +8,8 @@ import { AdminService } from '../../../core/services/admin/admin.service';
 import { Request } from '../../../models/car-request.model';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
-import { NetworkStatusService } from '../../../core/services/network-status.service';
 import { Subscription } from 'rxjs';
-import { ToastService } from '../../../core/services/toast.service';
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -42,8 +41,6 @@ export class AdminDashboardComponent implements OnInit {
   isLoading: boolean = false;
 
   private adminService = inject(AdminService);
-  private networkService = inject(NetworkStatusService);
-  private toast = inject(ToastService);
   subscriptions: Subscription[] = [];
 
   // Columns for each table
@@ -88,21 +85,6 @@ export class AdminDashboardComponent implements OnInit {
     this.loadAllData();
     // Load active card from local storage
     this.getActiveCardFromLocalStorage();
-    this.handleNetworkStatus();
-  }
-
-  handleNetworkStatus(): void {
-    this.subscriptions.push(
-      this.networkService.onlineStatus$.subscribe({
-        next: (isOnline: boolean) => {
-          if (!isOnline) {
-            this.isLoading = false;
-            const errorTranslationKey = 'toast.error.network';
-            this.toast.showError(errorTranslationKey);
-          }
-        },
-      })
-    );
   }
 
   getActiveCardFromLocalStorage(): void {

@@ -1,0 +1,62 @@
+/* cars-list.component.scss */
+:host {
+  display: block;
+  min-height: 100vh;
+  background: var(--color-background);
+}
+
+.filter-row{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.form-control, .form-select {
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid #e5e7eb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.1);
+  }
+}
+
+.row-cols-lg-3 {
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.btn-outline-secondary {
+  border-radius: 1rem ;
+  border-color: var(--color-primary) !important;
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  &:hover {
+    background-color: var(--color-bg) !important;
+    border-color: var(--color-bg) !important;
+  }
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  border-radius: 6px;
+}
+
+.pagination .page-link {
+  color: var(--color-primary);
+  border-radius: 6px;
+  border: none;
+  margin: 0 2px;
+  transition: background 0.2s;
+}
+
+.pagination .page-link:hover {
+  background: #fff7f0;
+  color: var(--color-primary);
+}
+

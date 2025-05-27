@@ -1,0 +1,30 @@
+
+  .error-content {
+    h1 {
+      font-size: 5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      
+      @media (min-width: 768px) {
+        font-size: 8rem;
+      }
+    }
+    
+    h2 {
+      color: #2c3e50;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--color-primary);
+      border: none;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 15px rgba(255, 106, 0, 0.25);
+      
+      &:hover {
+        transform: translateY(-5px);
+        background-color: var(--color-bg);
+        border-color: var(--color-bg);
+      }
+    }
+  }
