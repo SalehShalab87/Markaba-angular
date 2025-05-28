@@ -49,6 +49,9 @@
             <li class="nav-item"><a class="nav-link" routerLink="/client/payments" routerLinkActive="active">{{ 'header.client.payments' | translate }}</a></li>
           }
         }
+        @if (auth.isLoggedIn()) {
+          <button class="btn btn-danger btn-sm me-2 ms-2" (click)="auth.logout()">{{ 'header.logout' | translate }}</button>
+        }
       </ul>
       <div class="d-flex align-items-center mt-1 mt-lg-0">
         <!-- Desktop language switcher -->
@@ -62,9 +65,6 @@
             {{ currentLang === 'ar' ? 'English' : 'العربية' }}
           </button>
         </div>
-        @if (auth.isLoggedIn()) {
-          <button class="btn btn-danger btn-sm" (click)="auth.logout()">{{ 'header.logout' | translate }}</button>
-        }
       </div>
     </div>
   </div>

@@ -62,8 +62,15 @@
 
   .btn-danger {
     background: #dc3545;
-    font-size: 1rem;
-    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    border-radius: 0.75rem;
+    padding: 0.4rem 1.2rem;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(255,106,0,0.06);
 
     &:hover {
       background: #b52a37;
@@ -74,6 +81,7 @@
 @media (max-width: 991.98px) {
   .custom-navbar .navbar-nav {
     align-items: flex-start !important;
+    
 
     .nav-link {
       padding: 0.5rem 1rem;
