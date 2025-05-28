@@ -1,7 +1,7 @@
 # 🚗 **Project Title: RideMart - Car Rental Management System**
 
 ## 👥 Team Members
-- **You** - Project Lead / Fullstack Angular Developer  
+- **Saleh Shalab** - Project Lead / Fullstack Angular Developer  
 - **Member 1** - [Not Yet Contributed]  
 - **Member 2** - [Not Yet Contributed]
 
@@ -21,11 +21,8 @@ RideMart is a role-based, responsive car rental management platform developed in
 # Install dependencies
 npm install
 
-# Start mock API server
-npm run start:api
-
-# Run the Angular app
-ng serve
+# Run the Angular app And mock backend
+npm start 
 ```
 
 ## 📁 Folder Structure
@@ -55,12 +52,15 @@ src/
 - Admin Dashboard with request/model management  
 - Customer car listing in mobile view
 
-> Add screenshots into a `/screenshots/` folder and embed here:
-```markdown
-![Login](screenshots/login.png)
-![Admin Dashboard](screenshots/admin-dashboard.png)
-![Mobile View](screenshots/mobile.png)
-```
+![image](https://github.com/user-attachments/assets/11e7588b-4f89-4a71-b69c-3477120ebfce)
+![image](https://github.com/user-attachments/assets/fe453c5e-2798-4cb7-a175-0ca5a5a844af)
+![image](https://github.com/user-attachments/assets/230099a0-3dfc-47a4-b669-9747f91ac6b7)
+![image](https://github.com/user-attachments/assets/37cf4a09-107f-4b32-adbd-9194c2b6d534)
+![image](https://github.com/user-attachments/assets/6b893db9-374a-452a-836e-fb9084f18454)
+![image](https://github.com/user-attachments/assets/dc92bd92-7847-4aec-bd82-35ba6696ce81)
+![image](https://github.com/user-attachments/assets/24cec73c-3f22-49af-9aad-1077dacb4c8b)
+
+
 
 ## 🔐 Role-Based Access
 
