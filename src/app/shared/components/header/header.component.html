@@ -1,5 +1,8 @@
+@if (isLoading) {
+  <app-loader></app-loader>
+}
 <nav class="navbar navbar-expand-lg custom-navbar" [class.transparent-header]="isHome">
-  <div class="container-fluid px-4">
+  <div class="container-fluid px-4 position-relative">
     @if(currentLang === 'ar'){
       <a class="navbar-brand d-flex align-items-center " routerLink="/">
         <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9/v1747859900/ride-mart-logo-arabic_t6xwes.png" alt="RideMart Logo" class="logo me-2" />
@@ -19,12 +22,19 @@
             <li class="nav-item"><a class="nav-link" routerLink="/car-listings" routerLinkActive="active">{{ 'header.car-listings' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/contact-us" routerLinkActive="active">{{ 'header.contact' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/about-us" routerLinkActive="active">{{ 'header.about' | translate }}</a></li>
+            @if(!isHome){
+            <li class="nav-item"><a class="nav-link" routerLink="/login" routerLinkActive="active">{{ 'header.login' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/register" routerLinkActive="active">{{ 'header.register' | translate }}</a></li>
+            }
+
         } 
         @switch (auth.userRole()) {
           @case('customer'){
             <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">{{ 'header.customer.dashboard' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/customer/car-listings" routerLinkActive="active">{{ 'header.car-listings' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">{{ 'header.customer.requests' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/contact-us" routerLinkActive="active">{{ 'header.contact' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/about-us" routerLinkActive="active">{{ 'header.about' | translate }}</a></li>
           }
            @case('admin'){
             <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">{{ 'header.admin.dashboard' | translate }}</a></li>
@@ -40,14 +50,20 @@
           }
         }
       </ul>
-      <div class="d-flex align-items-center mt-3 mt-lg-0">
+      <div class="d-flex align-items-center mt-1 mt-lg-0">
+        <!-- Desktop language switcher -->
+        <div class="language-switcher-icon d-sm-flex">
+          <button
+            class="btn btn-md btn-outline-light"
+            (click)="switchLanguage(currentLang === 'en' ? 'ar' : 'en')"
+            [title]="currentLang === 'en' ? 'Switch to Arabic' : 'Switch to English'"
+          >
+            <i class="pi pi-globe me-1"></i>
+            {{ currentLang === 'ar' ? 'English' : 'العربية' }}
+          </button>
+        </div>
         @if (auth.isLoggedIn()) {
           <button class="btn btn-danger btn-sm" (click)="auth.logout()">{{ 'header.logout' | translate }}</button>
-        }@else if (!isHome) {
-          <div class="d-flex flex-lg-row flex-column align-items-start gap-2"> ">
-            <a class="btn btn-outline-light w-100" routerLink="/login">{{ 'header.login' | translate }}</a>
-            <a class="btn btn-secondary" routerLink="/register">{{ 'header.register' | translate }}</a>
-          </div>
         }
       </div>
     </div>

@@ -6,10 +6,12 @@ import { HomeService } from '../../../core/services/home.service';
 import { Subscription } from 'rxjs';
 import { CarCardComponent } from "../../../shared/components/car-card/car-card.component";
 import { CommonModule } from '@angular/common';
+import { LoaderComponent } from "../../../shared/components/loader/loader.component";
+declare var bootstrap: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, TranslatePipe, CarCardComponent, CommonModule],
+  imports: [RouterLink, TranslatePipe, CarCardComponent, CommonModule, LoaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -22,6 +24,16 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loadFeaturedCars();
+  }
+
+  ngAfterViewInit(): void {
+    const element = document.querySelector('#heroCarousel');
+    if (element) {
+      new bootstrap.Carousel(element, {
+        interval: 4000,
+        ride: 'carousel',
+      });
+    }
   }
 
   loadFeaturedCars() {

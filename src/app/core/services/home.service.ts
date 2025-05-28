@@ -3,24 +3,31 @@ import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Car } from '../../models/car.model';
 import { CarModel } from '../../models/car-model.model';
+import { User } from '../../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HomeService {
-
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000';
 
-  getFeaturedCars():Observable<Car[]>{
+  getFeaturedCars(): Observable<Car[]> {
     return this.http.get<Car[]>(`${this.apiUrl}/cars`).pipe(
       // get First 6 cars
-      map(cars => cars.slice(0, 3))
+      map((cars) => cars.slice(0, 3))
     );
   }
 
   getAllCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(`${this.apiUrl}/cars`)
+    return this.http.get<Car[]>(`${this.apiUrl}/cars`);
   }
 
+  getCarById(id: string): Observable<Car> {
+    return this.http.get<Car>(`${this.apiUrl}/cars/${id}`);
+  }
+
+  getUserById(ownerId: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/${ownerId}`);
+  }
 }

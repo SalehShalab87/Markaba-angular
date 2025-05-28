@@ -1,0 +1,157 @@
+<section class="car-details-section">
+  <div class="container">
+    @if (isLoading) {
+     <app-loader></app-loader>
+    }
+
+    @if (!isLoading && car) {
+      <div class="row g-4">
+        <!-- Left Column: Images -->
+        <div class="col-lg-6 fade-in-up" style="animation-delay: 0.2s;">
+          <div class="car-images-section">
+            @if (car.imageUrls.length > 0) {
+              <div class="main-image mb-3">
+                <img [src]="selectedImage" [alt]="car.name" class="img-fluid rounded-3 main-car-image">
+              </div>
+              <div class="thumbnail-images">
+                @for (image of car.imageUrls; track $index) {
+                  <img 
+                    [src]="image" 
+                    [alt]="car.name + ' image ' + ($index + 1)"
+                    class="thumbnail-image fade-in-up"
+                    [style.animation-delay]="(0.4 + ($index * 0.1)) + 's'"
+                    [class.active]="selectedImage === image"
+                    (click)="selectImage(image)">
+                }
+              </div>
+            } @else {
+              <div class="no-image-placeholder fade-in-up" style="animation-delay: 0.4s;">
+                <i class="pi pi-image" style="font-size: 4rem; color: #ccc;"></i>
+                <p class="text-muted">{{ 'car-details.noImagesAvailable' | translate }}</p>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Right Column: Details -->
+        <div class="col-lg-6 fade-in-up" style="animation-delay: 0.4s;">
+          <div class="car-details-card">
+            <!-- Car Basic Info -->
+            <div class="car-header mb-4 fade-in-up" style="animation-delay: 0.6s;">
+              <h1 class="car-title">{{ car.brand }} {{ car.name }}</h1>
+              <div class="car-badges mb-3">
+                <span class="badge fade-in-up" style="animation-delay: 0.7s;" [class]="car.isAvailable === 'available' ? 'bg-success' : 'bg-secondary'">
+                    {{ car.isAvailable === 'available' ? ('car-details.available' | translate) : ('car-details.unavailable' | translate) }}
+                  </span>
+                  <span class="badge bg-info ms-2 fade-in-up" style="animation-delay: 0.8s;">
+                    {{ car.requestType === 'rent' ? ('car-details.forRent' | translate) : ('car-details.forSale' | translate) }}
+                  </span>
+              </div>
+            </div>
+
+            <!-- Price Section -->
+            <div class="price-section mb-4 fade-in-up" style="animation-delay: 0.9s;">
+              @if (car.requestType === 'rent' && car.pricePerDay) {
+                <div class="price-display">
+                  <span class="price-amount">{{ car.pricePerDay | currency }}</span>
+                  <span class="price-period">{{ 'car-details.perDay' | translate }}</span>
+                </div>
+              }
+              @if (car.requestType === 'buy' && car.price) {
+                <div class="price-display">
+                  <span class="price-amount">{{ car.price | currency  }}</span>
+                </div>
+              }
+            </div>
+
+            <!-- Description -->
+            <div class="description-section mb-4 fade-in-up" style="animation-delay: 1.0s;">
+              <h3 class="section-title">{{ 'car-details.description' | translate }}</h3>
+              <p class="description-text">{{ car.description }}</p>
+            </div>
+
+            <!-- Location -->
+            <div class="location-section mb-4 fade-in-up" style="animation-delay: 1.1s;">
+              <h3 class="section-title">{{ 'car-details.location' | translate }}</h3>
+              <div class="location-info">
+                <i class="pi pi-map-marker me-2" style="color: var(--color-primary);"></i>
+                {{ car.city }}, {{ car.country }}
+              </div>
+            </div>
+
+            <!-- Owner Information -->
+            @if (owner) {
+              <div class="owner-section mb-4 fade-in-up" style="animation-delay: 1.2s;">
+                <h3 class="section-title">{{ 'car-details.ownerInformation' | translate }}</h3>
+                <div class="owner-card">
+                  <div class="owner-info">
+                    <h4 class="owner-name">{{ owner.name }}</h4>
+                    @if (owner.phone) {
+                      <div class="contact-info fade-in-up" style="animation-delay: 1.3s;">
+                        <i class="pi pi-phone me-2"></i>
+                        {{ owner.phone }}
+                      </div>
+                    }
+                    @if (owner.email) {
+                      <div class="contact-info fade-in-up" style="animation-delay: 1.4s;">
+                        <i class="pi pi-envelope me-2"></i>
+                        {{ owner.email }}
+                      </div>
+                    }
+                    @if (owner.address) {
+                      <div class="contact-info fade-in-up" style="animation-delay: 1.5s;">
+                        <i class="pi pi-home me-2"></i>
+                        {{ owner.address }}
+                      </div>
+                    }
+                  </div>
+                </div>
+            </div>
+        }
+        <!-- Action Buttons -->
+            @if(!auth.isLoggedIn()){
+                <div class="action-buttons fade-in-up" style="animation-delay: 1.6s;">
+                  @if (car.isAvailable === 'available') {
+                    @if (car.requestType === 'rent') {
+                      <button class="btn btn-primary btn-lg w-100 mb-2" (click)="onRentCar()">
+                        <i class="pi pi-calendar me-2"></i>
+                        {{ 'car-details.rentThisCar' | translate }}
+                      </button>
+                    } @else {
+                      <button class="btn btn-primary btn-lg w-100 mb-2" (click)="onBuyCar()">
+                        <i class="pi pi-shopping-cart me-2"></i>
+                        {{ 'car-details.buyThisCar' | translate }}
+                      </button>
+                    }
+                  } @else {
+                    <button class="btn btn-secondary btn-lg w-100 mb-2" disabled>
+                      {{ 'car-details.currentlyUnavailable' | translate }}
+                    </button>
+                  }
+                  
+                  <button class="btn btn-outline-primary w-100" (click)="onContactOwner()">
+                    <i class="pi pi-comments me-2"></i>
+                    {{ 'car-details.contactOwner' | translate }}
+                </button>
+            </div>
+        }
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (!isLoading && !car) {
+      <div class="text-center py-5 d-flex flex-column align-items-center justify-content-center fade-in-up" style="animation-delay: 0.6s; min-height: 60vh;">
+        <div class="d-flex flex-column align-items-center justify-content-center h-100">
+          <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1748384777/By_my_car-bro_mhbcon.svg" 
+          alt="No Cars Found" 
+          class="img-fluid mb-3 fade-in-up" 
+          style="max-width: 350px; animation-delay: 0.2s;">
+          <h2 class="fade-in-up" style="animation-delay: 0.4s;">{{ 'car-details.notFound' | translate }}</h2>
+          <p class="text-muted fade-in-up" style="animation-delay: 0.6s;">{{ 'car-details.notFoundMessage' | translate }}</p>
+          <a routerLink="/car-listings" class="btn btn-primary fade-in-up" style="animation-delay: 0.8s;">{{ 'car-details.browseAllCars' | translate }}</a>
+        </div>
+      </div>
+    }
+  </div>
+</section>

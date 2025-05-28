@@ -127,3 +127,33 @@
     }
   }
 }
+.language-switcher-icon {
+  display: flex;
+  align-items: center;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.75rem;
+    border: 2px solid var(--color-primary, #ff6a00);
+    background: transparent;
+    color: var(--color-primary, #ff6a00);
+    padding: 0.4rem 1.2rem;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(255,106,0,0.06);
+
+    i {
+      font-size: 1.1rem;
+    }
+
+    &:hover, &:focus {
+      background: var(--color-primary, #ff6a00);
+      color: #fff;
+      border-color: var(--color-primary, #ff6a00);
+      outline: none;
+    }
+  }
+}
