@@ -1,59 +1,111 @@
-# RideMartAngular
+# 🚗 **Project Title: RideMart - Car Rental Management System**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+## 👥 Team Members
+- **You** - Project Lead / Fullstack Angular Developer  
+- **Member 1** - [Not Yet Contributed]  
+- **Member 2** - [Not Yet Contributed]
 
-## Development server
+## 📚 Project Description
+RideMart is a role-based, responsive car rental management platform developed in Angular 19. The system supports three types of users: **Admin**, **Client**, and **Customer**, each with tailored dashboards and access levels. The system includes authentication, request management, car model control, internationalization (English/Arabic), and mock data powered by a JSON server.
 
-To start a local development server, run:
+## 🌐 Technologies Used
+- **Angular 19 (Standalone Components + Signals)**
+- **SCSS + Bootstrap 5**
+- **ng-bootstrap** (modals, toasts, UI utilities)
+- **ngx-translate** (i18n)
+- **JSON-server** (mock backend)
+
+## 🚦 Setup Instructions
 
 ```bash
+# Install dependencies
+npm install
+
+# Start mock API server
+npm run start:api
+
+# Run the Angular app
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📁 Folder Structure
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+│
+├── app/
+│   ├── core/         # Guards, Auth, Toasts, Network Watcher
+│   ├── models/       # Car, CarModel, User, CarRequest interfaces
+│   ├── shared/       # Loader, Toast, Reusable Tables, Pipes
+│   ├── pages/
+│   │   ├── auth/     # Login & Auth logic
+│   │   ├── main/     # Public-facing pages (home, contact, about)
+│   │   ├── admin/    # Admin dashboard, car model/request/user management
+│   │   ├── client/   # Client request creation & profile management
+│   │   └── customer/ # Customer car browsing & request submission
+│   └── app.routes.ts
+│
+├── assets/
+│   ├── i18n/         # en.json / ar.json for full translation
+│   └── images/       # Car brands, banners, UI assets
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📸 Screenshots (Suggestions)
+- Login Page  
+- Admin Dashboard with request/model management  
+- Customer car listing in mobile view
 
-```bash
-ng generate --help
+> Add screenshots into a `/screenshots/` folder and embed here:
+```markdown
+![Login](screenshots/login.png)
+![Admin Dashboard](screenshots/admin-dashboard.png)
+![Mobile View](screenshots/mobile.png)
 ```
 
-## Building
+## 🔐 Role-Based Access
 
-To build the project run:
+- **Admin**
+  - Manage car models and user requests
+  - View system stats
+- **Client**
+  - Create new car requests
+  - Manage personal profile
+- **Customer**
+  - Browse available cars
+  - Submit and view rental requests
 
-```bash
-ng build
-```
+All routes are protected via role-specific **route guards** (`AdminGuard`, `ClientGuard`, `CustomerGuard`, `NoAuthGuard`).
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🌍 Internationalization (i18n)
 
-## Running unit tests
+- Uses `Custom i18n service `
+- JSON-based dynamic language switching
+- Supported languages:
+  - 🇬🇧 English (`en.json`)
+  - 🇸🇦 Arabic (`ar.json`)
+- UI is RTL-compatible when Arabic is active
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## ✅ Features Checklist
 
-```bash
-ng test
-```
+- [x] Role-based login with redirect
+- [x] Form validation with live feedback
+- [x] Toast messages (success, error, network status)
+- [x] English/Arabic language toggle
+- [x] Responsive layout for desktop and mobile
+- [x] JSON-server integration for mock data
 
-## Running end-to-end tests
+## 🧪 Testing Steps
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. **Login Test**
+   - Use mock credentials for `admin`, `client`, and `customer` in The Folder named backend
+   - Confirm correct dashboard and access for each role
+2. **Form Validation**
+   - Leave fields empty and confirm error messages
+   - Try invalid email, weak passwords
+3. **i18n Switching**
+   - Toggle between EN/AR and verify translations
+4. **Responsive Testing**
+   - Open on mobile view and test layout
+5. **Data Flow**
+   - Submit a car request and check admin-side visibility
+   - Add/delete car models from admin panel
