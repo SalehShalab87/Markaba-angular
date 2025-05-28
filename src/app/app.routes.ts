@@ -23,6 +23,7 @@ import { AdminProfileComponent } from './pages/admin/admin-profile/admin-profile
 import { CarsListingComponent } from './pages/main/cars-listing/cars-listing.component';
 import { ContactUsComponent } from './pages/main/contact-us/contact-us.component';
 import { AboutUsComponent } from './pages/main/about-us/about-us.component';
+import { CarDetailsComponent } from './pages/main/car-details/car-details.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,6 +34,7 @@ export const routes: Routes = [
   { path: 'car-listings', component: CarsListingComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'cars/:id', component: CarDetailsComponent },
   {
     path: 'register',
     component: RegisterChoiceComponent,

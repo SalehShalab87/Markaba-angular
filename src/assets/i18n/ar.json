@@ -254,5 +254,28 @@
     "title": "الصفحة غير موجودة",
     "message": "عذرًا، الصفحة التي تبحث عنها غير موجودة.",
     "back-home": "العودة إلى الصفحة الرئيسية"
+  },
+  "car-details": {
+    "loading": "جاري تحميل تفاصيل السيارة...",
+    "notFound": "السيارة غير موجودة",
+    "notFoundMessage": "السيارة التي تبحث عنها غير موجودة أو تم حذفها.",
+    "browseAllCars": "تصفح جميع السيارات",
+    "noImagesAvailable": "لا توجد صور متاحة",
+    "available": "متوفرة",
+    "unavailable": "غير متوفرة",
+    "forRent": "للإيجار",
+    "forSale": "للبيع",
+    "perDay": "/يوم",
+    "description": "الوصف",
+    "location": "الموقع",
+    "ownerInformation": "معلومات المالك",
+    "rentThisCar": "استأجر هذه السيارة",
+    "buyThisCar": "اشتري هذه السيارة",
+    "currentlyUnavailable": "غير متوفرة حاليًا",
+    "contactOwner": "تواصل مع المالك",
+    "loginRequired": "يرجى تسجيل الدخول لاستئجار أو شراء هذه السيارة",
+    "rentRequestSubmitted": "تم إرسال طلب الإيجار بنجاح!",
+    "buyRequestSubmitted": "تم إرسال طلب الشراء بنجاح!",
+    "contactFeatureComingSoon": "ميزة التواصل ستتوفر قريبًا!"
   }
 }

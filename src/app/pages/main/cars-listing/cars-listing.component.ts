@@ -6,6 +6,7 @@ import { HomeService } from '../../../core/services/home.service';
 import { Car } from '../../../models/car.model';
 import { CarCardComponent } from '../../../shared/components/car-card/car-card.component';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class CarsListingComponent implements OnInit {
   allCars: Car[] = [];
   filteredCars: Car[] = [];
   paginatedCars: Car[] = [];
+  subscription : Subscription[]= [];
 
   // Pagination
   currentPage = 1;
@@ -40,7 +42,7 @@ export class CarsListingComponent implements OnInit {
   }
 
   private loadCars() {
-    this.homeService.getAllCars().subscribe((cars) => {
+    const sub = this.homeService.getAllCars().subscribe((cars) => {
       this.allCars = cars;
       this.filteredCars = [...cars];
       this.uniqueLocations = [
@@ -48,6 +50,7 @@ export class CarsListingComponent implements OnInit {
       ];
       this.updatePagination();
     });
+    this.subscription.push(sub);
   }
 
   filterCars() {
@@ -119,4 +122,9 @@ export class CarsListingComponent implements OnInit {
     this.selectedLocation = '';
     this.filterCars();
   }
+  
+  ngOnDestroy() {
+    this.subscription.forEach(sub => sub.unsubscribe());  
+  }
+
 }

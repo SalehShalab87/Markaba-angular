@@ -255,5 +255,28 @@
     "title": "Page Not Found",
     "message": "Oops! The page you're looking for seems to have taken a wrong turn.",
     "back-home": "Back to Home"
+  },
+  "car-details": {
+    "loading": "Loading car details...",
+    "notFound": "Car not found",
+    "notFoundMessage": "The car you're looking for doesn't exist or has been removed.",
+    "browseAllCars": "Browse All Cars",
+    "noImagesAvailable": "No images available",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "forRent": "For Rent",
+    "forSale": "For Sale",
+    "perDay": "/day",
+    "description": "Description",
+    "location": "Location",
+    "ownerInformation": "Owner Information",
+    "rentThisCar": "Rent This Car",
+    "buyThisCar": "Buy This Car",
+    "currentlyUnavailable": "Currently Unavailable",
+    "contactOwner": "Contact Owner",
+    "loginRequired": "Please login to rent or buy this car",
+    "rentRequestSubmitted": "Rental request submitted successfully!",
+    "buyRequestSubmitted": "Purchase request submitted successfully!",
+    "contactFeatureComingSoon": "Contact feature coming soon!"
   }
 }

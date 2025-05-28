@@ -2,10 +2,11 @@ import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '../../pipes/translate.pipe';
+import { LoaderComponent } from "../loader/loader.component";
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, TranslatePipe],
+  imports: [RouterLink, RouterLinkActive, TranslatePipe, LoaderComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -15,6 +16,7 @@ export class HeaderComponent {
   private router = inject(Router);
   currentLang = 'en';
   isHome = false;
+  isLoading = false;
 
   ngOnInit() {
     const lang = localStorage.getItem('lang') || 'en';
@@ -38,5 +40,17 @@ export class HeaderComponent {
     this.router.events.subscribe(() => {
       this.isHome = this.router.url === '/home';
     });
+  }
+
+  switchLanguage(lang: 'en' | 'ar'): void {
+    this.isLoading = true;
+    if (this.currentLang !== lang) {
+      setTimeout(() => {
+      localStorage.setItem('lang', lang);
+      this.currentLang = lang;
+      this.isLoading = false;
+      window.location.reload();
+      }, 2000);
+    }
   }
 }

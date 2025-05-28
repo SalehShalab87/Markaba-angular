@@ -8,50 +8,66 @@
     class="carousel slide position-absolute top-0 start-0 w-100 h-100"
     data-bs-ride="carousel"
     data-bs-interval="4000"
-    style="z-index: 1"
-    >
-    <div class="carousel-item active h-100">
-      <img
-        src="assets/images/slider-home-1.webp"
-        class="d-block w-100 h-100 object-fit-cover"
-        alt="Car 1"
-        style="object-fit: cover; filter: brightness(0.5)"
-      />
+    style="z-index: 1;"
+  >
+    <!-- Carousel indicators -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
     </div>
+
+    <!-- Carousel items -->
     <div class="carousel-inner h-100">
+      <div class="carousel-item active h-100">
+        <img
+          src="assets/images/slider-home-1.webp"
+          class="d-block w-100 h-100 object-fit-cover"
+          alt="Luxury car 1"
+          style="object-fit: cover; filter: brightness(0.5);"
+          loading="lazy"
+        />
+      </div>
       <div class="carousel-item h-100">
         <img
           src="assets/images/slider-home2.webp"
           class="d-block w-100 h-100 object-fit-cover"
-          alt="Car 2"
-          style="object-fit: cover; filter: brightness(0.5)"
+          alt="Luxury car 2"
+          style="object-fit: cover; filter: brightness(0.5);"
+          loading="lazy"
         />
       </div>
       <div class="carousel-item h-100">
         <img
           src="assets/images/slider-home3.webp"
           class="d-block w-100 h-100 object-fit-cover"
-          alt="Car 3"
-          style="object-fit: cover; filter: brightness(0.5)"
+          alt="Luxury car 3"
+          style="object-fit: cover; filter: brightness(0.5);"
+          loading="lazy"
         />
       </div>
       <div class="carousel-item h-100">
         <img
           src="assets/images/slider-home4.webp"
           class="d-block w-100 h-100 object-fit-cover"
-          alt="Car 4"
-          style="object-fit: cover; filter: brightness(0.5)"
+          alt="Luxury car 4"
+          style="object-fit: cover; filter: brightness(0.5);"
+          loading="lazy"
         />
       </div>
       <div class="carousel-item h-100">
         <img
           src="assets/images/slider-home5.webp"
           class="d-block w-100 h-100 object-fit-cover"
-          alt="Car 5"
-          style="object-fit: cover; filter: brightness(0.5)"
+          alt="Luxury car 5"
+          style="object-fit: cover; filter: brightness(0.5);"
+          loading="lazy"
         />
       </div>
     </div>
+
     <!-- Carousel controls -->
     <button
       class="carousel-control-prev"
@@ -72,14 +88,18 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
+  <!-- Hero content -->
   <div class="container position-relative fade-in-up" style="z-index: 3; animation-delay: 0.4s;">
     <h1 class="display-4 mb-3 text-white">{{'home.welcome' | translate}}</h1>
-    <p class="lead mb-4 text-white">{{'home.description' |translate}}</p>
+    <p class="lead mb-4 text-white">{{'home.description' | translate}}</p>
     <div class="d-flex justify-content-center gap-3 fade-in-up" style="animation-delay: 0.8s;">
-      <a routerLink="/login" class="btn btn-primary btn-lg">{{'header.login' | translate }}</a>
-      <a routerLink="/register" class="btn btn-outline-light btn-lg"
-        >{{'header.register' | translate }}</a
-      >
+      <a routerLink="/login" class="btn btn-primary btn-lg">
+        {{'header.login' | translate}}
+      </a>
+      <a routerLink="/register" class="btn btn-outline-light btn-lg">
+        {{'header.register' | translate}}
+      </a>
     </div>
   </div>
 </section>
@@ -129,6 +149,9 @@
 <!-- Featured Section Start -->
 <section class="featured-cars py-5 bg-light fade-in-up" style="animation-delay: 0.3s;">
   <h2 class="text-center mb-4 fw-bold">{{'home.featured-cars' |translate  }}</h2>
+  @if(isLoading){
+    <app-loader></app-loader>
+  }@else{
   <div class="row">
     @for (car of featuredCarsList; track $index) {
       <div class="col-md-4 mb-4 d-flex">
@@ -136,6 +159,7 @@
       </div>
       }
     </div>
+  }
 </section>
 <!-- Brands Section Start -->
 <section class="brands py-4 fade-in-up" style="animation-delay: 0.6s;">
