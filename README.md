@@ -27,13 +27,7 @@ npm start
 
 ## 📁 Folder Structure
 
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
+```
 src/
 │
 ├── app/
@@ -115,4 +109,3 @@ All routes are protected via role-specific **route guards** (`AdminGuard`, `Clie
 5. **Data Flow**
    - Submit a car request and check admin-side visibility
    - Add/delete car models from admin panel
-
