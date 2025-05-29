@@ -30,7 +30,6 @@
         } 
         @switch (auth.userRole()) {
           @case('customer'){
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">{{ 'header.customer.dashboard' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/customer/car-listings" routerLinkActive="active">{{ 'header.car-listings' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">{{ 'header.customer.requests' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/contact-us" routerLinkActive="active">{{ 'header.contact' | translate }}</a></li>

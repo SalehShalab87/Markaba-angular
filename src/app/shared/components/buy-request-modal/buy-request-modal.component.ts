@@ -1,14 +1,15 @@
+import { CurrencyPipe, CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Car } from '../../models/car.model';
-import { User } from '../../models/user.model';
-import { TranslatePipe } from '../pipes/translate.pipe';
-import { CommonModule, CurrencyPipe } from '@angular/common';
-import { ToastService } from '../../core/services/toast.service';
-import { RequestService } from '../../core/services/request.service';
-import { AuthService } from '../../core/services/auth/auth.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
+import { RequestService } from '../../../core/services/main/request.service';
+import { ToastService } from '../../../core/services/main/toast.service';
+import { Car } from '../../../models/car.model';
+import { User } from '../../../models/user.model';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 import { DatePicker } from 'primeng/datepicker';
-import { Request } from '../../models/car-request.model';
+import { Request } from '../../../models/car-request.model';
+
 
 @Component({
   selector: 'app-buy-request-modal',

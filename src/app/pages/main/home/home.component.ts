@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { Car } from '../../../models/car.model';
-import { HomeService } from '../../../core/services/home.service';
+import { HomeService } from '../../../core/services/main/home.service';
 import { Subscription } from 'rxjs';
 import { CarCardComponent } from "../../../shared/components/car-card/car-card.component";
 import { CommonModule } from '@angular/common';

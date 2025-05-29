@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
-import { ToastService } from '../../../core/services/toast.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 
 @Component({
   selector: 'app-contact-us',

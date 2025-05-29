@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import { ToastService } from '../../../core/services/toast.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 import { User } from '../../../models/user.model';
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
