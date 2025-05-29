@@ -1,4 +1,4 @@
-# 🚗 **Project Title: RideMart - Car Rental Management System**
+# 🚗 **Project Title: RideMart - Car Management System**
 
 ## 👥 Team Members
 - **Saleh Shalab** - Project Lead / Front-end Angular Developer  
