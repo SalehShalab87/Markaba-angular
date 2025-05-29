@@ -299,6 +299,7 @@
     "totalPrice": "Total Price",
     "rentRequestSuccess": "Rental request submitted successfully!",
     "buyRequestSuccess": "Purchase request submitted successfully!",
-    "requestSubmitError": "Failed to submit request. Please try again."
+    "requestSubmitError": "Failed to submit request. Please try again.",
+    "priceBreakdown": "Price Breakdown"
   }
 }

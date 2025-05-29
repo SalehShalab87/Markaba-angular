@@ -295,6 +295,7 @@
     "submitBuyRequest": "إرسال طلب الشراء",
     "selectStartDate": "اختر تاريخ البداية",
     "selectEndDate": "اختر تاريخ النهاية",
-    "totalPrice": "السعر الإجمالي"
+    "totalPrice": "السعر الإجمالي",
+    "priceBreakdown": "تفاصيل السعر"
   }
 }
