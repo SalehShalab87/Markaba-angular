@@ -12,7 +12,7 @@ RideMart is a role-based, responsive car rental management platform developed in
 - **Angular 19 (Standalone Components + Signals)**
 - **SCSS + Bootstrap 5**
 - **Primeng** (modals, toasts, UI utilities)
-- **ngx-translate** (i18n)
+- **Custom Service** (i18n)
 - **JSON-server** (mock backend)
 
 ## 🚦 Setup Instructions
