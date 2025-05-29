@@ -13,8 +13,8 @@ export interface Request {
   requestStatus: RequestStatus;
   paymentStatus: PaymentStatus;
   paymentAmount: number;
-  startDate?: Date;
-  endDate?: Date;
-  createdAt: Date;
+  startDate?: string;
+  endDate?: string;
+  createdAt: string;
   notes?: string;
 }

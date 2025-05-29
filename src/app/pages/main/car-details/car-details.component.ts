@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Car } from '../../../models/car.model';
 import { User } from '../../../models/user.model';
@@ -8,6 +8,7 @@ import { ToastService } from '../../../core/services/toast.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
+import { BuyRequestModalComponent } from "../../../shared/buy-request-modal/buy-request-modal.component";
 
 @Component({
   selector: 'app-car-details',
@@ -18,7 +19,8 @@ import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
     RouterLink,
     LoaderComponent,
     TranslatePipe,
-  ],
+    BuyRequestModalComponent
+],
   templateUrl: './car-details.component.html',
   styleUrl: './car-details.component.scss',
 })
@@ -27,10 +29,12 @@ export class CarDetailsComponent implements OnInit {
   owner: User | null = null;
   selectedImage: string = '';
   isLoading = true;
+  isBuyRequestModalVisible = false;
 
   private route = inject(ActivatedRoute);
   private homeService = inject(HomeService);
   private toastService = inject(ToastService);
+  private router = inject(Router);
   auth = inject(AuthService);
 
   ngOnInit() {
@@ -69,15 +73,35 @@ export class CarDetailsComponent implements OnInit {
     this.selectedImage = imageUrl;
   }
 
+  showBuyRequestModal() {
+    this.isBuyRequestModalVisible = true;
+  }
+
   onRentCar() {
-    this.toastService.showSuccess('car-details.rentRequestSubmitted');
+    if (!this.auth.isLoggedIn()) {
+      this.toastService.showError('car-details.loginRequired');
+      this.auth.setRedirectUrl(this.router.url);
+      this.router.navigateByUrl('/login');
+      return;
+    }
+    this.showBuyRequestModal();
   }
 
   onBuyCar() {
-    this.toastService.showSuccess('car-details.buyRequestSubmitted');
+    if (!this.auth.isLoggedIn()) {
+      this.toastService.showError('car-details.loginRequired');
+      this.auth.setRedirectUrl(this.router.url);
+      this.router.navigateByUrl('/login');
+      return;
+    }
+    this.showBuyRequestModal();
   }
 
   onContactOwner() {
     this.toastService.showInfo('car-details.contactFeatureComingSoon');
+  }
+
+  onRequestSubmitted() {
+    this.isBuyRequestModalVisible = false;
   }
 }

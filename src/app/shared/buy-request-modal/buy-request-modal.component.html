@@ -1,0 +1,219 @@
+<div
+  class="modal fade show d-block"
+  tabindex="-1"
+  [ngClass]="{ 'show d-block': isVisible, 'd-none': !isVisible }"
+  style="background: rgba(0, 0, 0, 0.3)"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      @if (car) {
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="pi pi-car me-2"></i>
+          {{
+            car.requestType === "buy"
+              ? ("car-details.sendBuyRequest" | translate)
+              : ("car-details.sendRentRequest" | translate)
+          }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal.emit()"
+        ></button>
+      </div>
+      <form [formGroup]="requestForm" (ngSubmit)="OnSubmitRequest()">
+        <div class="modal-body">
+          <!-- Car Summary -->
+          <div class="car-summary mb-4 p-3 bg-light rounded">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <img
+                  [src]="car.imageUrls[0]"
+                  [alt]="car.name"
+                  class="img-fluid rounded"
+                />
+              </div>
+              <div class="col-md-9">
+                <h6 class="mb-1">{{ car.brand }} {{ car.name }}</h6>
+                <p class="text-muted mb-1">
+                  <i class="pi pi-map-marker me-1"></i>
+                  {{ car.city }}, {{ car.country }}
+                </p>
+                <div class="d-flex align-items-center">
+                  @if (car.requestType === 'rent' && car.pricePerDay) {
+                  <span class="badge bg-primary"
+                    >{{ car.pricePerDay | currency }}/{{
+                      "car-details.day" | translate
+                    }}</span
+                  >
+                  } @if (car.requestType === 'buy' && car.price) {
+                  <span class="badge bg-success">{{
+                    car.price | currency
+                  }}</span>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date Selection for Rent -->
+          @if (car.requestType === 'rent') {
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="startDate" class="form-label"
+                >{{ "car-details.startDate" | translate }} *</label
+              >
+              <p-datePicker
+                inputId="startDate"
+                formControlName="startDate"
+                [iconDisplay]="'input'"
+                [showIcon]="true"
+                [minDate]="today"
+                dateFormat="dd/mm/yy"
+                placeholder="{{ 'car-details.selectStartDate' | translate }}"
+                styleClass="w-100"
+                [class.ng-invalid]="
+                  requestForm.get('startDate')?.invalid &&
+                  requestForm.get('startDate')?.touched
+                "
+              >
+              </p-datePicker>
+              @if (requestForm.get('startDate')?.errors?.['required'] &&
+              requestForm.get('startDate')?.touched) {
+              <div class="invalid-feedback d-block">
+                {{ "car-details.startDateRequired" | translate }}
+              </div>
+              }
+            </div>
+            <div class="col-md-6">
+              <label for="endDate" class="form-label"
+                >{{ "car-details.endDate" | translate }} *</label
+              >
+              <p-datePicker
+                inputId="endDate"
+                formControlName="endDate"
+                [iconDisplay]="'input'"
+                [showIcon]="true"
+                [minDate]="requestForm.get('startDate')?.value || today"
+                dateFormat="dd/mm/yy"
+                placeholder="{{ 'car-details.selectEndDate' | translate }}"
+                styleClass="w-100"
+                [class.ng-invalid]="
+                  requestForm.get('endDate')?.invalid &&
+                  requestForm.get('endDate')?.touched
+                "
+              >
+              </p-datePicker>
+              @if (requestForm.get('endDate')?.errors?.['required'] &&
+              requestForm.get('endDate')?.touched) {
+              <div class="invalid-feedback d-block">
+                {{ "car-details.endDateRequired" | translate }}
+              </div>
+              }
+            </div>
+          </div>
+
+          <!-- Total Cost Calculation -->
+          @if (car.requestType === 'rent' && getTotalDays() > 0) {
+          <div class="price-calculation-card mb-3">
+            <div class="price-header">
+              <h6 class="mb-0">
+                {{ "car-details.priceBreakdown" | translate }}
+              </h6>
+            </div>
+            <div class="price-body">
+              <div class="price-row">
+                <span class="price-label"
+                  >{{ car.pricePerDay | currency }} × {{ getTotalDays() }}
+                  {{ "car-details.days" | translate }}</span
+                >
+                <span class="price-value">{{ getTotalCost() | currency }}</span>
+              </div>
+              <hr class="price-divider" />
+              <div class="price-row total-row">
+                <span class="total-label">{{
+                  "car-details.total" | translate
+                }}</span>
+                <span class="total-value">{{ getTotalCost() | currency }}</span>
+              </div>
+            </div>
+          </div>
+          } }
+
+          <!-- Buy Price Display -->
+          @if (car.requestType === 'buy') {
+          <div class="price-calculation-card mb-3 buy-price-card">
+            <div class="price-header">
+              <h6 class="mb-0">
+                {{ "car-details.purchasePrice" | translate }}
+              </h6>
+            </div>
+            <div class="price-body">
+              <div class="price-row total-row">
+                <span class="total-label">{{
+                  "car-details.totalPrice" | translate
+                }}</span>
+                <span class="total-value">{{ car.price | currency }}</span>
+              </div>
+            </div>
+          </div>
+          }
+
+          <!-- Notes -->
+          <div class="mb-3">
+            <label for="notes" class="form-label">{{
+              "car-details.additionalNotes" | translate
+            }}</label>
+            <textarea
+              id="notes"
+              class="form-control"
+              formControlName="notes"
+              rows="3"
+              [placeholder]="'car-details.notesPlaceholder' | translate"
+              maxlength="500"
+              [class.is-invalid]="
+                requestForm.get('notes')?.invalid &&
+                requestForm.get('notes')?.touched
+              "
+            >
+            </textarea>
+            <div class="form-text">
+              {{ requestForm.get("notes")?.value?.length || 0 }}/500
+              {{ "car-details.characters" | translate }}
+            </div>
+            @if (requestForm.get('notes')?.errors?.['maxlength']) {
+            <div class="invalid-feedback">
+              {{ "car-details.notesTooLong" | translate }}
+            </div>
+            }
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closeModal.emit()"
+          >
+            {{ "dialog.cancel" | translate }}
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="requestForm.invalid || isSubmitting"
+          >
+            {{
+              car.requestType === "rent"
+                ? ("car-details.submitRentRequest" | translate)
+                : ("car-details.submitBuyRequest" | translate)
+            }}
+          </button>
+        </div>
+      </form>
+      }
+    </div>
+  </div>
+</div>

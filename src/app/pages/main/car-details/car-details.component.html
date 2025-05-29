@@ -109,7 +109,6 @@
             </div>
         }
         <!-- Action Buttons -->
-            @if(!auth.isLoggedIn()){
                 <div class="action-buttons fade-in-up" style="animation-delay: 1.6s;">
                   @if (car.isAvailable === 'available') {
                     @if (car.requestType === 'rent') {
@@ -134,7 +133,6 @@
                     {{ 'car-details.contactOwner' | translate }}
                 </button>
             </div>
-        }
           </div>
         </div>
       </div>
@@ -155,3 +153,14 @@
     }
   </div>
 </section>
+
+<!-- ...existing content... -->
+
+<!--Modal-->
+<app-buy-request-modal
+  [isVisible]="isBuyRequestModalVisible"
+  [car]="car"
+  [carOwner]="owner"
+  (closeModal)="isBuyRequestModalVisible = false"
+  (requestSubmitted)="onRequestSubmitted()">
+</app-buy-request-modal>

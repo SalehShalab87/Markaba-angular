@@ -276,6 +276,25 @@
     "loginRequired": "يرجى تسجيل الدخول لاستئجار أو شراء هذه السيارة",
     "rentRequestSubmitted": "تم إرسال طلب الإيجار بنجاح!",
     "buyRequestSubmitted": "تم إرسال طلب الشراء بنجاح!",
-    "contactFeatureComingSoon": "ميزة التواصل ستتوفر قريبًا!"
+    "contactFeatureComingSoon": "ميزة التواصل ستتوفر قريبًا!",
+    "sendBuyRequest": "إرسال طلب شراء",
+    "sendRentRequest": "إرسال طلب إيجار",
+    "startDate": "تاريخ البداية",
+    "endDate": "تاريخ النهاية",
+    "startDateRequired": "تاريخ البداية مطلوب",
+    "endDateRequired": "تاريخ النهاية مطلوب",
+    "additionalNotes": "ملاحظات إضافية",
+    "notesPlaceholder": "أدخل أي ملاحظات إضافية أو طلبات خاصة...",
+    "characters": "حرف",
+    "notesTooLong": "الملاحظات لا يمكن أن تتجاوز 500 حرف",
+    "purchasePrice": "سعر الشراء",
+    "day": "يوم",
+    "days": "أيام",
+    "total": "المجموع",
+    "submitRentRequest": "إرسال طلب الإيجار",
+    "submitBuyRequest": "إرسال طلب الشراء",
+    "selectStartDate": "اختر تاريخ البداية",
+    "selectEndDate": "اختر تاريخ النهاية",
+    "totalPrice": "السعر الإجمالي"
   }
 }
