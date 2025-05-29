@@ -1,7 +1,7 @@
 @if(isLoading){
   <app-loader/>
 }
-<div class="container fade-in-up" style="animation-delay: 0.2s">
+<div class="container fade-in-up" style="animation-delay: 0.1s;">
   <div class="row">
     <div class="col-12 my-4">
       <h2 class="fw-bold">{{ "header.admin.profile" | translate }}</h2>
@@ -11,17 +11,14 @@
 <div class="container">
   <div class="row">
     <!-- Profile Form -->
-    <div
-      class="col-12 col-lg-6 mb-4 mb-lg-0 fade-in-up"
-      style="animation-delay: 0.2s"
-    >
+    <div class="col-12 col-lg-6 mb-4 mb-lg-0">
       <form
         [formGroup]="profileForm"
         (ngSubmit)="onProfileSubmit()"
         class="card p-4 h-100"
       >
         <h5 class="mb-3">{{ "profile.details" | translate }}</h5>
-        <div class="mb-3">
+        <div class="mb-3 fade-in-up" style="animation-delay: 0.2s;">
           <label class="form-label">{{ "profile.name" | translate }}</label>
           <input
             type="text"
@@ -30,7 +27,7 @@
             [readonly]="!isEditingProfile"
           />
         </div>
-        <div class="mb-3">
+        <div class="mb-3 fade-in-up" style="animation-delay: 0.3s;">
           <label class="form-label">{{ "profile.email" | translate }}</label>
           <input
             type="email"
@@ -39,7 +36,7 @@
             [readonly]="!isEditingProfile"
           />
         </div>
-        <div class="mb-3">
+        <div class="mb-3 fade-in-up" style="animation-delay: 0.4s;">
           <label class="form-label">{{ "profile.phone" | translate }}</label>
           <input
             type="text"
@@ -49,7 +46,7 @@
             placeholder="{{ 'profile.phonePlaceholder' | translate }}"
           />
         </div>
-        <div class="d-flex gap-2">
+        <div class="d-flex gap-2 fade-in-up" style="animation-delay: 0.5s;">
           <button
             *ngIf="!isEditingProfile"
             type="button"
@@ -78,14 +75,14 @@
       </form>
     </div>
     <!-- Password Form -->
-    <div class="col-12 col-lg-6 fade-in-up" style="animation-delay: 0.36s">
+    <div class="col-12 col-lg-6">
       <form
         [formGroup]="passwordForm"
         (ngSubmit)="onPasswordSubmit()"
         class="card p-4 h-100"
       >
         <h5 class="mb-3">{{ "profile.updatePassword" | translate }}</h5>
-        <div class="mb-3">
+        <div class="mb-3 fade-in-up" style="animation-delay: 0.6s;">
           <label class="form-label">{{
             "profile.oldPassword" | translate
           }}</label>
@@ -103,7 +100,7 @@
           </div>
           }
         </div>
-        <div class="mb-3">
+        <div class="mb-3 fade-in-up" style="animation-delay: 0.7s;">
           <label class="form-label">{{
             "profile.newPassword" | translate
           }}</label>
@@ -125,7 +122,7 @@
           </div>
           }
         </div>
-        <div class="mb-3">
+        <div class="mb-3 fade-in-up" style="animation-delay: 0.8s;">
           <label class="form-label">{{
             "profile.confirmNewPassword" | translate
           }}</label>
@@ -149,6 +146,7 @@
           }
 
         </div>
+        <div class="fade-in-up" style="animation-delay: 0.9s;">
         <button
           type="submit"
           class="btn btn-primary"
@@ -156,6 +154,7 @@
         >
           {{ "profile.updatePasswordBtn" | translate }}
         </button>
+      </div>
       </form>
     </div>
   </div>

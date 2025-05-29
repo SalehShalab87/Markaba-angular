@@ -1,12 +1,11 @@
 @if (isLoading) {
 <app-loader></app-loader>
 }
-<div class="container fade-in-up" style="animation-delay: 0.2s;">
-  <button class="btn btn-primary mt-4" (click)="showAddModal()">
+<div class="container">
+  <button class="btn btn-primary mt-4 fade-in-up" style="animation-delay: 0.1s;" (click)="showAddModal()">
     {{ "dashboard.addCarModel" | translate }}
   </button>
   <app-dashboard-table
-    class="fade-in-up" style="animation-delay: 0.48s;"
     [data]="carModelsList"
     [columns]="carModelsColumns"
     title="dashboard.carModels"
