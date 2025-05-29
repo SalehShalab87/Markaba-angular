@@ -47,11 +47,7 @@ src/
 │   └── images/       # Car brands, banners, UI assets
 ```
 
-## 📸 Screenshots (Suggestions)
-- Login Page  
-- Admin Dashboard with request/model management  
-- Customer car listing in mobile view
-
+## 📸 Screenshots
 ![image](https://github.com/user-attachments/assets/11e7588b-4f89-4a71-b69c-3477120ebfce)
 ![image](https://github.com/user-attachments/assets/fe453c5e-2798-4cb7-a175-0ca5a5a844af)
 ![image](https://github.com/user-attachments/assets/dc92bd92-7847-4aec-bd82-35ba6696ce81)
