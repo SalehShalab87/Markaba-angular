@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HomeService } from '../../../core/services/home.service';
+import { HomeService } from '../../../core/services/main/home.service';
 import { Car } from '../../../models/car.model';
 import { CarCardComponent } from '../../../shared/components/car-card/car-card.component';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';

@@ -3,7 +3,7 @@ import { computed, inject, Injectable, signal, Signal } from '@angular/core';
 import { User, UserRole } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ToastService } from '../toast.service';
+import { ToastService } from '../main/toast.service';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({

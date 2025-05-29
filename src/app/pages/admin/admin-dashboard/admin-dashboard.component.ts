@@ -176,7 +176,5 @@ export class AdminDashboardComponent implements OnInit {
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
     this.subscriptions = [];
-    // Clear active card from local storage when component is destroyed
-    localStorage.removeItem('activeCard');
   }
 }

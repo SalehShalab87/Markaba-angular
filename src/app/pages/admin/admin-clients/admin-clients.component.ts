@@ -4,7 +4,7 @@ import { User } from '../../../models/user.model';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../../../core/services/admin/admin.service';
 
-import { ToastService } from '../../../core/services/toast.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
 
 @Component({

@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ToastService } from '../../../core/services/toast.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from '../../../models/user.model';

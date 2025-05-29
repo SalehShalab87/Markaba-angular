@@ -3,12 +3,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Car } from '../../../models/car.model';
 import { User } from '../../../models/user.model';
-import { HomeService } from '../../../core/services/home.service';
-import { ToastService } from '../../../core/services/toast.service';
+import { HomeService } from '../../../core/services/main/home.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
-import { BuyRequestModalComponent } from "../../../shared/buy-request-modal/buy-request-modal.component";
+import { BuyRequestModalComponent } from '../../../shared/components/buy-request-modal/buy-request-modal.component';
 
 @Component({
   selector: 'app-car-details',

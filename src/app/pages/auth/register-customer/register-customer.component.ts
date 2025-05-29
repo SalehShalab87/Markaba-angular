@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import { ToastService } from '../../../core/services/toast.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 import { User } from '../../../models/user.model';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';

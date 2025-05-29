@@ -3,7 +3,7 @@ import { TableColumn, DashboardTableComponent } from '../../../shared/components
 import { CarModel } from '../../../models/car-model.model';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { AdminService } from '../../../core/services/admin/admin.service';
-import { ToastService } from '../../../core/services/toast.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 import { Subscription } from 'rxjs';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
 import { ConfirmationService } from 'primeng/api';

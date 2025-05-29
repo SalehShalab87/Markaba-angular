@@ -4,8 +4,8 @@ import { I18nService } from './core/services/i18n/i18n.service';
 import { ToastModule } from 'primeng/toast';
 import { HeaderComponent } from "./shared/components/header/header.component";
 import { CommonModule } from '@angular/common';
-import { NetworkStatusService } from './core/services/network-status.service';
-import { ToastService } from './core/services/toast.service';
+import { NetworkStatusService } from './core/services/main/network-status.service';
+import { ToastService } from './core/services/main/toast.service';
 
 @Component({
   selector: 'app-root',

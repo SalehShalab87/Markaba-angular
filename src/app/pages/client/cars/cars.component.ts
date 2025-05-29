@@ -10,7 +10,7 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { User } from '../../../models/user.model';
 import { Car, RequestType } from '../../../models/car.model';
 import { CommonModule, TitleCasePipe } from '@angular/common';
-import { ToastService } from '../../../core/services/toast.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 import { finalize } from 'rxjs/operators';
 import { HttpEventType } from '@angular/common/http';
 import { CarModel } from '../../../models/car-model.model';

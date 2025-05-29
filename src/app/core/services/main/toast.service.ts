@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { I18nService } from './i18n/i18n.service';
+import { I18nService } from '../i18n/i18n.service';
 
 @Injectable({
   providedIn: 'root',

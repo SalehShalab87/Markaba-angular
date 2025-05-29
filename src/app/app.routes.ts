@@ -4,14 +4,12 @@ import { RegisterClientComponent } from './pages/auth/register-client/register-c
 import { RegisterCustomerComponent } from './pages/auth/register-customer/register-customer.component';
 import { CarsComponent } from './pages/client/cars/cars.component';
 import { PaymentsComponent } from './pages/client/payments/payments.component';
-import { BrowseComponent } from './pages/customer/browse/browse.component';
 import { HomeComponent } from './pages/main/home/home.component';
 import { NotFoundComponent } from './pages/main/not-found/not-found.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { ClientDashboardComponent } from './pages/client/client-dashboard/client-dashboard.component';
 import { ClientRequestsComponent } from './pages/client/client-requests/client-requests.component';
 import { CustomerRequestsComponent } from './pages/customer/customer-requests/customer-requests.component';
-import { CustomerDashboardComponent } from './pages/customer/customer-dashboard/customer-dashboard.component';
 import { AdminGuard } from './core/guards/admin.guard';
 import { ClientGuard } from './core/guards/client.guard';
 import { CustomerGuard } from './core/guards/customer.guard';
@@ -85,8 +83,7 @@ export const routes: Routes = [
     canActivate: [CustomerGuard],
     canActivateChild: [CustomerGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: CustomerDashboardComponent },
+      { path: '', redirectTo: 'car-listings', pathMatch: 'full' },
       { path: 'car-listings', component: CarsListingComponent },
       { path: 'requests', component: CustomerRequestsComponent },
     ],

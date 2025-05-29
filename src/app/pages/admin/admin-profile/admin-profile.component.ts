@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { AdminService } from '../../../core/services/admin/admin.service';
 import { Subscription } from 'rxjs';
 import { User } from '../../../models/user.model';
-import { ToastService } from '../../../core/services/toast.service';
+import { ToastService } from '../../../core/services/main/toast.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
 
