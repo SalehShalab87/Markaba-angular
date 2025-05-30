@@ -3,12 +3,15 @@
 }@else {
     <div class="container fade-in-up" style="animation-delay: 0.2s;">
     <app-dashboard-table
-    [data]="requestList"
+        [data]="requestList"
         [columns]="requestColumns"
         [rowsPerPage]="10"
         title="dashboard.requests"
         [statusOptions]="requestAndPaymentStatusOptions"
         [statusFields]="['requestStatus', 'paymentStatus']"
+        (cancelRequest)="showCancelConfirmation($event)"
     />
 </div>
 }
+
+<p-confirmdialog />

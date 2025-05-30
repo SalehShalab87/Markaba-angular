@@ -3,6 +3,7 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 import { LoaderComponent } from "../loader/loader.component";
+import { I18nService } from '../../../core/services/i18n/i18n.service';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent {
   @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
   public auth = inject(AuthService);
   private router = inject(Router);
+  private i18n = inject(I18nService);
   currentLang = 'en';
   isHome = false;
   isLoading = false;
@@ -46,10 +48,10 @@ export class HeaderComponent {
     this.isLoading = true;
     if (this.currentLang !== lang) {
       setTimeout(() => {
-      localStorage.setItem('lang', lang);
-      this.currentLang = lang;
-      this.isLoading = false;
-      window.location.reload();
+        this.i18n.loadTranslationFile(lang).then(()=> {
+          this.currentLang = lang;
+          this.isLoading = false;
+        })
       }, 2000);
     }
   }

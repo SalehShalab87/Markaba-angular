@@ -111,9 +111,7 @@ export class BuyRequestModalComponent implements OnInit, OnChanges {
         next: () => {
           this.isSubmitting = false;
           
-          const successKey = this.car?.requestType === 'rent' 
-            ? 'car-details.rentRequestSuccess'
-            : 'car-details.buyRequestSuccess';
+          const successKey = 'car-details.requestSubmissionSuccess'
           
           this.toast.showSuccess(successKey);
           this.requestForm.reset();

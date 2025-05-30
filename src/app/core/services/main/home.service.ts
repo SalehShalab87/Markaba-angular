@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Car } from '../../../models/car.model';
 import { CarModel } from '../../../models/car-model.model';
 import { User } from '../../../models/user.model';
+import { Request } from '../../../models/car-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,18 @@ export class HomeService {
 
   getUserById(ownerId: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/users/${ownerId}`);
+  }
+
+  // Updated method to exclude cancelled and rejected requests
+  checkUserRequestForCar(carId: string, customerId: string): Observable<boolean> {
+    return this.http.get<Request[]>(`${this.apiUrl}/requests?carId=${carId}&customerId=${customerId}`).pipe(
+      map((requests) => 
+        requests.some(request => 
+          request.requestStatus === 'pending' || 
+          request.requestStatus === 'accepted' ||
+          request.requestStatus === 'completed'
+        )
+      )
+    );
   }
 }
