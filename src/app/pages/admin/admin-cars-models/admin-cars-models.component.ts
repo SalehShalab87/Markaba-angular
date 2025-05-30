@@ -28,7 +28,7 @@ export class AdminCarsModelsComponent {
   carModelsColumns: TableColumn[] = [
     { field: 'name', header: 'modelName' },
     { field: 'brand', header: 'brand' },
-    { field: 'actions', header: 'actions' }, // Use 'actions' here
+    { field: 'actions', header: 'actions' },
   ];
   carModelsList: CarModel[] = [];
   isLoading: boolean = false;

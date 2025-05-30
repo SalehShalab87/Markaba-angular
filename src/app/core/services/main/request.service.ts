@@ -24,6 +24,8 @@ export class RequestService {
   }
 
   updateRequestStatus(requestId: string, status: string): Observable<Request> {
-    return this.http.patch<Request>(`${this.apiUrl}/requests/${requestId}`, { status });
+    return this.http.patch<Request>(`${this.apiUrl}/requests/${requestId}`, {
+      requestStatus: status,
+    });
   }
 }

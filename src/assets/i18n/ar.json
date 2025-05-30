@@ -98,7 +98,8 @@
       "carModelAdded": "تم إضافة موديل السيارة بنجاح",
       "editProfile": "تم تحديث الملف الشخصي بنجاح",
       "passwordUpdated": "تم تحديث كلمة المرور بنجاح",
-      "contactFormSubmitted": "تم إرسال النموذج بنجاح سنقوم بالرد قريبًا"
+      "contactFormSubmitted": "تم إرسال النموذج بنجاح سنقوم بالرد قريبًا",
+      "requestCancelled": "تم إلغاء الطلب بنجاح"
     },
     "error": {
       "title": "خطأ",
@@ -106,7 +107,8 @@
       "network": "أنت غير متصل بالإنترنت الرجاءالتحقق من اتصالك",
       "accountRejected": "تم رفض حسابك، يرجى التواصل مع الدعم",
       "accountPending": "حسابك قيد المراجعة، يرجى الانتظار",
-      "wrongOldPassword": "كلمة المرور القديمة غير صحيحة"
+      "wrongOldPassword": "كلمة المرور القديمة غير صحيحة",
+      "cancelRequestFailed": "فشل في إلغاء الطلب"
     },
     "info": {
       "title": "معلومات"
@@ -118,6 +120,8 @@
   "dialog": {
     "deleteConfirmationHeader": "تأكيد الحذف",
     "deleteCarModelConfirmation": "هل أنت متأكد أنك تريد حذف هذا الموديل؟",
+    "cancelConfirmationHeader": "إلغاء الطلب",
+    "cancelRequestConfirmation": "هل أنت متأكد من إلغاء هذا الطلب؟ لا يمكن التراجع عن هذا الإجراء.",
     "yes": "نعم",
     "no": "لا",
     "save": " حفظ",
@@ -184,7 +188,10 @@
     "Address": "العنوان",
     "phone": "الهاتف",
     "addCarModel": "إضافة موديل سيارة",
-    "price": "السعر"
+    "price": "السعر",
+    "cancelRequest": "إلغاء الطلب",
+    "cannotCancel": "لا يمكن الإلغاء",
+    "cancel": "إلغاء"
   },
   "profile": {
     "details": "تفاصيل الملف الشخصي",
@@ -296,6 +303,11 @@
     "selectStartDate": "اختر تاريخ البداية",
     "selectEndDate": "اختر تاريخ النهاية",
     "totalPrice": "السعر الإجمالي",
-    "priceBreakdown": "تفاصيل السعر"
+    "priceBreakdown": "تفاصيل السعر",
+    "requestAlreadyExists": "لديك بالفعل طلب معلق لهذه السيارة",
+    "requestAlreadySubmitted": "تم إرسال الطلب بالفعل",
+    "failedToLoad": "فشل في تحميل تفاصيل السيارة",
+    "requestSubmissionSuccess": "تم إرسال الطلب بنجاح",
+    "requestSubmissionFailed": "فشل في إرسال الطلب"
   }
 }

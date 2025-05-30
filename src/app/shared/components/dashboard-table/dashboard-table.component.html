@@ -48,8 +48,27 @@
       <tbody>
         <tr *ngFor="let row of pagedData">
           <td *ngFor="let col of columns">
+            <!-- Customer Actions for cancelling requests -->
+            <ng-container *ngIf="col.field === 'customerActions';">
+              <div class="d-flex justify-content-start gap-3 p-3 car-model-actions">
+                <button
+                  *ngIf="canCancelRequest(row)"
+                  (click)="onCancelRequest(row)"
+                  class="btn btn-sm btn-danger"
+                  title="{{ 'dashboard.cancelRequest' | translate }}"
+                  style="cursor:pointer"
+                >{{'dashboard.cancel' | translate }}</button>
+                <span 
+                  *ngIf="!canCancelRequest(row)" 
+                  class="text-muted small">
+                  {{ 'dashboard.cannotCancel' | translate }}
+                </span>
+              </div>
+            </ng-container>
+
+            <!-- Regular actions for admin -->
             <ng-container *ngIf="col.field === 'actions';">
-              <div class="d-flex justify-content-start gap-5 p-3 car-model-actions">
+              <div class="d-flex justify-content-start gap-3 p-3 car-model-actions">
                 <i
                   class="pi pi-trash text-danger"
                   (click)="onDelete(row)"
@@ -64,10 +83,12 @@
                 ></i>
               </div>
             </ng-container>
+
+            <!-- Client Actions for accepting/rejecting -->
             <ng-container *ngIf="col.field === 'Client Actions'; else normalCell">
-              <div class="d-flex justify-content-start gap-5 p-3 car-model-actions">
+              <div class="d-flex justify-content-start gap-3 p-3 car-model-actions">
                 <i
-                  class="pi pi-check text-success "
+                  class="pi pi-check text-success"
                   (click)="onAccept(row)"
                   title="{{ 'dashboard.accept' | translate }}"
                   style="cursor:pointer"
@@ -80,10 +101,12 @@
                 ></i>
               </div>
             </ng-container>
+
+            <!-- Normal cell content -->
             <ng-template #normalCell>
               <ng-container *ngIf="isStatusColumn(col); else normalCellContent">
                 <span class="p-2" [ngClass]="getStatusClass(getCellValue(row, col.field))">
-                  @if(getCellValue(row, col.field)!== '—'){
+                  @if(getCellValue(row, col.field) !== '—'){
                   {{ "dashboard." + getCellValue(row, col.field) | translate }}
                   } @else {
                   {{ "dashboard.noStatus" | translate }}
@@ -93,7 +116,8 @@
               <ng-template #normalCellContent>
                 @if (typeof getCellValue(row,col.field) === 'number') {
                 {{getCellValue(row, col.field)| currency : "USD" : "symbol" : "1.0-0"}}
-                }@else if (col.header === 'actions') {
+                }@else if (col.header === 'actions' || col.header === 'customerActions') {
+                <!-- Actions are handled above -->
                 }
                 @else {
                 {{ getCellValue(row, col.field) }}

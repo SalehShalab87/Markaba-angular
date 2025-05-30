@@ -30,6 +30,7 @@ export class CarDetailsComponent implements OnInit {
   selectedImage: string = '';
   isLoading = true;
   isBuyRequestModalVisible = false;
+  hasExistingRequest = false;
 
   private route = inject(ActivatedRoute);
   private homeService = inject(HomeService);
@@ -41,6 +42,45 @@ export class CarDetailsComponent implements OnInit {
     this.loadCarDetails();
   }
 
+  onRentCar() {
+    if (!this.auth.isLoggedIn()) {
+      this.toastService.showError('car-details.loginRequired');
+      this.auth.setRedirectUrl(this.router.url);
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    // Refresh the check before showing modal
+    this.refreshExistingRequestCheck(() => {
+      if (this.hasExistingRequest) {
+        this.toastService.showWarn('car-details.requestAlreadyExists');
+        return;
+      }
+      this.showBuyRequestModal();
+    });
+  }
+
+  onBuyCar() {
+    if (!this.auth.isLoggedIn()) {
+      this.toastService.showError('car-details.loginRequired');
+      this.auth.setRedirectUrl(this.router.url);
+      this.router.navigateByUrl('/login');
+      return;
+    }
+    
+    this.refreshExistingRequestCheck(() => {
+      if (this.hasExistingRequest) {
+        this.toastService.showWarn('car-details.requestAlreadyExists');
+        return;
+      }
+      this.showBuyRequestModal();
+    });
+  }
+
+  onContactOwner() {
+    this.toastService.showInfo('car-details.contactFeatureComingSoon');
+  }
+
   private loadCarDetails() {
     const carId = this.route.snapshot.paramMap.get('id');
 
@@ -48,12 +88,51 @@ export class CarDetailsComponent implements OnInit {
       next: (car) => {
         this.car = car;
         this.selectedImage = car.imageUrls[0] || '';
+        this.checkExistingRequest(carId!); 
         this.loadOwnerDetails(car.ownerId);
       },
       error: () => {
         this.isLoading = false;
-        this.toastService.showError('Failed to load car details');
+        this.toastService.showError('car-details.failedToLoad');
       },
+    });
+  }
+
+  private checkExistingRequest(carId: string) {
+    if (!this.auth.isLoggedIn()) {
+      this.hasExistingRequest = false;
+      return;
+    }
+
+    const customerId = this.auth.currentUser()!.id;
+    this.homeService.checkUserRequestForCar(carId, customerId).subscribe({
+      next: (hasRequest) => {
+        this.hasExistingRequest = hasRequest;
+      },
+      error: () => {
+        this.hasExistingRequest = false; 
+      },
+    });
+  }
+
+  // method to refresh the existing request check
+  private refreshExistingRequestCheck(callback: () => void) {
+    const carId = this.route.snapshot.paramMap.get('id');
+    if (!carId || !this.auth.isLoggedIn()) {
+      callback();
+      return;
+    }
+
+    const customerId = this.auth.currentUser()!.id;
+    this.homeService.checkUserRequestForCar(carId, customerId).subscribe({
+      next: (hasRequest) => {
+        this.hasExistingRequest = hasRequest;
+        callback();
+      },
+      error: () => {
+        this.hasExistingRequest = false;
+        callback();
+      }
     });
   }
 
@@ -77,31 +156,8 @@ export class CarDetailsComponent implements OnInit {
     this.isBuyRequestModalVisible = true;
   }
 
-  onRentCar() {
-    if (!this.auth.isLoggedIn()) {
-      this.toastService.showError('car-details.loginRequired');
-      this.auth.setRedirectUrl(this.router.url);
-      this.router.navigateByUrl('/login');
-      return;
-    }
-    this.showBuyRequestModal();
-  }
-
-  onBuyCar() {
-    if (!this.auth.isLoggedIn()) {
-      this.toastService.showError('car-details.loginRequired');
-      this.auth.setRedirectUrl(this.router.url);
-      this.router.navigateByUrl('/login');
-      return;
-    }
-    this.showBuyRequestModal();
-  }
-
-  onContactOwner() {
-    this.toastService.showInfo('car-details.contactFeatureComingSoon');
-  }
-
   onRequestSubmitted() {
     this.isBuyRequestModalVisible = false;
+    this.hasExistingRequest = true; 
   }
 }

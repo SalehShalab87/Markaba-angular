@@ -27,6 +27,7 @@ export class DashboardTableComponent implements OnInit {
   @Output() reject = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
+  @Output() cancelRequest = new EventEmitter<any>(); // Add this
 
   searchKeyword: string = '';
   filteredData: any[] = [];
@@ -170,5 +171,13 @@ export class DashboardTableComponent implements OnInit {
 
   onDelete(row: any) {
     this.delete.emit(row);
+  }
+
+  onCancelRequest(row: any) {
+    this.cancelRequest.emit(row);
+  }
+
+  canCancelRequest(row: any): boolean {
+    return row.requestStatus === 'pending';
   }
 }
