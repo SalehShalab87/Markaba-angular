@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomeService } from '../../../core/services/main/home.service';
@@ -7,7 +6,7 @@ import { Car } from '../../../models/car.model';
 import { CarCardComponent } from '../../../shared/components/car-card/car-card.component';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { Subscription } from 'rxjs';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cars-list',
@@ -16,11 +15,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './cars-listing.component.html',
   styleUrls: ['./cars-listing.component.scss'],
 })
-export class CarsListingComponent implements OnInit {
+export class CarsListingComponent implements OnInit, OnDestroy {
   allCars: Car[] = [];
   filteredCars: Car[] = [];
   paginatedCars: Car[] = [];
-  subscription : Subscription[]= [];
+  subscriptions: Subscription[] = [];
+  brandNameFromUrl: string | null = null;
 
   // Pagination
   currentPage = 1;
@@ -35,22 +35,59 @@ export class CarsListingComponent implements OnInit {
   selectedLocation = '';
   uniqueLocations: string[] = [];
 
-  constructor(private homeService: HomeService) {}
+  constructor(
+    private homeService: HomeService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.loadCars();
+    this.subscribeToQueryParams();
+  }
+
+  private subscribeToQueryParams() {
+    // Subscribe to query parameter changes
+    const queryParamSub = this.route.queryParams.subscribe((params) => {
+
+      if (params['brand']) {
+        this.brandNameFromUrl = params['brand'];
+        this.searchTerm = this.brandNameFromUrl!;
+
+        // Apply filters after cars are loaded
+        if (this.allCars.length > 0) {
+          this.filterCars();
+        }
+      } else {
+        // Clear search if no brand parameter
+        this.brandNameFromUrl = null;
+        this.searchTerm = '';
+        if (this.allCars.length > 0) {
+          this.filterCars();
+        }
+      }
+    });
+
+    this.subscriptions.push(queryParamSub);
   }
 
   private loadCars() {
-    const sub = this.homeService.getAllCars().subscribe((cars) => {
+    const carsSub = this.homeService.getAllCars().subscribe((cars) => {
       this.allCars = cars;
       this.filteredCars = [...cars];
       this.uniqueLocations = [
         ...new Set(cars.map((c) => `${c.city}, ${c.country}`)),
       ];
-      this.updatePagination();
+
+      // Apply brand filter if it exists in URL
+      if (this.brandNameFromUrl ) {
+        this.searchTerm = this.brandNameFromUrl;
+        this.filterCars();
+      } else {
+        this.updatePagination();
+      }
     });
-    this.subscription.push(sub);
+
+    this.subscriptions.push(carsSub);
   }
 
   filterCars() {
@@ -120,11 +157,11 @@ export class CarsListingComponent implements OnInit {
     this.selectedType = '';
     this.selectedAvailability = '';
     this.selectedLocation = '';
+    this.brandNameFromUrl = null;
     this.filterCars();
   }
-  
-  ngOnDestroy() {
-    this.subscription.forEach(sub => sub.unsubscribe());  
-  }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
 }

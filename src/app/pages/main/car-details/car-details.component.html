@@ -1,3 +1,4 @@
+<!-- car-details.component.html - Fixed version -->
 <section class="car-details-section">
   <div class="container">
     @if (isLoading) {
@@ -41,11 +42,11 @@
               <h1 class="car-title">{{ car.brand }} {{ car.name }}</h1>
               <div class="car-badges mb-3">
                 <span class="badge fade-in-up" style="animation-delay: 0.7s;" [class]="car.isAvailable === 'available' ? 'bg-success' : 'bg-secondary'">
-                    {{ car.isAvailable === 'available' ? ('car-details.available' | translate) : ('car-details.unavailable' | translate) }}
-                  </span>
-                  <span class="badge bg-info ms-2 fade-in-up" style="animation-delay: 0.8s;">
-                    {{ car.requestType === 'rent' ? ('car-details.forRent' | translate) : ('car-details.forSale' | translate) }}
-                  </span>
+                  {{ car.isAvailable === 'available' ? ('car-details.available' | translate) : ('car-details.unavailable' | translate) }}
+                </span>
+                <span class="badge bg-info ms-2 fade-in-up" style="animation-delay: 0.8s;">
+                  {{ car.requestType === 'rent' ? ('car-details.forRent' | translate) : ('car-details.forSale' | translate) }}
+                </span>
               </div>
             </div>
 
@@ -59,7 +60,7 @@
               }
               @if (car.requestType === 'buy' && car.price) {
                 <div class="price-display">
-                  <span class="price-amount">{{ car.price | currency  }}</span>
+                  <span class="price-amount">{{ car.price | currency }}</span>
                 </div>
               }
             </div>
@@ -79,64 +80,175 @@
               </div>
             </div>
 
+            <!-- NEW: Car Specifications Section -->
+            <div class="specifications-section mb-4 fade-in-up" style="animation-delay: 1.2s;">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="section-title mb-0">{{ 'car-details.specifications' | translate }}</h3>
+                <button 
+                  class="btn btn-outline-primary btn-sm" 
+                  type="button"
+                  (click)="toggleSpecifications()"
+                  [attr.aria-expanded]="showSpecifications">
+                  <i class="pi" [class]="showSpecifications ? 'pi-chevron-up' : 'pi-chevron-down'"></i>
+                  {{ showSpecifications ? ('car-details.hide' | translate) : ('car-details.showMore' | translate) }}
+                </button>
+              </div>
+              
+              <!-- Basic specs always visible -->
+              <div class="basic-specs">
+                <div class="row g-2">
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.year' | translate }} :</span>
+                      <span class="spec-value">{{ car.year || 'N/A' }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.transmission' | translate }} :</span>
+                      <span class="spec-value">{{ (car.transmission ? ('car-details.' + car.transmission) : 'N/A') | translate }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.mileage' | translate }} :</span>
+                      <span class="spec-value">{{ car.mileage ? (car.mileage | number) + ' km' : 'N/A' }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.seats' | translate }} :</span>
+                      <span class="spec-value">{{ car.seats || 'N/A' }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Detailed specs - collapsible -->
+              <div class="detailed-specs mt-3" [class.show]="showSpecifications">
+                <div class="row g-2">
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.engineType' | translate }} :</span>
+                      <span class="spec-value">{{ (car.engineType ? ('car-details.' + car.engineType) : 'N/A') | translate }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.engineSize' | translate }} :</span>
+                      <span class="spec-value">{{ car.engineSize || 'N/A' }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.horsepower' | translate }} :</span>
+                      <span class="spec-value">{{ car.horsepower ? car.horsepower + ' HP' : 'N/A' }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.fuelEconomy' | translate }} :</span>
+                      <span class="spec-value">{{ car.fuelEconomy || 'N/A' }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.color' | translate }} :</span>
+                      <span class="spec-value">{{ car.color || 'N/A' }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="spec-item">
+                      <span class="spec-label">{{ 'car-details.condition' | translate }} :</span>
+                      <span class="spec-value">
+                        @if(car.condition) {
+                          <span class="badge" [class]="getConditionBadgeClass(car.condition)">
+                            {{ ('car-details.' + car.condition) | translate }}
+                          </span>
+                        } @else {
+                          <span>N/A</span>
+                        }
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Features Section -->
+            @if(car.features && car.features.length > 0) {
+              <div class="features-section mb-4 fade-in-up" style="animation-delay: 1.3s;">
+                <h3 class="section-title">{{ 'car-details.features' | translate }}</h3>
+                <div class="features-grid">
+                  @for(feature of car.features; track feature) {
+                    <div class="feature-item">
+                      <i class="pi pi-check text-success me-2"></i>
+                      <span>{{ feature }}</span>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+
             <!-- Owner Information -->
             @if (owner) {
-              <div class="owner-section mb-4 fade-in-up" style="animation-delay: 1.2s;">
+              <div class="owner-section mb-4 fade-in-up" style="animation-delay: 1.4s;">
                 <h3 class="section-title">{{ 'car-details.ownerInformation' | translate }}</h3>
                 <div class="owner-card">
                   <div class="owner-info">
                     <h4 class="owner-name">{{ owner.name }}</h4>
                     @if (owner.phone) {
-                      <div class="contact-info fade-in-up" style="animation-delay: 1.3s;">
+                      <div class="contact-info fade-in-up" style="animation-delay: 1.5s;">
                         <i class="pi pi-phone me-2"></i>
                         {{ owner.phone }}
                       </div>
                     }
                     @if (owner.email) {
-                      <div class="contact-info fade-in-up" style="animation-delay: 1.4s;">
+                      <div class="contact-info fade-in-up" style="animation-delay: 1.6s;">
                         <i class="pi pi-envelope me-2"></i>
                         {{ owner.email }}
                       </div>
                     }
                     @if (owner.address) {
-                      <div class="contact-info fade-in-up" style="animation-delay: 1.5s;">
+                      <div class="contact-info fade-in-up" style="animation-delay: 1.7s;">
                         <i class="pi pi-home me-2"></i>
                         {{ owner.address }}
                       </div>
                     }
                   </div>
                 </div>
-            </div>
-        }
-        <!-- Action Buttons -->
-                <div class="action-buttons fade-in-up" style="animation-delay: 1.6s;">
-                  @if (car.isAvailable === 'available' && !hasExistingRequest) {
-                    @if (car.requestType === 'rent') {
-                      <button class="btn btn-primary btn-lg w-100 mb-2" (click)="onRentCar()">
-                        <i class="pi pi-calendar me-2"></i>
-                        {{ 'car-details.rentThisCar' | translate }}
-                      </button>
-                    } @else {
-                      <button class="btn btn-primary btn-lg w-100 mb-2" (click)="onBuyCar()">
-                        <i class="pi pi-shopping-cart me-2"></i>
-                        {{ 'car-details.buyThisCar' | translate }}
-                      </button>
-                    }
-                  } @else if (hasExistingRequest) {
-                    <button class="btn btn-success btn-lg w-100 mb-2" disabled>
-                      <i class="pi pi-check me-2"></i>
-                      {{ 'car-details.requestAlreadySubmitted' | translate }}
-                    </button>
-                  } @else {
-                    <button class="btn btn-secondary btn-lg w-100 mb-2" disabled>
-                      {{ 'car-details.currentlyUnavailable' | translate }}
-                    </button>
-                  }
-                  
-                  <button class="btn btn-outline-primary w-100" (click)="onContactOwner()">
-                    <i class="pi pi-comments me-2"></i>
-                    {{ 'car-details.contactOwner' | translate }}
+              </div>
+            }
+
+            <!-- Action Buttons -->
+            <div class="action-buttons fade-in-up" style="animation-delay: 1.8s;">
+              @if (car.isAvailable === 'available' && !hasExistingRequest) {
+                @if (car.requestType === 'rent') {
+                  <button class="btn btn-primary btn-lg w-100 mb-2" (click)="onRentCar()">
+                    <i class="pi pi-calendar me-2"></i>
+                    {{ 'car-details.rentThisCar' | translate }}
+                  </button>
+                } @else {
+                  <button class="btn btn-primary btn-lg w-100 mb-2" (click)="onBuyCar()">
+                    <i class="pi pi-shopping-cart me-2"></i>
+                    {{ 'car-details.buyThisCar' | translate }}
+                  </button>
+                }
+              } @else if (hasExistingRequest) {
+                <button class="btn btn-success btn-lg w-100 mb-2" disabled>
+                  <i class="pi pi-check me-2"></i>
+                  {{ 'car-details.requestAlreadySubmitted' | translate }}
                 </button>
+              } @else {
+                <button class="btn btn-secondary btn-lg w-100 mb-2" disabled>
+                  {{ 'car-details.currentlyUnavailable' | translate }}
+                </button>
+              }
+              
+              <button class="btn btn-outline-primary w-100" (click)="onContactOwner()">
+                <i class="pi pi-comments me-2"></i>
+                {{ 'car-details.contactOwner' | translate }}
+              </button>
             </div>
           </div>
         </div>
@@ -147,9 +259,9 @@
       <div class="text-center py-5 d-flex flex-column align-items-center justify-content-center fade-in-up" style="animation-delay: 0.6s; min-height: 60vh;">
         <div class="d-flex flex-column align-items-center justify-content-center h-100">
           <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1748384777/By_my_car-bro_mhbcon.svg" 
-          alt="No Cars Found" 
-          class="img-fluid mb-3 fade-in-up" 
-          style="max-width: 350px; animation-delay: 0.2s;">
+               alt="No Cars Found" 
+               class="img-fluid mb-3 fade-in-up" 
+               style="max-width: 350px; animation-delay: 0.2s;">
           <h2 class="fade-in-up" style="animation-delay: 0.4s;">{{ 'car-details.notFound' | translate }}</h2>
           <p class="text-muted fade-in-up" style="animation-delay: 0.6s;">{{ 'car-details.notFoundMessage' | translate }}</p>
           <a routerLink="/car-listings" class="btn btn-primary fade-in-up" style="animation-delay: 0.8s;">{{ 'car-details.browseAllCars' | translate }}</a>
@@ -159,9 +271,7 @@
   </div>
 </section>
 
-<!-- ...existing content... -->
-
-<!--Modal-->
+<!-- Modal -->
 <app-buy-request-modal
   [isVisible]="isBuyRequestModalVisible"
   [car]="car"

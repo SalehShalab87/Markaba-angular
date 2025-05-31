@@ -131,12 +131,17 @@
   
             <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.45s;">
               <label class="form-label">{{ "profile.dateOfBirth" | translate }}</label>
-              <input
-                type="date"
-                class="form-control"
-                formControlName="dateOfBirth"
-                [readonly]="!isEditingProfile"
-              />
+              <p-datePicker
+              inputId="dateOfBirth"
+              formControlName="dateOfBirth"
+              [readonlyInput]="!isEditingProfile"
+              [iconDisplay]="'input'"
+              [showIcon]="true"
+              dateFormat="mm/dd/yy"
+              placeholder="{{ 'profile.dateOfBirth' | translate }}"
+              styleClass="w-100"
+            >
+            </p-datePicker>
             </div>
   
             <div class="col-12 mb-3 fade-in-up" style="animation-delay: 0.5s;">

@@ -163,24 +163,24 @@
 </section>
 <!-- Brands Section Start -->
 <section class="brands py-4 fade-in-up" style="animation-delay: 0.6s;">
-  <h2 class="text-center mb-4 fw-bold">{{'home.popular-brands' | translate  }}</h2>
+  <h2 class="text-center mb-4 fw-bold">{{'home.popular-brands' | translate }}</h2>
   <div class="brand-grid d-flex flex-wrap gap-4 justify-content-center">
-    <div class="brand-card text-center">
+    <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Tesla' }">
       <img src="assets/images/tesla-logo.png" alt="Tesla" class="brand-logo" />
     </div>
-    <div class="brand-card text-center">
+    <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'BMW' }">
       <img src="assets/images/bmw-seeklogo.png" alt="BMW" class="brand-logo" />
     </div>
-    <div class="brand-card text-center">
+    <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Mercedes-Benz' }">
       <img src="assets/images/Mercedes-Benz-logo.png" alt="Mercedes-Benz" class="brand-logo" />
     </div>
-    <div class="brand-card text-center">
+    <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Audi' }">
       <img src="assets/images/audi-logo.png" alt="Audi" class="brand-logo" />
     </div>
-    <div class="brand-card text-center">
+    <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Ford' }">
       <img src="assets/images/ford-logo.png" alt="Ford" class="brand-logo" />
     </div>
-    <div class="brand-card text-center">
+    <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Toyota' }">
       <img src="assets/images/toyota-logo.png" alt="Toyota" class="brand-logo" />
     </div>
   </div>

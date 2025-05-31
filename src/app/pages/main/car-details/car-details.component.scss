@@ -253,3 +253,74 @@
       }
     }
   }
+
+  // Specifications Section
+  .specifications-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e9ecef;
+  }
+  
+  .spec-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    
+    .spec-label {
+      font-weight: 600;
+      color: #495057;
+      margin-right: 0.5rem;
+      margin-left: 0.5rem;
+    }
+    
+    .spec-value {
+      color: #6c757d;
+      margin-left: auto;
+    }
+  }
+  
+  .detailed-specs {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    
+    &.show {
+      max-height: 500px;
+      transition: max-height 0.3s ease-in;
+    }
+  }
+  
+  // Features Section
+  .features-section {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+    color: #495057;
+  }
+  .btn-outline-primary{
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  
+    &:hover {
+      background-color: var(--color-primary);
+      background-color: var(--color-primary);
+      color: #fff;
+    }
+  }

@@ -1,5 +1,6 @@
+// my-cars.component.ts - Add method for condition badge
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Car } from '../../../models/car.model';
+import { Car, ConditionType } from '../../../models/car.model';
 import { ClientService } from '../../../core/services/client/client.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,13 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-my-cars',
-  imports: [CommonModule, RouterLink, LoaderComponent, TranslatePipe,ConfirmDialog],
+  imports: [
+    CommonModule,
+    RouterLink,
+    LoaderComponent,
+    TranslatePipe,
+    ConfirmDialog,
+  ],
   templateUrl: './my-cars.component.html',
   styleUrl: './my-cars.component.scss',
   providers: [ConfirmationService],
@@ -34,6 +41,16 @@ export class MyCarsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadClientCars();
+  }
+
+  getConditionBadgeClass(condition?: ConditionType): string {
+    const badgeClasses = {
+      excellent: 'bg-success',
+      good: 'bg-primary',
+      fair: 'bg-warning',
+      poor: 'bg-danger',
+    };
+    return badgeClasses[condition || 'fair'] || 'bg-secondary';
   }
 
   loadClientCars() {
@@ -126,7 +143,7 @@ export class MyCarsComponent implements OnInit, OnDestroy {
       reject: () => {
         const rejectTranslationKey = 'toast.info.deleteCarCancelled';
         this.i18n.translate(rejectTranslationKey);
-      }
+      },
     });
   }
 

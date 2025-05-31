@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Car } from '../../../models/car.model';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Car, ConditionType } from '../../../models/car.model';
 import { User } from '../../../models/user.model';
 import { HomeService } from '../../../core/services/main/home.service';
 import { ToastService } from '../../../core/services/main/toast.service';
@@ -20,9 +21,21 @@ import { BuyRequestModalComponent } from '../../../shared/components/buy-request
     LoaderComponent,
     TranslatePipe,
     BuyRequestModalComponent
-],
+  ],
   templateUrl: './car-details.component.html',
   styleUrl: './car-details.component.scss',
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({ height: '*', opacity: 1 })),
+      transition(':enter', [
+        style({ height: 0, opacity: 0 }),
+        animate('300ms ease-in-out', style({ height: '*', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in-out', style({ height: 0, opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class CarDetailsComponent implements OnInit {
   car: Car | null = null;
@@ -31,6 +44,7 @@ export class CarDetailsComponent implements OnInit {
   isLoading = true;
   isBuyRequestModalVisible = false;
   hasExistingRequest = false;
+  showSpecifications = false;
 
   private route = inject(ActivatedRoute);
   private homeService = inject(HomeService);
@@ -159,5 +173,19 @@ export class CarDetailsComponent implements OnInit {
   onRequestSubmitted() {
     this.isBuyRequestModalVisible = false;
     this.hasExistingRequest = true; 
+  }
+
+  toggleSpecifications() {
+    this.showSpecifications = !this.showSpecifications;
+  }
+
+  getConditionBadgeClass(condition?: ConditionType): string {
+    const badgeClasses = {
+      excellent: 'bg-success',
+      good: 'bg-primary', 
+      fair: 'bg-warning',
+      poor: 'bg-danger'
+    };
+    return badgeClasses[condition || 'fair'] || 'bg-secondary';
   }
 }

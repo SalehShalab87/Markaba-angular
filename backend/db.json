@@ -98,7 +98,7 @@
       "id": "u11",
       "name": "Hannah Buyer",
       "email": "hannah@buyer.com",
-      "password": "aGFubmFo",
+      "password": "aGFubm5haA==",
       "role": "customer",
       "phone": "7778889999",
       "address": "99 Willow St"
@@ -151,12 +151,33 @@
       "pricePerDay": null,
       "price": 15000,
       "imageUrls": [
-        "https://scene7.toyota.eu/is/image/toyotaeurope/COR0004b_25_WEB_crop:Large-Landscape?ts=0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=png-alpha"
+        "https://scene7.toyota.eu/is/image/toyotaeurope/COR0004b_25_WEB_crop:Large-Landscape?ts=0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=png-alpha",
+        "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_xse-apex-edition_i_oem_1_1600x1067.jpg",
+        "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_xse_shf_oem_1_1600x1067.jpg",
+        "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_detail_oem_2_1600x1067.jpg",
+        "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_d_oem_1_1600x1067.jpg",
+        "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_g_oem_1_1600x1067.jpg"
+
       ],
       "isAvailable": "available",
       "requestType": "buy",
       "city": "Irbid",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2022,
+      "mileage": 35000,
+      "transmission": "automatic",
+      "engineType": "petrol",
+      "engineSize": "1.8L",
+      "cylinders": 4,
+      "horsepower": 139,
+      "fuelEconomy": "8.1L/100km",
+      "driveType": "fwd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Silver",
+      "condition": "good",
+      "safetyRating": 5,
+      "features": ["airConditioning", "bluetooth", "backupCamera", "cruiseControl"]
     },
     {
       "id": "c103",
@@ -168,12 +189,31 @@
       "pricePerDay": 120,
       "price": null,
       "imageUrls": [
-        "https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        "https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://media.ed.edmunds-media.com/tesla/model-3/2022/oem/2022_tesla_model-3_sedan_performance_detail_oem_1_1600x1067.jpg",
+        "https://media.ed.edmunds-media.com/tesla/model-3/2022/oem/2022_tesla_model-3_sedan_performance_i_oem_1_1600x1067.jpg",
+        "https://media.ed.edmunds-media.com/tesla/model-3/2022/oem/2022_tesla_model-3_sedan_performance_ri_oem_1_1600x1067.jpg",
+        "https://media.ed.edmunds-media.com/tesla/model-3/2022/oem/2022_tesla_model-3_sedan_performance_d_oem_2_1600x1067.jpg"
       ],
-      "isAvailable": "unavailable",
+      "isAvailable": "available",
       "requestType": "rent",
       "city": "Aqaba",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "automatic",
+      "engineType": "electric",
+      "engineSize": "Electric Motor",
+      "cylinders": 0,
+      "horsepower": 283,
+      "fuelEconomy": "15.9 kWh/100km",
+      "driveType": "rwd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Pearl White",
+      "condition": "excellent",
+      "safetyRating": 5,
+      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring"]
     },
     {
       "id": "0c24541f-4cf0-49ab-80cb-47684f843068",
@@ -190,7 +230,22 @@
       "isAvailable": "available",
       "requestType": "buy",
       "city": "Zarqa",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2021,
+      "mileage": 45000,
+      "transmission": "manual",
+      "engineType": "petrol",
+      "engineSize": "5.0L V8",
+      "cylinders": 8,
+      "horsepower": 450,
+      "fuelEconomy": "13.1L/100km",
+      "driveType": "rwd",
+      "seats": 4,
+      "doors": 2,
+      "color": "Racing Red",
+      "condition": "good",
+      "safetyRating": 4,
+      "features": ["bluetooth", "cruiseControl", "leatherSeats", "sunroof"]
     },
     {
       "id": "c105",
@@ -204,10 +259,25 @@
       "imageUrls": [
         "https://s1.cdn.autoevolution.com/images/news/mazda-cx-4-finally-gets-official-debut-in-china-106848-7.jpg"
       ],
-      "isAvailable": "available",
+      "isAvailable": "unavailable",
       "requestType": "rent",
       "city": "Madaba",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2023,
+      "mileage": 12000,
+      "transmission": "automatic",
+      "engineType": "petrol",
+      "engineSize": "2.5L",
+      "cylinders": 4,
+      "horsepower": 187,
+      "fuelEconomy": "7.8L/100km",
+      "driveType": "awd",
+      "seats": 5,
+      "doors": 5,
+      "color": "Soul Red Crystal",
+      "condition": "excellent",
+      "safetyRating": 5,
+      "features": ["gps", "bluetooth", "backupCamera", "blindSpotMonitoring", "airConditioning", "heatedSeats"]
     },
     {
       "id": "c106",
@@ -221,10 +291,25 @@
       "imageUrls": [
         "https://redriven.com/wp-content/uploads/2024/07/Toyota-Camry-XV70-15.jpg.webp"
       ],
-      "isAvailable": "unavailable",
+      "isAvailable": "available",
       "requestType": "buy",
       "city": "Salt",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2020,
+      "mileage": 65000,
+      "transmission": "automatic",
+      "engineType": "hybrid",
+      "engineSize": "2.5L Hybrid",
+      "cylinders": 4,
+      "horsepower": 208,
+      "fuelEconomy": "5.7L/100km",
+      "driveType": "fwd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Midnight Black Metallic",
+      "condition": "good",
+      "safetyRating": 5,
+      "features": ["gps", "bluetooth", "backupCamera", "cruiseControl", "airConditioning", "leatherSeats"]
     },
     {
       "id": "c107",
@@ -238,10 +323,25 @@
       "imageUrls": [
         "https://www.cnet.com/a/img/resize/844e9f7579225fc1e113b2537bcec271e59bb608/hub/2019/09/18/f75fa0a5-6708-4264-b19d-3219b26a42b1/promo.jpg?auto=webp&fit=crop&height=675&width=1200"
       ],
-      "isAvailable": "available",
+      "isAvailable": "unavailable",
       "requestType": "rent",
       "city": "Irbid",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2022,
+      "mileage": 28000,
+      "transmission": "cvt",
+      "engineType": "petrol",
+      "engineSize": "1.5L Turbo",
+      "cylinders": 4,
+      "horsepower": 192,
+      "fuelEconomy": "7.1L/100km",
+      "driveType": "fwd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Platinum White Pearl",
+      "condition": "excellent",
+      "safetyRating": 5,
+      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "airConditioning"]
     },
     {
       "id": "c108",
@@ -258,7 +358,22 @@
       "isAvailable": "available",
       "requestType": "rent",
       "city": "Amman",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "automatic",
+      "engineType": "petrol",
+      "engineSize": "2.5L",
+      "cylinders": 4,
+      "horsepower": 188,
+      "fuelEconomy": "7.6L/100km",
+      "driveType": "fwd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Deep Blue Pearl",
+      "condition": "excellent",
+      "safetyRating": 4,
+      "features": ["bluetooth", "backupCamera", "cruiseControl", "airConditioning", "parkingSensors"]
     },
     {
       "id": "c109",
@@ -275,7 +390,22 @@
       "isAvailable": "available",
       "requestType": "rent",
       "city": "Karak",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2021,
+      "mileage": 42000,
+      "transmission": "manual",
+      "engineType": "petrol",
+      "engineSize": "1.6L",
+      "cylinders": 4,
+      "horsepower": 122,
+      "fuelEconomy": "6.9L/100km",
+      "driveType": "fwd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Classic Silver Metallic",
+      "condition": "fair",
+      "safetyRating": 4,
+      "features": ["bluetooth", "airConditioning"]
     },
     {
       "id": "c110",
@@ -292,7 +422,118 @@
       "isAvailable": "available",
       "requestType": "buy",
       "city": "Amman",
-      "country": "Jordan"
+      "country": "Jordan",
+      "year": 2024,
+      "mileage": 8000,
+      "transmission": "automatic",
+      "engineType": "electric",
+      "engineSize": "Dual Motor",
+      "cylinders": 0,
+      "horsepower": 346,
+      "fuelEconomy": "14.7 kWh/100km",
+      "driveType": "awd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Midnight Silver Metallic",
+      "condition": "excellent",
+      "safetyRating": 5,
+      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring", "heatedSeats", "sunroof"]
+    },
+    {
+      "id": "c111",
+      "ownerId": "u2",
+      "modelId": "m11",
+      "brand": "BMW",
+      "name": "X3",
+      "description": "Premium SUV with exceptional performance and luxury. The BMW X3 combines sporty handling with practical versatility, featuring advanced driver assistance systems and a refined interior for the ultimate driving experience.",
+      "pricePerDay": 85,
+      "price": null,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      ],
+      "isAvailable": "available",
+      "requestType": "rent",
+      "city": "Amman",
+      "country": "Jordan",
+      "year": 2023,
+      "mileage": 22000,
+      "transmission": "automatic",
+      "engineType": "petrol",
+      "engineSize": "2.0L Turbo",
+      "cylinders": 4,
+      "horsepower": 248,
+      "fuelEconomy": "9.2L/100km",
+      "driveType": "awd",
+      "seats": 5,
+      "doors": 5,
+      "color": "Alpine White",
+      "condition": "excellent",
+      "safetyRating": 5,
+      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring", "leatherSeats", "heatedSeats", "sunroof", "parkingSensors"]
+    },
+    {
+      "id": "c112",
+      "ownerId": "u2",
+      "modelId": "m12",
+      "brand": "Mercedes-Benz",
+      "name": "C-Class",
+      "description": "Elegant luxury sedan with cutting-edge technology. The Mercedes-Benz C-Class delivers sophisticated comfort, advanced safety features, and exceptional refinement for discerning drivers who appreciate premium quality.",
+      "pricePerDay": null,
+      "price": 42000,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      ],
+      "isAvailable": "available",
+      "requestType": "buy",
+      "city": "Irbid",
+      "country": "Jordan",
+      "year": 2022,
+      "mileage": 31000,
+      "transmission": "automatic",
+      "engineType": "hybrid",
+      "engineSize": "2.0L Hybrid",
+      "cylinders": 4,
+      "horsepower": 255,
+      "fuelEconomy": "6.4L/100km",
+      "driveType": "rwd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Obsidian Black Metallic",
+      "condition": "excellent",
+      "safetyRating": 5,
+      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring", "leatherSeats", "heatedSeats", "airConditioning", "cruiseControl"]
+    },
+    {
+      "id": "c113",
+      "ownerId": "u2",
+      "modelId": "m13",
+      "brand": "Audi",
+      "name": "A4",
+      "description": "Sophisticated sedan with quattro all-wheel drive. The Audi A4 offers dynamic performance, premium interior craftsmanship, and innovative technology, making every journey both exciting and comfortable.",
+      "pricePerDay": 75,
+      "price": null,
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1614328467603-0444b9fcfc47?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      ],
+      "isAvailable": "available",
+      "requestType": "rent",
+      "city": "Zarqa",
+      "country": "Jordan",
+      "year": 2023,
+      "mileage": 19000,
+      "transmission": "automatic",
+      "engineType": "petrol",
+      "engineSize": "2.0L TFSI",
+      "cylinders": 4,
+      "horsepower": 201,
+      "fuelEconomy": "7.9L/100km",
+      "driveType": "awd",
+      "seats": 5,
+      "doors": 4,
+      "color": "Glacier White Metallic",
+      "condition": "excellent",
+      "safetyRating": 5,
+      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring", "airConditioning", "heatedSeats", "cruiseControl", "parkingSensors"]
     }
   ],
   "carModels": [
@@ -335,41 +576,22 @@
       "id": "m10",
       "name": "Altima",
       "brand": "Nissan"
+    },
+    {
+      "id": "m11",
+      "name": "X3",
+      "brand": "BMW"
+    },
+    {
+      "id": "m12",
+      "name": "C-Class",
+      "brand": "Mercedes-Benz"
+    },
+    {
+      "id": "m13",
+      "name": "A4",
+      "brand": "Audi"
     }
   ],
-  "requests": [
-    {
-      "id": "074bf4b0-5e2a-4de8-9880-96d6fd2fa674",
-      "carId": "c102",
-      "customerId": "u5",
-      "ownerId": "u2",
-      "requestType": "buy",
-      "createdAt": "5/31/2025, 4:26:33 PM",
-      "requestStatus": "accepted",
-      "paymentStatus": "pending",
-      "paymentAmount": 15000
-    },
-    {
-      "id": "a1288d4c-2c77-44a0-b9c6-a415b52f4821",
-      "carId": "0c24541f-4cf0-49ab-80cb-47684f843068",
-      "customerId": "u5",
-      "ownerId": "u2",
-      "requestType": "buy",
-      "createdAt": "5/31/2025, 4:55:52 PM",
-      "requestStatus": "accepted",
-      "paymentStatus": "pending",
-      "paymentAmount": 25000
-    },
-    {
-      "id": "a50f061a-b0ee-40bb-b901-44d6b5a43b5d",
-      "carId": "c106",
-      "customerId": "u5",
-      "ownerId": "u2",
-      "requestType": "buy",
-      "createdAt": "5/31/2025, 6:34:24 PM",
-      "requestStatus": "accepted",
-      "paymentStatus": "pending",
-      "paymentAmount": 18000
-    }
-  ]
+  "requests": []
 }

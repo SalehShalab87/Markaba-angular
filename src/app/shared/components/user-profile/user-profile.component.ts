@@ -17,11 +17,12 @@ import { HomeService } from '../../../core/services/main/home.service';
 import { ClientService } from '../../../core/services/client/client.service'; // ✅ Import ClientService for upload
 import { HttpEventType } from '@angular/common/http';
 import { finalize } from 'rxjs/operators';
+import { DatePicker } from 'primeng/datepicker';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [TranslatePipe, ReactiveFormsModule, CommonModule, LoaderComponent],
+  imports: [TranslatePipe, ReactiveFormsModule, CommonModule, LoaderComponent, DatePicker],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })
@@ -29,7 +30,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private homeService = inject(HomeService);
-  private clientService = inject(ClientService); // ✅ Add ClientService for upload
+  private clientService = inject(ClientService);
   private toast = inject(ToastService);
 
   @Input() userRole: UserRole = 'admin';
@@ -40,8 +41,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
   isEditingProfile = false;
   isLoading = false;
-  isUploading = false; // ✅ Add upload state
-  uploadProgress = 0; // ✅ Add upload progress
+  isUploading = false; 
+  uploadProgress = 0; 
   subscriptions: Subscription[] = [];
 
   constructor() {
@@ -65,7 +66,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       phone: ['', [Validators.pattern(/^\+?[\d\s-()]+$/)]],
       address: [''],
       dateOfBirth: [''],
-      profileImage: [''], // ✅ This will store the Cloudinary URL
+      profileImage: [''], 
     });
 
     this.applyRoleSpecificValidation();
@@ -133,18 +134,18 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ✅ Enhanced file upload using Cloudinary (same as add-car component)
+
   async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (!file) return;
 
-    // ✅ Validate file type
+
     if (!file.type.startsWith('image/')) {
       this.toast.showError('profile.invalidImageType');
       return;
     }
 
-    // ✅ Validate file size (max 5MB)
+
     if (file.size > 5 * 1024 * 1024) {
       this.toast.showError('profile.imageTooLarge');
       return;
@@ -166,7 +167,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ✅ Upload to Cloudinary (same logic as add-car component)
+
   private uploadProfileImage(file: File): Promise<void> {
     return new Promise((resolve, reject) => {
       this.clientService
@@ -179,7 +180,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
                 100 * (event.loaded / (event.total || 1))
               );
             } else if (event.type === HttpEventType.Response) {
-              // ✅ Update the form with the uploaded image URL
+
               const imageUrl = event.body?.secure_url;
               if (imageUrl) {
                 this.profileForm.patchValue({
@@ -198,7 +199,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ✅ Remove profile image
+
   removeProfileImage() {
     this.profileForm.patchValue({
       profileImage: '',

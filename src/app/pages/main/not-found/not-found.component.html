@@ -1,30 +1,50 @@
-<!-- not-found.component.html -->
-<div class="container-fluid d-flex flex-column justify-content-center">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 text-center">
-        <!-- Error Image -->
-        <img 
-          src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1748387627/404_Error_Page_not_Found_with_people_connecting_a_plug-amico_qs7xzf.svg" 
-          alt="404 Not Found" 
-          class="img-fluid mb-4 mt-5 fade-in-up"
-          style="max-width: 400px; height: 400px;"
-        >
+<!-- Enhanced not-found.component.html -->
+<div class="container-fluid d-flex flex-column justify-content-center p-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 text-center">
+      <!-- Error Image -->
+      <img 
+        src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1748387627/404_Error_Page_not_Found_with_people_connecting_a_plug-amico_qs7xzf.svg" 
+        alt="404 Not Found" 
+        class="img-fluid mb-4 fade-in-up"
+        style="max-width: 350px; height: 350px; animation-delay: 0.2s;"
+      >
+      
+      <!-- Error Content -->
+      <div class="error-content">
+        <h2 class="h3 mb-3 fade-in-up" style="animation-delay: 0.6s;">{{ 'not-found.title' | translate }}</h2>
+        <p class="lead text-muted mb-4 fade-in-up" style="animation-delay: 0.8s;">
+          {{ 'not-found.message' | translate }}
+        </p>
         
-        <!-- Error Content -->
-        <div class="error-content">
-          <h2 class="h3 mb-3">{{'not-found.title' | translate}}</h2>
-          <p class="lead text-muted mb-4">
-            {{'not-found.message' | translate}}
-          </p>
+        <!-- Action Buttons -->
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center fade-in-up" style="animation-delay: 1.0s;">
           <a 
             routerLink="/" 
             class="btn btn-primary btn-lg px-5"
             style="border-radius: 30px; transition: all 0.3s ease;"
           >
             <i class="pi pi-home me-2"></i>
-            {{'not-found.back-home' | translate}}
+            {{ 'not-found.back-home' | translate }}
           </a>
+          
+          <a 
+            routerLink="/car-listings" 
+            class="btn btn-outline-primary btn-lg px-5"
+            style="border-radius: 30px; transition: all 0.3s ease;"
+          >
+            <i class="pi pi-car me-2"></i>
+            {{ 'not-found.browse-cars' | translate }}
+          </a>
+        </div>
+        
+        <!-- Help Text -->
+        <div class="mt-4 fade-in-up" style="animation-delay: 1.2s;">
+          <p class="small text-muted">
+            {{ 'not-found.help-text' | translate }}
+          </p>
         </div>
       </div>
     </div>
   </div>
+</div>
