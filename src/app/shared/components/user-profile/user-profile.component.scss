@@ -1,0 +1,177 @@
+// user-profile.component.scss - Simple & Clean to match your theme
+.profile-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .profile-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 2rem;
+    border: 3px solid #e9ecef;
+  }
+  
+  .upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .progress {
+    width: 80px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+    border-radius: 3px;
+  }
+  
+  // ✅ Simple card matching your theme
+  .card {
+    background-color: var(--color-card-bg);
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  // ✅ Simple form controls
+  .form-control {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 14px;
+  
+    &:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.25);
+    }
+  
+    &[readonly] {
+      background-color: #f8f9fa;
+      border-color: #e9ecef;
+    }
+  }
+  
+  .form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  
+    &:hover {
+      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+    }
+  
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  
+    &:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
+    }
+  }
+  
+  .btn-outline-primary {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  
+    &:hover {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+  }
+  
+  .badge {
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+  
+    &.bg-primary {
+      background-color: var(--color-primary) !important;
+    }
+  }
+  .my-invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #dc3545;
+  }
+  
+  @media (max-width: 991.98px) {
+    .profile-image,
+    .profile-placeholder {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .upload-overlay {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .profile-image,
+    .profile-placeholder {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .upload-overlay {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .progress {
+      width: 60px;
+      height: 4px;
+    }
+  }

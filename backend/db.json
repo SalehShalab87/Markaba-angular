@@ -15,7 +15,9 @@
       "role": "client",
       "accountStatus": "approved",
       "phone": "1234567890",
-      "address": "123 Main St"
+      "address": "123 Main St",
+      "dateOfBirth": "",
+      "profileImage": ""
     },
     {
       "id": "u3",
@@ -23,7 +25,7 @@
       "email": "alice@dealer.com",
       "password": "YWxpY2UxMjM=",
       "role": "client",
-      "accountStatus": "pending",
+      "accountStatus": "rejected",
       "phone": "0987654321",
       "address": "456 Elm St"
     },
@@ -219,7 +221,7 @@
       "imageUrls": [
         "https://redriven.com/wp-content/uploads/2024/07/Toyota-Camry-XV70-15.jpg.webp"
       ],
-      "isAvailable": "available",
+      "isAvailable": "unavailable",
       "requestType": "buy",
       "city": "Salt",
       "country": "Jordan"
@@ -337,30 +339,37 @@
   ],
   "requests": [
     {
-      "id": "8687145c-74ac-48bc-a101-dbe91c01e27d",
-      "carId": "c105",
+      "id": "074bf4b0-5e2a-4de8-9880-96d6fd2fa674",
+      "carId": "c102",
       "customerId": "u5",
-      "ownerId": "u12",
-      "requestType": "rent",
-      "createdAt": "5/30/2025, 9:55:58 PM",
-      "requestStatus": "cancelled",
+      "ownerId": "u2",
+      "requestType": "buy",
+      "createdAt": "5/31/2025, 4:26:33 PM",
+      "requestStatus": "accepted",
       "paymentStatus": "pending",
-      "paymentAmount": 70,
-      "startDate": "5/30/2025",
-      "endDate": "5/31/2025"
+      "paymentAmount": 15000
     },
     {
-      "id": "acd27654-274b-49bc-b739-6c33db6a70e3",
-      "carId": "c105",
+      "id": "a1288d4c-2c77-44a0-b9c6-a415b52f4821",
+      "carId": "0c24541f-4cf0-49ab-80cb-47684f843068",
       "customerId": "u5",
-      "ownerId": "u12",
-      "requestType": "rent",
-      "createdAt": "5/30/2025, 9:58:18 PM",
-      "requestStatus": "cancelled",
+      "ownerId": "u2",
+      "requestType": "buy",
+      "createdAt": "5/31/2025, 4:55:52 PM",
+      "requestStatus": "accepted",
       "paymentStatus": "pending",
-      "paymentAmount": 70,
-      "startDate": "5/30/2025",
-      "endDate": "5/31/2025"
+      "paymentAmount": 25000
+    },
+    {
+      "id": "a50f061a-b0ee-40bb-b901-44d6b5a43b5d",
+      "carId": "c106",
+      "customerId": "u5",
+      "ownerId": "u2",
+      "requestType": "buy",
+      "createdAt": "5/31/2025, 6:34:24 PM",
+      "requestStatus": "accepted",
+      "paymentStatus": "pending",
+      "paymentAmount": 18000
     }
   ]
 }

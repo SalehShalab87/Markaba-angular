@@ -23,11 +23,14 @@ export class DashboardTableComponent implements OnInit {
   @Input() statusOptions: string[] = [];
   @Input() statusFields: string[] = [];
 
-  @Output() accept = new EventEmitter<any>();
+
+  @Input() userType: 'admin' | 'client' = 'admin'; 
+  @Output() accept = new EventEmitter<any>(); 
   @Output() reject = new EventEmitter<any>();
+
   @Output() edit = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
-  @Output() cancelRequest = new EventEmitter<any>(); // Add this
+  @Output() cancelRequest = new EventEmitter<any>();
 
   searchKeyword: string = '';
   filteredData: any[] = [];
@@ -59,9 +62,11 @@ export class DashboardTableComponent implements OnInit {
         ) &&
         (this.statusFilter && this.statusFields.length
           ? this.statusFields.some(
-              (field) =>
-                String(this.getCellValue(row, field)).toLowerCase() ===
-                this.statusFilter.toLowerCase()
+              (field) => {
+                const fieldValue = String(this.getCellValue(row, field)).toLowerCase();
+                const filterValue = this.statusFilter.toLowerCase();
+                return fieldValue === filterValue;
+              }
             )
           : true)
     );
@@ -69,20 +74,37 @@ export class DashboardTableComponent implements OnInit {
     this.updateTable();
   }
 
-  sortTable(field: string) {
+  sortTable(field: string) { // ✅ Change parameter name from 'header' to 'field'
     if (this.sortColumn === field) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
       this.sortColumn = field;
       this.sortDirection = 'asc';
     }
+    
     this.filteredData.sort((a, b) => {
-      const valA = this.getCellValue(a, field);
-      const valB = this.getCellValue(b, field);
-      if (valA < valB) return this.sortDirection === 'asc' ? -1 : 1;
-      if (valA > valB) return this.sortDirection === 'asc' ? 1 : -1;
-      return 0;
+      const valA = this.getCellValue(a, field); // ✅ Use 'field' instead of 'header'
+      const valB = this.getCellValue(b, field); // ✅ Use 'field' instead of 'header'
+      
+      // ✅ Fix numeric field detection - check against actual field names
+      const numericFields = ['price', 'pricePerDay', 'paymentAmount'];
+      const isNumericField = numericFields.includes(field);
+      
+      if (isNumericField) {
+        const numA = Number(valA) || 0; // ✅ Add fallback to 0
+        const numB = Number(valB) || 0; // ✅ Add fallback to 0
+        return this.sortDirection === 'asc' ? numA - numB : numB - numA;
+      } else {
+        // ✅ Handle null/undefined values properly
+        const strA = (valA ?? '').toString().toLowerCase();
+        const strB = (valB ?? '').toString().toLowerCase();
+        
+        if (strA < strB) return this.sortDirection === 'asc' ? -1 : 1;
+        if (strA > strB) return this.sortDirection === 'asc' ? 1 : -1;
+        return 0;
+      }
     });
+    
     this.updateTable();
   }
 
@@ -142,7 +164,6 @@ export class DashboardTableComponent implements OnInit {
     return '';
   }
 
-  // Add a helper to check if a column is a status-like field
   isStatusColumn(col: TableColumn): boolean {
     const statusFields = [
       'accountStatus',
@@ -157,6 +178,7 @@ export class DashboardTableComponent implements OnInit {
     return Array.from({ length: this.totalPages }, (_, acc) => acc + 1);
   }
 
+  // ✅ Just add these two client action methods
   onAccept(row: any) {
     this.accept.emit(row);
   }
@@ -165,6 +187,7 @@ export class DashboardTableComponent implements OnInit {
     this.reject.emit(row);
   }
 
+  // Keep all your existing methods
   onEdit(row: any) {
     this.edit.emit(row);
   }
@@ -179,5 +202,10 @@ export class DashboardTableComponent implements OnInit {
 
   canCancelRequest(row: any): boolean {
     return row.requestStatus === 'pending';
+  }
+
+  // ✅ Add this helper method for client actions
+  canAcceptReject(row: any): boolean {
+    return this.userType === 'client' && row.requestStatus === 'pending';
   }
 }

@@ -11,4 +11,6 @@ export interface User {
   accountStatus?: AccountStatus;
   phone?: string;
   address?: string;
+  profileImage?: string;
+  dateOfBirth?: string;
 }

@@ -33,15 +33,32 @@ export class HomeService {
   }
 
   // Updated method to exclude cancelled and rejected requests
-  checkUserRequestForCar(carId: string, customerId: string): Observable<boolean> {
-    return this.http.get<Request[]>(`${this.apiUrl}/requests?carId=${carId}&customerId=${customerId}`).pipe(
-      map((requests) => 
-        requests.some(request => 
-          request.requestStatus === 'pending' || 
-          request.requestStatus === 'accepted' ||
-          request.requestStatus === 'completed'
-        )
+  checkUserRequestForCar(
+    carId: string,
+    customerId: string
+  ): Observable<boolean> {
+    return this.http
+      .get<Request[]>(
+        `${this.apiUrl}/requests?carId=${carId}&customerId=${customerId}`
       )
-    );
+      .pipe(
+        map((requests) =>
+          requests.some(
+            (request) =>
+              request.requestStatus === 'pending' ||
+              request.requestStatus === 'accepted' ||
+              request.requestStatus === 'completed'
+          )
+        )
+      );
+  }
+  updateUserProfile(user: User): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/users/${user.id}`, user);
+  }
+  updateUserPassword(userId: string, newPassword: string): Observable<User> {
+    const passwordHash = window.btoa(newPassword);
+    return this.http.patch<User>(`${this.apiUrl}/users/${userId}`, {
+      password: passwordHash,
+    });
   }
 }

@@ -2,12 +2,10 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterClientComponent } from './pages/auth/register-client/register-client.component';
 import { RegisterCustomerComponent } from './pages/auth/register-customer/register-customer.component';
-import { PaymentsComponent } from './pages/client/payments/payments.component';
 import { HomeComponent } from './pages/main/home/home.component';
 import { NotFoundComponent } from './pages/main/not-found/not-found.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { ClientDashboardComponent } from './pages/client/client-dashboard/client-dashboard.component';
-import { ClientRequestsComponent } from './pages/client/client-requests/client-requests.component';
 import { CustomerRequestsComponent } from './pages/customer/customer-requests/customer-requests.component';
 import { AdminGuard } from './core/guards/admin.guard';
 import { ClientGuard } from './core/guards/client.guard';
@@ -23,6 +21,8 @@ import { AboutUsComponent } from './pages/main/about-us/about-us.component';
 import { CarDetailsComponent } from './pages/main/car-details/car-details.component';
 import { AddCarsComponent } from './pages/client/add-car/add-cars.component';
 import { MyCarsComponent } from './pages/client/my-cars/my-cars.component';
+import { ClientProfileComponent } from './pages/client/client-profile/client-profile.component';
+import { CustomerProfileComponent } from './pages/customer/customer-profile/customer-profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -74,8 +74,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: ClientDashboardComponent },
       { path: 'add-cars', component: AddCarsComponent },
       {path: 'my-cars', component: MyCarsComponent},
-      { path: 'requests', component: ClientRequestsComponent },
-      { path: 'payments', component: PaymentsComponent },
+      {path: 'profile', component: ClientProfileComponent}, 
     ],
   },
 
@@ -88,6 +87,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'car-listings', pathMatch: 'full' },
       { path: 'car-listings', component: CarsListingComponent },
       { path: 'requests', component: CustomerRequestsComponent },
+      {path: 'profile', component: CustomerProfileComponent}, 
     ],
   },
 

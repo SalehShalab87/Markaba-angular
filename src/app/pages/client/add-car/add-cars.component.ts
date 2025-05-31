@@ -21,7 +21,7 @@ import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-cars',
-  imports: [CommonModule, ReactiveFormsModule, LoaderComponent, ShortenUrlPipe,TitleCasePipe,TranslatePipe],
+  imports: [CommonModule, ReactiveFormsModule, LoaderComponent, ShortenUrlPipe,TranslatePipe],
   templateUrl: './add-cars.component.html',
   styleUrl: './add-cars.component.scss',
 })

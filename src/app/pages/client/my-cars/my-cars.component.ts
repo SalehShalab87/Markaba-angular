@@ -116,14 +116,16 @@ export class MyCarsComponent implements OnInit, OnDestroy {
           next: () => {
             this.loadClientCars();
           },
-          error: (error) => {
-            // Optionally show error toast
+          error: () => {
+            const errorTranslationKey = 'toast.error.deleteCar';
+            this.i18n.translate(errorTranslationKey);
           },
         });
         this.subscriptions.push(sub);
       },
       reject: () => {
-        // Optionally handle rejection
+        const rejectTranslationKey = 'toast.info.deleteCarCancelled';
+        this.i18n.translate(rejectTranslationKey);
       }
     });
   }

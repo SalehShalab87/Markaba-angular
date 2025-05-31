@@ -1,0 +1,236 @@
+@if(isLoading){
+    <app-loader/>
+  }
+  
+  <div class="container fade-in-up" style="animation-delay: 0.1s;">
+    <div class="row">
+      <div class="col-12 my-4">
+        <h2 class="fw-bold">{{ getPageTitle() | translate }}</h2>
+        <p class="text-muted">{{ "profile.subtitle" | translate }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <!-- Profile Form -->
+      <div class="col-12 col-lg-8 mb-4">
+        <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()" class="card p-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="mb-0">{{ "profile.personalInformation" | translate }}</h5>
+            <span class="badge" [class]="getRoleBadgeClass()">
+              {{ getRoleDisplayName() | translate }}
+            </span>
+          </div>
+  
+          <!-- Profile Image with Upload Progress -->
+          <div class="mb-4 text-center fade-in-up" style="animation-delay: 0.15s;">
+            <div class="profile-image-container">
+              @if(currentProfileImage) {
+                <img [src]="currentProfileImage" alt="Profile" class="profile-image">
+              } @else {
+                <div class="profile-placeholder">
+                  <i class="ri-user-line"></i>
+                </div>
+              }
+              
+              <!-- ✅ Upload progress overlay -->
+              @if(isUploading) {
+                <div class="upload-overlay">
+                  <div class="progress">
+                    <div class="progress-bar" [style.width.%]="uploadProgress">
+                      {{ uploadProgress }}%
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+            
+            @if(isEditingProfile) {
+              <div class="mt-2">
+                <input 
+                  type="file" 
+                  id="profileImage" 
+                  accept="image/*" 
+                  (change)="onFileSelected($event)"
+                  [disabled]="isUploading"
+                  style="display: none;"
+                />
+                <div class="d-flex justify-content-center gap-2">
+                  <label for="profileImage" class="btn btn-outline-primary btn-sm" [class.disabled]="isUploading">
+                    @if(isUploading) {
+                      <span class="spinner-border spinner-border-sm me-1"></span>
+                    } @else {
+                      <i class="ri-camera-line me-1"></i>
+                    }
+                    {{ isUploading ? ('profile.uploading' | translate) : ('profile.changePhoto' | translate) }}
+                  </label>
+                  
+                  @if(currentProfileImage) {
+                    <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeProfileImage()" [disabled]="isUploading">
+                      <i class="ri-delete-bin-line me-1"></i>{{ 'profile.removePhoto' | translate }}
+                    </button>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+  
+          <!-- Basic Information -->
+          <div class="row">
+            <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.2s;">
+              <label class="form-label">{{ "profile.name" | translate }} *</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                [readonly]="!isEditingProfile"
+                [placeholder]="'profile.namePlaceholder' | translate"
+              />
+              @if(profileForm.get('name')?.errors?.['required'] && profileForm.get('name')?.touched) {
+                <div class="my-invalid-feedback">{{ "validation.required" | translate }}</div>
+              }
+            </div>
+  
+            <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.3s;">
+              <label class="form-label">{{ "profile.email" | translate }} *</label>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                [readonly]="!isEditingProfile"
+                [placeholder]="'profile.emailPlaceholder' | translate"
+              />
+              @if(profileForm.get('email')?.errors?.['required'] && profileForm.get('email')?.touched) {
+                <div class="my-invalid-feedback">{{ "validation.required" | translate }}</div>
+              }
+              @if(profileForm.get('email')?.errors?.['email']) {
+                <div class="my-invalid-feedback">{{ "validation.invalidEmail" | translate }}</div>
+              }
+            </div>
+  
+            <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.4s;">
+              <label class="form-label">
+                {{ "profile.phone" | translate }}
+                @if(userRole === 'client' || userRole === 'customer') { * }
+              </label>
+              <input
+                type="tel"
+                class="form-control"
+                formControlName="phone"
+                [readonly]="!isEditingProfile"
+                [placeholder]="'profile.phonePlaceholder' | translate"
+              />
+              @if(profileForm.get('phone')?.errors?.['required'] && profileForm.get('phone')?.touched) {
+                <div class="my-invalid-feedback">{{ "validation.required" | translate }}</div>
+              }
+              @if(profileForm.get('phone')?.errors?.['pattern']) {
+                <div class="my-invalid-feedback">{{ "validation.invalidPhone" | translate }}</div>
+              }
+            </div>
+  
+            <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.45s;">
+              <label class="form-label">{{ "profile.dateOfBirth" | translate }}</label>
+              <input
+                type="date"
+                class="form-control"
+                formControlName="dateOfBirth"
+                [readonly]="!isEditingProfile"
+              />
+            </div>
+  
+            <div class="col-12 mb-3 fade-in-up" style="animation-delay: 0.5s;">
+              <label class="form-label">{{ "profile.address" | translate }}</label>
+              <textarea
+                class="form-control"
+                formControlName="address"
+                [readonly]="!isEditingProfile"
+                [placeholder]="'profile.addressPlaceholder' | translate"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+  
+          <!-- Action Buttons -->
+          <div class="d-flex gap-2 fade-in-up" style="animation-delay: 0.6s;">
+            @if(!isEditingProfile) {
+              <button type="button" class="btn btn-primary" (click)="isEditingProfile = true">
+                <i class="ri-edit-line me-2"></i>{{ "profile.edit" | translate }}
+              </button>
+            } @else {
+              <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid || isLoading">
+                <i class="ri-save-line me-2"></i>{{ "profile.save" | translate }}
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="onCancelEdit()">
+                <i class="ri-close-line me-2"></i>{{ "dialog.cancel" | translate }}
+              </button>
+            }
+          </div>
+        </form>
+      </div>
+  
+      <!-- Password Form -->
+      <div class="col-12 col-lg-4 mb-4">
+        <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()" class="card p-4 h-100">
+          <h5 class="mb-3">{{ "profile.updatePassword" | translate }}</h5>
+  
+          <div class="mb-3 fade-in-up" style="animation-delay: 0.6s;">
+            <label class="form-label">{{ "profile.oldPassword" | translate }}</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="oldPassword"
+              autocomplete="current-password"
+              [placeholder]="'profile.oldPasswordPlaceholder' | translate"
+            />
+            @if(passwordForm.get('oldPassword')?.errors?.['required'] && passwordForm.get('oldPassword')?.touched) {
+              <div class="my-invalid-feedback">{{ "profile.passwordRequired" | translate }}</div>
+            }
+            @if(passwordForm.get('oldPassword')?.errors?.['incorrect']) {
+              <div class="my-invalid-feedback">{{ "profile.wrongOldPassword" | translate }}</div>
+            }
+          </div>
+  
+          <div class="mb-3 fade-in-up" style="animation-delay: 0.7s;">
+            <label class="form-label">{{ "profile.newPassword" | translate }}</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="newPassword"
+              autocomplete="new-password"
+              [placeholder]="'profile.newPasswordPlaceholder' | translate"
+            />
+            @if(passwordForm.get('newPassword')?.errors?.['required'] && passwordForm.get('newPassword')?.touched) {
+              <div class="my-invalid-feedback">{{ "profile.passwordRequired" | translate }}</div>
+            }
+            @if(passwordForm.get('newPassword')?.errors?.['minlength']) {
+              <div class="my-invalid-feedback">{{ "profile.passwordMinLength" | translate }}</div>
+            }
+          </div>
+  
+          <div class="mb-3 fade-in-up" style="animation-delay: 0.8s;">
+            <label class="form-label">{{ "profile.confirmNewPassword" | translate }}</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="confirmNewPassword"
+              autocomplete="new-password"
+              [placeholder]="'profile.confirmNewPasswordPlaceholder' | translate"
+            />
+            @if(passwordForm.get('confirmNewPassword')?.errors?.['required'] && passwordForm.get('confirmNewPassword')?.touched) {
+              <div class="my-invalid-feedback">{{ "profile.passwordRequired" | translate }}</div>
+            }
+            @if(passwordForm.get('confirmNewPassword')?.errors?.['mismatch']) {
+              <div class="my-invalid-feedback">{{ "profile.passwordMismatch" | translate }}</div>
+            }
+          </div>
+  
+          <div class="fade-in-up" style="animation-delay: 0.9s;">
+            <button type="submit" class="btn btn-primary w-100" [disabled]="passwordForm.invalid || isLoading">
+              <i class="ri-lock-password-line me-2"></i>{{ "profile.updatePasswordBtn" | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

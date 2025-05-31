@@ -32,6 +32,7 @@
           @case('customer'){
             <li class="nav-item"><a class="nav-link" routerLink="/customer/car-listings" routerLinkActive="active">{{ 'header.car-listings' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">{{ 'header.customer.requests' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/profile" routerLinkActive="active">{{ 'header.customer.profile' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/contact-us" routerLinkActive="active">{{ 'header.contact' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/about-us" routerLinkActive="active">{{ 'header.about' | translate }}</a></li>
           }
@@ -44,8 +45,7 @@
           @case('client'){
             <li class="nav-item"><a class="nav-link" routerLink="/client/dashboard" routerLinkActive="active">{{ 'header.client.dashboard' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/client/my-cars" routerLinkActive="active">{{ 'header.client.cars' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/client/requests" routerLinkActive="active">{{ 'header.client.requests' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/client/payments" routerLinkActive="active">{{ 'header.client.payments' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/profile" routerLinkActive="active">{{ 'header.client.profile' | translate }}</a></li>
           }
         }
         @if (auth.isLoggedIn()) {

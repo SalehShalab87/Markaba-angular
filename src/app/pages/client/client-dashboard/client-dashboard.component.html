@@ -1,1 +1,107 @@
-<p>client-dashboard works!</p>
+@if(isLoading) {
+<app-loader></app-loader>
+}
+<div class="container">
+  <div class="row">
+    <div class="col-12 my-4 fade-in-up" style="animation-delay: 0.1s">
+      <h2 class="fw-bold">{{ "dashboard.title" | translate }}</h2>
+      <p class="text-muted">
+        {{ "dashboard.welcomeBack" | translate }}, {{ currentClient?.name }}!
+      </p>
+    </div>
+  </div>
+
+  <div class="row g-3 justify-content-center">
+    <!-- My Cars Card -->
+    <div class="col-6 col-md-4 fade-in-up" style="animation-delay: 0.2s">
+      <div
+        class="dashboard-card text-center"
+        [ngClass]="{ active: activeCard === 'cars' }"
+        (click)="setActiveCard('cars')"
+      >
+        <div class="icon-wrapper">
+          <i class="ri-car-line"></i>
+        </div>
+        <h6 class="card-title">{{ "dashboard.myCars" | translate }}</h6>
+        <p class="card-number">{{ carList.length }}</p>
+      </div>
+    </div>
+
+    <!-- Incoming Requests Card -->
+    <div class="col-6 col-md-4 fade-in-up" style="animation-delay: 0.3s">
+      <div
+        class="dashboard-card text-center"
+        [ngClass]="{ active: activeCard === 'requests' }"
+        (click)="setActiveCard('requests')"
+      >
+        <div class="icon-wrapper">
+          <i class="ri-inbox-line"></i>
+        </div>
+        <h6 class="card-title">
+          {{ "dashboard.incomingRequests" | translate }}
+        </h6>
+        <p class="card-number">{{ incomingRequestsList.length }}</p>
+      </div>
+    </div>
+
+    <!-- Earnings Card -->
+    <div class="col-6 col-md-4 fade-in-up" style="animation-delay: 0.4s">
+      <div
+        class="dashboard-card text-center earnings-card"
+        [ngClass]="{ active: activeCard === 'payments' }"
+        (click)="setActiveCard('payments')"
+      >
+        <div class="icon-wrapper">
+          <i class="ri-money-dollar-circle-line"></i>
+        </div>
+        <h6 class="card-title">{{ "dashboard.earnings" | translate }}</h6>
+        <p class="card-number">
+          {{ totalEarnings | currency : "JOD" : "symbol" }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Card Content -->
+  <div class="row mt-4">
+    <div class="col-12">
+      @switch (activeCard) { 
+        @case ('cars') {
+          <app-dashboard-table
+            [data]="carList"
+            [columns]="carsColumns"
+            [statusOptions]="carStatusOptions"
+            [statusFields]="carsStatusFields"
+            [rowsPerPage]="10"
+            title="dashboard.myCars"
+            userType="client"
+          ></app-dashboard-table>
+        } 
+        @case ('requests') {
+          <app-dashboard-table
+            [data]="incomingRequestsList"
+            [columns]="requestsColumns"
+            [rowsPerPage]="10"
+            title="dashboard.incomingRequests"
+            [statusOptions]="requestStatusOptions"
+            [statusFields]="requestsStatusFields"
+            userType="client"
+            (accept)="onAcceptRequest($event)"
+            (reject)="onRejectRequest($event)"
+          ></app-dashboard-table>
+        } 
+        @case ('payments') {
+          <app-dashboard-table
+            [data]="paymentsList"
+            [columns]="paymentsColumns"
+            [statusOptions]="requestStatusOptions"
+            [statusFields]="paymentsStatusFields"
+            [rowsPerPage]="10"
+            title="dashboard.earnings"
+            userType="client"
+          ></app-dashboard-table>
+        } 
+      }
+    </div>
+  </div>
+</div>

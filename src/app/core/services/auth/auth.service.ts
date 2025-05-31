@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal, Signal } from '@angular/core';
 import { User, UserRole } from '../../../models/user.model';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ToastService } from '../main/toast.service';
 import { FormGroup } from '@angular/forms';
 
@@ -115,4 +115,27 @@ export class AuthService {
     }
   }
 
+  updateCurrentUser(user: User): void {
+    this._currentUser.set(user);
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
+  getCurrentUserProfile(): Observable<User> {
+    const currentUser = this.currentUser();
+    if (currentUser) {
+      return this.http.get<User>(`${this.apiUrl}/${currentUser.id}`);
+    }
+    return throwError(() => new Error('No current user'));
+  }
+
+  updateUserProfile(user: User): Observable<User> {
+    return this.http.patch<User>(`${this.apiUrl}/${user.id}`, user);
+  }
+
+  updateUserPassword(userId: string, newPassword: string): Observable<User> {
+    const hashedPassword = window.btoa(newPassword);
+    return this.http.patch<User>(`${this.apiUrl}/${userId}`, {
+      password: hashedPassword,
+    });
+  }
 }

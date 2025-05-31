@@ -41,7 +41,7 @@ export class RegisterClientComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^\+?[\d\s-()]+$/),]],
       address: ['', Validators.required],
       role: ['client'],
     });

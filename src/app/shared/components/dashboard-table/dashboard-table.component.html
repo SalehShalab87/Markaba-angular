@@ -69,18 +69,31 @@
             <!-- Regular actions for admin -->
             <ng-container *ngIf="col.field === 'actions';">
               <div class="d-flex justify-content-start gap-3 p-3 car-model-actions">
-                <i
-                  class="pi pi-trash text-danger"
-                  (click)="onDelete(row)"
-                  title="{{ 'dashboard.delete' | translate }}"
-                  style="cursor:pointer"
-                ></i>
-                <i
-                  class="pi pi-pencil"
-                  (click)="onEdit(row)"
-                  title="{{ 'dashboard.edit' | translate }}"
-                  style="cursor:pointer"
-                ></i>
+                <!-- ✅ Keep existing admin actions -->
+                <ng-container *ngIf="userType === 'admin'">
+                  <button class="btn btn-md btn-outline-primary" (click)="onEdit(row)">
+                    <i class="ri-edit-line"></i>
+                  </button>
+                  <button class="btn btn-md btn-outline-danger" (click)="onDelete(row)">
+                    <i class="ri-delete-bin-line"></i>
+                  </button>
+                </ng-container>
+
+                <!-- ✅ Add client actions for pending requests -->
+                <ng-container *ngIf="userType === 'client' && canAcceptReject(row)">
+                  <button class="btn btn-sm btn-success" (click)="onAccept(row)">
+                    Accept
+                  </button>
+                  <button class="btn btn-sm btn-danger" (click)="onReject(row)">
+                    Reject
+                  </button>
+                </ng-container>
+
+                <ng-container *ngIf="canCancelRequest(row)">
+                  <button class="btn btn-sm btn-warning" (click)="onCancelRequest(row)">
+                    Cancel
+                  </button>
+                </ng-container>
               </div>
             </ng-container>
 
@@ -115,7 +128,7 @@
               </ng-container>
               <ng-template #normalCellContent>
                 @if (typeof getCellValue(row,col.field) === 'number') {
-                {{getCellValue(row, col.field)| currency : "USD" : "symbol" : "1.0-0"}}
+                {{getCellValue(row, col.field)| currency : "JOD" : "symbol" : "1.0-0"}}
                 }@else if (col.header === 'actions' || col.header === 'customerActions') {
                 <!-- Actions are handled above -->
                 }

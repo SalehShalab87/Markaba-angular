@@ -1,0 +1,114 @@
+.dashboard-card {
+    background-color: #fff7f0;
+    border: none;
+    border-radius: 8px; // Reduced border radius for smaller cards
+    padding: 1rem; // Reduced padding for smaller cards
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+  
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+  }
+  
+  .dashboard-card.active {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    transition: all 0.3s ease-in-out;
+  
+    .icon-wrapper {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  
+    .icon-wrapper i {
+      color: white;
+    }
+  
+    .card-title {
+      color: white;
+    }
+  
+    .card-number {
+      color: white;
+    }
+  }
+  
+  .icon-wrapper {
+    background-color: #fff;
+    width: 50px; // Reduced size for smaller cards
+    height: 50px; // Reduced size for smaller cards
+    margin: 0 auto 0.5rem auto; // Reduced margin for better spacing
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-wrapper i {
+    font-size: 24px; // Reduced icon size
+    color: var(--color-primary);
+  }
+  
+  .card-title {
+    font-size: 0.9rem; // Reduced font size for smaller cards
+    color: #333;
+    margin-bottom: 0.2rem;
+  }
+  
+  .card-number {
+    font-weight: bold;
+    font-size: 1.2rem; // Reduced font size for smaller cards
+    color: #222;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .dashboard-card {
+      padding: 0.75rem; // Further reduced padding for smaller screens
+    }
+  
+    .icon-wrapper {
+      width: 40px; // Smaller icon wrapper for mobile
+      height: 40px;
+    }
+  
+    .icon-wrapper i {
+      font-size: 20px; // Smaller icon size for mobile
+    }
+  
+    .card-title {
+      font-size: 0.8rem; // Smaller title font size for mobile
+    }
+  
+    .card-number {
+      font-size: 1rem; // Smaller number font size for mobile
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .dashboard-card {
+      padding: 0.5rem; // Minimal padding for very small screens
+    }
+  
+    .icon-wrapper {
+      width: 35px; // Further reduced icon wrapper size
+      height: 35px;
+    }
+  
+    .icon-wrapper i {
+      font-size: 18px; // Further reduced icon size
+    }
+  
+    .card-title {
+      font-size: 0.75rem; // Further reduced title font size
+    }
+  
+    .card-number {
+      font-size: 0.9rem; // Further reduced number font size
+    }
+  }
+  
+  

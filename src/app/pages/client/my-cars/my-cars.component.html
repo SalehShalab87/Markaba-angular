@@ -92,7 +92,7 @@
                     <ul class="pagination justify-content-center">
                         <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
                             <button class="page-link" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
-                                Previous
+                                {{ 'myCars.previous' | translate }}
                             </button>
                         </li>
                         
@@ -104,14 +104,17 @@
                         
                         <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages}">
                             <button class="page-link" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
-                                Next
+                                {{ 'myCars.next' | translate }}
                             </button>
                         </li>
                     </ul>
                 </nav>
                 
                 <div class="pagination-info">
-                    Showing {{ getStartIndex() + 1 }} to {{ getEndIndex() }} of {{ clientCars.length }} cars
+                  {{ 'myCars.showing' | translate }} {{ getStartIndex() + 1 }} 
+                  {{ 'myCars.to' | translate }} {{ getEndIndex() }} 
+                  {{ 'myCars.of' | translate }} {{ clientCars.length }} 
+                  {{ 'myCars.cars' | translate }}
                 </div>
             </div>
         }
