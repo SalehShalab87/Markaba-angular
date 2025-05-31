@@ -1,5 +1,4 @@
-
-  .error-content {
+.error-content {
     h1 {
       font-size: 5rem;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -28,3 +27,31 @@
       }
     }
   }
+
+  .btn-outline-primary{
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  padding: 0.875rem 1.5rem;
+
+  &:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateY(-2px);
+
+  }
+}
+
+
+.btn {
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+}
+
+.display-1 {
+  background: linear-gradient(45deg, var(--color-primary), #007bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

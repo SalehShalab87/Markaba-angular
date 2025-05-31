@@ -1,3 +1,4 @@
+<!-- add-cars.component.html - Enhanced with specifications -->
 @if(isLoading){
   <app-loader></app-loader>
 }
@@ -5,7 +6,7 @@
 <div class="modern-wrapper overflow-hidden">
   <div class="container-fluid h-100 d-flex align-items-center justify-content-center p-3">
     <div class="row w-100 justify-content-center">
-      <div class="col-lg-8 col-xl-7">
+      <div class="col-lg-10 col-xl-9">
         <div class="modern-card shadow-lg">
           <!-- Header -->
           <div class="card-header border-0 text-white text-center position-relative overflow-hidden">
@@ -17,11 +18,16 @@
           </div>
 
           <!-- Form Body -->
-          <div class="card-body p-4" style="max-height: 70vh; overflow-y: auto;">
+          <div class="card-body p-4" style="max-height: 80vh; overflow-y: auto;">
             <form [formGroup]="carForm!" (ngSubmit)="onSubmit()">
               <input type="hidden" formControlName="ownerId">
 
-              <div class="row g-4">
+              <!-- Basic Information Section -->
+              <div class="section-divider mb-4">
+                <h4 class="section-title">{{ 'addCar.basicInformation' | translate }}</h4>
+              </div>
+
+              <div class="row g-4 mb-5">
                 <!-- Request Type -->
                 <div class="col-md-6">
                   <label class="form-label fw-semibold">
@@ -69,33 +75,35 @@
                   }
                 </div>
 
-                <!-- Brand -->
+                <!-- Brand (readonly) -->
                 <div class="col-md-6">
-                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                  <label class="form-label fw-semibold">
                     <span>{{ 'addCar.brand' | translate }}</span>
                     <span class="text-muted">🏷️</span>
                   </label>
                   <input type="text" 
                          class="form-control modern-input" 
                          formControlName="brand" 
-                         readonly
-                         [class.is-invalid]="carForm.get('brand')?.invalid && carForm.get('brand')?.touched">
-                  @if(carForm.get('brand')?.invalid && carForm.get('brand')?.touched) {
-                    <div class="invalid-feedback">
-                      @if(carForm.get('brand')?.errors?.['required']) {
-                        {{ 'addCar.brandRequired' | translate }}
-                      }
-                      @if(carForm.get('brand')?.errors?.['maxlength']) {
-                        {{ 'addCar.brandMaxLength' | translate }}
-                      }
-                    </div>
-                  }
+                         readonly>
+                </div>
+
+                <!-- Year -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">
+                    <span>{{ 'addCar.year' | translate }}</span>
+                  </label>
+                  <input type="number" 
+                         class="form-control modern-input" 
+                         formControlName="year" 
+                         min="1900" 
+                         [max]="currentYear + 1"
+                         placeholder="{{ currentYear }}">
                 </div>
 
                 <!-- Price Fields -->
                 @if(carForm.get('requestType')?.value === 'rent') {
                   <div class="col-md-6">
-                    <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                    <label class="form-label fw-semibold">
                       <span>{{ 'addCar.pricePerDay' | translate }}</span>
                       <span class="text-muted">💰</span>
                     </label>
@@ -130,8 +138,8 @@
 
                 @if(carForm.get('requestType')?.value === 'buy') {
                   <div class="col-md-6">
-                    <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                      <span>{{ 'addCar.price' | translate }} </span>
+                    <label class="form-label fw-semibold">
+                      <span>{{ 'addCar.price' | translate }}</span>
                       <span class="text-muted">💰</span>
                     </label>
                     <div class="input-group">
@@ -153,9 +161,158 @@
                   </div>
                 }
 
+                <!-- Condition -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">
+                    <span>{{ 'addCar.condition' | translate }}</span>
+                  </label>
+                  <select class="form-select modern-select" formControlName="condition">
+                    <option value="" disabled selected>{{ 'addCar.selectCondition' | translate }}</option>
+                    <option *ngFor="let condition of conditionTypes" [value]="condition">
+                      {{ ('addCar.' + condition) | translate }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Vehicle Specifications Section -->
+              <div class="section-divider mb-4">
+                <h4 class="section-title">{{ 'addCar.specifications' | translate }}</h4>
+              </div>
+
+              <div class="row g-4 mb-5">
+                <!-- Transmission -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.transmission' | translate }}</label>
+                  <select class="form-select modern-select" formControlName="transmission">
+                    <option value="" disabled selected>{{ 'addCar.selectTransmission' | translate }}</option>
+                    <option *ngFor="let trans of transmissionTypes" [value]="trans">
+                      {{ ('addCar.' + trans) | translate }}
+                    </option>
+                  </select>
+                </div>
+
+                <!-- Engine Type -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.engineType' | translate }}</label>
+                  <select class="form-select modern-select" formControlName="engineType">
+                    <option value="" disabled selected>{{ 'addCar.selectEngineType' | translate }}</option>
+                    <option *ngFor="let engine of engineTypes" [value]="engine">
+                      {{ ('addCar.' + engine) | translate }}
+                    </option>
+                  </select>
+                </div>
+
+                <!-- Engine Size -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.engineSize' | translate }}</label>
+                  <input type="text" 
+                         class="form-control modern-input" 
+                         formControlName="engineSize" 
+                         placeholder="1.6L, 2.0L, etc.">
+                </div>
+
+                <!-- Horsepower -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.horsepower' | translate }}</label>
+                  <input type="number" 
+                         class="form-control modern-input" 
+                         formControlName="horsepower" 
+                         placeholder="150, 200, etc."
+                         min="50">
+                </div>
+
+                <!-- Mileage -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.mileage' | translate }}</label>
+                  <input type="number" 
+                         class="form-control modern-input" 
+                         formControlName="mileage" 
+                         placeholder="50000"
+                         min="0">
+                </div>
+
+                <!-- Fuel Economy -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.fuelEconomy' | translate }}</label>
+                  <input type="text" 
+                         class="form-control modern-input" 
+                         formControlName="fuelEconomy" 
+                         placeholder="25 city / 35 highway MPG">
+                </div>
+
+                <!-- Seats -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.seats' | translate }}</label>
+                  <select class="form-select modern-select" formControlName="seats">
+                    <option value="" disabled selected>{{ 'addCar.selectSeats' | translate }}</option>
+                    <option *ngFor="let seat of seatOptions" [value]="seat">{{ seat }}</option>
+                  </select>
+                </div>
+
+                <!-- Doors -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.doors' | translate }}</label>
+                  <select class="form-select modern-select" formControlName="doors">
+                    <option value="" disabled selected>{{ 'addCar.selectDoors' | translate }}</option>
+                    <option *ngFor="let door of doorOptions" [value]="door">{{ door }}</option>
+                  </select>
+                </div>
+
+                <!-- Color -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.color' | translate }}</label>
+                  <input type="text" 
+                         class="form-control modern-input" 
+                         formControlName="color" 
+                         placeholder="{{ 'addCar.colorPlaceholder' | translate }}">
+                </div>
+
+                <!-- Drive Type -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">{{ 'addCar.driveType' | translate }}</label>
+                  <select class="form-select modern-select" formControlName="driveType">
+                    <option value="" disabled selected>{{ 'addCar.selectDriveType' | translate }}</option>
+                    <option *ngFor="let drive of driveTypes" [value]="drive">
+                      {{ ('addCar.' + drive) | translate }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Features Section -->
+              <div class="section-divider mb-4">
+                <h4 class="section-title">{{ 'addCar.features' | translate }}</h4>
+              </div>
+
+              <div class="row g-3 mb-5">
+                <div class="col-12">
+                  <label class="form-label fw-semibold">{{ 'addCar.selectFeatures' | translate }}</label>
+                  <div class="features-grid">
+                    @for(feature of availableFeatures; track feature) {
+                      <div class="form-check feature-checkbox">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               [id]="'feature-' + feature" 
+                               (change)="onFeatureChange(feature, $event)">
+                        <label class="form-check-label" [for]="'feature-' + feature">
+                          {{ ('addCar.features.' + feature) | translate }}
+                        </label>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <!-- Description and Location -->
+              <div class="section-divider mb-4">
+                <h4 class="section-title">{{ 'addCar.additionalInfo' | translate }}</h4>
+              </div>
+
+              <div class="row g-4 mb-5">
                 <!-- Description -->
                 <div class="col-12">
-                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                  <label class="form-label fw-semibold">
                     <span>{{ 'addCar.description' | translate }}</span>
                     <span class="text-muted">📝</span>
                   </label>
@@ -183,7 +340,7 @@
 
                 <!-- Location -->
                 <div class="col-md-6">
-                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                  <label class="form-label fw-semibold">
                     <span>{{ 'addCar.city' | translate }} *</span>
                     <span class="text-muted">🏙️</span>
                   </label>
@@ -200,7 +357,7 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                  <label class="form-label fw-semibold">
                     <span>{{ 'addCar.country' | translate }} *</span>
                     <span class="text-muted">🌍</span>
                   </label>
@@ -215,10 +372,17 @@
                     </div>
                   }
                 </div>
+              </div>
 
+              <!-- Image Upload Section -->
+              <div class="section-divider mb-4">
+                <h4 class="section-title">{{ 'addCar.images' | translate }}</h4>
+              </div>
+
+              <div class="row g-4 mb-5">
                 <!-- Image Upload -->
                 <div class="col-12">
-                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
+                  <label class="form-label fw-semibold">
                     <span>{{ 'addCar.carImages' | translate }} *</span>
                     <span class="text-muted">📸</span>
                   </label>
@@ -277,9 +441,11 @@
                     </div>
                   }
                 </div>
+              </div>
 
-                <!-- Submit Button -->
-                <div class="col-12 mt-4">
+              <!-- Submit Button -->
+              <div class="row g-4">
+                <div class="col-12">
                   <button type="submit" class="btn btn-lg w-100 text-white fw-semibold modern-submit d-flex align-items-center justify-content-center gap-2" 
                           [disabled]="isUploading">
                     @if(!isUploading) {
