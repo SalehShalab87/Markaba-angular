@@ -43,7 +43,7 @@
           }
           @case('client'){
             <li class="nav-item"><a class="nav-link" routerLink="/client/dashboard" routerLinkActive="active">{{ 'header.client.dashboard' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/client/cars" routerLinkActive="active">{{ 'header.client.cars' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/my-cars" routerLinkActive="active">{{ 'header.client.cars' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/client/requests" routerLinkActive="active">{{ 'header.client.requests' | translate }}</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/client/payments" routerLinkActive="active">{{ 'header.client.payments' | translate }}</a></li>
           }
@@ -52,8 +52,7 @@
           <button class="btn btn-danger btn-sm me-2 ms-2" (click)="auth.logout()">{{ 'header.logout' | translate }}</button>
         }
       </ul>
-      <div class="d-flex align-items-center mt-1 mt-lg-0">
-        <!-- Desktop language switcher -->
+      <div class="d-flex align-items-center mt-3 mt-lg-0">    
         <div class="language-switcher-icon d-sm-flex">
           <button
             class="btn btn-md btn-outline-light"
