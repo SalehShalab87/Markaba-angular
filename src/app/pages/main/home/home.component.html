@@ -27,7 +27,7 @@
           class="d-block w-100 h-100 object-fit-cover"
           alt="Luxury car 1"
           style="object-fit: cover; filter: brightness(0.5);"
-          loading="lazy"
+          fetchpriority="high"
         />
       </div>
       <div class="carousel-item h-100">
@@ -36,7 +36,7 @@
           class="d-block w-100 h-100 object-fit-cover"
           alt="Luxury car 2"
           style="object-fit: cover; filter: brightness(0.5);"
-          loading="lazy"
+          fetchpriority="high"
         />
       </div>
       <div class="carousel-item h-100">
@@ -45,7 +45,7 @@
           class="d-block w-100 h-100 object-fit-cover"
           alt="Luxury car 3"
           style="object-fit: cover; filter: brightness(0.5);"
-          loading="lazy"
+          fetchpriority="high"
         />
       </div>
       <div class="carousel-item h-100">
@@ -54,7 +54,7 @@
           class="d-block w-100 h-100 object-fit-cover"
           alt="Luxury car 4"
           style="object-fit: cover; filter: brightness(0.5);"
-          loading="lazy"
+          fetchpriority="high"
         />
       </div>
       <div class="carousel-item h-100">
@@ -63,7 +63,7 @@
           class="d-block w-100 h-100 object-fit-cover"
           alt="Luxury car 5"
           style="object-fit: cover; filter: brightness(0.5);"
-          loading="lazy"
+          fetchpriority="high"
         />
       </div>
     </div>
@@ -166,22 +166,22 @@
   <h2 class="text-center mb-4 fw-bold">{{'home.popular-brands' | translate }}</h2>
   <div class="brand-grid d-flex flex-wrap gap-4 justify-content-center">
     <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Tesla' }">
-      <img src="assets/images/tesla-logo.png" alt="Tesla" class="brand-logo" />
+      <img src="assets/images/tesla-logo.png" alt="Tesla" class="brand-logo" fetchpriority="high" />
     </div>
     <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'BMW' }">
-      <img src="assets/images/bmw-seeklogo.png" alt="BMW" class="brand-logo" />
+      <img src="assets/images/bmw-seeklogo.png" alt="BMW" class="brand-logo" fetchpriority="high" />
     </div>
     <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Mercedes-Benz' }">
-      <img src="assets/images/Mercedes-Benz-logo.png" alt="Mercedes-Benz" class="brand-logo" />
+      <img src="assets/images/Mercedes-Benz-logo.png" alt="Mercedes-Benz" class="brand-logo" fetchpriority="high" />
     </div>
     <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Audi' }">
-      <img src="assets/images/audi-logo.png" alt="Audi" class="brand-logo" />
+      <img src="assets/images/audi-logo.png" alt="Audi" class="brand-logo" fetchpriority="high" />
     </div>
     <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Ford' }">
-      <img src="assets/images/ford-logo.png" alt="Ford" class="brand-logo" />
+      <img src="assets/images/ford-logo.png" alt="Ford" class="brand-logo" fetchpriority="high" />
     </div>
     <div class="brand-card text-center" routerLink="/car-listings" [queryParams]="{ brand: 'Toyota' }">
-      <img src="assets/images/toyota-logo.png" alt="Toyota" class="brand-logo" />
+      <img src="assets/images/toyota-logo.png" alt="Toyota" class="brand-logo" fetchpriority="high" />
     </div>
   </div>
 </section>

@@ -27,7 +27,7 @@
           <div class="mb-4 text-center fade-in-up" style="animation-delay: 0.15s;">
             <div class="profile-image-container">
               @if(currentProfileImage) {
-                <img [src]="currentProfileImage" alt="Profile" class="profile-image">
+                <img [src]="currentProfileImage" alt="Profile" class="profile-image" fetchpriority="high">
               } @else {
                 <div class="profile-placeholder">
                   <i class="ri-user-line"></i>
