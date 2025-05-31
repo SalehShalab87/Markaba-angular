@@ -1,0 +1,328 @@
+.container-fluid {
+    min-height: calc(100vh - 91.78px);
+    background: var(--color-background);
+    padding: 2rem 1rem;
+  }
+  
+  // Header Section
+  .header-section {
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.08);
+  
+    h2 {
+      color: black;
+      font-weight: 700;
+      margin: 0;
+    }
+  
+    .btn-primary {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      border-radius: 0.75rem;
+      font-weight: 600;
+      padding: 0.875rem 1.5rem;
+      transition: 0.3s ease;
+  
+      &:hover {
+        background: var(--color-bg);
+        border-color: var(--color-bg);
+        transform: translateY(-2px);
+      }
+  
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  
+  // Empty State
+  .empty-state {
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.08);
+  
+    i {
+      font-size: 5rem;
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+  
+    h4 {
+      color: #6b7280;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+  
+    p {
+      color: #9ca3af;
+      margin-bottom: 2rem;
+    }
+  
+    .btn-outline-primary {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      border-radius: 0.75rem;
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      transition: 0.3s ease;
+  
+      &:hover {
+        background: var(--color-primary);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+    }
+  }
+  
+  // Car Cards
+  .car-card {
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.08);
+    border: none;
+    overflow: hidden;
+    transition: 0.3s ease;
+    margin-bottom: 2rem;
+  
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 40px rgba(37, 99, 235, 0.12);
+    }
+  
+    .card-body {
+      padding: 2rem;
+    }
+  }
+  
+  // Car Image
+  .car-image {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  // Car Details
+  .car-details {
+    .card-title {
+      color: black;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+  
+    .card-text {
+      color: #6b7280;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+  
+    .badge {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+  
+      &.bg-info {
+        background-color: var(--color-primary) !important;
+        color: #fff !important;
+      }
+  
+      &.bg-success {
+        background-color: #10b981 !important;
+        color: #fff !important;
+      }
+  
+      &.bg-warning {
+        background-color: #f59e0b !important;
+        color: #fff !important;
+      }
+    }
+  
+    .text-success {
+      color: var(--color-primary) !important;
+      font-weight: 700;
+    }
+  }
+  
+  // Car Info Sections
+  .car-info-row {
+    margin: 1.5rem 0;
+  
+    small {
+      color: #9ca3af;
+      font-weight: 500;
+        font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  
+    span:not(.badge) {
+      color: #374151;
+      font-weight: 600;
+    }
+    i{
+        color: var(--color-primary);
+        margin: 0 0.5rem;
+    }
+  }
+  
+  // Action Buttons
+  .car-actions {
+    .btn {
+      border-radius: 0.75rem;
+      font-weight: 600;
+      padding: 0.75rem 1.25rem;
+      transition: 0.3s ease;
+      width: 100%;
+      margin-bottom: 0.75rem;
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+  
+      i {
+        margin-right: 0.5rem;
+      }
+  
+      &.btn-outline-primary {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+  
+        &:hover {
+          background: var(--color-primary);
+          color: #fff;
+          transform: translateY(-2px);
+        }
+      }
+  
+      &.btn-outline-danger {
+        color: #ef4444;
+        border-color: #ef4444;
+  
+        &:hover {
+          background: #ef4444;
+          color: #fff;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+  
+  // Pagination
+  .pagination-section {
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 32px rgba(37, 99, 235, 0.08);
+  
+    .pagination {
+      margin-bottom: 1rem;
+  
+      .page-item {
+        margin: 0 0.25rem;
+  
+        .page-link {
+          border: none;
+          border-radius: 0.75rem;
+          color: #6b7280;
+          font-weight: 600;
+          padding: 0.75rem 1rem;
+          transition: 0.3s ease;
+  
+          &:hover {
+            background: var(--color-primary);
+            color: #fff;
+            transform: translateY(-2px);
+          }
+        }
+  
+        &.active .page-link {
+          background: var(--color-primary);
+          color: #fff;
+          border-color: var(--color-primary);
+        }
+  
+        &.disabled .page-link {
+          color: #d1d5db;
+          background: #f9fafb;
+          cursor: not-allowed;
+  
+          &:hover {
+            transform: none;
+          }
+        }
+      }
+    }
+  
+    .pagination-info {
+      color: #6b7280;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+  }
+  
+  // Responsive Design
+  @media (max-width: 768px) {
+    .container-fluid {
+      padding: 1rem 0.5rem;
+    }
+  
+    .header-section {
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+  
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+  
+      .d-flex {
+        flex-direction: column;
+        align-items: stretch !important;
+      }
+    }
+  
+    .car-card .card-body {
+      padding: 1.5rem;
+    }
+  
+    .car-actions {
+      margin-top: 1.5rem;
+  
+      .btn {
+        font-size: 0.875rem;
+        padding: 0.625rem 1rem;
+      }
+    }
+  
+    .pagination-section {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .car-image img {
+      height: 200px;
+    }
+  
+    .car-details .card-title {
+      font-size: 1.25rem;
+      margin-top: 1rem;
+    }
+  
+    .pagination .page-link {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+    }
+  }

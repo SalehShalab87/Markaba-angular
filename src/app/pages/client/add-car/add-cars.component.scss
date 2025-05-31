@@ -3,6 +3,21 @@
   position: relative;
   min-height: 100vh;
   padding: 2rem 1rem;
+  *{
+    outline: none !important;
+  }
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  background-image: none !important;
+  padding-right: 0.75rem !important; // Reset padding that was adjusted for icon
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+  background-image: none !important;
+  padding-right: 0.75rem !important; // Reset padding that was adjusted for icon
 }
 
 /* Modern Card */

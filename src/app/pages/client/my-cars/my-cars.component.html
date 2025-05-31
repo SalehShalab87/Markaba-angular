@@ -1,0 +1,121 @@
+<div class="container-fluid">
+    <div class="header-section d-flex justify-content-between align-items-center fade-in-up" style="animation-delay: 0.2s;">
+        <h2>{{ 'header.client.cars' | translate }}</h2>
+        <button class="btn btn-primary" routerLink="/client/add-cars">
+            <i class="bi bi-plus-circle"></i>{{ 'myCars.addNewCar' | translate }}
+        </button>
+    </div>
+    
+    @if(isLoading) {
+        <app-loader class="fade-in-up" style="animation-delay: 0.3s;"></app-loader>
+    }
+    
+    @if(!isLoading && (!clientCars || clientCars.length === 0)) {
+        <div class="empty-state fade-in-up" style="animation-delay: 0.4s;">
+            <i class="bi bi-car-front"></i>
+            <h4>{{ 'myCars.noCarsFound' | translate }}</h4>
+            <p>{{ 'myCars.noCarsDescription' | translate }}</p>
+            <button class="btn btn-outline-primary" routerLink="/client/add-cars">
+                {{ 'myCars.addFirstCar' | translate }}
+            </button>
+        </div>
+    }
+    
+    @if(!isLoading && clientCars && clientCars.length > 0) {
+        <!-- Cars List -->
+        <div class="row">
+            @for(car of paginatedCars; let i = $index; track car.id) {
+                <div class="col-12 fade-in-up" [style.animationDelay]="(0.2 + i * 0.08) + 's'">
+                    <div class="card car-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Car Image -->
+                                <div class="col-md-4 car-image">
+                                    <img [src]="car.imageUrls[0]" 
+                                         [alt]="car.brand + ' ' + car.name" 
+                                         fetchpriority="high"
+                                         loading="eager"
+                                         />
+                                </div>
+                                
+                                <!-- Car Details -->
+                                <div class="col-md-6 car-details">
+                                    <h4 class="card-title">{{ car.brand }} {{ car.name }}</h4>
+                                    <p class="card-text">{{ car.description }}</p>
+                                    
+                                    <div class="car-info-row">
+                                        <div class="col-sm-6">
+                                            <small class="">{{ 'dashboard.type' | translate }} : </small>
+                                            <span class="badge bg-info">{{ car.requestType === 'rent' ? ('myCars.rent' | translate) : ('myCars.buy' | translate) }}</span>
+                                        </div>
+                                        <div class="car-info-row mt-3 mb-2">
+                                            <small class="">{{ 'car-details.location' | translate }} :</small>
+                                            <i class="pi pi-map-marker"></i>
+                                            <span class="">{{ car.city }}, {{ car.country }}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="car-info-row">
+                                        @if(car.requestType === 'rent') {
+                                            <h5 class="text-success">{{ 'dashboard.pricePerDay' | translate }} : {{ car.pricePerDay | currency:'JOD':'symbol' }}</h5>
+                                        } @else {
+                                            <h5 class="text-success">{{ 'dashboard.price' | translate }} : {{ car.price | currency:'JOD':'symbol' }}</h5>
+                                        }
+                                    </div>
+                                    
+                                    <div>
+                                        <span class="badge" 
+                                              [ngClass]="car.isAvailable === 'available' ? 'bg-success' : 'bg-warning'">
+                                            {{ car.isAvailable === 'available' ? ('myCars.available' | translate) : ('myCars.unavailable' | translate) }}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Car Actions -->
+                                <div class="col-md-2 car-actions d-flex flex-column justify-content-end">
+                                    <button class="btn btn-outline-danger btn-sm" 
+                                            (click)="deleteCar(car.id)">
+                                    {{ 'myCars.delete' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <!-- Custom Pagination -->
+        @if(totalPages > 1) {
+            <div class="pagination-section fade-in-up" style="animation-delay: 0.2s;">
+                <nav aria-label="Cars pagination">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
+                            <button class="page-link" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+                                Previous
+                            </button>
+                        </li>
+                        
+                        @for(page of getPageNumbers(); track page) {
+                            <li class="page-item" [ngClass]="{'active': page === currentPage}">
+                                <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
+                            </li>
+                        }
+                        
+                        <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages}">
+                            <button class="page-link" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+                                Next
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div class="pagination-info">
+                    Showing {{ getStartIndex() + 1 }} to {{ getEndIndex() }} of {{ clientCars.length }} cars
+                </div>
+            </div>
+        }
+    }
+    
+    <p-confirmdialog></p-confirmdialog>
+</div>

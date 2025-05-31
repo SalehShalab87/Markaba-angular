@@ -11,8 +11,8 @@
           <div class="card-header border-0 text-white text-center position-relative overflow-hidden">
             <div class="header-decoration position-absolute"></div>
             <div class="position-relative z-2">
-              <h2 class="mb-2 fw-bold">Add New Car</h2>
-              <p class="mb-0 opacity-75">Create your car listing with ease</p>
+              <h2 class="mb-2 fw-bold">{{ 'addCar.title' | translate }}</h2>
+              <p class="mb-0 opacity-75">{{ 'addCar.subtitle' | translate }}</p>
             </div>
           </div>
 
@@ -24,14 +24,14 @@
               <div class="row g-4">
                 <!-- Request Type -->
                 <div class="col-md-6">
-                  <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                    <span>Request Type</span>
+                  <label class="form-label fw-semibold">
+                    <span>{{ 'addCar.requestType' | translate }}</span>
                     <span class="text-muted">🚗</span>
                   </label>
                   <div class="position-relative">
                     <select class="form-select modern-select" formControlName="requestType">
                       <option *ngFor="let type of requestTypes" [value]="type">
-                        {{ type | titlecase }}
+                        {{ type == 'rent' ? ('addCar.rent' | translate) : ('addCar.buy' | translate) }}
                       </option>
                     </select>
                   </div>
@@ -40,12 +40,15 @@
                 <!-- Car Model -->
                 <div class="col-md-6">
                   <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                    <span>Car Model *</span>
+                    <span>{{'addCar.carModel' | translate }}</span>
                     <span class="text-muted">🏎️</span>
                   </label>
                   <div class="position-relative">
-                    <select class="form-select modern-select" formControlName="modelId" [disabled]="isLoadingModels">
-                      <option value="" disabled selected>Select a model</option>
+                    <select class="form-select modern-select" 
+                            formControlName="modelId" 
+                            [disabled]="isLoadingModels"
+                            [class.is-invalid]="carForm.get('modelId')?.invalid && carForm.get('modelId')?.touched">
+                      <option value="" disabled selected>{{ 'addCar.selectModel' | translate }}</option>
                       <option *ngFor="let model of carModels" [value]="model.id">
                         {{ model.brand }} {{ model.name }}
                       </option>
@@ -55,13 +58,13 @@
                   @if(isLoadingModels) {
                     <div class="d-flex align-items-center gap-2 mt-2 text-muted small">
                       <div class="spinner-border spinner-border-sm" role="status"></div>
-                      <span>Loading models...</span>
+                      <span>{{ 'addCar.loadingModels' | translate }}</span>
                     </div>
                   }
                   
                   @if(carForm.get('modelId')?.invalid && carForm.get('modelId')?.touched) {
-                    <div class="text-danger small mt-1 d-flex align-items-center gap-1">
-                      <span>Please select a car model</span>
+                    <div class="invalid-feedback d-block">
+                      {{ 'addCar.modelRequired' | translate }}
                     </div>
                   }
                 </div>
@@ -69,13 +72,22 @@
                 <!-- Brand -->
                 <div class="col-md-6">
                   <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                    <span>Brand *</span>
+                    <span>{{ 'addCar.brand' | translate }}</span>
                     <span class="text-muted">🏷️</span>
                   </label>
-                  <input type="text" class="form-control modern-input" formControlName="brand" readonly>
+                  <input type="text" 
+                         class="form-control modern-input" 
+                         formControlName="brand" 
+                         readonly
+                         [class.is-invalid]="carForm.get('brand')?.invalid && carForm.get('brand')?.touched">
                   @if(carForm.get('brand')?.invalid && carForm.get('brand')?.touched) {
-                    <div class="text-danger small mt-1 d-flex align-items-center gap-1">
-                      <span>Brand is required</span>
+                    <div class="invalid-feedback">
+                      @if(carForm.get('brand')?.errors?.['required']) {
+                        {{ 'addCar.brandRequired' | translate }}
+                      }
+                      @if(carForm.get('brand')?.errors?.['maxlength']) {
+                        {{ 'addCar.brandMaxLength' | translate }}
+                      }
                     </div>
                   }
                 </div>
@@ -84,87 +96,154 @@
                 @if(carForm.get('requestType')?.value === 'rent') {
                   <div class="col-md-6">
                     <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                      <span>Price Per Day</span>
+                      <span>{{ 'addCar.pricePerDay' | translate }}</span>
                       <span class="text-muted">💰</span>
                     </label>
                     <div class="input-group">
-                      <span class="input-group-text modern-addon">$</span>
-                      <input type="number" class="form-control modern-input" formControlName="pricePerDay" placeholder="0.00">
+                      @if (currentLanguage ==='ar') {
+                        <input type="number" 
+                               class="form-control modern-input add-price-field" 
+                               formControlName="pricePerDay" 
+                               placeholder="0.00"
+                               min="1"
+                               [class.is-invalid]="carForm.get('pricePerDay')?.invalid && carForm.get('pricePerDay')?.touched">
+                        <span class="input-group-text modern-addon add-price">{{'د.أ'}}</span>
+                      }@else {
+                        <span class="input-group-text modern-addon">{{'JOD'}}</span>
+                        <input type="number" 
+                               class="form-control modern-input" 
+                               formControlName="pricePerDay" 
+                               placeholder="0.00"
+                               min="1"
+                               [class.is-invalid]="carForm.get('pricePerDay')?.invalid && carForm.get('pricePerDay')?.touched">
+                      }
                     </div>
+                    @if(carForm.get('pricePerDay')?.invalid && carForm.get('pricePerDay')?.touched) {
+                      <div class="invalid-feedback d-block">
+                        @if(carForm.get('pricePerDay')?.errors?.['min']) {
+                          {{ 'addCar.priceMinValue' | translate }}
+                        }
+                      </div>
+                    }
                   </div>
                 }
 
                 @if(carForm.get('requestType')?.value === 'buy') {
                   <div class="col-md-6">
                     <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                      <span>Price</span>
+                      <span>{{ 'addCar.price' | translate }} </span>
                       <span class="text-muted">💰</span>
                     </label>
                     <div class="input-group">
-                      <span class="input-group-text modern-addon">$</span>
-                      <input type="number" class="form-control modern-input" formControlName="price" placeholder="0.00">
+                      <span class="input-group-text modern-addon">JOD</span>
+                      <input type="number" 
+                             class="form-control modern-input" 
+                             formControlName="price" 
+                             placeholder="0.00"
+                             min="1"
+                             [class.is-invalid]="carForm.get('price')?.invalid && carForm.get('price')?.touched">
                     </div>
+                    @if(carForm.get('price')?.invalid && carForm.get('price')?.touched) {
+                      <div class="invalid-feedback d-block">
+                        @if(carForm.get('price')?.errors?.['min']) {
+                          {{ 'addCar.priceMinValue' | translate }}
+                        }
+                      </div>
+                    }
                   </div>
                 }
 
                 <!-- Description -->
                 <div class="col-12">
                   <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                    <span>Description</span>
+                    <span>{{ 'addCar.description' | translate }}</span>
                     <span class="text-muted">📝</span>
                   </label>
-                  <textarea class="form-control modern-textarea" formControlName="description" rows="4" 
-                            placeholder="Describe your car's features, condition, and any special details..."></textarea>
+                  <textarea class="form-control modern-textarea" 
+                            formControlName="description" 
+                            rows="4" 
+                            placeholder="{{ 'addCar.descriptionPlaceholder' | translate }}"
+                            maxlength="500"
+                            [class.is-invalid]="carForm.get('description')?.invalid && carForm.get('description')?.touched"></textarea>
+                  <div class="form-text d-flex justify-content-between">
+                    <span></span>
+                    <span>{{ carForm.get('description')?.value?.length || 0 }}/500</span>
+                  </div>
+                  @if(carForm.get('description')?.invalid && carForm.get('description')?.touched) {
+                    <div class="invalid-feedback">
+                      @if(carForm.get('description')?.errors?.['required']) {
+                        {{ 'addCar.descriptionRequired' | translate }}
+                      }
+                      @if(carForm.get('description')?.errors?.['maxlength']) {
+                        {{ 'addCar.descriptionMaxLength' | translate }}
+                      }
+                    </div>
+                  }
                 </div>
 
                 <!-- Location -->
                 <div class="col-md-6">
                   <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                    <span>City</span>
+                    <span>{{ 'addCar.city' | translate }} *</span>
                     <span class="text-muted">🏙️</span>
                   </label>
-                  <input type="text" class="form-control modern-input" formControlName="city" placeholder="Enter city">
+                  <input type="text" 
+                         class="form-control modern-input" 
+                         formControlName="city" 
+                         placeholder="{{ 'addCar.cityPlaceholder' | translate }}"
+                         [class.is-invalid]="carForm.get('city')?.invalid && carForm.get('city')?.touched">
+                  @if(carForm.get('city')?.invalid && carForm.get('city')?.touched) {
+                    <div class="invalid-feedback">
+                      {{ 'addCar.cityRequired' | translate }}
+                    </div>
+                  }
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                    <span>Country</span>
+                    <span>{{ 'addCar.country' | translate }} *</span>
                     <span class="text-muted">🌍</span>
                   </label>
-                  <input type="text" class="form-control modern-input" formControlName="country" placeholder="Enter country">
-                </div>
-
-                <!-- Availability -->
-                <div class="col-12">
-                  <div class="form-check modern-check d-flex align-items-center gap-3">
-                    <input class="form-check-input modern-checkbox" type="checkbox" formControlName="isAvailable" id="isAvailable">
-                    <label class="form-check-label fw-medium" for="isAvailable">
-                      Available for {{ carForm.get('requestType')?.value === 'rent' ? 'rental' : 'purchase' }}
-                    </label>
-                  </div>
+                  <input type="text" 
+                         class="form-control modern-input" 
+                         formControlName="country" 
+                         placeholder="{{ 'addCar.countryPlaceholder' | translate }}"
+                         [class.is-invalid]="carForm.get('country')?.invalid && carForm.get('country')?.touched">
+                  @if(carForm.get('country')?.invalid && carForm.get('country')?.touched) {
+                    <div class="invalid-feedback">
+                      {{ 'addCar.countryRequired' | translate }}
+                    </div>
+                  }
                 </div>
 
                 <!-- Image Upload -->
                 <div class="col-12">
                   <label class="form-label d-flex justify-content-between align-items-center fw-semibold">
-                    <span>Car Images</span>
+                    <span>{{ 'addCar.carImages' | translate }} *</span>
                     <span class="text-muted">📸</span>
                   </label>
                   
                   <div class="upload-area border rounded-3 p-4 text-center position-relative" 
-                       [class.upload-disabled]="isUploading">
+                       [class.upload-disabled]="isUploading"
+                       [class.border-danger]="carForm.get('imageUrls')?.invalid && carForm.get('imageUrls')?.touched">
                     <input type="file" class="d-none" (change)="uploadImage($event)" multiple
                            accept="image/*" [disabled]="isUploading" id="fileInput">
                     <label for="fileInput" class="d-flex flex-column align-items-center gap-2 mb-0 cursor-pointer"
                            [class.pe-none]="isUploading">
                       <div class="upload-icon fs-1 text-muted">📁</div>
                       <div class="text-center">
-                        <div class="fw-semibold text-dark">Click to upload images</div>
-                        <div class="small text-muted">or drag and drop</div>
+                        <div class="fw-semibold text-dark">{{ 'addCar.clickToUpload' | translate }}</div>
+                        <div class="small text-muted">{{ 'addCar.orDragAndDrop' | translate }}</div>
                       </div>
                     </label>
-                    <div class="small text-muted mt-2">Upload high-quality images of your car (PNG, JPG)</div>
+                    <div class="small text-muted mt-2">{{ 'addCar.uploadHint' | translate }}</div>
                   </div>
+
+                  @if(carForm.get('imageUrls')?.invalid && carForm.get('imageUrls')?.touched) {
+                    <div class="text-danger small mt-2">
+                      {{ 'addCar.imagesRequired' | translate }}
+                    </div>
+                  }
 
                   <!-- Upload Progress -->
                   @if(isUploading) {
@@ -202,13 +281,13 @@
                 <!-- Submit Button -->
                 <div class="col-12 mt-4">
                   <button type="submit" class="btn btn-lg w-100 text-white fw-semibold modern-submit d-flex align-items-center justify-content-center gap-2" 
-                          [disabled]="carForm.invalid || isUploading">
+                          [disabled]="isUploading">
                     @if(!isUploading) {
                       <span>🚀</span>
-                      <span>Submit Car Listing</span>
+                      <span>{{ 'addCar.submit' | translate }}</span>
                     } @else {
                       <div class="spinner-border spinner-border-sm" role="status"></div>
-                      <span>Uploading...</span>
+                      <span>{{ 'addCar.uploading' | translate }}</span>
                     }
                   </button>
                 </div>

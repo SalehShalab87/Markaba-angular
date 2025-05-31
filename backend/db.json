@@ -140,25 +140,8 @@
   ],
   "cars": [
     {
-      "id": "c101",
-      "ownerId": "u2",
-      "modelId": "m1",
-      "brand": "Honda",
-      "name": "Civic",
-      "description": "A reliable and fuel-efficient sedan, perfect for city driving. The Honda Civic offers a comfortable interior, advanced safety features, and excellent fuel economy, making it an ideal choice for daily commutes and long journeys alike.",
-      "pricePerDay": 45,
-      "price": null,
-      "imageUrls": [
-        "https://images.unsplash.com/photo-1666294715367-5a01360e30a5?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      ],
-      "isAvailable": "available",
-      "requestType": "rent",
-      "city": "Amman",
-      "country": "Jordan"
-    },
-    {
       "id": "c102",
-      "ownerId": "u4",
+      "ownerId": "u2",
       "modelId": "m2",
       "brand": "Toyota",
       "name": "Corolla",
@@ -175,7 +158,7 @@
     },
     {
       "id": "c103",
-      "ownerId": "u9",
+      "ownerId": "u2",
       "modelId": "m3",
       "brand": "Tesla",
       "name": "Model 3",
@@ -192,7 +175,7 @@
     },
     {
       "id": "0c24541f-4cf0-49ab-80cb-47684f843068",
-      "ownerId": "u10",
+      "ownerId": "u2",
       "modelId": "m4",
       "brand": "Ford",
       "name": "Mustang",
@@ -209,7 +192,7 @@
     },
     {
       "id": "c105",
-      "ownerId": "u12",
+      "ownerId": "u2",
       "modelId": "m5",
       "brand": "Mazda",
       "name": "CX-4",
@@ -226,7 +209,7 @@
     },
     {
       "id": "c106",
-      "ownerId": "u13",
+      "ownerId": "u2",
       "modelId": "m7",
       "brand": "Toyota",
       "name": "Camry",
@@ -243,7 +226,7 @@
     },
     {
       "id": "c107",
-      "ownerId": "u14",
+      "ownerId": "u2",
       "modelId": "m8",
       "brand": "Honda",
       "name": "Accord",
@@ -260,7 +243,7 @@
     },
     {
       "id": "c108",
-      "ownerId": "u15",
+      "ownerId": "u2",
       "modelId": "m10",
       "brand": "Nissan",
       "name": "Altima",
@@ -277,7 +260,7 @@
     },
     {
       "id": "c109",
-      "ownerId": "u11",
+      "ownerId": "u2",
       "modelId": "m2",
       "brand": "Toyota",
       "name": "Corolla",
@@ -294,7 +277,7 @@
     },
     {
       "id": "c110",
-      "ownerId": "u5",
+      "ownerId": "u2",
       "modelId": "m3",
       "brand": "Tesla",
       "name": "Model 3",

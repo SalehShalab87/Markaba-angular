@@ -17,14 +17,15 @@ import { CarModel } from '../../../models/car-model.model';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
 import { ShortenUrlPipe } from '../../../shared/pipes/shorten-url.pipe';
 import { ClientService } from '../../../core/services/client/client.service';
+import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-cars',
-  imports: [CommonModule, ReactiveFormsModule, LoaderComponent, ShortenUrlPipe,TitleCasePipe],
-  templateUrl: './cars.component.html',
-  styleUrl: './cars.component.scss',
+  imports: [CommonModule, ReactiveFormsModule, LoaderComponent, ShortenUrlPipe,TitleCasePipe,TranslatePipe],
+  templateUrl: './add-cars.component.html',
+  styleUrl: './add-cars.component.scss',
 })
-export class CarsComponent {
+export class AddCarsComponent {
   private auth = inject(AuthService);
   private clientService = inject(ClientService);
   private fb = inject(FormBuilder);
@@ -38,12 +39,14 @@ export class CarsComponent {
   uploadProgress = 0;
   carModels: CarModel[] = [];
   isLoadingModels = false;
+  currentLanguage!: string ;
 
   ngOnInit() {
     this.FormHandler();
     this.loadCarModels();
     this.setupBrandAutoFill();
     this.setPriceValidators();
+    this.currentLanguage = localStorage.getItem('lang') || 'en';
   }
 
   FormHandler() {
@@ -52,8 +55,8 @@ export class CarsComponent {
       modelId: ['', Validators.required],
       brand: ['', [Validators.required, Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.maxLength(500)]],
-      pricePerDay: [null, [Validators.min(0)]],
-      price: [null, [Validators.min(0)]],
+      pricePerDay: [null, [Validators.minLength(1)]],
+      price: [null, [Validators.minLength(1)]],
       imageUrls: this.fb.array([], Validators.required),
       isAvailable: [true],
       requestType: ['rent', Validators.required],
@@ -72,7 +75,7 @@ export class CarsComponent {
         priceControl?.clearValidators();
         pricePerDayControl?.setValidators([
           Validators.required,
-          Validators.min(0),
+          Validators.minLength(1),
         ]);
       } else {
         pricePerDayControl?.clearValidators();
@@ -145,35 +148,30 @@ export class CarsComponent {
  onSubmit() {
   if (this.carForm?.invalid) {
     this.carForm.markAllAsTouched();
+    this.imageUrls.markAsTouched();
     return;
   }
 
   const carData: Car = {
     ...this.carForm?.value,
-    id: '',
+    id: crypto.randomUUID(),
     ownerId: this.currentClient?.id || '',
-    isAvailable: this.carForm?.value.isAvailable || true,
+    isAvailable: this.carForm?.value.isAvailable ? 'available' : 'unavailable',
   };
-  
+
   this.isLoading = true;
   this.clientService.addNewCar(carData).subscribe({
-    next: (response:Car) => {
+    next: (response: Car) => {
       console.log(response);
       this.isLoading = false;
-      
       this.carForm?.reset();
-      this.FormHandler(); 
-      
-      const successTranslationKey = 'toast.success.register';
-      this.toast.showSuccess(successTranslationKey);
+      this.FormHandler();
+      this.toast.showSuccess('addCar.success');
     },
     error: (error: any) => {
       console.log(error);
       this.isLoading = false;
-      
-      // Show error toast
-      const errorTranslationKey = 'toast.error.register';
-      this.toast.showError(errorTranslationKey);
+      this.toast.showError('addCar.error');
     },
   });
 }

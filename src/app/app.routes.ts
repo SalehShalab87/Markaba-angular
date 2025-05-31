@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterClientComponent } from './pages/auth/register-client/register-client.component';
 import { RegisterCustomerComponent } from './pages/auth/register-customer/register-customer.component';
-import { CarsComponent } from './pages/client/cars/cars.component';
 import { PaymentsComponent } from './pages/client/payments/payments.component';
 import { HomeComponent } from './pages/main/home/home.component';
 import { NotFoundComponent } from './pages/main/not-found/not-found.component';
@@ -22,6 +21,8 @@ import { CarsListingComponent } from './pages/main/cars-listing/cars-listing.com
 import { ContactUsComponent } from './pages/main/contact-us/contact-us.component';
 import { AboutUsComponent } from './pages/main/about-us/about-us.component';
 import { CarDetailsComponent } from './pages/main/car-details/car-details.component';
+import { AddCarsComponent } from './pages/client/add-car/add-cars.component';
+import { MyCarsComponent } from './pages/client/my-cars/my-cars.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -71,7 +72,8 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: ClientDashboardComponent },
-      { path: 'cars', component: CarsComponent },
+      { path: 'add-cars', component: AddCarsComponent },
+      {path: 'my-cars', component: MyCarsComponent},
       { path: 'requests', component: ClientRequestsComponent },
       { path: 'payments', component: PaymentsComponent },
     ],
