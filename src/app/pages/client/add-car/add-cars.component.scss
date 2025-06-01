@@ -1,127 +1,88 @@
 .modern-wrapper {
-  background-color: var(--color-bg); 
-  position: relative;
+  background-color: var(--color-bg);
   min-height: 100vh;
   padding: 2rem 1rem;
-  *{
-    outline: none !important;
-  }
 }
 
+// Remove Bootstrap validation icons
 .form-control.is-invalid,
 .form-select.is-invalid {
   background-image: none !important;
-  padding-right: 0.75rem !important; // Reset padding that was adjusted for icon
+  padding-right: 0.75rem !important;
 }
 
 .form-control.is-valid,
 .form-select.is-valid {
   background-image: none !important;
-  padding-right: 0.75rem !important; // Reset padding that was adjusted for icon
+  padding-right: 0.75rem !important;
 }
 
-/* Modern Card */
+// Card styling
 .modern-card {
   background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border: none;
+  max-width: 100%;
 }
 
-.modern-card .card-header {
-  background-color: var(--color-primary); 
+.card-header {
+  background: var(--color-primary);
   color: white;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 0.75rem 0.75rem 0 0 !important;
+}
+
+// Section dividers
+.section-divider {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+// Features grid
+.feature-card {
+  background: #e9ecef;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  font-weight: 500;
+}
+
+.feature-card:hover {
+  background-color: #d6d8db; /* Slightly darker than default */
+}
+
+.feature-card.selected {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
+
+// Upload area
+.upload-area {
+  border: 2px dashed #dee2e6;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
   padding: 2rem;
   text-align: center;
-}
-
-/* Form Controls */
-.modern-input, 
-.modern-select, 
-.modern-textarea {
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  padding: 0.875rem 1rem;
-  background-color: white;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.modern-input:focus, 
-.modern-select:focus, 
-.modern-textarea:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.modern-input[readonly] {
-  background-color: #f8f9fa;
-  opacity: 0.8;
-}
-
-.modern-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-/* Buttons */
-button {
-  background-color: var(--color-primary);
-  color: white;
-  border-radius: 5px;
-  padding: 10px 20px;
-  border: none;
   cursor: pointer;
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
-button:hover:not(:disabled) {
-  background-color: var(--color-bg);
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Submit Button */
-.modern-submit {
-  background-color: var(--color-primary);
-  border: none;
-  border-radius: 5px;
-  padding: 1rem 1.5rem;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px 0 rgba(0, 123, 255, 0.25);
-}
-
-.modern-submit:hover:not(:disabled) {
-  background-color: var(--color-bg);
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
-  box-shadow: 0 8px 25px 0 rgba(0, 123, 255, 0.5);
-}
-
-.modern-submit:disabled {
-  opacity: 0.6 !important;
-  transform: none;
-}
-
-/* Upload Area */
-.upload-area {
-  border: 2px dashed #d1d5db;
-  background-color: rgba(249, 250, 251, 0.5);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.upload-area:hover:not(.upload-disabled) {
+.upload-area:hover {
   border-color: var(--color-primary);
-  background-color: rgba(0, 123, 255, 0.05);
 }
 
 .upload-area.upload-disabled {
@@ -129,113 +90,57 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Image Cards */
+// Image cards
 .image-card {
-  border: 1px solid #d1d5db;
+  border: 1px solid #dee2e6;
   border-radius: 0.5rem;
   overflow: hidden;
+}
+
+// Submit button
+.modern-submit {
+  background: var(--color-primary);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-weight: 600;
   transition: transform 0.2s ease;
 }
 
-.image-card:hover {
-  transform: translateY(-2px);
+.modern-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
 }
 
-/* Progress Bar */
-.progress-bar {
-  background-color: var(--color-primary);
+.modern-submit:disabled {
+  opacity: 0.6;
+  transform: none;
 }
 
-/* Custom Scrollbar */
-.card-body::-webkit-scrollbar {
-  width: 6px;
-}
-
-.card-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.card-body::-webkit-scrollbar-thumb {
-  background: rgba(0, 123, 255, 0.3);
-  border-radius: 3px;
-}
-
-.card-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 123, 255, 0.5);
-}
-
-small{
-  font-size: 1rem;
-}
-
-/* Responsive Adjustments */
+// Responsive
 @media (max-width: 768px) {
   .modern-wrapper {
-    padding: 1rem;
-  }
-
-  .modern-card .card-header {
-    padding: 1.5rem;
-  }
-
-  .modern-input, 
-  .modern-select, 
-  .modern-textarea {
-    padding: 0.75rem 1rem;
+    padding: 1rem 0.5rem;
   }
   
-  .modern-submit {
-    padding: 0.875rem 1.25rem;
-    font-size: 1rem;
+  .card-header {
+    padding: 1rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .upload-area {
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 576px) {
-  .modern-card .card-header h2 {
+  .modern-wrapper {
+    padding: 0.5rem;
+  }
+  
+  .card-header h2 {
     font-size: 1.5rem;
   }
-  
-  .upload-area {
-    padding: 1.5rem 1rem;
-  }
-  
-  .upload-icon {
-    font-size: 2rem;
-  }
 }
-
-/* Animation for form elements */
-.modern-input, 
-.modern-select, 
-.modern-textarea,
-.modern-checkbox,
-.upload-area,
-.image-card,
-.modern-submit {
-  animation: fadeInUp 0.6s ease-out;
-  animation-fill-mode: both;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Stagger animation delays */
-.col-md-6:nth-child(1) .modern-input,
-.col-md-6:nth-child(1) .modern-select { animation-delay: 0.1s; }
-.col-md-6:nth-child(2) .modern-input,
-.col-md-6:nth-child(2) .modern-select { animation-delay: 0.2s; }
-.col-md-6:nth-child(3) .modern-input,
-.col-md-6:nth-child(3) .modern-select { animation-delay: 0.3s; }
-.col-md-6:nth-child(4) .modern-input,
-.col-md-6:nth-child(4) .modern-select { animation-delay: 0.4s; }
-.col-12 .modern-textarea { animation-delay: 0.5s; }
-.upload-area { animation-delay: 0.6s; }
-.modern-submit { animation-delay: 0.7s; }

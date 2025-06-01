@@ -504,7 +504,8 @@
       "blindSpotMonitoring": "Blind Spot Monitoring",
       "adaptiveCruiseControl": "Adaptive Cruise Control",
       "laneKeepAssist": "Lane Keep Assist"
-    }
+    },
+    "features-title": "Features"
   },
   "about-us": {
     "title": "About RideMart",
@@ -533,5 +534,14 @@
     "back-home": "Back to Home",
     "browse-cars": "Browse Cars",
     "help-text": "Need help? Contact our support team or try searching for what you need."
+  },
+  "editCar": {
+    "title": "Edit Car",
+    "subtitle": "Update your car listing details",
+    "updateCar": "Update Car",
+    "updateSuccess": "Car updated successfully!",
+    "updateError": "Failed to update car",
+    "carNotFound": "Car not found",
+    "cancel": "Cancel"
   }
 }

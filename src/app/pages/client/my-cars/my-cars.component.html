@@ -39,62 +39,9 @@
                                 </div>
                                 
                                 <!-- Car Details -->
-                                <div class="col-md-6 car-details">
+                                <div class="col-md-6     car-details">
                                     <h4 class="card-title">{{ car.brand }} {{ car.name }}</h4>
-                                    
-                                    <!-- Enhanced Car Specs -->
-                                    <div class="car-specs-grid mb-3">
-                                        @if(car.year) {
-                                            <div class="spec-item">
-                                                <i class="pi pi-calendar text-muted me-2"></i>
-                                                <small class="text-muted">{{ 'myCars.year' | translate }}:</small>
-                                                <span class="ms-1">{{ car.year }}</span>
-                                            </div>
-                                        }
-                                        
-                                        @if(car.transmission) {
-                                            <div class="spec-item">
-                                                <i class="pi pi-cog text-muted me-2"></i>
-                                                <small class="text-muted">{{ 'myCars.transmission' | translate }}:</small>
-                                                <span class="ms-1">{{ ('myCars.' + car.transmission) | translate }}</span>
-                                            </div>
-                                        }
-                                        
-                                        @if(car.mileage) {
-                                            <div class="spec-item">
-                                                <i class="pi pi-stopwatch text-muted me-2"></i>
-                                                <small class="text-muted">{{ 'myCars.mileage' | translate }}:</small>
-                                                <span class="ms-1">{{ car.mileage | number }} km</span>
-                                            </div>
-                                        }
-                                        
-                                        @if(car.seats) {
-                                            <div class="spec-item">
-                                                <i class="pi pi-users text-muted me-2"></i>
-                                                <small class="text-muted">{{ 'myCars.seats' | translate }}:</small>
-                                                <span class="ms-1">{{ car.seats }}</span>
-                                            </div>
-                                        }
-                                        
-                                        @if(car.engineType) {
-                                            <div class="spec-item">
-                                                <i class="pi pi-bolt text-muted me-2"></i>
-                                                <small class="text-muted">{{ 'myCars.engineType' | translate }}:</small>
-                                                <span class="ms-1">{{ ('myCars.' + car.engineType) | translate }}</span>
-                                            </div>
-                                        }
-                                        
-                                        @if(car.condition) {
-                                            <div class="spec-item">
-                                                <i class="pi pi-shield text-muted me-2"></i>
-                                                <small class="text-muted">{{ 'myCars.condition' | translate }}:</small>
-                                                <span class="badge ms-1" [class]="getConditionBadgeClass(car.condition)">
-                                                    {{ ('myCars.' + car.condition) | translate }}
-                                                </span>
-                                            </div>
-                                        }
-                                    </div>
-                                    
+
                                     <p class="card-text text-muted small">{{ car.description | slice:0:100 }}{{ car.description.length > 100 ? '...' : '' }}</p>
                                     
                                     <div class="car-info-row">
@@ -134,23 +81,24 @@
                                 </div>
                                 
                                 <!-- Car Actions -->
-                                <div class="col-md-2 car-actions d-flex flex-column justify-content-between">
-                                    <div class="action-buttons">
+                                <div class="col-md-2 car-actions">
+                                    <div class="action-buttons d-flex flex-column gap-2 justify-content-end h-100">
                                         <button class="btn btn-outline-primary btn-sm mb-2 w-100" 
                                                 routerLink="/car-details/{{ car.id }}">
                                             <i class="pi pi-eye me-1"></i>
                                             {{ 'myCars.view' | translate }}
                                         </button>
-                                        <button class="btn btn-outline-secondary btn-sm mb-2 w-100">
+                                        <button class="btn btn-outline-secondary btn-sm mb-2 w-100"
+                                                routerLink="/client/edit-car/{{ car.id }}">
                                             <i class="pi pi-pencil me-1"></i>
                                             {{ 'myCars.edit' | translate }}
                                         </button>
+                                        <button class="btn btn-outline-danger btn-sm" 
+                                                (click)="deleteCar(car.id)">
+                                            <i class="pi pi-trash me-1"></i>
+                                            {{ 'myCars.delete' | translate }}
+                                        </button>
                                     </div>
-                                    <button class="btn btn-outline-danger btn-sm" 
-                                            (click)="deleteCar(car.id)">
-                                        <i class="pi pi-trash me-1"></i>
-                                        {{ 'myCars.delete' | translate }}
-                                    </button>
                                 </div>
                             </div>
                         </div>

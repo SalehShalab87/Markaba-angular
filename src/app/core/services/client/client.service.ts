@@ -63,7 +63,6 @@ export class ClientService {
     );
   }
 
-
   getAllRequests(): Observable<CarRequest[]> {
     return this.http.get<CarRequest[]>(`${this.apiUrl}/requests`);
   }
@@ -78,15 +77,21 @@ export class ClientService {
   ): Observable<CarRequest> {
     return this.http.patch<CarRequest>(`${this.apiUrl}/requests/${requestId}`, {
       requestStatus: status,
-      paymentStatus: 'paid'
+      paymentStatus: 'paid',
     });
   }
 
-  acceptRequestAndUpdateCar(requestId: string, carId: string): Observable<{ request: CarRequest, car: Car }> {
+  acceptRequestAndUpdateCar(
+    requestId: string,
+    carId: string
+  ): Observable<{ request: CarRequest; car: Car }> {
     if (this.isLoggedIn && this.role === client) {
-      return this.http.post<{ request: CarRequest, car: Car }>(`${this.apiUrl}/requests/${requestId}/accept`, {
-        carId: carId
-      });
+      return this.http.post<{ request: CarRequest; car: Car }>(
+        `${this.apiUrl}/requests/${requestId}/accept`,
+        {
+          carId: carId,
+        }
+      );
     }
     return throwError(
       () => new Error('must be loggedIn and be a client to accept requests')
@@ -96,12 +101,20 @@ export class ClientService {
   updateCarAvailability(carId: string, isAvailable: boolean): Observable<Car> {
     const isAvailableValue = isAvailable ? 'available' : 'unavailable';
     if (this.isLoggedIn && this.role === client) {
-      return this.http.patch<Car>(`${CarsUrl}/${carId}`, { 
-        isAvailable: isAvailableValue 
+      return this.http.patch<Car>(`${CarsUrl}/${carId}`, {
+        isAvailable: isAvailableValue,
       });
     }
     return throwError(
-      () => new Error('must be loggedIn and be a client to update car availability')
+      () =>
+        new Error('must be loggedIn and be a client to update car availability')
     );
+  }
+  updateCar(carId: string, carData: Car): Observable<Car> {
+    return this.http.put<Car>(`${this.apiUrl}/cars/${carId}`, carData);
+  }
+
+  getCarById(carId: string): Observable<Car> {
+    return this.http.get<Car>(`${this.apiUrl}/cars/${carId}`);
   }
 }

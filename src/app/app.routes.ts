@@ -74,6 +74,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: ClientDashboardComponent },
       { path: 'add-cars', component: AddCarsComponent },
       {path: 'my-cars', component: MyCarsComponent},
+      {path: 'edit-car/:id', component: AddCarsComponent},
       {path: 'profile', component: ClientProfileComponent}, 
     ],
   },
