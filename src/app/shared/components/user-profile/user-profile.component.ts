@@ -204,6 +204,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.profileForm.patchValue({
       profileImage: '',
     });
+    this.currentUser!.profileImage = '';
+    this.authService.updateCurrentUser(this.currentUser!);
+    this.isEditingProfile = true; 
     this.toast.showSuccess('profile.imageRemoved');
   }
 

@@ -149,7 +149,7 @@
       "name": "Corolla",
       "description": "Spacious, comfortable, and great for families. The Toyota Corolla is renowned for its reliability, smooth ride, and advanced technology, providing peace of mind and convenience for both short trips and extended travels.",
       "pricePerDay": null,
-      "price": 15000,
+      "price": 18000,
       "imageUrls": [
         "https://scene7.toyota.eu/is/image/toyotaeurope/COR0004b_25_WEB_crop:Large-Landscape?ts=0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=png-alpha",
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_xse-apex-edition_i_oem_1_1600x1067.jpg",
@@ -157,7 +157,6 @@
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_detail_oem_2_1600x1067.jpg",
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_d_oem_1_1600x1067.jpg",
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_g_oem_1_1600x1067.jpg"
-
       ],
       "isAvailable": "available",
       "requestType": "buy",
@@ -175,9 +174,15 @@
       "seats": 5,
       "doors": 4,
       "color": "Silver",
-      "condition": "good",
+      "condition": "excellent",
       "safetyRating": 5,
-      "features": ["airConditioning", "bluetooth", "backupCamera", "cruiseControl"]
+      "features": [
+        "Air Conditioning",
+        "Bluetooth",
+        "Backup Camera",
+        "Cruise Control"
+      ],
+      "updatedAt": "2025-06-01T17:56:23.701Z"
     },
     {
       "id": "c103",
@@ -213,7 +218,14 @@
       "color": "Pearl White",
       "condition": "excellent",
       "safetyRating": 5,
-      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring"]
+      "features": [
+        "Gps",
+        "Bluetooth",
+        "Backup Camera",
+        "Adaptive Cruise Control",
+        "Lane Keep Assist",
+        "Blind Spot Monitoring"
+      ]
     },
     {
       "id": "0c24541f-4cf0-49ab-80cb-47684f843068",
@@ -245,7 +257,12 @@
       "color": "Racing Red",
       "condition": "good",
       "safetyRating": 4,
-      "features": ["bluetooth", "cruiseControl", "leatherSeats", "sunroof"]
+      "features": [
+        "Bluetooth",
+        "Cruise Control",
+        "LeatherSeats",
+        "Sun Roof"
+      ]
     },
     {
       "id": "c105",
@@ -277,7 +294,14 @@
       "color": "Soul Red Crystal",
       "condition": "excellent",
       "safetyRating": 5,
-      "features": ["gps", "bluetooth", "backupCamera", "blindSpotMonitoring", "airConditioning", "heatedSeats"]
+      "features": [
+        "Gps",
+        "Bluetooth",
+        "BackupCamera",
+        "Blind Spot Monitoring",
+        "Air Conditioning",
+        "Heated Seats"
+      ]
     },
     {
       "id": "c106",
@@ -309,7 +333,14 @@
       "color": "Midnight Black Metallic",
       "condition": "good",
       "safetyRating": 5,
-      "features": ["gps", "bluetooth", "backupCamera", "cruiseControl", "airConditioning", "leatherSeats"]
+      "features": [
+        "Gps",
+        "Bluetooth",
+        "Backup Camera",
+        "Cruise Control",
+        "Air Conditioning",
+        "Leather Seats"
+      ]
     },
     {
       "id": "c107",
@@ -341,7 +372,14 @@
       "color": "Platinum White Pearl",
       "condition": "excellent",
       "safetyRating": 5,
-      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "airConditioning"]
+      "features": [
+        "gps",
+        "bluetooth",
+        "backupCamera",
+        "adaptiveCruiseControl",
+        "laneKeepAssist",
+        "airConditioning"
+      ]
     },
     {
       "id": "c108",
@@ -373,7 +411,13 @@
       "color": "Deep Blue Pearl",
       "condition": "excellent",
       "safetyRating": 4,
-      "features": ["bluetooth", "backupCamera", "cruiseControl", "airConditioning", "parkingSensors"]
+      "features": [
+        "bluetooth",
+        "backupCamera",
+        "cruiseControl",
+        "airConditioning",
+        "parkingSensors"
+      ]
     },
     {
       "id": "c109",
@@ -405,7 +449,10 @@
       "color": "Classic Silver Metallic",
       "condition": "fair",
       "safetyRating": 4,
-      "features": ["bluetooth", "airConditioning"]
+      "features": [
+        "bluetooth",
+        "airConditioning"
+      ]
     },
     {
       "id": "c110",
@@ -437,7 +484,16 @@
       "color": "Midnight Silver Metallic",
       "condition": "excellent",
       "safetyRating": 5,
-      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring", "heatedSeats", "sunroof"]
+      "features": [
+        "gps",
+        "bluetooth",
+        "backupCamera",
+        "adaptiveCruiseControl",
+        "laneKeepAssist",
+        "blindSpotMonitoring",
+        "heatedSeats",
+        "sunroof"
+      ]
     },
     {
       "id": "c111",
@@ -469,7 +525,18 @@
       "color": "Alpine White",
       "condition": "excellent",
       "safetyRating": 5,
-      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring", "leatherSeats", "heatedSeats", "sunroof", "parkingSensors"]
+      "features": [
+        "gps",
+        "bluetooth",
+        "backupCamera",
+        "adaptiveCruiseControl",
+        "laneKeepAssist",
+        "blindSpotMonitoring",
+        "leatherSeats",
+        "heatedSeats",
+        "sunroof",
+        "parkingSensors"
+      ]
     },
     {
       "id": "c112",
@@ -501,7 +568,18 @@
       "color": "Obsidian Black Metallic",
       "condition": "excellent",
       "safetyRating": 5,
-      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring", "leatherSeats", "heatedSeats", "airConditioning", "cruiseControl"]
+      "features": [
+        "gps",
+        "bluetooth",
+        "backupCamera",
+        "adaptiveCruiseControl",
+        "laneKeepAssist",
+        "blindSpotMonitoring",
+        "leatherSeats",
+        "heatedSeats",
+        "airConditioning",
+        "cruiseControl"
+      ]
     },
     {
       "id": "c113",
@@ -533,7 +611,18 @@
       "color": "Glacier White Metallic",
       "condition": "excellent",
       "safetyRating": 5,
-      "features": ["gps", "bluetooth", "backupCamera", "adaptiveCruiseControl", "laneKeepAssist", "blindSpotMonitoring", "airConditioning", "heatedSeats", "cruiseControl", "parkingSensors"]
+      "features": [
+        "gps",
+        "bluetooth",
+        "backupCamera",
+        "adaptiveCruiseControl",
+        "laneKeepAssist",
+        "blindSpotMonitoring",
+        "airConditioning",
+        "heatedSeats",
+        "cruiseControl",
+        "parkingSensors"
+      ]
     }
   ],
   "carModels": [

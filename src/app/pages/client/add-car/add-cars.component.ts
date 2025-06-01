@@ -1,5 +1,4 @@
-// add-cars.component.ts - Enhanced with specifications
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -7,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { User } from '../../../models/user.model';
 import {
@@ -39,15 +39,23 @@ import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
   templateUrl: './add-cars.component.html',
   styleUrl: './add-cars.component.scss',
 })
-export class AddCarsComponent {
+export class AddCarsComponent implements OnInit {
   private auth = inject(AuthService);
   private clientService = inject(ClientService);
   private fb = inject(FormBuilder);
   private toast = inject(ToastService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   currentClient: User | null = this.auth.currentUser();
   currentYear = new Date().getFullYear();
-  currentLanguage!: string;
+  currentLanguage: string = 'en';
+  isRTL: boolean = false;
+
+  // Edit mode properties
+  isEditMode = false;
+  carId: string | null = null;
+  currentCar: Car | null = null;
 
   // Form control options
   requestTypes: RequestType[] = ['rent', 'buy'];
@@ -79,14 +87,82 @@ export class AddCarsComponent {
   uploadProgress = 0;
   carModels: CarModel[] = [];
   isLoadingModels = false;
-  selectedFeatures: string[] = [];
 
   ngOnInit() {
+    this.currentLanguage = localStorage.getItem('lang') || 'en';
+    this.isRTL = this.currentLanguage === 'ar';
+    this.checkEditMode();
     this.FormHandler();
     this.loadCarModels();
     this.setupBrandAutoFill();
     this.setPriceValidators();
-    this.currentLanguage = localStorage.getItem('lang') || 'en';
+  }
+
+  checkEditMode() {
+    this.carId = this.route.snapshot.paramMap.get('id');
+    this.isEditMode = !!this.carId;
+
+    if (this.isEditMode && this.carId) {
+      this.loadCarForEdit(this.carId);
+    }
+  }
+
+  loadCarForEdit(carId: string) {
+    this.isLoading = true;
+    this.clientService.getCarById(carId).subscribe({
+      next: (car: Car) => {
+        this.currentCar = car;
+        this.populateFormForEdit(car);
+        this.isLoading = false;
+      },
+      error: () => {
+        this.toast.showError('editCar.carNotFound');
+        this.router.navigate(['/client/my-cars']);
+        this.isLoading = false;
+      },
+    });
+  }
+
+  populateFormForEdit(car: Car) {
+    // Populate basic form fields
+    this.carForm.patchValue({
+      ownerId: car.ownerId,
+      modelId: car.modelId,
+      brand: car.brand,
+      requestType: car.requestType,
+      year: car.year,
+      condition: car.condition,
+      pricePerDay: car.pricePerDay,
+      price: car.price,
+      transmission: car.transmission,
+      engineType: car.engineType,
+      engineSize: car.engineSize,
+      horsepower: car.horsepower,
+      mileage: car.mileage,
+      fuelEconomy: car.fuelEconomy,
+      seats: car.seats,
+      doors: car.doors,
+      color: car.color,
+      driveType: car.driveType,
+      description: car.description,
+      city: car.city,
+      country: car.country,
+      isAvailable: car.isAvailable === 'available',
+    });
+
+    // Populate image URLs
+    const imageUrlsArray = this.carForm.get('imageUrls') as FormArray;
+    imageUrlsArray.clear();
+    car.imageUrls?.forEach((url) => {
+      imageUrlsArray.push(this.fb.control(url));
+    });
+
+    // Populate selected features into FormArray
+    const featuresArray = this.carForm.get('features') as FormArray;
+    featuresArray.clear();
+    car.features?.forEach((feature) => {
+      featuresArray.push(this.fb.control(feature));
+    });
   }
 
   FormHandler() {
@@ -146,17 +222,6 @@ export class AddCarsComponent {
       priceControl?.updateValueAndValidity();
       pricePerDayControl?.updateValueAndValidity();
     });
-  }
-
-  onFeatureChange(feature: string, event: any) {
-    if (event.target.checked) {
-      this.selectedFeatures.push(feature);
-    } else {
-      const index = this.selectedFeatures.indexOf(feature);
-      if (index > -1) {
-        this.selectedFeatures.splice(index, 1);
-      }
-    }
   }
 
   async uploadImage(event: Event) {
@@ -219,6 +284,22 @@ export class AddCarsComponent {
     this.imageUrls.removeAt(index);
   }
 
+  get featuresArray(): FormArray {
+    return this.carForm.get('features') as FormArray;
+  }
+
+  toggleFeature(feature: string): void {
+    const index = this.featuresArray.controls.findIndex(
+      (ctrl) => ctrl.value === feature
+    );
+
+    if (index === -1) {
+      this.featuresArray.push(this.fb.control(feature));
+    } else {
+      this.featuresArray.removeAt(index);
+    }
+  }
+
   onSubmit() {
     if (this.carForm?.invalid) {
       this.carForm.markAllAsTouched();
@@ -227,12 +308,22 @@ export class AddCarsComponent {
     }
 
     const formValue = this.carForm?.value;
+
+    if (this.isEditMode && this.carId) {
+      this.updateCar(formValue);
+    } else {
+      this.createCar(formValue);
+    }
+  }
+
+  createCar(formValue: any) {
     const carData: Car = {
       ...formValue,
       id: crypto.randomUUID(),
       ownerId: this.currentClient?.id || '',
       isAvailable: formValue.isAvailable ? 'available' : 'unavailable',
-      features: this.selectedFeatures,
+      features: this.featuresArray.value,
+      createdAt: new Date().toISOString(),
     };
 
     this.isLoading = true;
@@ -241,7 +332,6 @@ export class AddCarsComponent {
         console.log(response);
         this.isLoading = false;
         this.carForm?.reset();
-        this.selectedFeatures = [];
         this.FormHandler();
         this.toast.showSuccess('addCar.success');
       },
@@ -253,6 +343,39 @@ export class AddCarsComponent {
     });
   }
 
+  updateCar(formValue: any) {
+    const updatedCar: Car = {
+      ...this.currentCar!,
+      ...formValue,
+      id: this.carId!,
+      isAvailable: formValue.isAvailable ? 'available' : 'unavailable',
+      features: this.featuresArray.value,
+      updatedAt: new Date().toISOString(),
+    };
+
+    this.isLoading = true;
+    this.clientService.updateCar(this.carId!, updatedCar).subscribe({
+      next: () => {
+        this.toast.showSuccess('editCar.updateSuccess');
+        this.router.navigate(['/client/my-cars']);
+        this.isLoading = false;
+      },
+      error: () => {
+        this.toast.showError('editCar.updateError');
+        this.isLoading = false;
+      },
+    });
+  }
+
+  onCancel() {
+    if (this.isEditMode) {
+      this.router.navigate(['/client/my-cars']);
+    } else {
+      this.carForm?.reset();
+      this.FormHandler();
+    }
+  }
+
   loadCarModels() {
     this.isLoadingModels = true;
     this.clientService.getCarModels().subscribe({
@@ -261,17 +384,18 @@ export class AddCarsComponent {
         this.isLoadingModels = false;
       },
       error: (err: Error) => {
-        console.error('Failed to load car models', err);
+        this.toast.showError('addCar.modelsLoadError');
         this.isLoadingModels = false;
-        this.toast.showError('addCar.loadModelsError');
       },
     });
   }
 
-  setupBrandAutoFill(): void {
-    this.carForm?.get('modelId')?.valueChanges.subscribe((modelId) => {
-      const selectedModel = this.carModels.find((m) => m.id === modelId);
-      this.carForm?.get('brand')?.setValue(selectedModel?.brand || '');
+  setupBrandAutoFill() {
+    this.carForm.get('modelId')?.valueChanges.subscribe((modelId) => {
+      const model = this.carModels.find((m) => m.id === modelId);
+      if (model) {
+        this.carForm.get('brand')?.setValue(model.brand);
+      }
     });
   }
 }
