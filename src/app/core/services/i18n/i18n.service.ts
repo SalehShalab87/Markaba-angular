@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {
@@ -8,7 +8,8 @@ export class I18nService {
   private readonly http = inject(HttpClient);
   public currentLang: 'en' | 'ar' = 'en';
   private translationFile: Record<string, any> = {};
-  public isRTL = false;
+  private isRTLSubject = new BehaviorSubject<boolean>(false);
+  public isRTL$ = this.isRTLSubject.asObservable();
 
   // Step 2: Create a method to load the translation file based on the selected language
   async loadTranslationFile(lang: 'en' | 'ar'): Promise<boolean> {
@@ -16,7 +17,11 @@ export class I18nService {
     localStorage.setItem('lang', lang);
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
-
+    if (lang === 'ar'){
+      this.isRTLSubject.next(true); // Update RTL status
+    }else{
+      this.isRTLSubject.next(false); // Update RTL status
+    }
     try {
       this.translationFile = await firstValueFrom(this.http.get<Record<string, any>>(`assets/i18n/${lang}.json`));
       this.currentLang = lang; // Update the current language after loading the file
@@ -42,10 +47,4 @@ export class I18nService {
 
     return typeof translation === 'string' ? translation : key;
   }
-
-  // Step 4: Create a method to check if the current language is RTL
-  checkIfRTL(): boolean {
-    return this.currentLang === 'ar';
-  }
-
 }

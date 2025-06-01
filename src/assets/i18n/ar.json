@@ -34,7 +34,7 @@
     "password": "كلمة المرور",
     "passwordPlaceholder": "أدخل كلمة المرور",
     "submit": "تسجيل الدخول",
-    "registerLink": "ليس لديك حساب؟ سجل هنا",
+    "registerLink": "ليس لديك حساب؟ ",
     "emailRequired": "البريد الإلكتروني مطلوب.",
     "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صالح.",
     "passwordRequired": "كلمة المرور مطلوبة.",
@@ -187,7 +187,10 @@
     "excellent": "ممتاز",
     "good": "جيد",
     "fair": "عادلة",
-    "poor": "ضعيفة"
+    "poor": "ضعيفة",
+    "contactFeatureComingSoon": "ميزة الاتصال قادمة قريباً",
+    "carUnavailable": "لا تستطيع شراء أو إيجار سيارتك",
+    "contactFeatureDisabledForClients": "لا يمكن التواصل مع نفسك"
   },
   "buy-request-modal": {
     "title": "إرسال طلب",
@@ -239,11 +242,23 @@
     "cancelConfirmationHeader": "إلغاء الطلب",
     "cancelRequestConfirmation": "هل أنت متأكد من أنك تريد إلغاء هذا الطلب؟ لا يمكن التراجع عن هذا الإجراء.",
     "deleteCarConfirmation": "هل أنت متأكد من أنك تريد حذف هذه السيارة؟ لا يمكن التراجع عن هذا الإجراء.",
+     "deleteUserConfirmation": "هل أنت متأكد من أنك تريد حذف هذا المستخدم",
+    "deleteRequestConfirmation": "هل أنت متأكد من أنك تريد حذف هذا الطلب",
     "deleteCarHeader": "تأكيد الحذف",
     "yes": "نعم، احذف",
     "no": "إلغاء",
     "save": "حفظ",
     "cancel": "إلغاء"
+  },
+  "messages": {
+    "carDeletedSuccess": "تم حذف السيارة بنجاح",
+    "carDeleteError": "فشل في حذف السيارة",
+    "requestDeletedSuccess": "تم حذف الطلب بنجاح",
+    "requestDeleteError": "فشل في حذف الطلب",
+    "carModelDeletedSuccess": "تم حذف نموذج السيارة بنجاح",
+    "carModelDeleteError": "فشل في حذف نموذج السيارة",
+    "userDeletedSuccess": "تم حذف المستخدم بنجاح",
+    "userDeleteError": "فشل في حذف المستخدم"
   },
   "modal": {
     "editCarModel": "تعديل موديل السيارة",
@@ -357,7 +372,13 @@
     "imageRemoved": "تم إزالة صورة الملف الشخصي بنجاح",
     "uploadError": "فشل في رفع الصورة",
     "invalidImageType": "يرجى اختيار ملف صورة صالح",
-    "imageTooLarge": "يجب أن يكون حجم الصورة أقل من 5 ميجابايت"
+    "imageTooLarge": "يجب أن يكون حجم الصورة أقل من 5 ميجابايت",
+    "edit-for": "تعديل الملف الشخصي لـ",
+    "edit-title": "تعديل الملف الشخصي",
+    "userUpdateSuccess": "تم تحديث ملف المستخدم بنجاح",
+    "unauthorizedEdit": "غير مصرح لك بتعديل هذا المستخدم",
+    "unauthorizedPasswordChange": "غير مصرح لك بتغيير كلمة مرور هذا المستخدم",
+    "adminPasswordUpdateSuccess": "تم تحديث كلمة مرور المستخدم بنجاح من قبل المدير"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",

@@ -7,22 +7,21 @@ import { CarModel } from '../../../models/car-model.model';
 import { Request } from '../../../models/car-request.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000';
 
-  
-  getAllUsers():Observable<User[]>{
+  getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
 
-  getAllCars():Observable<Car[]>{
+  getAllCars(): Observable<Car[]> {
     return this.http.get<Car[]>(`${this.apiUrl}/cars`);
   }
 
-  getCarModels():Observable<CarModel[]>{
+  getCarModels(): Observable<CarModel[]> {
     return this.http.get<CarModel[]>(`${this.apiUrl}/carModels`);
   }
 
@@ -35,11 +34,17 @@ export class AdminService {
   }
 
   markClientAsApproved(client: User): Observable<User[]> {
-    return this.http.put<User[]>(`${this.apiUrl}/users/${client.id}`, { ...client, accountStatus: 'approved' });
+    return this.http.put<User[]>(`${this.apiUrl}/users/${client.id}`, {
+      ...client,
+      accountStatus: 'approved',
+    });
   }
 
   markClientAsRejected(client: User): Observable<User[]> {
-    return this.http.put<User[]>(`${this.apiUrl}/users/${client.id}`, { ...client, accountStatus: 'rejected' });
+    return this.http.put<User[]>(`${this.apiUrl}/users/${client.id}`, {
+      ...client,
+      accountStatus: 'rejected',
+    });
   }
 
   addNewCarModel(carModel: CarModel): Observable<CarModel[]> {
@@ -51,6 +56,23 @@ export class AdminService {
   }
 
   updateCarModel(carModel: CarModel): Observable<CarModel[]> {
-    return this.http.put<CarModel[]>(`${this.apiUrl}/carModels/${carModel.id}`, carModel);
+    return this.http.put<CarModel[]>(
+      `${this.apiUrl}/carModels/${carModel.id}`,
+      carModel
+    );
+  }
+  deleteCar(carId: string): Observable<{}> {
+    return this.http.delete(`${this.apiUrl}/cars/${carId}`);
+  }
+  deleteRequest(requestId: string): Observable<{}> {
+    return this.http.delete(`${this.apiUrl}/requests/${requestId}`);
+  }
+  deleteUser(userId: string): Observable<{}> {
+    return this.http.delete(`${this.apiUrl}/users/${userId}`);
+  }
+  updateRequestStatus(requestId: string, status: string): Observable<Request> {
+    return this.http.patch<Request>(`${this.apiUrl}/requests/${requestId}`, {
+      requestStatus: status,
+    });
   }
 }

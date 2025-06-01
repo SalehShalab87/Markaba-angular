@@ -1,6 +1,6 @@
 @if(isRTL !== undefined){
 <p-toast
-  [position]="isRTL ? 'bottom-left' : 'bottom-right'"
+  [position]="(isRTL | async) ? 'bottom-left' : 'bottom-right'"
   [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }"
 />
 }

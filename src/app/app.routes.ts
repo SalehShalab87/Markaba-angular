@@ -60,7 +60,9 @@ export const routes: Routes = [
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'clients', component: AdminClientsComponent },
       { path: 'car-models', component: AdminCarsModelsComponent },
+      { path: 'edit-car/:id', component: AddCarsComponent },
       { path: 'profile', component: AdminProfileComponent },
+      { path: 'edit-profile/:id', component: AdminProfileComponent},
     ],
   },
 
@@ -73,9 +75,9 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: ClientDashboardComponent },
       { path: 'add-cars', component: AddCarsComponent },
-      {path: 'my-cars', component: MyCarsComponent},
-      {path: 'edit-car/:id', component: AddCarsComponent},
-      {path: 'profile', component: ClientProfileComponent}, 
+      { path: 'my-cars', component: MyCarsComponent },
+      { path: 'edit-car/:id', component: AddCarsComponent },
+      { path: 'profile', component: ClientProfileComponent },
     ],
   },
 
@@ -88,7 +90,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'car-listings', pathMatch: 'full' },
       { path: 'car-listings', component: CarsListingComponent },
       { path: 'requests', component: CustomerRequestsComponent },
-      {path: 'profile', component: CustomerProfileComponent}, 
+      { path: 'profile', component: CustomerProfileComponent },
     ],
   },
 

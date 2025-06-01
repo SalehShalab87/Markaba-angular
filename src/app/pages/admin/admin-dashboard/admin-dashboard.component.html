@@ -72,41 +72,59 @@
   <!-- Active Card Content -->
   <div class="row mt-4">
     <div class="col-12">
-      @switch (activeCard) { @case ('users') {
-      <app-dashboard-table
-        [data]="usersList"
-        [columns]="userColumns"
-        [rowsPerPage]="10"
-        title="dashboard.users"
-        [statusOptions]="userStatusOptions"
-        [statusFields]="['accountStatus']"
-      ></app-dashboard-table>
-      } @case ('cars') {
-      <app-dashboard-table
-        [data]="carList"
-        [columns]="carColumns"
-        [rowsPerPage]="10"
-        title="dashboard.cars"
-        [statusOptions]="carStatusOptions"
-        [statusFields]="['isAvailable']"
-      ></app-dashboard-table>
-      } @case ('carModels') {
-      <app-dashboard-table
-        [data]="carModelsList"
-        [columns]="carModelColumns"
-        [rowsPerPage]="10"
-        title="dashboard.carModels"
-      />
-      } @case ('requests') {
-      <app-dashboard-table
-        [data]="requestsList"
-        [columns]="requestColumns"
-        [rowsPerPage]="10"
-        title="dashboard.requests"
-        [statusOptions]="requestAndPaymentStatusOptions"
-        [statusFields]="['requestStatus', 'paymentStatus']"
-      ></app-dashboard-table>
-      } }
+      @switch (activeCard) { 
+        @case ('users') {
+          <app-dashboard-table
+            [data]="usersList"
+            [columns]="userColumns"
+            [rowsPerPage]="10"
+            title="dashboard.users"
+            [statusOptions]="userStatusOptions"
+            [statusFields]="['accountStatus']"
+            userType="admin"
+            (delete)="onDelete($event)"
+            (edit)="onEdit($event)"
+          ></app-dashboard-table>
+        } 
+        @case ('cars') {
+          <app-dashboard-table
+            [data]="carList"
+            [columns]="carColumns"
+            [rowsPerPage]="10"
+            title="dashboard.cars"
+            [statusOptions]="carStatusOptions"
+            [statusFields]="['isAvailable']"
+            userType="admin"
+            (delete)="onDelete($event)"
+            (edit)="onEdit($event)"
+          ></app-dashboard-table>
+        } 
+        @case ('carModels') {
+          <app-dashboard-table
+            [data]="carModelsList"
+            [columns]="carModelColumns"
+            [rowsPerPage]="10"
+            title="dashboard.carModels"
+            userType="admin"
+            (delete)="onDelete($event)"
+            (edit)="onEdit($event)"
+          />
+        } 
+        @case ('requests') {
+          <app-dashboard-table
+            [data]="requestsList"
+            [columns]="requestColumns"
+            [rowsPerPage]="10"
+            title="dashboard.requests"
+            [statusOptions]="requestAndPaymentStatusOptions"
+            [statusFields]="['requestStatus', 'paymentStatus']"
+            userType="admin"
+            (delete)="onDelete($event)"
+            (cancelRequest)="onCancelRequest($event)"
+          ></app-dashboard-table>
+        } 
+      }
     </div>
   </div>
 </div>
+<p-confirmdialog />

@@ -17,12 +17,10 @@ export class AppComponent {
   private i18n = inject(I18nService);
   private networkService = inject(NetworkStatusService);
   private toast = inject(ToastService);
-  isRTL!: boolean;
+  isRTL =  this.i18n.isRTL$;
 
   ngOnInit() {
-    this.loadTranslationFileFromService().then(() => {
-      this.isRTL = this.i18n.checkIfRTL();
-    });
+    this.loadTranslationFileFromService();
     this.handleNetworkStatus();
   }
 

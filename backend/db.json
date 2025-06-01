@@ -5,7 +5,11 @@
       "name": "Admin One",
       "email": "admin@cms.com",
       "password": "YWRtaW4x",
-      "role": "admin"
+      "role": "admin",
+      "profileImage": "",
+      "phone": "",
+      "address": "",
+      "dateOfBirth": ""
     },
     {
       "id": "u2",
@@ -95,15 +99,6 @@
       "address": "22 Maple St"
     },
     {
-      "id": "u11",
-      "name": "Hannah Buyer",
-      "email": "hannah@buyer.com",
-      "password": "aGFubm5haA==",
-      "role": "customer",
-      "phone": "7778889999",
-      "address": "99 Willow St"
-    },
-    {
       "id": "u12",
       "name": "Isaac Buyer",
       "email": "isaac@buyer.com",
@@ -149,7 +144,7 @@
       "name": "Corolla",
       "description": "Spacious, comfortable, and great for families. The Toyota Corolla is renowned for its reliability, smooth ride, and advanced technology, providing peace of mind and convenience for both short trips and extended travels.",
       "pricePerDay": null,
-      "price": 18000,
+      "price": 15000,
       "imageUrls": [
         "https://scene7.toyota.eu/is/image/toyotaeurope/COR0004b_25_WEB_crop:Large-Landscape?ts=0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=png-alpha",
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_xse-apex-edition_i_oem_1_1600x1067.jpg",
@@ -158,7 +153,7 @@
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_d_oem_1_1600x1067.jpg",
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_g_oem_1_1600x1067.jpg"
       ],
-      "isAvailable": "available",
+      "isAvailable": "unavailable",
       "requestType": "buy",
       "city": "Irbid",
       "country": "Jordan",
@@ -174,15 +169,14 @@
       "seats": 5,
       "doors": 4,
       "color": "Silver",
-      "condition": "excellent",
+      "condition": "good",
       "safetyRating": 5,
       "features": [
-        "Air Conditioning",
-        "Bluetooth",
-        "Backup Camera",
-        "Cruise Control"
-      ],
-      "updatedAt": "2025-06-01T17:56:23.701Z"
+        "airConditioning",
+        "bluetooth",
+        "backupCamera",
+        "cruiseControl"
+      ]
     },
     {
       "id": "c103",
@@ -219,12 +213,12 @@
       "condition": "excellent",
       "safetyRating": 5,
       "features": [
-        "Gps",
-        "Bluetooth",
-        "Backup Camera",
-        "Adaptive Cruise Control",
-        "Lane Keep Assist",
-        "Blind Spot Monitoring"
+        "gps",
+        "bluetooth",
+        "backupCamera",
+        "adaptiveCruiseControl",
+        "laneKeepAssist",
+        "blindSpotMonitoring"
       ]
     },
     {
@@ -258,10 +252,10 @@
       "condition": "good",
       "safetyRating": 4,
       "features": [
-        "Bluetooth",
-        "Cruise Control",
-        "LeatherSeats",
-        "Sun Roof"
+        "bluetooth",
+        "cruiseControl",
+        "leatherSeats",
+        "sunroof"
       ]
     },
     {
@@ -295,12 +289,12 @@
       "condition": "excellent",
       "safetyRating": 5,
       "features": [
-        "Gps",
-        "Bluetooth",
-        "BackupCamera",
-        "Blind Spot Monitoring",
-        "Air Conditioning",
-        "Heated Seats"
+        "gps",
+        "bluetooth",
+        "backupCamera",
+        "blindSpotMonitoring",
+        "airConditioning",
+        "heatedSeats"
       ]
     },
     {
@@ -334,12 +328,12 @@
       "condition": "good",
       "safetyRating": 5,
       "features": [
-        "Gps",
-        "Bluetooth",
-        "Backup Camera",
-        "Cruise Control",
-        "Air Conditioning",
-        "Leather Seats"
+        "gps",
+        "bluetooth",
+        "backupCamera",
+        "cruiseControl",
+        "airConditioning",
+        "leatherSeats"
       ]
     },
     {

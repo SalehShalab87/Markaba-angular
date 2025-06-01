@@ -71,7 +71,7 @@
               <div class="d-flex justify-content-start gap-3 p-3 car-model-actions">
                 <!-- ✅ Keep existing admin actions -->
                 <ng-container *ngIf="userType === 'admin'">
-                  <button class="btn btn-md btn-outline-primary" (click)="onEdit(row)">
+                  <button *ngIf="title !== 'dashboard.requests'" class="btn btn-md btn-outline-primary" (click)="onEdit(row)">
                     <i class="ri-edit-line"></i>
                   </button>
                   <button class="btn btn-md btn-outline-danger" (click)="onDelete(row)">

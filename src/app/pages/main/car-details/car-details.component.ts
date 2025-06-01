@@ -20,7 +20,7 @@ import { BuyRequestModalComponent } from '../../../shared/components/buy-request
     RouterLink,
     LoaderComponent,
     TranslatePipe,
-    BuyRequestModalComponent
+    BuyRequestModalComponent,
   ],
   templateUrl: './car-details.component.html',
   styleUrl: './car-details.component.scss',
@@ -29,13 +29,13 @@ import { BuyRequestModalComponent } from '../../../shared/components/buy-request
       state('in', style({ height: '*', opacity: 1 })),
       transition(':enter', [
         style({ height: 0, opacity: 0 }),
-        animate('300ms ease-in-out', style({ height: '*', opacity: 1 }))
+        animate('300ms ease-in-out', style({ height: '*', opacity: 1 })),
       ]),
       transition(':leave', [
-        animate('300ms ease-in-out', style({ height: 0, opacity: 0 }))
-      ])
-    ])
-  ]
+        animate('300ms ease-in-out', style({ height: 0, opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class CarDetailsComponent implements OnInit {
   car: Car | null = null;
@@ -51,9 +51,20 @@ export class CarDetailsComponent implements OnInit {
   private toastService = inject(ToastService);
   private router = inject(Router);
   auth = inject(AuthService);
+  clientIsHere:boolean = false;
 
   ngOnInit() {
     this.loadCarDetails();
+  }
+
+  checkIfOwnerIsViewingDetails(){
+    const currentUser = this.auth.currentUser();
+    debugger;
+    if (currentUser?.id === this.car?.ownerId) {
+      this.clientIsHere = true;
+    }else{
+      this.clientIsHere = false;
+    }
   }
 
   onRentCar() {
@@ -81,7 +92,7 @@ export class CarDetailsComponent implements OnInit {
       this.router.navigateByUrl('/login');
       return;
     }
-    
+
     this.refreshExistingRequestCheck(() => {
       if (this.hasExistingRequest) {
         this.toastService.showWarn('car-details.requestAlreadyExists');
@@ -92,7 +103,11 @@ export class CarDetailsComponent implements OnInit {
   }
 
   onContactOwner() {
+    if (this.clientIsHere){
+      this.toastService.showError('car-details.contactFeatureDisabledForClients');
+    }else{
     this.toastService.showInfo('car-details.contactFeatureComingSoon');
+    }
   }
 
   private loadCarDetails() {
@@ -102,7 +117,8 @@ export class CarDetailsComponent implements OnInit {
       next: (car) => {
         this.car = car;
         this.selectedImage = car.imageUrls[0] || '';
-        this.checkExistingRequest(carId!); 
+        this.checkExistingRequest(carId!);
+        this.checkIfOwnerIsViewingDetails();
         this.loadOwnerDetails(car.ownerId);
       },
       error: () => {
@@ -124,7 +140,7 @@ export class CarDetailsComponent implements OnInit {
         this.hasExistingRequest = hasRequest;
       },
       error: () => {
-        this.hasExistingRequest = false; 
+        this.hasExistingRequest = false;
       },
     });
   }
@@ -146,7 +162,7 @@ export class CarDetailsComponent implements OnInit {
       error: () => {
         this.hasExistingRequest = false;
         callback();
-      }
+      },
     });
   }
 
@@ -172,7 +188,7 @@ export class CarDetailsComponent implements OnInit {
 
   onRequestSubmitted() {
     this.isBuyRequestModalVisible = false;
-    this.hasExistingRequest = true; 
+    this.hasExistingRequest = true;
   }
 
   toggleSpecifications() {
@@ -182,9 +198,9 @@ export class CarDetailsComponent implements OnInit {
   getConditionBadgeClass(condition?: ConditionType): string {
     const badgeClasses = {
       excellent: 'bg-success',
-      good: 'bg-primary', 
+      good: 'bg-primary',
       fair: 'bg-warning',
-      poor: 'bg-danger'
+      poor: 'bg-danger',
     };
     return badgeClasses[condition || 'fair'] || 'bg-secondary';
   }
