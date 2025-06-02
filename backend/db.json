@@ -80,16 +80,6 @@
       "address": "111 Spruce St"
     },
     {
-      "id": "u9",
-      "name": "Lara Client",
-      "email": "lara@dealer.com",
-      "password": "bGFyYTEyMw==",
-      "role": "client",
-      "accountStatus": "approved",
-      "phone": "5556667777",
-      "address": "55 Oak St"
-    },
-    {
       "id": "u10",
       "name": "Zane Buyer",
       "email": "zane@buyer.com",
@@ -153,7 +143,7 @@
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_d_oem_1_1600x1067.jpg",
         "https://media.ed.edmunds-media.com/toyota/corolla/2022/oem/2022_toyota_corolla_sedan_le_g_oem_1_1600x1067.jpg"
       ],
-      "isAvailable": "unavailable",
+      "isAvailable": "available",
       "requestType": "buy",
       "city": "Irbid",
       "country": "Jordan",
@@ -180,7 +170,7 @@
     },
     {
       "id": "c103",
-      "ownerId": "u2",
+      "ownerId": "u4",
       "modelId": "m3",
       "brand": "Tesla",
       "name": "Model 3",

@@ -14,6 +14,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { I18nService } from '../../../core/services/i18n/i18n.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -51,6 +52,7 @@ export class AdminDashboardComponent implements OnInit {
   private confirmationService = inject(ConfirmationService);
   private i18n = inject(I18nService);
   private router = inject(Router);
+  auth = inject(AuthService);
   subscriptions: Subscription[] = [];
 
   // Columns for each table
