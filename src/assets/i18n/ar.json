@@ -190,7 +190,8 @@
     "poor": "ضعيفة",
     "contactFeatureComingSoon": "ميزة الاتصال قادمة قريباً",
     "carUnavailable": "لا تستطيع شراء أو إيجار سيارتك",
-    "contactFeatureDisabledForClients": "لا يمكن التواصل مع نفسك"
+    "contactFeatureDisabledForClients": "لا يمكن التواصل مع نفسك",
+    "carNotAvailable": "هذه السيارة غير متاحة حالياً"
   },
   "buy-request-modal": {
     "title": "إرسال طلب",
@@ -233,7 +234,8 @@
       "deleteCarCancelled": "تم إلغاء حذف السيارة"
     },
     "warning": {
-      "title": "تحذير"
+      "title": "تحذير",
+      "accountPending": "حسابك قيد المراجعة. يرجى الانتظار."
     }
   },
   "dialog": {
@@ -275,7 +277,7 @@
     "carModels": "موديلات السيارات",
     "requests": "الطلبات",
     "myCars": "سياراتي",
-    "incomingRequests": "الطلبات الواردة",
+    "incomingRequests": "كل الطلبات ",
     "earnings": "أرباحي",
     "name": "الاسم",
     "email": "البريد الإلكتروني",

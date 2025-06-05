@@ -70,6 +70,10 @@ export class LoginComponent {
               this.toast.showError('toast.error.accountRejected');
               return;
             }
+            if (user.accountStatus === 'pending') {
+              this.toast.showWarn('toast.warning.accountPending');
+              return;
+            }
             const successTranslationKey = 'toast.success.login';
             this.toast.showSuccess(successTranslationKey);
             this.authService.login(user);

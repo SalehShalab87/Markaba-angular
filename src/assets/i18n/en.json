@@ -194,7 +194,8 @@
     "poor": "Poor",
     "contactFeatureComingSoon" : "Contact feature is Coming Soon",
     "carUnavailable": "You can't buy or rent your own car",
-    "contactFeatureDisabledForClients": "You can't contact your self"
+    "contactFeatureDisabledForClients": "You can't contact your self",
+    "carNotAvailable": "This car is not available for rent or purchase at the moment."
   },
   "buy-request-modal": {
     "title": "Send Request",
@@ -237,7 +238,8 @@
       "deleteCarCancelled": "Car deletion cancelled"
     },
     "warning": {
-      "title": "Warning"
+      "title": "Warning",
+      "accountPending": "Your account is still under review"
     }
   },
   "dialog": {
@@ -280,7 +282,7 @@
     "carModels": "Car Models",
     "requests": "Requests",
     "myCars": "My Cars",
-    "incomingRequests": "Incoming Requests",
+    "incomingRequests": "All Requests",
     "earnings": "My Earnings",
     "name": "Name",
     "email": "Email",
