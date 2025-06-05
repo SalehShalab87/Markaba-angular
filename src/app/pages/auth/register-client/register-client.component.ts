@@ -70,7 +70,8 @@ export class RegisterClientComponent {
                   this.isLoading = false;
                   const successTranslationKey = 'toast.success.register'; 
                   this.toast.showSuccess(successTranslationKey);
-                  this.authService.login(newUser);
+                  // this.authService.login(newUser);
+                  this.authService.redirectUserByRole();
                   this.registerForm.reset();
                 },
                 error: () => {

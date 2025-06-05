@@ -5,7 +5,7 @@ import { I18nService } from '../i18n/i18n.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ToastService {
+export class ToastService { 
   private messageService = inject(MessageService);
   private i18n = inject(I18nService);
 
@@ -48,7 +48,7 @@ export class ToastService {
   showWarn(message: string): void {
     // Translate the message using the i18n service
     const translatedMessage = this.i18n.translate(message);
-    const translatedSummary = this.i18n.translate('toast.warn.title');
+    const translatedSummary = this.i18n.translate('toast.warning.title');
     this.messageService.add({
       severity: 'warn',
       summary: translatedSummary,

@@ -55,6 +55,7 @@ export class AuthService {
   registerUser(user: User): Observable<User> {
     const passwordHash = window.btoa(user.password);
     user.password = passwordHash;
+    user.role === 'client' ? user.accountStatus = 'pending' : null;
     return this.http.post<User>(this.apiUrl, user);
   }
 
@@ -65,6 +66,11 @@ export class AuthService {
         this.router.navigateByUrl('/admin');
         break;
       case 'client':
+        if(this._currentUser()?.accountStatus === 'pending') {
+          this.toast.showWarn('Your account is pending approval.');
+          this.router.navigateByUrl('/login');
+          return;
+        }
         this.router.navigateByUrl('/client');
         break;
       case 'customer':
