@@ -74,7 +74,7 @@ export class DashboardTableComponent implements OnInit {
     this.updateTable();
   }
 
-  sortTable(field: string) { // ✅ Change parameter name from 'header' to 'field'
+  sortTable(field: string) { 
     if (this.sortColumn === field) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
@@ -83,19 +83,19 @@ export class DashboardTableComponent implements OnInit {
     }
     
     this.filteredData.sort((a, b) => {
-      const valA = this.getCellValue(a, field); // ✅ Use 'field' instead of 'header'
-      const valB = this.getCellValue(b, field); // ✅ Use 'field' instead of 'header'
+      const valA = this.getCellValue(a, field); 
+      const valB = this.getCellValue(b, field); 
       
-      // ✅ Fix numeric field detection - check against actual field names
+      
       const numericFields = ['price', 'pricePerDay', 'paymentAmount'];
       const isNumericField = numericFields.includes(field);
       
       if (isNumericField) {
-        const numA = Number(valA) || 0; // ✅ Add fallback to 0
-        const numB = Number(valB) || 0; // ✅ Add fallback to 0
+        const numA = Number(valA) || 0; 
+        const numB = Number(valB) || 0; 
         return this.sortDirection === 'asc' ? numA - numB : numB - numA;
       } else {
-        // ✅ Handle null/undefined values properly
+       
         const strA = (valA ?? '').toString().toLowerCase();
         const strB = (valB ?? '').toString().toLowerCase();
         
@@ -178,7 +178,7 @@ export class DashboardTableComponent implements OnInit {
     return Array.from({ length: this.totalPages }, (_, acc) => acc + 1);
   }
 
-  // ✅ Just add these two client action methods
+ 
   onAccept(row: any) {
     this.accept.emit(row);
   }
@@ -187,7 +187,7 @@ export class DashboardTableComponent implements OnInit {
     this.reject.emit(row);
   }
 
-  // Keep all your existing methods
+  
   onEdit(row: any) {
     this.edit.emit(row);
   }
@@ -204,7 +204,7 @@ export class DashboardTableComponent implements OnInit {
     return row.requestStatus === 'pending';
   }
 
-  // ✅ Add this helper method for client actions
+  
   canAcceptReject(row: any): boolean {
     return this.userType === 'client' && row.requestStatus === 'pending';
   }

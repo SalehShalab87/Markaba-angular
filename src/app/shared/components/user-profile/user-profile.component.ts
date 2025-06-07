@@ -224,7 +224,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     } finally {
       this.isUploading = false;
       this.uploadProgress = 0;
-      // ✅ Clear the file input
       (event.target as HTMLInputElement).value = '';
     }
   }

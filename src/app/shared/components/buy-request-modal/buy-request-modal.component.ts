@@ -99,7 +99,7 @@ export class BuyRequestModalComponent implements OnInit, OnChanges {
         paymentAmount: this.getTotalCost(),
       };
 
-      // Add dates for rental requests
+    
       if (this.car.requestType === 'rent') {
         requestData.startDate = formData.startDate.toLocaleDateString();
         requestData.endDate = formData.endDate.toLocaleDateString();
