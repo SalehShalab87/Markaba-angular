@@ -198,12 +198,6 @@ src/
 
 ## 🧪 Testing Credentials
 
-### Admin Access
-```
-Email: admin@cms.com
-Password: admin1
-```
-
 ### Client Access
 ```
 Email: john@dealer.com
