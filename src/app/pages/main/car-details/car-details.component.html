@@ -56,13 +56,13 @@
             <div class="price-section mb-4 fade-in-up" style="animation-delay: 0.9s;">
               @if (car.requestType === 'rent' && car.pricePerDay) {
                 <div class="price-display">
-                  <span class="price-amount">{{ car.pricePerDay | currency }}</span>
+                  <span class="price-amount">{{ car.pricePerDay | currency:'JOD ' }} </span>
                   <span class="price-period">{{ 'car-details.perDay' | translate }}</span>
                 </div>
               }
               @if (car.requestType === 'buy' && car.price) {
                 <div class="price-display">
-                  <span class="price-amount">{{ car.price | currency }}</span>
+                  <span class="price-amount">{{ car.price | currency:'JOD ' }}</span>
                 </div>
               }
             </div>
