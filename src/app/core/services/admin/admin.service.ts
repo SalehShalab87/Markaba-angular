@@ -51,8 +51,8 @@ export class AdminService {
     return this.http.post<CarModel[]>(`${this.apiUrl}/carModels`, carModel);
   }
 
-  deleteCarModel(carModelId: string): Observable<{}> {
-    return this.http.delete(`${this.apiUrl}/carModels/${carModelId}`);
+  deleteCarModel(carModelId: string): Observable<CarModel>{
+    return this.http.delete<CarModel>(`${this.apiUrl}/carModels/${carModelId}`);
   }
 
   updateCarModel(carModel: CarModel): Observable<CarModel[]> {
@@ -61,14 +61,14 @@ export class AdminService {
       carModel
     );
   }
-  deleteCar(carId: string): Observable<{}> {
-    return this.http.delete(`${this.apiUrl}/cars/${carId}`);
+  deleteCar(carId: string): Observable<Car> {
+    return this.http.delete<Car>(`${this.apiUrl}/cars/${carId}`);
   }
-  deleteRequest(requestId: string): Observable<{}> {
-    return this.http.delete(`${this.apiUrl}/requests/${requestId}`);
+  deleteRequest(requestId: string): Observable<Request> {
+    return this.http.delete<Request>(`${this.apiUrl}/requests/${requestId}`);
   }
-  deleteUser(userId: string): Observable<{}> {
-    return this.http.delete(`${this.apiUrl}/users/${userId}`);
+  deleteUser(userId: string): Observable<User> {
+    return this.http.delete<User>(`${this.apiUrl}/users/${userId}`);
   }
   updateRequestStatus(requestId: string, status: string): Observable<Request> {
     return this.http.patch<Request>(`${this.apiUrl}/requests/${requestId}`, {

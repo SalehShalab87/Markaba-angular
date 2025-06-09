@@ -18,6 +18,9 @@
         class="dashboard-card text-center"
         [ngClass]="{ active: activeCard === 'cars' }"
         (click)="setActiveCard('cars')"
+        (keydown.enter)="setActiveCard('cars')"
+        (keydown.space)="setActiveCard('cars')"
+        tabindex="0"
       >
         <div class="icon-wrapper">
           <i class="ri-car-line"></i>
@@ -33,6 +36,9 @@
         class="dashboard-card text-center"
         [ngClass]="{ active: activeCard === 'requests' }"
         (click)="setActiveCard('requests')"
+        (keydown.enter)="setActiveCard('requests')"
+        (keydown.space)="setActiveCard('requests')"
+        tabindex="0"
       >
         <div class="icon-wrapper">
           <i class="ri-inbox-line"></i>
@@ -50,6 +56,9 @@
         class="dashboard-card text-center earnings-card"
         [ngClass]="{ active: activeCard === 'payments' }"
         (click)="setActiveCard('payments')"
+        (keydown.enter)="setActiveCard('payments')"
+        (keydown.space)="setActiveCard('payments')"
+        tabindex="0"
       >
         <div class="icon-wrapper">
           <i class="ri-money-dollar-circle-line"></i>
@@ -73,7 +82,7 @@
             [statusOptions]="carStatusOptions"
             [statusFields]="carsStatusFields"
             [rowsPerPage]="10"
-            title="dashboard.myCars"
+            [title]="'dashboard.myCars'"
             userType="client"
           ></app-dashboard-table>
         } 
@@ -82,7 +91,7 @@
             [data]="incomingRequestsList"
             [columns]="requestsColumns"
             [rowsPerPage]="10"
-            title="dashboard.incomingRequests"
+            [title]="'dashboard.incomingRequests'"
             [statusOptions]="requestStatusOptions"
             [statusFields]="requestsStatusFields"
             userType="client"
@@ -97,7 +106,7 @@
             [statusOptions]="requestStatusOptions"
             [statusFields]="paymentsStatusFields"
             [rowsPerPage]="10"
-            title="dashboard.earnings"
+            [title]="'dashboard.earnings'"
             userType="client"
           ></app-dashboard-table>
         } 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { TableColumn, DashboardTableComponent } from '../../../shared/components/dashboard-table/dashboard-table.component';
 import { CarModel } from '../../../models/car-model.model';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
@@ -10,6 +10,9 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { I18nService } from '../../../core/services/i18n/i18n.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { User } from '../../../models/user.model';
+import { Car } from '../../../models/car.model';
+import { Request } from '../../../models/car-request.model';
 
 @Component({
   selector: 'app-admin-cars-models',
@@ -24,14 +27,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './admin-cars-models.component.scss',
   providers: [ConfirmationService],
 })
-export class AdminCarsModelsComponent {
+export class AdminCarsModelsComponent implements OnInit, OnDestroy {
   carModelsColumns: TableColumn[] = [
     { field: 'name', header: 'modelName' },
     { field: 'brand', header: 'brand' },
     { field: 'actions', header: 'actions' },
   ];
   carModelsList: CarModel[] = [];
-  isLoading: boolean = false;
+  isLoading = false;
   subscriptions: Subscription[] = [];
   editCarModelForm!: FormGroup;
   addCarModalForm!: FormGroup;
@@ -77,7 +80,7 @@ export class AdminCarsModelsComponent {
     this.subscriptions.push(sub);
   }
 
-  showDeleteConfirmation(carModel: CarModel) {
+  showDeleteConfirmation(carModel: CarModel | User | Request| Car) {
     const translateHeader = this.i18n.translate(
       'dialog.deleteConfirmationHeader'
     );
@@ -95,7 +98,7 @@ export class AdminCarsModelsComponent {
       acceptButtonStyleClass: 'p-button-danger my-2 me-1',
       rejectButtonStyleClass: 'p-button-secondary my-2 ms-1',
       accept: () => {
-        this.deleteCarModel(carModel);
+        this.deleteCarModel(carModel as CarModel);
       },
       reject: () => {
         // User rejected the deletion
@@ -117,12 +120,13 @@ export class AdminCarsModelsComponent {
     this.subscriptions.push(sub);
   }
 
-  showEditModal(carModel: CarModel) {
-    this.selectedCarModel = carModel;
+  showEditModal(carModel: CarModel | User | Request | Car) {
+    this.selectedCarModel = carModel as CarModel;
     this.editCarModelForm.patchValue({
-      name: carModel.name,
-      brand: carModel.brand,
+      name: (carModel as CarModel).name,
+      brand: (carModel as CarModel).brand,
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const modal = new (window as any).bootstrap.Modal(
       document.getElementById('editCarModelModal')
     );
@@ -136,7 +140,7 @@ export class AdminCarsModelsComponent {
       ...this.editCarModelForm.value,
     };
     this.editCarModel(updatedCarModel);
-    // Hide the modal after submit
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const modal = (window as any).bootstrap.Modal.getInstance(
       document.getElementById('editCarModelModal')
     );
@@ -160,6 +164,7 @@ export class AdminCarsModelsComponent {
 
   showAddModal() {
     this.addCarModalForm.reset();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const modal = new (window as any).bootstrap.Modal(
       document.getElementById('addCarModelModal')
     );
@@ -170,7 +175,7 @@ export class AdminCarsModelsComponent {
     if (this.addCarModalForm.invalid) return;
     const newCarModel: CarModel = this.addCarModalForm.value;
     this.addNewCarModel(newCarModel);
-    // Hide the modal after submit
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const modal = (window as any).bootstrap.Modal.getInstance(
       document.getElementById('addCarModelModal')
     );

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardTableComponent } from '../../../shared/components/dashboard-table/dashboard-table.component';
 import { User } from '../../../models/user.model';
@@ -25,12 +25,12 @@ import { AuthService } from '../../../core/services/auth/auth.service';
     LoaderComponent,
     ConfirmDialog,
   ],
-  templateUrl: './admin-dashboard.component.html',
+  templateUrl:'./admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.scss',
   providers: [ConfirmationService],
 })
-export class AdminDashboardComponent implements OnInit {
-  activeCard: string = '';
+export class AdminDashboardComponent implements OnInit, OnDestroy {
+  activeCard = '';
   usersList: User[] = [];
   carList: Car[] = [];
   carModelsList: CarModel[] = [];
@@ -45,7 +45,7 @@ export class AdminDashboardComponent implements OnInit {
     'Paid',
     'Failed',
   ];
-  isLoading: boolean = false;
+  isLoading = false;
 
   private adminService = inject(AdminService);
   private toastService = inject(ToastService);
@@ -215,8 +215,6 @@ export class AdminDashboardComponent implements OnInit {
       accept: () => {
         this.deleteCar(car);
       },
-      reject: () => {
-      },
     });
   }
 
@@ -240,8 +238,6 @@ export class AdminDashboardComponent implements OnInit {
       rejectButtonStyleClass: 'p-button-secondary my-2 ms-1',
       accept: () => {
         this.deleteRequest(request);
-      },
-      reject: () => {
       },
     });
   }
@@ -267,7 +263,6 @@ export class AdminDashboardComponent implements OnInit {
       accept: () => {
         this.deleteUser(user);
       },
-      reject: () => {},
     });
   }
   onCancelRequest(request: Request): void {
@@ -289,8 +284,6 @@ export class AdminDashboardComponent implements OnInit {
       rejectButtonStyleClass: 'p-button-secondary my-2 ms-1',
       accept: () => {
         this.updateRequestStatus(request.id, 'cancelled');
-      },
-      reject: () => {
       },
     });
   }
@@ -390,20 +383,20 @@ export class AdminDashboardComponent implements OnInit {
     );
   }
 
-  onDelete(item: any): void {
+  onDelete(item: User | Car | Request | CarModel): void {
     switch (this.activeCard) {
       case 'users':
-        this.onDeleteUser(item);
+        this.onDeleteUser(item as User);
         break;
       case 'cars':
-        this.onDeleteCar(item);
+        this.onDeleteCar(item as Car);
         break;
       case 'requests':
-        this.onDeleteRequest(item);
+        this.onDeleteRequest(item as Request);
         break;
     }
   }
-  onEdit(item: any) {
+  onEdit(item: User | Car | Request | CarModel): void {
     switch (this.activeCard) {
       case 'cars':
         this.router.navigateByUrl(`/admin/edit-car/${item.id}`);

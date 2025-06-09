@@ -6,7 +6,7 @@
         [data]="requestList"
         [columns]="requestColumns"
         [rowsPerPage]="10"
-        title="dashboard.requests"
+        [title]="'dashboard.requests'"
         [statusOptions]="requestAndPaymentStatusOptions"
         [statusFields]="['requestStatus', 'paymentStatus']"
         (cancelRequest)="showCancelConfirmation($event)"

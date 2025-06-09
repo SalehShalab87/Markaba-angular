@@ -85,7 +85,7 @@
           <!-- Basic Information -->
           <div class="row">
             <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.2s;">
-              <label class="form-label">{{ "profile.name" | translate }} *</label>
+              <label for="name" class="form-label">{{ "profile.name" | translate }} *</label>
               <input
                 type="text"
                 class="form-control"
@@ -99,7 +99,7 @@
             </div>
   
             <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.3s;">
-              <label class="form-label">{{ "profile.email" | translate }} *</label>
+              <label for="email" class="form-label">{{ "profile.email" | translate }} *</label>
               <input
                 type="email"
                 class="form-control"
@@ -116,7 +116,7 @@
             </div>
   
             <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.4s;">
-              <label class="form-label">
+              <label for="phone" class="form-label">
                 {{ "profile.phone" | translate }}
                 @if(userRole === 'client' || userRole === 'customer') { * }
               </label>
@@ -136,7 +136,7 @@
             </div>
   
             <div class="col-12 col-md-6 mb-3 fade-in-up" style="animation-delay: 0.45s;">
-              <label class="form-label">{{ "profile.dateOfBirth" | translate }}</label>
+              <label for="dateOfBirth" class="form-label">{{ "profile.dateOfBirth" | translate }}</label>
               <p-datePicker
               inputId="dateOfBirth"
               formControlName="dateOfBirth"
@@ -151,7 +151,7 @@
             </div>
   
             <div class="col-12 mb-3 fade-in-up" style="animation-delay: 0.5s;">
-              <label class="form-label">{{ "profile.address" | translate }}</label>
+              <label for="address" class="form-label">{{ "profile.address" | translate }}</label>
               <textarea
                 class="form-control"
                 formControlName="address"
@@ -186,7 +186,7 @@
           <h5 class="mb-3">{{ "profile.updatePassword" | translate }}</h5>
   
           <div class="mb-3 fade-in-up" style="animation-delay: 0.6s;">
-            <label class="form-label">{{ "profile.oldPassword" | translate }}</label>
+            <label for="password" class="form-label">{{ "profile.oldPassword" | translate }}</label>
             <input
               type="password"
               class="form-control"
@@ -203,7 +203,7 @@
           </div>
   
           <div class="mb-3 fade-in-up" style="animation-delay: 0.7s;">
-            <label class="form-label">{{ "profile.newPassword" | translate }}</label>
+            <label for="new-password" class="form-label">{{ "profile.newPassword" | translate }}</label>
             <input
               type="password"
               class="form-control"
@@ -220,7 +220,7 @@
           </div>
   
           <div class="mb-3 fade-in-up" style="animation-delay: 0.8s;">
-            <label class="form-label">{{ "profile.confirmNewPassword" | translate }}</label>
+            <label for="confirmNewPassword" class="form-label">{{ "profile.confirmNewPassword" | translate }}</label>
             <input
               type="password"
               class="form-control"

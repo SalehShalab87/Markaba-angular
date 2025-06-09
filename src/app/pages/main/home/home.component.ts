@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { Car } from '../../../models/car.model';
@@ -7,7 +7,9 @@ import { Subscription } from 'rxjs';
 import { CarCardComponent } from "../../../shared/components/car-card/car-card.component";
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from "../../../shared/components/loader/loader.component";
-declare var bootstrap: any;
+import * as bootstrap from 'bootstrap';
+
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,12 +17,12 @@ declare var bootstrap: any;
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   featuredCarsList!: Car[];
   currentYear: number = new Date().getFullYear();
   private homeService = inject(HomeService);
   subscriptions: Subscription[] = [];
-  isLoading: boolean = false;
+  isLoading = false;
 
   ngOnInit() {
     this.loadFeaturedCars();

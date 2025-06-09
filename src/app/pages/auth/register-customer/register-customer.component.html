@@ -102,6 +102,9 @@
                     (click)="showPassword = !showPassword"
                     class="show-password-icon"
                     [ngClass]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    (keydown.enter)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    (keydown.space)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    tabindex="0"
                   ></i>
                   @if(registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched) {
                     <div class="my-invalid-feedback">
@@ -132,9 +135,10 @@
                   <i
                     (click)="showConfirmPassword = !showConfirmPassword"
                     class="show-password-icon2"
-                    [ngClass]="
-                      showConfirmPassword ? 'ri-eye-off-line' : 'ri-eye-line'
-                    "
+                    [ngClass]="showConfirmPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    (keydown.enter)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    (keydown.space)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    tabindex="0"
                   ></i>
                   @if(registerForm.get('confirmPassword')?.value !== registerForm.get('password')?.value) {
                     <div class="my-invalid-feedback">
@@ -149,7 +153,7 @@
                     "register.phone" | translate
                   }}</label>
                   <input
-                    type="text"
+                    type="number"
                     id="registerPhone"
                     class="form-control"
                     formControlName="phone"

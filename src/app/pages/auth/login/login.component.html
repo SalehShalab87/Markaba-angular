@@ -56,7 +56,10 @@
                   <i
                     (click)="showPassword = !showPassword"
                     class="show-password-icon"
-                    [ngClass]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    [ngClass]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'" 
+                    (keydown.enter)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    (keydown.space)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    tabindex="0"                   
                   ></i>
                   <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched" class="my-invalid-feedback">
                     {{ 'login.passwordRequired' | translate }}

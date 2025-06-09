@@ -17,6 +17,9 @@
         class="dashboard-card text-center"
         [ngClass]="{ active: activeCard === 'users' }"
         (click)="setActiveCard('users')"
+        (keydown.enter)="setActiveCard('users')"
+        (keydown.space)="setActiveCard('users')"
+        tabindex="0"
       >
         <div class="icon-wrapper">
           <i class="ri-group-line"></i>
@@ -32,6 +35,9 @@
         class="dashboard-card text-center"
         [ngClass]="{ active: activeCard === 'cars' }"
         (click)="setActiveCard('cars')"
+        (keydown.enter)="setActiveCard('cars')"
+        (keydown.space)="setActiveCard('cars')"
+        tabindex="0"
       >
         <div class="icon-wrapper">
           <i class="ri-car-line"></i>
@@ -47,6 +53,9 @@
         class="dashboard-card text-center"
         [ngClass]="{ active: activeCard === 'carModels' }"
         (click)="setActiveCard('carModels')"
+        (keydown.enter)="setActiveCard('carModels')"
+        (keydown.space)="setActiveCard('carModels')"
+        tabindex="0"
       >
         <div class="icon-wrapper">
           <i class="ri-roadster-line"></i>
@@ -62,6 +71,9 @@
         class="dashboard-card text-center"
         [ngClass]="{ active: activeCard === 'requests' }"
         (click)="setActiveCard('requests')"
+        (keydown.enter)="setActiveCard('requests')"
+        (keydown.space)="setActiveCard('requests')"
+        tabindex="0"
       >
         <div class="icon-wrapper">
           <i class="ri-bill-line"></i>
@@ -81,7 +93,7 @@
             [data]="usersList"
             [columns]="userColumns"
             [rowsPerPage]="10"
-            title="dashboard.users"
+            [title]="'dashboard.users'"
             [statusOptions]="userStatusOptions"
             [statusFields]="['accountStatus']"
             userType="admin"
@@ -94,7 +106,7 @@
             [data]="carList"
             [columns]="carColumns"
             [rowsPerPage]="10"
-            title="dashboard.cars"
+            [title]="'dashboard.cars'"
             [statusOptions]="carStatusOptions"
             [statusFields]="['isAvailable']"
             userType="admin"
@@ -107,18 +119,18 @@
             [data]="carModelsList"
             [columns]="carModelColumns"
             [rowsPerPage]="10"
-            title="dashboard.carModels"
+            [title]="'dashboard.carModels'"
             userType="admin"
             (delete)="onDelete($event)"
             (edit)="onEdit($event)"
-          />
+          ></app-dashboard-table>
         } 
         @case ('requests') {
           <app-dashboard-table
             [data]="requestsList"
             [columns]="requestColumns"
             [rowsPerPage]="10"
-            title="dashboard.requests"
+            [title]="'dashboard.requests'"
             [statusOptions]="requestAndPaymentStatusOptions"
             [statusFields]="['requestStatus', 'paymentStatus']"
             userType="admin"

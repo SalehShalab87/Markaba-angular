@@ -28,7 +28,7 @@ export class ClientDashboardComponent implements OnInit, OnDestroy {
   private clientService = inject(ClientService);
   private authService = inject(AuthService);
 
-  activeCard: string = '';
+  activeCard = '';
   currentClient: User | null = this.authService.currentUser();
 
   // Data arrays
@@ -58,11 +58,11 @@ export class ClientDashboardComponent implements OnInit, OnDestroy {
     'unavailable',
   ]
 
-  isLoading: boolean = false;
+  isLoading = false;
   subscriptions: Subscription[] = [];
 
   // Earnings calculation
-  totalEarnings: number = 0;
+  totalEarnings = 0;
 
   // Table columns (fixed according to your Car model)
   carsColumns = [
@@ -279,7 +279,7 @@ export class ClientDashboardComponent implements OnInit, OnDestroy {
   }
 
   // Handle incoming request actions (using correct status values)
-  onAcceptRequest(request: CarRequest) {
+  onAcceptRequest(request: CarRequest | User) {
     if (!request.id) {
       console.error('Request ID is missing');
       return;
@@ -299,12 +299,12 @@ export class ClientDashboardComponent implements OnInit, OnDestroy {
         }
 
         // ✅ NOW update car availability on backend
-        this.clientService.updateCarAvailability(request.carId, false).subscribe({
+        this.clientService.updateCarAvailability((request as CarRequest).carId, false).subscribe({
           next: (carResponse) => {
             console.log('Car availability updated successfully:', carResponse);
             
             // ✅ Update local car state
-            const carIndex = this.carList.findIndex((c) => c.id === request.carId);
+            const carIndex = this.carList.findIndex((c) => c.id === (request as CarRequest).carId);
             if (carIndex !== -1) {
               this.carList[carIndex].isAvailable = 'unavailable';
             }
@@ -328,7 +328,7 @@ export class ClientDashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  onRejectRequest(request: CarRequest) {
+  onRejectRequest(request: CarRequest|User) {
     if (!request.id) {
       console.error('Request ID is missing');
       return;

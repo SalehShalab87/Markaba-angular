@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 import { ToastService } from '../../../core/services/main/toast.service';
@@ -10,7 +10,7 @@ import { ToastService } from '../../../core/services/main/toast.service';
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.scss'
 })
-export class ContactUsComponent {
+export class ContactUsComponent implements OnInit {
   contactForm!: FormGroup;
   private fb = inject(FormBuilder);
   private toast = inject(ToastService);

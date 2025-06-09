@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -27,15 +27,15 @@ import { LoaderComponent } from '../../../shared/components/loader/loader.compon
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toast = inject(ToastService);
 
   loginForm!: FormGroup;
   subscription: Subscription[] = [];
-  showPassword: boolean = false;
-  isLoading: boolean = false;
+  showPassword = false;
+  isLoading = false;
 
   ngOnInit() {
     this.initializeLoginForm();

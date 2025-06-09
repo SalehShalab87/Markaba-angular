@@ -27,7 +27,7 @@ export class CustomerRequestsComponent implements OnInit {
   private confirmationService = inject(ConfirmationService);
   private i18n = inject(I18nService);
 
-  isLoading: boolean = false;
+  isLoading = false;
   requestList: Request[] = [];
   customerId: string = this.authService.currentUser()?.id || '';
 

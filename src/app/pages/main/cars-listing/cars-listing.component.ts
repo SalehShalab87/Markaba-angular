@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomeService } from '../../../core/services/main/home.service';
@@ -35,10 +35,8 @@ export class CarsListingComponent implements OnInit, OnDestroy {
   selectedLocation = '';
   uniqueLocations: string[] = [];
 
-  constructor(
-    private homeService: HomeService,
-    private route: ActivatedRoute
-  ) {}
+  homeService = inject(HomeService);
+  route = inject(ActivatedRoute);
 
   ngOnInit() {
     this.loadCars();

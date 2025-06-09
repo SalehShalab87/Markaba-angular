@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { I18nService } from './core/services/i18n/i18n.service';
 import { ToastModule } from 'primeng/toast';
@@ -13,7 +13,7 @@ import { ToastService } from './core/services/main/toast.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private i18n = inject(I18nService);
   private networkService = inject(NetworkStatusService);
   private toast = inject(ToastService);

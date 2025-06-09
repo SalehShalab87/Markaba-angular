@@ -2,7 +2,7 @@
   <div class="container fade-in-up" style="animation-delay: 0.2s">
     <div class="row align-items-center justify-content-center">
       <div class="col-6 col-lg-5 text-center mb-4 mb-lg-0">
-        @if (!(isRTL$ | async)) {
+        @if ((isRTL$ | async) === false) {
         <img
           src="https://res.cloudinary.com/dvlo9lpxo/image/upload/v1747841869/ride-mart-logo-white_xo2suy.png"
           alt="RideMart Logo"
@@ -22,9 +22,9 @@
       </div>
       <div class="col-12 col-lg-7">
         <h1 class="mb-3 text-center">{{'about-us.title' | translate}}</h1>
-        <p [class]="(!(isRTL$|async)) ? 'text-start' :'text-end'">{{'about-us.description1' | translate  }}</p>
-        <p [class]="(!(isRTL$|async)) ? 'text-start' :'text-end'">{{'about-us.description2' |translate}}</p>
-        <p [class]="( !(isRTL$| async)) ? 'text-start' :'text-end'">{{'about-us.thanks' | translate}}<p>
+        <p [class]="((isRTL$|async) === false) ? 'text-start' :'text-end'">{{'about-us.description1' | translate  }}</p>
+        <p [class]="((isRTL$|async) === false) ? 'text-start' :'text-end'">{{'about-us.description2' |translate}}</p>
+        <p [class]="((isRTL$| async) === false) ? 'text-start' :'text-end'">{{'about-us.thanks' | translate}}<p>
       </div>
     </div>
   </div>

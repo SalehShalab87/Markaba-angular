@@ -11,6 +11,7 @@
         [(ngModel)]="searchKeyword"
         (input)="filterTable()"
       />
+      @if (notCarModelsTable) {
       <select
         class="form-select w-auto"
         [(ngModel)]="statusFilter"
@@ -21,6 +22,7 @@
           {{ "dashboard." +status.toLocaleLowerCase() | translate }}
         </option>
       </select>
+    }
     </div>
   </div>
   <div class="table-responsive fade-in-up" style="animation-delay: 0.48s;">
@@ -105,12 +107,18 @@
                   (click)="onAccept(row)"
                   title="{{ 'dashboard.accept' | translate }}"
                   style="cursor:pointer"
+                  (keydown.enter)="onAccept(row)"
+                  (keydown.space)="onAccept(row)"
+                  tabindex="0"
                 ></i>
                 <i
                   class="pi pi-times text-danger"
                   (click)="onReject(row)"
                   title="{{ 'dashboard.reject' | translate }}"
                   style="cursor:pointer"
+                  (keydown.enter)="onReject(row)"
+                  (keydown.space)="onReject(row)"
+                  tabindex="0"
                 ></i>
               </div>
             </ng-container>

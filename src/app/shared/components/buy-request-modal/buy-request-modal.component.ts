@@ -24,7 +24,7 @@ import { Request } from '../../../models/car-request.model';
   styleUrl: './buy-request-modal.component.scss',
 })
 export class BuyRequestModalComponent implements OnInit, OnChanges {
-  @Input({ required: true }) isVisible: boolean = false;
+  @Input({ required: true }) isVisible = false;
   @Input() car: Car | null = null; 
   @Input() carOwner: User | null = null;
   @Output() closeModal = new EventEmitter<void>();

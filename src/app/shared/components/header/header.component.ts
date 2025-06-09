@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '../../pipes/translate.pipe';
@@ -11,7 +11,7 @@ import { I18nService } from '../../../core/services/i18n/i18n.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
   public auth = inject(AuthService);
   private router = inject(Router);

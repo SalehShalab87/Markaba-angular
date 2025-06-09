@@ -6,7 +6,7 @@
       "email": "admin@cms.com",
       "password": "YWRtaW4x",
       "role": "admin",
-      "profileImage": "",
+      "profileImage": "https://res.cloudinary.com/dniaphcwx/image/upload/v1749426455/rent_cars/cnxid23lyq3kmnv9bsun.png",
       "phone": "",
       "address": "",
       "dateOfBirth": ""
@@ -50,7 +50,9 @@
       "password": "c29waGll",
       "role": "customer",
       "phone": "2223334444",
-      "address": "789 Birch St"
+      "address": "789 Birch St",
+      "dateOfBirth": "",
+      "profileImage": ""
     },
     {
       "id": "u6",

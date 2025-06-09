@@ -107,6 +107,9 @@
                     (click)="showPassword = !showPassword"
                     class="show-password-icon"
                     [ngClass]="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    (keydown.enter)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    (keydown.space)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    tabindex="0"
                   ></i>
                   <div
                     *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
@@ -142,6 +145,9 @@
                     [ngClass]="
                       showConfirmPassword ? 'ri-eye-off-line' : 'ri-eye-line'
                     "
+                    (keydown.enter)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    (keydown.space)="showPassword ? 'ri-eye-off-line' : 'ri-eye-line'"
+                    tabindex="0"
                   ></i>
                   <div
                     *ngIf="
@@ -160,7 +166,7 @@
                     "register.phone" | translate
                   }}</label>
                   <input
-                    type="text"
+                    type="number"
                     id="registerPhone"
                     class="form-control"
                     formControlName="phone"

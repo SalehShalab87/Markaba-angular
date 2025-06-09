@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -20,12 +20,12 @@ import { LoaderComponent } from "../../../shared/components/loader/loader.compon
   templateUrl: './register-client.component.html',
   styleUrl: './register-client.component.scss',
 })
-export class RegisterClientComponent {
+export class RegisterClientComponent implements OnInit, OnDestroy {
   registerForm!: FormGroup;
-  showPassword: boolean = false;
-  showConfirmPassword: boolean = false;
+  showPassword = false;
+  showConfirmPassword = false;
   subscriptions: Subscription[] = [];
-  isLoading: boolean = false;
+  isLoading = false;
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);

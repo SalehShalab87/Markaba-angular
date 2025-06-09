@@ -40,7 +40,7 @@ import { BuyRequestModalComponent } from '../../../shared/components/buy-request
 export class CarDetailsComponent implements OnInit {
   car: Car | null = null;
   owner: User | null = null;
-  selectedImage: string = '';
+  selectedImage = '';
   isLoading = true;
   isBuyRequestModalVisible = false;
   hasExistingRequest = false;
@@ -51,7 +51,7 @@ export class CarDetailsComponent implements OnInit {
   private toastService = inject(ToastService);
   private router = inject(Router);
   auth = inject(AuthService);
-  clientIsHere:boolean = false;
+  clientIsHere = false;
 
   ngOnInit() {
     this.loadCarDetails();
@@ -59,7 +59,6 @@ export class CarDetailsComponent implements OnInit {
 
   checkIfOwnerIsViewingDetails(){
     const currentUser = this.auth.currentUser();
-    debugger;
     if (currentUser?.id === this.car?.ownerId) {
       this.clientIsHere = true;
     }else{

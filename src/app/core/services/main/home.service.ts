@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Car } from '../../../models/car.model';
-import { CarModel } from '../../../models/car-model.model';
 import { User } from '../../../models/user.model';
 import { Request } from '../../../models/car-request.model';
 

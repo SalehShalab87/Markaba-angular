@@ -30,19 +30,19 @@
               <div class="row g-3 mb-4">
                 <!-- Request Type -->
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">
+                  <label for="requestType" class="form-label fw-semibold">
                     {{ 'addCar.requestType' | translate }} 🚗
                   </label>
                   <select class="form-select" formControlName="requestType">
                     <option *ngFor="let type of requestTypes" [value]="type">
-                      {{ type == 'rent' ? ('addCar.rent' | translate) : ('addCar.buy' | translate) }}
+                      {{ type === 'rent' ? ('addCar.rent' | translate) : ('addCar.buy' | translate) }}
                     </option>
                   </select>
                 </div>
 
                 <!-- Car Model -->
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">
+                  <label for="modelId" class="form-label fw-semibold">
                     {{ 'addCar.carModel' | translate }} 🏎️
                   </label>
                   <select class="form-select" 
@@ -71,7 +71,7 @@
 
                 <!-- Brand -->
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">
+                  <label for="brand" class="form-label fw-semibold">
                     {{ 'addCar.brand' | translate }} 🏷️
                   </label>
                   <input type="text" class="form-control" formControlName="brand" readonly>
@@ -79,7 +79,7 @@
 
                 <!-- Year -->
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.year' | translate }}</label>
+                  <label for="year" class="form-label fw-semibold">{{ 'addCar.year' | translate }}</label>
                   <input type="number" 
                          class="form-control" 
                          formControlName="year" 
@@ -91,7 +91,7 @@
                 <!-- Price Fields -->
                 @if(carForm.get('requestType')?.value === 'rent') {
                   <div class="col-md-6">
-                    <label class="form-label fw-semibold">
+                    <label for="pricePerDay" class="form-label fw-semibold">
                       {{ 'addCar.pricePerDay' | translate }} 💰
                     </label>
                     <div class="input-group">
@@ -115,7 +115,7 @@
 
                 @if(carForm.get('requestType')?.value === 'buy') {
                   <div class="col-md-6">
-                    <label class="form-label fw-semibold">
+                    <label for="price" class="form-label fw-semibold">
                       {{ 'addCar.price' | translate }} 💰
                     </label>
                     <div class="input-group">
@@ -139,7 +139,7 @@
 
                 <!-- Condition -->
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.condition' | translate }}</label>
+                  <label for="condition" class="form-label fw-semibold">{{ 'addCar.condition' | translate }}</label>
                   <select class="form-select" formControlName="condition">
                     <option value="" disabled selected>{{ 'addCar.selectCondition' | translate }}</option>
                     <option *ngFor="let condition of conditionTypes" [value]="condition">
@@ -156,7 +156,7 @@
 
               <div class="row g-3 mb-4">
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.transmission' | translate }}</label>
+                  <label for="transmission" class="form-label fw-semibold">{{ 'addCar.transmission' | translate }}</label>
                   <select class="form-select" formControlName="transmission">
                     <option value="" disabled selected>{{ 'addCar.selectTransmission' | translate }}</option>
                     <option *ngFor="let trans of transmissionTypes" [value]="trans">
@@ -166,7 +166,7 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.engineType' | translate }}</label>
+                  <label for="engineType" class="form-label fw-semibold">{{ 'addCar.engineType' | translate }}</label>
                   <select class="form-select" formControlName="engineType">
                     <option value="" disabled selected>{{ 'addCar.selectEngineType' | translate }}</option>
                     <option *ngFor="let engine of engineTypes" [value]="engine">
@@ -176,12 +176,12 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.mileage' | translate }}</label>
+                  <label for="mileage" class="form-label fw-semibold">{{ 'addCar.mileage' | translate }}</label>
                   <input type="number" class="form-control" formControlName="mileage" placeholder="50000" min="0">
                 </div>
 
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.seats' | translate }}</label>
+                  <label for="seats" class="form-label fw-semibold">{{ 'addCar.seats' | translate }}</label>
                   <select class="form-select" formControlName="seats">
                     <option value="" disabled selected>{{ 'addCar.selectSeats' | translate }}</option>
                     <option *ngFor="let seat of seatOptions" [value]="seat">{{ seat }}</option>
@@ -189,12 +189,12 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.color' | translate }}</label>
+                  <label for="color" class="form-label fw-semibold">{{ 'addCar.color' | translate }}</label>
                   <input type="text" class="form-control" formControlName="color" placeholder="{{ 'addCar.colorPlaceholder' | translate }}">
                 </div>
 
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.city' | translate }}</label>
+                  <label for="city" class="form-label fw-semibold">{{ 'addCar.city' | translate }}</label>
                   <input type="text" 
                          class="form-control" 
                          formControlName="city" 
@@ -206,7 +206,7 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label class="form-label fw-semibold">{{ 'addCar.country' | translate }}</label>
+                  <label for="country" class="form-label fw-semibold">{{ 'addCar.country' | translate }}</label>
                   <input type="text" 
                          class="form-control" 
                          formControlName="country" 
@@ -230,7 +230,11 @@
                       <div 
                         class="feature-card text-center p-3 h-100 d-flex align-items-center justify-content-center"
                         [class.selected]="featuresArray.value.includes(feature)"
-                        (click)="toggleFeature(feature)">
+                        (click)="toggleFeature(feature)"
+                        (keydown.enter)="toggleFeature(feature)"
+                        (keydown.space)="toggleFeature(feature)"
+                        tabindex="0"
+                        >
                         {{ ('addCar.features.' + feature) | translate }}
                       </div>
                     </div>
@@ -244,7 +248,7 @@
               </div>
 
               <div class="mb-4">
-                <label class="form-label fw-semibold">{{ 'addCar.description' | translate }} 📝</label>
+                <label for="description" class="form-label fw-semibold">{{ 'addCar.description' | translate }} 📝</label>
                 <textarea class="form-control" 
                           formControlName="description" 
                           rows="4" 
@@ -267,7 +271,7 @@
               </div>
 
               <div class="mb-4">
-                <label class="form-label fw-semibold">{{ 'addCar.carImages' | translate }} 📸</label>
+                <label for="fileInput" class="form-label fw-semibold">{{ 'addCar.carImages' | translate }} 📸</label>
                 
                 <div class="upload-area" 
                      [class.upload-disabled]="isUploading"

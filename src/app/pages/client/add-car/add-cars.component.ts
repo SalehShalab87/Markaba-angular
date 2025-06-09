@@ -49,8 +49,8 @@ export class AddCarsComponent implements OnInit {
 
   currentClient: User | null = this.auth.currentUser();
   currentYear = new Date().getFullYear();
-  currentLanguage: string = 'en';
-  isRTL: boolean = false;
+  currentLanguage = 'en';
+  isRTL = false;
 
   // Edit mode properties
   isEditMode = false;
@@ -82,7 +82,7 @@ export class AddCarsComponent implements OnInit {
   ];
 
   carForm!: FormGroup;
-  isLoading: boolean = false;
+  isLoading = false;
   isUploading = false;
   uploadProgress = 0;
   carModels: CarModel[] = [];
@@ -265,7 +265,8 @@ export class AddCarsComponent implements OnInit {
               );
               this.uploadProgress = fileProgress;
             } else if (event.type === HttpEventType.Response) {
-              this.imageUrls.push(this.fb.control(event.body?.secure_url));
+              const secureUrl = (event.body as { secure_url?: string })?.secure_url;
+              this.imageUrls.push(this.fb.control(secureUrl));
             }
           },
           error: (err) => {
@@ -316,14 +317,13 @@ export class AddCarsComponent implements OnInit {
     }
   }
 
-  createCar(formValue: any) {
+  createCar(formValue: Car) {
     const carData: Car = {
       ...formValue,
       id: crypto.randomUUID(),
       ownerId: this.currentClient?.id || '',
       isAvailable: formValue.isAvailable ? 'available' : 'unavailable',
       features: this.featuresArray.value,
-      createdAt: new Date().toISOString(),
     };
 
     this.isLoading = true;
@@ -335,7 +335,7 @@ export class AddCarsComponent implements OnInit {
         this.FormHandler();
         this.toast.showSuccess('addCar.success');
       },
-      error: (error: any) => {
+      error: (error: Error) => {
         console.log(error);
         this.isLoading = false;
         this.toast.showError('addCar.error');
@@ -343,14 +343,13 @@ export class AddCarsComponent implements OnInit {
     });
   }
 
-  updateCar(formValue: any) {
+  updateCar(formValue: Car) {
     const updatedCar: Car = {
       ...this.currentCar!,
       ...formValue,
       id: this.carId!,
       isAvailable: formValue.isAvailable ? 'available' : 'unavailable',
       features: this.featuresArray.value,
-      updatedAt: new Date().toISOString(),
     };
 
     this.isLoading = true;
@@ -383,7 +382,7 @@ export class AddCarsComponent implements OnInit {
         this.carModels = models;
         this.isLoadingModels = false;
       },
-      error: (err: Error) => {
+      error: () => {
         this.toast.showError('addCar.modelsLoadError');
         this.isLoadingModels = false;
       },

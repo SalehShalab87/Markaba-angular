@@ -23,7 +23,10 @@
                     [style.animation-delay]="(0.4 + ($index * 0.1)) + 's'"
                     [class.active]="selectedImage === image"
                     (click)="selectImage(image)"
+                    (keydown.enter)="selectImage(image)"
+                    (keydown.space)="selectImage(image)"
                     fetchpriority="high"
+                    tabindex="0"
                     >
                 }
               </div>

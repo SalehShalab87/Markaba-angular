@@ -1,5 +1,5 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { inject, Injectable} from '@angular/core';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { admin, CarModelsUrl, CarsUrl, client, cloudinaryUrl, cloudName, folderName, uploadPreset } from '../../../shared/constant/constant';
 import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -17,7 +17,7 @@ export class ClientService {
   private http = inject(HttpClient);
   isLoggedIn: boolean = this.auth.isLoggedIn();
   role: string | null = this.auth.userRole();
-  apiUrl: string = 'http://localhost:3000';
+  apiUrl = 'http://localhost:3000';
 
   getCarModels(): Observable<CarModel[]> {
     return this.http.get<CarModel[]>(CarModelsUrl);
@@ -32,7 +32,7 @@ export class ClientService {
     );
   }
 
-  uploadImage(file: File): Observable<any> {
+  uploadImage(file: File): Observable<HttpEvent<object>> {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', uploadPreset);

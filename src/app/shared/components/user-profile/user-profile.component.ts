@@ -42,7 +42,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private activeRoute = inject(ActivatedRoute);
 
   @Input() userRole: UserRole = 'admin';
-  @Input() isAdmin: boolean = false;
+  @Input() isAdmin = false;
   userIdFromRoute: string | null = null;
 
   profileForm!: FormGroup;
@@ -199,8 +199,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  async onFileSelected(event: any) {
-    const file = event.target.files[0];
+  async onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files && input.files[0];
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
@@ -240,7 +241,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
                 100 * (event.loaded / (event.total || 1))
               );
             } else if (event.type === HttpEventType.Response) {
-              const imageUrl = event.body?.secure_url;
+              // Explicitly type the response body to access secure_url
+              const body = event.body as { secure_url?: string };
+              const imageUrl = body?.secure_url;
               if (imageUrl) {
                 this.profileForm.patchValue({
                   profileImage: imageUrl,
