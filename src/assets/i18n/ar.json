@@ -248,7 +248,7 @@
     "deleteRequestConfirmation": "هل أنت متأكد من أنك تريد حذف هذا الطلب",
     "deleteCarHeader": "تأكيد الحذف",
     "yes": "نعم، احذف",
-    "no": "إلغاء",
+    "no": "لا",
     "save": "حفظ",
     "cancel": "إلغاء"
   },

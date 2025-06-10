@@ -60,7 +60,8 @@ export class RegisterCustomerComponent implements OnInit, OnDestroy {
       this.registerForm.markAllAsTouched();
       return;
     }
-    const newUser: User = this.registerForm.getRawValue();
+    const formValue = this.registerForm.getRawValue();
+    const { confirmPassword, ...newUser } = formValue;
     this.subscription.push(
       this.authService.isUserEmailExists(newUser.email).subscribe({
         next: (users: User[]) => {
@@ -71,11 +72,11 @@ export class RegisterCustomerComponent implements OnInit, OnDestroy {
             this.isLoading = true;
             this.subscription.push(
               this.authService.registerUser(newUser).subscribe({
-                next: () => {
+                next: (registeredUser) => {
                   this.isLoading = false;
                   const successTranslationKey = 'toast.success.register';
                   this.toast.showSuccess(successTranslationKey);
-                  this.authService.login(newUser);
+                  this.authService.login(registeredUser);
                   this.registerForm.reset();
                 },
                 error: () => {

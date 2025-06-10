@@ -253,7 +253,7 @@
     "cancelRequestConfirmationHeader": "Confirm Cancel",
     "deleteCarHeader": "Confirm Delete",
     "yes": "Yes, Delete",
-    "no": "Cancel",
+    "no": "No",
     "save": "Save",
     "cancel": "Cancel"
   },

@@ -56,7 +56,8 @@ export class RegisterClientComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const newUser: User = this.registerForm.getRawValue();
+    const formValue = this.registerForm.getRawValue();
+    const { confirmPassword, ...newUser } = formValue;
     this.subscriptions.push(
       this.authService.isUserEmailExists(newUser.email).subscribe({
         next: (users: User[]) => {
@@ -70,7 +71,6 @@ export class RegisterClientComponent implements OnInit, OnDestroy {
                   this.isLoading = false;
                   const successTranslationKey = 'toast.success.register'; 
                   this.toast.showSuccess(successTranslationKey);
-                  // this.authService.login(newUser);
                   this.authService.redirectUserByRole();
                   this.registerForm.reset();
                 },

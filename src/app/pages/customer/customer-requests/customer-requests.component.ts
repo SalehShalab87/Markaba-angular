@@ -130,7 +130,7 @@ export class CustomerRequestsComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       closable: true,
       closeOnEscape: true,
-      acceptLabel: this.i18n.translate('dialog.yes'),
+      acceptLabel: this.i18n.translate('dashboard.cancelRequest'),
       rejectLabel: this.i18n.translate('dialog.no'),
       acceptButtonStyleClass: 'p-button-danger my-2 me-1',
       rejectButtonStyleClass: 'p-button-secondary my-2 ms-1',
