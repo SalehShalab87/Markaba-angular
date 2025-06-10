@@ -10,6 +10,7 @@
         [statusOptions]="requestAndPaymentStatusOptions"
         [statusFields]="['requestStatus', 'paymentStatus']"
         (cancelRequest)="showCancelConfirmation($event)"
+        [userType]="'customer'"
     />
 </div>
 }

@@ -84,16 +84,16 @@
                 <!-- ✅ Add client actions for pending requests -->
                 <ng-container *ngIf="userType === 'client' && canAcceptReject(row)">
                   <button class="btn btn-sm btn-success" (click)="onAccept(row)">
-                    Accept
+                    {{ "dashboard.accept" | translate }}
                   </button>
                   <button class="btn btn-sm btn-danger" (click)="onReject(row)">
-                    Reject
+                    {{ "dashboard.reject" | translate }}
                   </button>
                 </ng-container>
 
                 <ng-container *ngIf="canCancelRequest(row)">
                   <button class="btn btn-sm btn-warning" (click)="onCancelRequest(row)">
-                    Cancel
+                    {{ "dashboard.cancel" | translate }}
                   </button>
                 </ng-container>
               </div>
@@ -102,24 +102,12 @@
             <!-- Client Actions for accepting/rejecting -->
             <ng-container *ngIf="col.field === 'Client Actions'; else normalCell">
               <div class="d-flex justify-content-start gap-3 p-3 car-model-actions">
-                <i
-                  class="pi pi-check text-success"
-                  (click)="onAccept(row)"
-                  title="{{ 'dashboard.accept' | translate }}"
-                  style="cursor:pointer"
-                  (keydown.enter)="onAccept(row)"
-                  (keydown.space)="onAccept(row)"
-                  tabindex="0"
-                ></i>
-                <i
-                  class="pi pi-times text-danger"
-                  (click)="onReject(row)"
-                  title="{{ 'dashboard.reject' | translate }}"
-                  style="cursor:pointer"
-                  (keydown.enter)="onReject(row)"
-                  (keydown.space)="onReject(row)"
-                  tabindex="0"
-                ></i>
+                <button class="btn btn-sm btn-success" (click)="onAccept(row)">
+                  {{ "dashboard.accept" | translate }}
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="onReject(row)">
+                  {{ "dashboard.reject" | translate }}
+                </button>
               </div>
             </ng-container>
 
@@ -135,10 +123,9 @@
                 </span>
               </ng-container>
               <ng-template #normalCellContent>
-                @if (typeof getCellValue(row,col.field) === 'number') {
+                @if (typeof getCellValue(row,col.field) === 'number' && col.header !== 'phone') {
                 {{getCellValue(row, col.field)| currency : "JOD" : "symbol" : "1.0-0"}}
                 }@else if (col.header === 'actions' || col.header === 'customerActions') {
-                <!-- Actions are handled above -->
                 }
                 @else {
                 {{ getCellValue(row, col.field) }}

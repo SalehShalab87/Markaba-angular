@@ -6,7 +6,7 @@
     [data]="clientsList"
     [columns]="clientColumns"
     [rowsPerPage]="10"
-    title="dashboard.clients"
+    [title]="'dashboard.clients'"
     [statusOptions]="clientsStatusOptions"
     [statusFields]="['accountStatus']"
     (accept)="approveClient($event)"

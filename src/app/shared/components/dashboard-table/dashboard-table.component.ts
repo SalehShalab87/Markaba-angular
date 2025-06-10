@@ -27,7 +27,7 @@ export class DashboardTableComponent implements OnInit, OnChanges {
   @Input() statusOptions: string[] = [];
   @Input() statusFields: string[] = [];
 
-  @Input() userType: 'admin' | 'client' = 'admin';
+  @Input() userType: 'admin' | 'client' | 'customer' = 'admin';
   @Output() accept = new EventEmitter<Request | User>();
   @Output() reject = new EventEmitter<Request | User>();
 
@@ -207,7 +207,7 @@ export class DashboardTableComponent implements OnInit, OnChanges {
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   canCancelRequest(row: any): boolean {
-    return row.requestStatus === 'pending';
+    return row.requestStatus === 'pending' && this.userType === 'customer';
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   canAcceptReject(row: any): boolean {
