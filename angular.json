@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ride-mart-angular": {
+    "markaba-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ride-mart-angular",
+            "outputPath": "dist/markaba-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ride-mart-angular:build:production"
+              "buildTarget": "markaba-angular:build:production"
             },
             "development": {
-              "buildTarget": "ride-mart-angular:build:development"
+              "buildTarget": "markaba-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
