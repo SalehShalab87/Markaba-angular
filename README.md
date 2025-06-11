@@ -1,12 +1,12 @@
-# 🚗 **RideMart - Car Management System**
+# 🚗 **Markaba - Car Management System**
 
-A comprehensive, role-based car rental and sales management platform built with Angular 19. RideMart connects car owners (clients) with customers looking to rent or buy vehicles, all managed through an intuitive admin dashboard.
+A comprehensive, role-based car rental and sales management platform built with Angular 19. Markaba connects car owners (clients) with customers looking to rent or buy vehicles, all managed through an intuitive admin dashboard.
 
 ## 👥 Team Members
 - **Saleh Shalab** - Project Lead / Front-End Angular Developer
 
 ## 📚 Project Description
-RideMart is a modern, responsive car management platform that facilitates car rental and sales transactions. The system features three distinct user roles with tailored dashboards, comprehensive car management, request handling, and full internationalization support for English and Arabic languages.
+Markaba is a modern, responsive car management platform that facilitates car rental and sales transactions. The system features three distinct user roles with tailored dashboards, comprehensive car management, request handling, and full internationalization support for English and Arabic languages.
 
 ## 🌐 Technologies Used
 - **Angular 19** (Standalone Components + Signals)
@@ -145,36 +145,41 @@ src/
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](https://github.com/user-attachments/assets/950c6081-e024-475f-84cb-22c78724e64a)
+![image](https://github.com/user-attachments/assets/0484f39b-cb45-41b4-9830-2400c5978949)
+
 
 
 ### Admin Dashboard
-![Admin Dashboard](https://github.com/user-attachments/assets/20ccafd4-907a-4312-a62a-2538bd73282b)
-![image](https://github.com/user-attachments/assets/70df188d-d51a-49fe-8256-7ce65aa5bf19)
+![Admin Dashboard](https://github.com/user-attachments/assets/8556363c-5fa1-44eb-b4ce-884ed3103f34)
+![image](https://github.com/user-attachments/assets/713cb005-e372-4a4f-b837-92bce2060ae4)
+
 
 
 
 ### Car Details
-![Car Details](https://github.com/user-attachments/assets/ab59a224-b399-4732-a009-6e16fe15f36f)
+![Car Details](https://github.com/user-attachments/assets/3bc048af-f02a-48f8-8633-e9e809b5de3f)
 ![image](https://github.com/user-attachments/assets/2009653f-68f1-4048-b132-0dd374dfb872)
 
 
 
 ### Client Dashboard
-![Client Dashboard](https://github.com/user-attachments/assets/498d26a8-b198-4a35-b4a8-9c66a423fe2e)
-![image](https://github.com/user-attachments/assets/75047a66-7451-4ae8-a291-7c2b72eea3ef)
+![Client Dashboard](https://github.com/user-attachments/assets/c50e08b3-782b-4f3e-81a1-e7b5df0baea0)
+![image](https://github.com/user-attachments/assets/47b49f96-8827-4ae6-9ca1-a4fbf5dd9a5b)
+
 
 
 
 ### Mobile Responsive
-![Mobile View](https://github.com/user-attachments/assets/54ef1464-0dc8-420a-8c03-b1c443a2d43d)
-![image](https://github.com/user-attachments/assets/0a1bbecd-d96e-4b1a-a271-038252db746f)
+![Mobile View](https://github.com/user-attachments/assets/c75ab1c2-bfe9-46d8-932d-5c8a4690bb63)
+![image](https://github.com/user-attachments/assets/1729dd15-09a4-4cb4-a0f2-e7a7d39fa708)
+
 
 
 
 ### Arabic RTL Support
-![Arabic Support](https://github.com/user-attachments/assets/9e9f4d84-1570-4dc9-9638-fb980e5978f3)
-![image](https://github.com/user-attachments/assets/d497e4a8-442c-4a14-a5c0-96a96c802602)
+![Arabic Support](https://github.com/user-attachments/assets/e4f6deff-9130-445e-a1ed-9911a5a5cc2d)
+![image](https://github.com/user-attachments/assets/03a294c7-23e4-434b-b8c5-0939f4448da5)
+
 
 
 
@@ -231,4 +236,4 @@ The JSON server provides the following endpoints:
 - [ ] Review and rating system
 
 
-**RideMart** - Your premier destination for car rentals and sales 🚗✨
+**Markaba** - Your premier destination for car rentals and sales 🚗✨
