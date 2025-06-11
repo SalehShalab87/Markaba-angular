@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { ToastService } from '../main/toast.service';
 import { FormGroup } from '@angular/forms';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = environment.apiUrl+'/users';
   private redirectUrl = '';
 
   private http = inject(HttpClient);

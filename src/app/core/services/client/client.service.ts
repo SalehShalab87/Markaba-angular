@@ -7,6 +7,7 @@ import { CarModel } from '../../../models/car-model.model';
 import { Car } from '../../../models/car.model';
 import { User } from '../../../models/user.model';
 import { Request as CarRequest } from '../../../models/car-request.model';
+import { environment } from '../../../../environments/environment.prod';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class ClientService {
   private http = inject(HttpClient);
   isLoggedIn: boolean = this.auth.isLoggedIn();
   role: string | null = this.auth.userRole();
-  apiUrl = 'http://localhost:3000';
+  apiUrl = environment.apiUrl;
 
   getCarModels(): Observable<CarModel[]> {
     return this.http.get<CarModel[]>(CarModelsUrl);

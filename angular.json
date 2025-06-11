@@ -34,7 +34,9 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
-              }
+              },
+                  "src/_redirects"
+              
             ],
             "styles": [
               "src/styles.scss",
@@ -101,7 +103,8 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
-              }
+              },
+                "src/_redirects"
             ],
             "styles": [
               "src/styles.scss"

@@ -5,13 +5,14 @@ import { User } from '../../../models/user.model';
 import { Car } from '../../../models/car.model';
 import { CarModel } from '../../../models/car-model.model';
 import { Request } from '../../../models/car-request.model';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.apiUrl;
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);

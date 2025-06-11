@@ -4,13 +4,14 @@ import { map, Observable } from 'rxjs';
 import { Car } from '../../../models/car.model';
 import { User } from '../../../models/user.model';
 import { Request } from '../../../models/car-request.model';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.apiUrl;
 
   getFeaturedCars(): Observable<Car[]> {
     return this.http.get<Car[]>(`${this.apiUrl}/cars`).pipe(
