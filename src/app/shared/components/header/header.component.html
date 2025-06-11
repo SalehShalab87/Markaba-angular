@@ -5,11 +5,11 @@
   <div class="container-fluid px-4 position-relative">
     @if(currentLang === 'ar'){
       <a class="navbar-brand d-flex align-items-center " routerLink="/" (click)="onNavClick()">
-        <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9/v1749658306/transparent_logo_AR_pb7lim.png" alt="RideMart Logo" class="logo ms-2" fetchpriority="high"/>
+        <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9/v1749658306/transparent_logo_AR_pb7lim.png" alt="RideMart Logo" class="logo" fetchpriority="high" width="120" height="64"/>
       </a>
     }@else {
       <a class="navbar-brand d-flex align-items-center" routerLink="/" (click)="onNavClick()">
-        <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9,e_sharpen/v1749658305/transparent_logo_EN_ceiccg.png" alt="RideMart Logo" class="logo me-2" fetchpriority="high" />
+        <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9,e_sharpen/v1749658305/transparent_logo_EN_ceiccg.png" alt="RideMart Logo" class="logo me-2" fetchpriority="high" width="120" height="64" />
       </a>
     }
     <button class="navbar-toggler" type="button" (click)="toggleNavbar()" [attr.aria-expanded]="isMenuOpen" aria-controls="navbarNavAltMarkup">

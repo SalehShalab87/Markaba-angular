@@ -11,6 +11,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 import { LoaderComponent } from '../loader/loader.component';
 import { I18nService } from '../../../core/services/i18n/i18n.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -26,7 +27,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   currentLang = 'en';
   isHome = false;
   isLoading = false;
-  isMenuOpen = false; // Track menu state manually
+  isMenuOpen = false;
+  private sub: Subscription[] = [];
 
   ngOnInit() {
     const lang = localStorage.getItem('lang') || 'en';
@@ -52,9 +54,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   isHomePage(): void {
-    this.router.events.subscribe(() => {
+   const sub =  this.router.events.subscribe(() => {
       this.isHome = this.router.url === '/home';
     });
+    this.sub.push(sub);
   }
 
   switchLanguage(lang: 'en' | 'ar'): void {
@@ -62,12 +65,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.closeNavbar();
 
     if (this.currentLang !== lang) {
-      setTimeout(() => {
-        this.i18n.loadTranslationFile(lang).then(() => {
-          this.currentLang = lang;
-          this.isLoading = false;
-        });
-      }, 2000);
+      this.i18n.loadTranslationFile(lang).then(() => {
+        this.currentLang = lang;
+        this.isLoading = false;
+      });
+    } else {
+      this.isLoading = false;
     }
   }
 
@@ -107,5 +110,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   onLogout(): void {
     this.closeNavbar();
     this.auth.logout();
+  }
+  ngOnDestroy(): void {
+    this.sub.forEach((s) => s.unsubscribe());
+    this.sub = [];
+    document.removeEventListener('click', this.closeNavbar.bind(this));
   }
 }
