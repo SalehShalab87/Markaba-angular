@@ -74,11 +74,11 @@
     }
   },
   "home": {
-    "welcome": "Welcome To RideMart",
+    "welcome": "Welcome To Markaba",
     "description": "Rent or buy cars easily and securely.",
     "how-it-works": "How It Works",
     "register": "Register",
-    "registerDescription": "Sign up as a customer or client to get started with RideMart.",
+    "registerDescription": "Sign up as a customer or client to get started with Markaba.",
     "browseCars": "Browse Cars",
     "browseCarsDescription": "Explore a wide range of cars available for rent or purchase.",
     "request-approve": "Request & Approve",
@@ -532,10 +532,10 @@
     "features-title": "Features"
   },
   "about-us": {
-    "title": "About RideMart",
-    "description1": "RideMart is your premier destination for car rentals and purchases. We connect car owners with customers looking for reliable, affordable transportation solutions.",
-    "description2": "Our platform makes it easy for clients to list their vehicles and for customers to find the perfect car for their needs. Whether you're looking to rent for a day or buy your next vehicle, RideMart has you covered.",
-    "thanks": "Thank you for choosing RideMart - where every journey begins!"
+    "title": "About Markaba",
+    "description1": "Markaba is your premier destination for car rentals and purchases. We connect car owners with customers looking for reliable, affordable transportation solutions.",
+    "description2": "Our platform makes it easy for clients to list their vehicles and for customers to find the perfect car for their needs. Whether you're looking to rent for a day or buy your next vehicle, Markaba has you covered.",
+    "thanks": "Thank you for choosing Markaba - where every journey begins!"
   },
   "contact-us": {
     "title": "Contact Us",
