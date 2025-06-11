@@ -4,53 +4,52 @@
 <nav class="navbar navbar-expand-lg custom-navbar" [class.transparent-header]="isHome">
   <div class="container-fluid px-4 position-relative">
     @if(currentLang === 'ar'){
-      <a class="navbar-brand d-flex align-items-center " routerLink="/">
+      <a class="navbar-brand d-flex align-items-center " routerLink="/" (click)="onNavClick()">
         <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9/v1749658306/transparent_logo_AR_pb7lim.png" alt="RideMart Logo" class="logo ms-2" fetchpriority="high"/>
       </a>
     }@else {
-      <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <a class="navbar-brand d-flex align-items-center" routerLink="/" (click)="onNavClick()">
         <img src="https://res.cloudinary.com/dvlo9lpxo/image/upload/c_crop,ar_16:9,e_sharpen/v1749658305/transparent_logo_EN_ceiccg.png" alt="RideMart Logo" class="logo me-2" fetchpriority="high" />
       </a>
     }
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" [attr.aria-expanded]="isMenuOpen" aria-controls="navbarNavAltMarkup">
       <span class="ri-menu-line"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup" [class.show]="isMenuOpen">
       <ul class="navbar-nav flex-lg-row flex-column align-items-lg-center">
         @if(!auth.isLoggedIn()){
-            <li class="nav-item"><a class="nav-link" routerLink="/home" routerLinkActive="active" >{{ 'header.home' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/car-listings" routerLinkActive="active">{{ 'header.car-listings' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/contact-us" routerLinkActive="active">{{ 'header.contact' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/about-us" routerLinkActive="active">{{ 'header.about' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="onNavClick()">{{ 'header.home' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/car-listings" routerLinkActive="active" (click)="onNavClick()">{{ 'header.car-listings' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/contact-us" routerLinkActive="active" (click)="onNavClick()">{{ 'header.contact' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/about-us" routerLinkActive="active" (click)="onNavClick()">{{ 'header.about' | translate }}</a></li>
             @if(!isHome){
-            <li class="nav-item"><a class="nav-link" routerLink="/login" routerLinkActive="active">{{ 'header.login' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/register" routerLinkActive="active">{{ 'header.register' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/login" routerLinkActive="active" (click)="onNavClick()">{{ 'header.login' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/register" routerLinkActive="active" (click)="onNavClick()">{{ 'header.register' | translate }}</a></li>
             }
-
         } 
         @switch (auth.userRole()) {
           @case('customer'){
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/car-listings" routerLinkActive="active">{{ 'header.car-listings' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active">{{ 'header.customer.requests' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/customer/profile" routerLinkActive="active">{{ 'header.customer.profile' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/contact-us" routerLinkActive="active">{{ 'header.contact' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/about-us" routerLinkActive="active">{{ 'header.about' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/car-listings" routerLinkActive="active" (click)="onNavClick()">{{ 'header.car-listings' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/requests" routerLinkActive="active" (click)="onNavClick()">{{ 'header.customer.requests' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/customer/profile" routerLinkActive="active" (click)="onNavClick()">{{ 'header.customer.profile' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/contact-us" routerLinkActive="active" (click)="onNavClick()">{{ 'header.contact' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/about-us" routerLinkActive="active" (click)="onNavClick()">{{ 'header.about' | translate }}</a></li>
           }
            @case('admin'){
-            <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">{{ 'header.admin.dashboard' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/admin/clients" routerLinkActive="active">{{ 'header.admin.clients' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/admin/car-models" routerLinkActive="active">{{ 'header.admin.carModels' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/admin/profile" routerLinkActive="active">{{ 'header.admin.profile' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active" (click)="onNavClick()">{{ 'header.admin.dashboard' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/clients" routerLinkActive="active" (click)="onNavClick()">{{ 'header.admin.clients' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/car-models" routerLinkActive="active" (click)="onNavClick()">{{ 'header.admin.carModels' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/profile" routerLinkActive="active" (click)="onNavClick()">{{ 'header.admin.profile' | translate }}</a></li>
           }
           @case('client'){
-            <li class="nav-item"><a class="nav-link" routerLink="/client/dashboard" routerLinkActive="active">{{ 'header.client.dashboard' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/car-listings" routerLinkActive="active">{{ 'header.car-listings' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/client/my-cars" routerLinkActive="active">{{ 'header.client.cars' | translate }}</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/client/profile" routerLinkActive="active">{{ 'header.client.profile' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/dashboard" routerLinkActive="active" (click)="onNavClick()">{{ 'header.client.dashboard' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/car-listings" routerLinkActive="active" (click)="onNavClick()">{{ 'header.car-listings' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/my-cars" routerLinkActive="active" (click)="onNavClick()">{{ 'header.client.cars' | translate }}</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/client/profile" routerLinkActive="active" (click)="onNavClick()">{{ 'header.client.profile' | translate }}</a></li>
           }
         }
         @if (auth.isLoggedIn()) {
-          <button class="btn btn-danger btn-sm me-2 ms-2" (click)="auth.logout()">{{ 'header.logout' | translate }}</button>
+          <button class="btn btn-danger btn-sm me-2 ms-2" (click)="onLogout()">{{ 'header.logout' | translate }}</button>
         }
       </ul>
       <div class="d-flex align-items-center mt-3 mt-lg-0">    
